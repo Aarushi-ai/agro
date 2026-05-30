@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agro — AI Assistant</title>
+
+  <!-- Cormorant Garamond: editorial luxury serif for headers -->
+  <!-- DM Sans: quiet, readable sans for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Design Tokens ─── */
+    :root {
+      --off-white:    #FAF9F6;
+      --parchment:    #F3F1EC;
+      --border:       #E5E4E2;
+      --border-light: #EDECEA;
+      --sage:         #7A9B76;
+      --sage-deep:    #5C7A58;
+      --sage-mist:    #E8EDE7;
+      --ink:          #2C2C2A;
+      --ink-soft:     #6B6B68;
+      --ink-faint:    #A8A7A4;
+      --cream-msg:    #F0EEE9;
+      --white:        #FFFFFF;
+      --shadow-soft:  0 8px 40px rgba(44, 44, 42, 0.10);
+      --shadow-fab:   0 4px 24px rgba(92, 122, 88, 0.30);
+      --radius-chat:  20px;
+      --radius-msg:   14px;
+      --font-serif:   'Cormorant Garamond', Georgia, serif;
+      --font-sans:    'DM Sans', system-ui, sans-serif;
+      --transition:   cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    /* ─── Demo Page Shell ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--parchment);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+    }
+
+    .demo-label {
+      text-align: center;
+      pointer-events: none;
+      user-select: none;
+    }
+    .demo-label h1 {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: 0.12em;
+      color: var(--sage-deep);
+    }
+    .demo-label p {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+    }
+
+    /* ════════════════════════════════════════════
+       FLOATING ACTION BUTTON
+    ════════════════════════════════════════════ */
+    #agro-fab {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--sage-deep);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-fab);
+      transition: transform 0.35s var(--transition),
+                  box-shadow 0.35s var(--transition),
+                  background 0.25s ease;
+      z-index: 9999;
+      outline: none;
+    }
+    #agro-fab:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 32px rgba(92, 122, 88, 0.40);
+      background: var(--sage);
+    }
+    #agro-fab:active { transform: scale(0.96); }
+
+    /* FAB ripple ring on open */
+    #agro-fab::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      border: 1.5px solid var(--sage);
+      opacity: 0;
+      transform: scale(1);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    #agro-fab.is-open::after {
+      opacity: 0.5;
+      transform: scale(1.25);
+    }
+
+    /* Icon morphing: leaf ↔ close */
+    #agro-fab .icon-leaf,
+    #agro-fab .icon-close {
+      position: absolute;
+      transition: opacity 0.25s ease, transform 0.35s var(--transition);
+    }
+    #agro-fab .icon-close {
+      opacity: 0;
+      transform: rotate(-45deg) scale(0.7);
+    }
+    #agro-fab.is-open .icon-leaf {
+      opacity: 0;
+      transform: rotate(20deg) scale(0.7);
+    }
+    #agro-fab.is-open .icon-close {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+
+    /* ════════════════════════════════════════════
+       CHAT WINDOW
+    ════════════════════════════════════════════ */
+    #agro-chat {
+      position: fixed;
+      bottom: 104px;
+      right: 32px;
+      width: 380px;
+      max-width: calc(100vw - 48px);
+      height: 560px;
+      max-height: calc(100vh - 140px);
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-chat);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9998;
+
+      /* hidden state */
+      opacity: 0;
+      transform: translateY(20px) scale(0.97);
+      pointer-events: none;
+      transition: opacity 0.38s var(--transition),
+                  transform 0.38s var(--transition);
+      transform-origin: bottom right;
+    }
+    #agro-chat.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+
+    /* ── Header ── */
+    .chat-header {
+      padding: 20px 22px 16px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      background: var(--white);
+      flex-shrink: 0;
+    }
+    .chat-header-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--sage-mist);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .chat-header-info { flex: 1; min-width: 0; }
+    .chat-header-name {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .chat-header-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+    }
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+      animation: pulse-dot 2.4s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.45; }
+    }
+    .status-text {
+      font-size: 0.68rem;
+      font-weight: 300;
+      color: var(--ink-faint);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .chat-header-lang {
+      font-size: 0.65rem;
+      font-weight: 300;
+      color: var(--ink-faint);
+      letter-spacing: 0.08em;
+      line-height: 1.8;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ── Messages Area ── */
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      scroll-behavior: smooth;
+    }
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 99px;
+    }
+
+    /* ── Message Bubbles ── */
+    .msg {
+      display: flex;
+      flex-direction: column;
+      max-width: 88%;
+      animation: msg-in 0.3s var(--transition) both;
+    }
+    @keyframes msg-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .msg.bot  { align-self: flex-start; }
+    .msg.user { align-self: flex-end; }
+
+    .msg-bubble {
+      padding: 11px 15px;
+      border-radius: var(--radius-msg);
+      font-size: 0.84rem;
+      font-weight: 300;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+    }
+    .msg.bot .msg-bubble {
+      background: var(--cream-msg);
+      color: var(--ink);
+      border-radius: var(--radius-msg) var(--radius-msg) var(--radius-msg) 4px;
+      border: 1px solid var(--border-light);
+    }
+    .msg.user .msg-bubble {
+      background: var(--sage-deep);
+      color: var(--white);
+      border-radius: var(--radius-msg) var(--radius-msg) 4px var(--radius-msg);
+    }
+    .msg-time {
+      font-size: 0.62rem;
+      font-weight: 300;
+      color: var(--ink-faint);
+      margin-top: 5px;
+      letter-spacing: 0.04em;
+    }
+    .msg.user .msg-time { text-align: right; }
+
+    /* Typing indicator */
+    .typing-indicator .msg-bubble {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 14px 16px;
+    }
+    .typing-indicator .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--ink-faint);
+    }
+    .typing-indicator .dot:nth-child(1) { animation: bounce 1.2s 0.0s infinite ease; }
+    .typing-indicator .dot:nth-child(2) { animation: bounce 1.2s 0.2s infinite ease; }
+    .typing-indicator .dot:nth-child(3) { animation: bounce 1.2s 0.4s infinite ease; }
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30%            { transform: translateY(-5px); opacity: 1; }
+    }
+
+    /* ── Quick Prompts ── */
+    .chat-prompts {
+      padding: 0 18px 14px;
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .prompt-chip {
+      font-family: var(--font-sans);
+      font-size: 0.71rem;
+      font-weight: 300;
+      color: var(--sage-deep);
+      border: 1px solid var(--border);
+      background: var(--white);
+      padding: 5px 11px;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+    .prompt-chip:hover {
+      background: var(--sage-mist);
+      border-color: var(--sage);
+      color: var(--sage-deep);
+    }
+
+    /* ── Input Bar ── */
+    .chat-input-bar {
+      padding: 14px 18px 18px;
+      border-top: 1px solid var(--border-light);
+      background: var(--white);
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    #chat-input {
+      flex: 1;
+      border: 1px solid var(--border);
+      background: var(--off-white);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-family: var(--font-sans);
+      font-size: 0.83rem;
+      font-weight: 300;
+      color: var(--ink);
+      resize: none;
+      outline: none;
+      min-height: 42px;
+      max-height: 110px;
+      line-height: 1.5;
+      transition: border-color 0.2s;
+    }
+    #chat-input::placeholder { color: var(--ink-faint); }
+    #chat-input:focus { border-color: var(--sage); }
+
+    #chat-send {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--sage-deep);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, transform 0.18s;
+    }
+    #chat-send:hover  { background: var(--sage); transform: scale(1.06); }
+    #chat-send:active { transform: scale(0.94); }
+    #chat-send:disabled { background: var(--border); cursor: not-allowed; transform: none; }
+
+    /* ── Footer ── */
+    .chat-footer {
+      text-align: center;
+      padding: 0 18px 12px;
+      background: var(--white);
+    }
+    .chat-footer span {
+      font-size: 0.6rem;
+      font-weight: 300;
+      color: var(--ink-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Demo backdrop -->
+  <div class="demo-label">
+    <h1>agro</h1>
+    <p>Premium Agricultural Intelligence</p>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       FLOATING ACTION BUTTON
+  ════════════════════════════════════════════ -->
+  <button id="agro-fab" aria-label="Open Agro AI Assistant" aria-expanded="false">
+    <!-- Leaf / Sprout SVG -->
+    <svg class="icon-leaf" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Stem -->
+      <line x1="13" y1="22" x2="13" y2="10" stroke="#FAF9F6" stroke-width="1.4" stroke-linecap="round"/>
+      <!-- Leaf left -->
+      <path d="M13 15 C10 13 7 10 8.5 7 C10 4 13 6 13 10" fill="#FAF9F6" fill-opacity="0.85"/>
+      <!-- Leaf right -->
+      <path d="M13 12 C16 10 19 7 17.5 4 C16 1 13 3 13 7" fill="#FAF9F6"/>
+      <!-- Sprout tip -->
+      <circle cx="13" cy="9.5" r="1.3" fill="#FAF9F6" fill-opacity="0.6"/>
+    </svg>
+
+    <!-- Close X -->
+    <svg class="icon-close" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="3" y1="3" x2="15" y2="15" stroke="#FAF9F6" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="15" y1="3" x2="3" y2="15" stroke="#FAF9F6" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <!-- ════════════════════════════════════════════
+       CHAT WINDOW
+  ════════════════════════════════════════════ -->
+  <div id="agro-chat" role="dialog" aria-label="Agro AI Assistant" aria-modal="true">
+
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="chat-header-avatar">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="10" y1="17" x2="10" y2="8" stroke="#5C7A58" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M10 12 C8 10.5 5.5 8 6.5 5.5 C7.5 3 10 4.5 10 8" fill="#7A9B76" fill-opacity="0.8"/>
+          <path d="M10 10 C12 8.5 14.5 6 13.5 3.5 C12.5 1 10 2.5 10 6" fill="#5C7A58"/>
+        </svg>
+      </div>
+      <div class="chat-header-info">
+        <div class="chat-header-name">Agro Assistant</div>
+        <div class="chat-header-status">
+          <div class="status-dot"></div>
+          <span class="status-text">Online</span>
+        </div>
+      </div>
+      <div class="chat-header-lang">
+        EN · हि · ગુ
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="chat-messages" id="chat-messages" aria-live="polite" aria-label="Conversation">
+      <!-- Populated by JS -->
+    </div>
+
+    <!-- Quick Prompts -->
+    <div class="chat-prompts" id="chat-prompts">
+      <button class="prompt-chip" data-prompt="What's the best crop for this season?">Crop advice</button>
+      <button class="prompt-chip" data-prompt="Tell me about agri inputs available">Agri Inputs</button>
+      <button class="prompt-chip" data-prompt="How can I connect to markets?">Market Linkages</button>
+      <button class="prompt-chip" data-prompt="मुझे फसल सलाह चाहिए">हिन्दी</button>
+      <button class="prompt-chip" data-prompt="મને ખેતી વિશે માહિતી જોઈએ">ગુજરાતી</button>
+    </div>
+
+    <!-- Input Bar -->
+    <div class="chat-input-bar">
+      <textarea
+        id="chat-input"
+        placeholder="Ask about crops, markets, inputs…"
+        rows="1"
+        aria-label="Your message"
+      ></textarea>
+      <button id="chat-send" aria-label="Send message">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 9L16 2L10 16L8.5 10.5L2 9Z" fill="#FAF9F6"/>
+          <line x1="8.5" y1="10.5" x2="16" y2="2" stroke="#FAF9F6" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <div class="chat-footer">
+      <span>Powered by Agro Intelligence · agro.in</span>
+    </div>
+
+  </div>
+
+  <script src="js/ai-chat.js"></script>
+</body>
+</html>
