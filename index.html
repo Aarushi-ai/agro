@@ -1,65 +1,1174 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="India's premium certified organic agri-inputs company. Farmer-proven soil enrichers, bio-stimulants, and crop protectants rooted in Gujarat's soil."/>
+  <meta name="keywords" content="organic farming, agri inputs, organic fertilizer, Gujarat, bio-stimulants, crop protection, soil health, natural farming India"/>
+  <meta name="robots" content="index, follow"/>
+  <meta property="og:title" content="AGRO — Where the Soil Meets the Future"/>
+  <meta property="og:description" content="Certified organic agri-inputs. Farmer-proven. Gujarat-rooted."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://yourdomain.in/"/>
+  <meta property="og:image" content="https://yourdomain.in/assets/images/og-card.jpg"/>
+  <meta name="twitter:title" content="AGRO — Where the Soil Meets the Future"/>
+  <meta name="twitter:description" content="Certified organic agri-inputs. Farmer-proven. Gujarat-rooted."/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link rel="canonical" href="https://yourdomain.in/"/>
 
-    <title>Agro</title>
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AGRO",
+    "description": "Certified organic agri-inputs company based in Gujarat, India",
+    "url": "https://yourdomain.in",
+    "logo": "https://yourdomain.in/assets/images/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123, Agro Business Park, Sardar Patel Ring Road",
+      "addressLocality": "Ahmedabad",
+      "addressRegion": "Gujarat",
+      "postalCode": "382481",
+      "addressCountry": "IN"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-XXXXXXXXXX",
+      "contactType": "customer service",
+      "availableLanguage": ["English", "Hindi", "Gujarati"]
+    }
+  }
+  </script>
 
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
+  <title>AGRO — Where the Soil Meets the Future</title>
 
-  <body class="flex flex-col min-h-screen">
-    <!-- Header Component -->
-    <div id="header-plugin"></div>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
 
-    <!-- Main Content -->
-    <main class="flex-1">
-      <section class="max-w-6xl mx-auto px-6 py-24">
-        <div class="max-w-3xl">
-          <p
-            class="inline-flex items-center rounded-full border border-stone-300 px-3 py-1 text-sm"
-          >
-            Sustainable Agriculture Platform
-          </p>
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/dist/tabler-icons.min.css"/>
 
-          <h1
-            class="mt-6 text-5xl md:text-6xl font-bold tracking-tight leading-tight"
-          >
-            Grow smarter with modern agricultural intelligence.
-          </h1>
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css"/>
 
-          <p class="mt-6 text-lg text-stone-600 max-w-2xl">
-            Agro helps farmers, agribusinesses, and researchers access
-            actionable insights, streamline workflows, and make better
-            decisions through a clean, AI-powered experience.
-          </p>
+  <style>
+    /* Lightbox */
+    #lightbox-overlay {
+      position: fixed; inset: 0; z-index: 5000;
+      background: rgba(26,26,24,0.95);
+      display: none; align-items: center; justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+    #lightbox-overlay.open { display: flex; }
+    #lightbox-overlay img, #lightbox-overlay video {
+      max-width: 90vw; max-height: 88vh;
+      border-radius: 12px; object-fit: contain;
+    }
+    #lightbox-close {
+      position: absolute; top: 20px; right: 24px;
+      background: rgba(247,244,238,0.1); border: 1px solid rgba(247,244,238,0.2);
+      color: var(--cream); border-radius: 50%;
+      width: 44px; height: 44px; font-size: 1.2rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    #lightbox-close:hover { background: rgba(247,244,238,0.2); }
 
-          <div class="mt-10 flex flex-wrap gap-4">
-            <a
-              href="#"
-              class="rounded-lg bg-[#2C302E] px-6 py-3 text-white transition hover:opacity-90"
-            >
-              Get Started
-            </a>
+    /* Organic strip */
+    .organic-strip {
+      background: var(--forest-mid);
+      padding: 72px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .organic-strip::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234A7C42' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+    .organic-strip h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--cream); font-weight: 300;
+      margin-bottom: 12px; position: relative;
+    }
+    .organic-strip p {
+      color: rgba(247,244,238,0.65); font-size: 0.95rem;
+      max-width: 560px; margin: 0 auto 28px;
+      line-height: 1.7; position: relative;
+    }
+    .organic-strip a { position: relative; }
 
-            <a
-              href="#"
-              class="rounded-lg border border-stone-300 px-6 py-3 transition hover:bg-stone-100"
-            >
-              Learn More
-            </a>
+    /* Partners strip */
+    .partners-strip {
+      padding: 48px;
+      background: var(--cream);
+      border-top: 1px solid var(--cream-dark);
+    }
+    .partners-label {
+      text-align: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 28px;
+    }
+    .partners-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .partner-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--warm-gray);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.3s;
+      filter: grayscale(1);
+      opacity: 0.5;
+    }
+    .partner-logo:hover { color: var(--forest); filter: grayscale(0); opacity: 1; }
+
+    /* Join us teaser */
+    .join-teaser {
+      background: var(--gold);
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .join-teaser h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--forest);
+      font-weight: 400;
+    }
+    .join-teaser p { font-size: 0.9rem; color: var(--earth); margin-top: 4px; }
+    .btn-dark {
+      background: var(--forest);
+      color: var(--cream);
+      padding: 12px 24px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 0.875rem;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: background 0.2s, transform 0.2s;
+      font-family: var(--font-body);
+      cursor: pointer; border: none;
+    }
+    .btn-dark:hover { background: var(--forest-light); transform: translateY(-2px); }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Cursors -->
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" aria-hidden="true"></div>
+
+  <!-- Background plant signature -->
+  <div class="bg-plant-signature" aria-hidden="true"></div>
+
+  <!-- ── Loading Screen ── -->
+  <div id="loading-screen" role="status" aria-label="Loading AGRO">
+    <div class="loader-scene">
+      <div class="loader-soil" aria-hidden="true"></div>
+
+      <div class="loader-sun" aria-hidden="true">
+        <div class="loader-sun__rays"></div>
+        <div class="loader-sun__disc"></div>
+      </div>
+
+      <div class="loader-water" aria-hidden="true">
+        <span class="loader-drop"></span>
+        <span class="loader-drop"></span>
+        <span class="loader-drop"></span>
+      </div>
+
+      <div class="loader-plant" aria-hidden="true">
+        <svg class="loader-plant-svg" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="loader-stroke loader-stroke--stem" pathLength="1" d="M28 66 L28 30" stroke="#E8F0E6" stroke-width="2.2" stroke-linecap="round"/>
+          <path class="loader-stroke loader-stroke--leaf-l" pathLength="1" d="M28 44 C16 38 10 28 8 16 C18 26 24 36 28 42" stroke="#B8DDB2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="loader-stroke loader-stroke--leaf-r" pathLength="1" d="M28 38 C40 32 46 22 48 10 C38 20 32 30 28 36" stroke="#B8DDB2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="loader-stroke loader-stroke--leaf-m" pathLength="1" d="M28 52 C22 48 18 42 17 34 C23 40 26 46 28 50" stroke="#9ECF98" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <p class="loader-text">AGRO</p>
+    <div class="loader-progress" aria-hidden="true">
+      <div class="loader-progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- ── HEADER ── -->
+  <header id="site-header">
+    <a href="/index.html" class="nav-logo" aria-label="AGRO Home">
+      <svg class="nav-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="18" cy="18" r="17" stroke="#2D5A28" stroke-width="1.5"/>
+        <path d="M18 28 Q18 20 18 14 Q12 10 8 6 Q14 10 18 14 Q22 10 28 6 Q24 10 18 14" fill="#2D5A28"/>
+        <circle cx="18" cy="10" r="3" fill="#C8A84B"/>
+      </svg>
+      <span class="nav-logo-text">AGRO</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="#why-us">Why Us</a></li>
+        <li><a href="#vision-section">Our Mission</a></li>
+        <li><a href="/products.html">Products</a></li>
+        <li><a href="/solutions.html">Solutions</a></li>
+        <li><a href="/impact.html">Our Impact</a></li>
+        <li><a href="/stories.html">Stories</a></li>
+        <li><a href="/about.html">About Us</a></li>
+        <li><a href="/join.html">Join Us</a></li>
+        <li class="nav-cta"><a href="/enquiry.html">Enquire Now</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-switcher">
+        <button class="lang-btn" type="button" aria-label="Change language" aria-haspopup="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span>EN</span>
+        </button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option active" data-lang="en">English</a>
+          <a href="#" class="lang-option" data-lang="hi">हिंदी</a>
+          <a href="#" class="lang-option" data-lang="gu">ગુજરાતી</a>
+        </div>
+      </div>
+      <a href="/complaint.html" class="btn-outline" style="font-size:0.78rem;padding:8px 14px;">Complaint</a>
+      <button class="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav">
+    <button type="button" class="mobile-nav-close" aria-label="Close menu">✕</button>
+    <a href="#why-us">Why Us</a>
+    <a href="/products.html">Products</a>
+    <a href="/solutions.html">Solutions</a>
+    <a href="/impact.html">Our Impact</a>
+    <a href="/stories.html">Stories</a>
+    <a href="/about.html">About Us</a>
+    <a href="/join.html">Join Us</a>
+    <a href="/enquiry.html">Enquiry</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/complaint.html">Complaint</a>
+  </nav>
+
+  <main id="main-content" role="main">
+    <!-- ══ HERO ══ -->
+    <section id="hero">
+      <svg class="hero-bg-plant" aria-hidden="true" viewBox="0 0 360 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M178 498 C176 498 174 320 178 228 C182 136 180 88 178 42" stroke="#F7F4EE" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M178 380 C118 340 88 290 72 228 C108 268 148 318 176 352" stroke="#F7F4EE" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M178 320 C248 278 278 218 292 148 C252 188 208 248 180 288" stroke="#F7F4EE" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M178 420 C128 398 102 358 94 308 C124 338 154 378 176 402" stroke="#F7F4EE" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        <path d="M292 142 C292 118 308 98 328 88 C312 108 300 128 296 148 Z" stroke="#F7F4EE" stroke-width="1.4" fill="rgba(247,244,238,0.06)"/>
+        <path d="M72 224 C72 202 56 184 38 174 C54 192 66 210 70 228 Z" stroke="#F7F4EE" stroke-width="1.4" fill="rgba(247,244,238,0.06)"/>
+        <ellipse cx="328" cy="86" rx="22" ry="34" transform="rotate(-28 328 86)" stroke="#F7F4EE" stroke-width="1.2" fill="none" opacity="0.7"/>
+        <ellipse cx="38" cy="170" rx="20" ry="30" transform="rotate(24 38 170)" stroke="#F7F4EE" stroke-width="1.2" fill="none" opacity="0.7"/>
+      </svg>
+
+      <div class="hero-inner">
+        <div class="hero-grid">
+          <div class="hero-col hero-col--copy">
+            <span class="hero-eyebrow">Certified Organic · Gujarat-Rooted · Farmer-Proven</span>
+
+            <h1 class="hero-headline" id="hero-headline">
+              The soil <em>remembers</em><br>what we put into it.
+            </h1>
+
+            <p class="hero-sub">
+              We bring certified organic agri-inputs to every farmer's field — building healthier soil, better yields, and a stronger India, together.
+            </p>
+
+            <div class="hero-actions">
+              <a href="/products.html" class="btn-primary">
+                Explore our products
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a href="#ai-chat-widget" class="btn-outline" onclick="document.querySelector('.ai-chat-panel').classList.add('open');return false;">
+                Talk to an expert
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-col hero-col--art" aria-hidden="true">
+            <svg class="hero-botanical" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="hero-botanical__stem" d="M150 380 C148 300 152 220 150 140 C148 100 150 68 148 36" stroke="#F7F4EE" stroke-width="2.6" stroke-linecap="round"/>
+              <path class="hero-botanical__leaf hero-botanical__leaf--1" d="M150 260 C78 220 52 158 44 98 C88 138 128 198 148 238" stroke="#F7F4EE" stroke-width="1.8" fill="rgba(247,244,238,0.1)"/>
+              <path class="hero-botanical__leaf hero-botanical__leaf--2" d="M150 210 C222 168 252 108 262 48 C218 92 178 152 152 192" stroke="#F7F4EE" stroke-width="1.8" fill="rgba(247,244,238,0.1)"/>
+              <path class="hero-botanical__leaf hero-botanical__leaf--3" d="M150 310 C108 288 88 252 82 212 C112 242 132 278 148 298" stroke="#F7F4EE" stroke-width="1.6" fill="none"/>
+              <path class="hero-botanical__leaf hero-botanical__leaf--4" d="M150 180 C192 158 212 128 218 98 C188 118 168 148 152 168" stroke="#F7F4EE" stroke-width="1.4" fill="rgba(247,244,238,0.06)"/>
+              <circle class="hero-botanical__bud" cx="148" cy="32" r="8" stroke="#F7F4EE" stroke-width="1.2" fill="rgba(247,244,238,0.15)"/>
+            </svg>
           </div>
         </div>
-      </section>
-    </main>
 
-    <!-- AI Assistant Component -->
-    <div id="ai-assistant-plugin"></div>
+        <div id="before-after" class="hero-compare" role="group" aria-label="Farm transformation before and after AGRO">
+          <div class="ba-layer ba-before">
+            <span class="ba-label">Before AGRO</span>
+            <svg class="ba-texture ba-texture--soil" aria-hidden="true" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid slice">
+              <rect width="800" height="280" fill="url(#ba-soil-noise)" opacity="0.15"/>
+              <path d="M0 180 Q120 160 200 190 T400 175 T600 200 T800 170" stroke="rgba(0,0,0,0.35)" stroke-width="2" fill="none"/>
+              <path d="M0 220 Q100 200 180 235 T360 210 T540 245 T800 215" stroke="rgba(0,0,0,0.28)" stroke-width="1.5" fill="none"/>
+              <path d="M80 250 Q140 230 220 260 T420 240 T620 265 T720 248" stroke="rgba(0,0,0,0.22)" stroke-width="1.2" fill="none"/>
+              <path d="M150 140 L165 155 M200 120 L218 138 M280 150 L295 168 M350 130 L368 148" stroke="rgba(0,0,0,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+              <defs>
+                <pattern id="ba-soil-noise" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <circle cx="8" cy="12" r="1" fill="rgba(0,0,0,0.15)"/>
+                  <circle cx="28" cy="32" r="0.8" fill="rgba(0,0,0,0.12)"/>
+                </pattern>
+              </defs>
+            </svg>
+          </div>
+          <div class="ba-layer ba-after" data-ba-after>
+            <span class="ba-label">After AGRO</span>
+            <svg class="ba-texture ba-texture--crop" aria-hidden="true" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid slice">
+              <path d="M400 260 C398 200 402 140 400 72" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M400 200 C330 168 290 118 278 58 C328 98 368 148 392 188" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+              <path d="M400 175 C470 142 510 92 522 42 C472 82 432 132 408 162" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+              <path d="M400 230 C355 210 330 178 322 138 C352 168 378 205 396 225" stroke="rgba(255,255,255,0.35)" stroke-width="1.2" fill="none"/>
+              <ellipse cx="400" cy="68" rx="14" ry="20" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="ba-divider" data-ba-handle aria-hidden="true">
+            <span class="ba-handle"></span>
+          </div>
+        </div>
+      </div>
 
-    <!-- Footer Component -->
-    <div id="footer-plugin"></div>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
 
-    <script src="js/main.js"></script>
-  </body>
+      <ul class="hero-stats-strip" aria-label="AGRO impact highlights">
+        <li>12,000+ Farmers</li>
+        <li>18 Districts</li>
+        <li>350 MT Chemicals Replaced</li>
+        <li>8 Years Trust</li>
+      </ul>
+    </section>
+
+    <!-- ══ VIDEO CUBE SECTION ══ -->
+    <section id="video-section">
+      <div class="video-section-header reveal">
+        <h2>Watch our fields come alive</h2>
+        <p>Real results. Real farmers. Real Gujarat.</p>
+      </div>
+      <div class="video-cubes-grid">
+        <!-- Video 1 -->
+        <div class="video-cube-wrapper">
+          <div class="media-placeholder media-placeholder--video media-placeholder--tone-1" aria-hidden="true"></div>
+          <video
+            src="assets/videos/sample-1.mp4"
+            loop
+            muted
+            playsinline
+            aria-label="Farm transformation video 1"
+          ></video>
+          <div class="video-cube-overlay"></div>
+          <div class="video-cube-label">Soil transformation · Rajkot</div>
+          <button class="video-mute-btn" aria-label="Toggle mute">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          </button>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-cube-wrapper">
+          <div class="media-placeholder media-placeholder--video media-placeholder--tone-2" aria-hidden="true"></div>
+          <video
+            src="assets/videos/sample-2.mp4"
+            loop
+            muted
+            playsinline
+            aria-label="Farm transformation video 2"
+          ></video>
+          <div class="video-cube-overlay"></div>
+          <div class="video-cube-label">Happy farmer · Saurashtra</div>
+          <button class="video-mute-btn" aria-label="Toggle mute">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          </button>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-cube-wrapper">
+          <div class="media-placeholder media-placeholder--video media-placeholder--tone-3" aria-hidden="true"></div>
+          <video
+            src="assets/videos/sample-3.mp4"
+            loop
+            muted
+            playsinline
+            aria-label="Farm transformation video 3"
+          ></video>
+          <div class="video-cube-overlay"></div>
+          <div class="video-cube-label">Product demo · Anand</div>
+          <button class="video-mute-btn" aria-label="Toggle mute">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ VISION / MISSION / MOTTO ══ -->
+    <section id="vision-section" class="section">
+      <div class="section-inner">
+        <div style="max-width:560px">
+          <span class="section-eyebrow">Our Foundation</span>
+          <h2 class="section-title">What drives every seed we plant</h2>
+          <div class="section-divider"></div>
+          <p class="section-sub">Three pillars that define who we are — not as a company, but as a mission.</p>
+        </div>
+
+        <div class="vmm-grid" data-stagger="0.1">
+          <!-- Vision -->
+          <div class="vmm-card reveal">
+            <div class="vmm-plant-corner" aria-hidden="true">
+              <svg viewBox="0 0 32 40" fill="none"><line x1="16" y1="38" x2="16" y2="20" stroke="#3D7A34" stroke-width="1.5"/><path d="M16 26 Q9 20 8 12 Q15 16 16 24" fill="#4A8C40"/><path d="M16 24 Q23 18 24 10 Q17 14 16 22" fill="#5A9E50"/></svg>
+            </div>
+            <div class="vmm-number">01</div>
+            <div class="vmm-label">Our Vision</div>
+            <div class="vmm-title">A chemical-free field in every Indian village</div>
+            <p class="vmm-text">We envision an India where every farmer has access to certified organic inputs — where the soil is healthier, the food is safer, and the farmer earns more.</p>
+          </div>
+
+          <!-- Mission -->
+          <div class="vmm-card reveal">
+            <div class="vmm-plant-corner" aria-hidden="true">
+              <svg viewBox="0 0 32 40" fill="none"><line x1="16" y1="38" x2="16" y2="20" stroke="#3D7A34" stroke-width="1.5"/><path d="M16 26 Q9 20 8 12 Q15 16 16 24" fill="#4A8C40"/><path d="M16 24 Q23 18 24 10 Q17 14 16 22" fill="#5A9E50"/></svg>
+            </div>
+            <div class="vmm-number">02</div>
+            <div class="vmm-label">Our Mission</div>
+            <div class="vmm-title">Bring certified organic inputs within every farmer's reach</div>
+            <p class="vmm-text">Through transparent pricing, genuine quality, and farmer advisory — we make organic farming not just possible, but profitable for small and mid-scale farmers across India.</p>
+          </div>
+
+          <!-- Motto -->
+          <div class="vmm-card reveal">
+            <div class="vmm-plant-corner" aria-hidden="true">
+              <svg viewBox="0 0 32 40" fill="none"><line x1="16" y1="38" x2="16" y2="20" stroke="#3D7A34" stroke-width="1.5"/><path d="M16 26 Q9 20 8 12 Q15 16 16 24" fill="#4A8C40"/><path d="M16 24 Q23 18 24 10 Q17 14 16 22" fill="#5A9E50"/></svg>
+            </div>
+            <div class="vmm-number">03</div>
+            <div class="vmm-label">Our Motto</div>
+            <div class="vmm-title">Mitti se, Kisan tak — From the Soil to the Farmer</div>
+            <p class="vmm-text">Every product we create starts with the soil's need and ends with the farmer's smile. That is the only metric we measure our success by.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ WHY US ══ -->
+    <section id="why-us" class="section">
+      <div class="section-inner">
+        <div style="max-width:560px">
+          <span class="section-eyebrow" style="color:var(--gold)">Why AGRO</span>
+          <h2 class="section-title" style="color:var(--cream)">Why farmers across Gujarat trust us</h2>
+          <div class="section-divider" style="background:var(--gold)"></div>
+          <p class="section-sub">Six reasons — not marketing claims, but commitments we've earned field by field.</p>
+        </div>
+
+        <div class="why-grid" data-stagger="0.08">
+          <div class="why-card reveal">
+            <span class="why-icon">🏅</span>
+            <div class="why-title">Certified organic, genuinely</div>
+            <p class="why-desc">FSSAI registered, govt. verified, third-party tested. Not just "natural" — certified organic by the book.</p>
+          </div>
+          <div class="why-card reveal">
+            <span class="why-icon">🌍</span>
+            <div class="why-title">Gujarat soil-tested formulas</div>
+            <p class="why-desc">Our products are formulated specifically for the soil conditions, climate, and crops of Gujarat and western India.</p>
+          </div>
+          <div class="why-card reveal">
+            <span class="why-icon">👨‍🌾</span>
+            <div class="why-title">Free farmer advisory</div>
+            <p class="why-desc">Every purchase includes guidance from our agronomists. No extra cost. Because we care about results, not just sales.</p>
+          </div>
+          <div class="why-card reveal">
+            <span class="why-icon">📊</span>
+            <div class="why-title">Transparent pricing, always</div>
+            <p class="why-desc">Every product page shows our price vs. the market average. We don't hide margins. We earn trust through honesty.</p>
+          </div>
+          <div class="why-card reveal">
+            <span class="why-icon">🤝</span>
+            <div class="why-title">Backed by a trusted group</div>
+            <p class="why-desc">Part of an established agri-business group with years of experience in Gujarat's agricultural ecosystem.</p>
+          </div>
+          <div class="why-card reveal">
+            <span class="why-icon">🛒</span>
+            <div class="why-title">Available wherever you are</div>
+            <p class="why-desc">Online via IndiaMART and DeHaat. Or call us, fill an enquiry, and we reach you directly — in your village.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ IMPACT ══ -->
+    <section id="impact" class="section">
+      <div class="section-inner">
+        <div style="text-align:center;max-width:560px;margin:0 auto 16px">
+          <span class="section-eyebrow">Our Impact</span>
+          <h2 class="section-title" style="text-align:center">Numbers that matter to us</h2>
+          <p class="section-sub" style="margin:0 auto">Behind every number is a real farmer, a real field, and a real change.</p>
+        </div>
+        <div class="impact-grid" data-stagger="0.1">
+          <div class="impact-card reveal">
+            <div class="impact-number" data-count="12000" data-suffix="+">0</div>
+            <div class="impact-label">Farmers Reached</div>
+          </div>
+          <div class="impact-card reveal">
+            <div class="impact-number" data-count="18" data-suffix="">0</div>
+            <div class="impact-label">Districts in Gujarat</div>
+          </div>
+          <div class="impact-card reveal">
+            <div class="impact-number" data-count="350" data-suffix=" MT">0</div>
+            <div class="impact-label">Chemicals Replaced</div>
+          </div>
+          <div class="impact-card reveal">
+            <div class="impact-number" data-count="8" data-suffix=" yrs">0</div>
+            <div class="impact-label">Years of Trust</div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:32px">
+          <a href="/impact.html" class="btn-outline">See full impact report →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FARMER REVIEWS ══ -->
+    <section id="farmer-reviews" class="section">
+      <div class="section-inner">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:8px">
+          <div>
+            <span class="section-eyebrow">Farmer voices</span>
+            <h2 class="section-title">Straight from the field</h2>
+            <div class="section-divider"></div>
+          </div>
+          <a href="/stories.html" class="btn-outline" style="flex-shrink:0">Read all stories →</a>
+        </div>
+
+        <div class="reviews-slider-wrap">
+          <div class="reviews-track" data-stagger="0.1">
+
+            <!-- Review 1 -->
+            <div class="review-card reveal">
+              <div class="review-header">
+                <div class="review-avatar" aria-hidden="true">R</div>
+                <div class="review-header-text">
+                  <div class="review-name">Rameshbhai Patel</div>
+                  <div class="review-meta">Anand, Gujarat · Sugarcane farmer · 12 acres</div>
+                </div>
+              </div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text" data-lang="gu" style="display:block">
+                "આ ઉત્પાદન વાપર્યા પછી મારી ભૂમિ ઘણી સ્વસ્થ બની ગઈ. ૪૦ દિવસમાં ફરક દેખાયો."
+              </div>
+              <div class="review-text" data-lang="en" style="display:none">
+                "After using this product, my soil became much healthier. I noticed a difference in 40 days."
+              </div>
+              <div class="review-text" data-lang="hi" style="display:none">
+                "इस उत्पाद का उपयोग करने के बाद मेरी मिट्टी बहुत स्वस्थ हो गई। 40 दिनों में फर्क दिखा।"
+              </div>
+              <div class="review-lang-toggle">
+                <button class="lang-pill active" data-lang="gu">ગુ</button>
+                <button class="lang-pill" data-lang="en">EN</button>
+                <button class="lang-pill" data-lang="hi">हि</button>
+              </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-card reveal">
+              <div class="review-header">
+                <div class="review-avatar" aria-hidden="true">H</div>
+                <div class="review-header-text">
+                  <div class="review-name">Hansaben Solanki</div>
+                  <div class="review-meta">Rajkot, Gujarat · Cotton farmer · 8 acres</div>
+                </div>
+              </div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text" data-lang="gu" style="display:block">
+                "AGRO ના bio-stimulant નો ઉપયોગ કર્યા પછી કપાસનો ઉતાર ૨૫% વધ્યો. ખૂબ જ સંતોષ."
+              </div>
+              <div class="review-text" data-lang="en" style="display:none">
+                "After using AGRO's bio-stimulant, cotton yield increased by 25%. Very satisfied."
+              </div>
+              <div class="review-text" data-lang="hi" style="display:none">
+                "AGRO के bio-stimulant के उपयोग के बाद कपास की पैदावार 25% बढ़ी। बहुत संतुष्ट हूं।"
+              </div>
+              <div class="review-lang-toggle">
+                <button class="lang-pill active" data-lang="gu">ગુ</button>
+                <button class="lang-pill" data-lang="en">EN</button>
+                <button class="lang-pill" data-lang="hi">हि</button>
+              </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review-card reveal">
+              <div class="review-header">
+                <div class="review-avatar" aria-hidden="true">M</div>
+                <div class="review-header-text">
+                  <div class="review-name">Maheshbhai Rana</div>
+                  <div class="review-meta">Junagadh, Gujarat · Groundnut farmer · 20 acres</div>
+                </div>
+              </div>
+              <div class="review-stars">★★★★☆</div>
+              <div class="review-text" data-lang="gu" style="display:block">
+                "Chemical ઘટ્યા, ખર્ચ ઘટ્યો ane ઉત્પાદન વધ્યું. AGRO ની ટીમ ખૂબ મદદગાર છે."
+              </div>
+              <div class="review-text" data-lang="en" style="display:none">
+                "Chemicals reduced, costs down, production up. The AGRO team is very helpful."
+              </div>
+              <div class="review-text" data-lang="hi" style="display:none">
+                "रसायन कम हुए, लागत घटी और उत्पादन बढ़ा। AGRO की टीम बहुत सहायक है।"
+              </div>
+              <div class="review-lang-toggle">
+                <button class="lang-pill active" data-lang="gu">ગુ</button>
+                <button class="lang-pill" data-lang="en">EN</button>
+                <button class="lang-pill" data-lang="hi">हि</button>
+              </div>
+            </div>
+
+            <!-- Review 4 -->
+            <div class="review-card reveal">
+              <div class="review-header">
+                <div class="review-avatar" aria-hidden="true">D</div>
+                <div class="review-header-text">
+                  <div class="review-name">Dhirubhai Mer</div>
+                  <div class="review-meta">Amreli, Gujarat · Wheat farmer · 15 acres</div>
+                </div>
+              </div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text" data-lang="gu" style="display:block">
+                "પ્રથમ ઉપયોગ પછી જ ફરક પડ્યો. AGRO ના ઉત્પાદન organic ane effective બંને છે."
+              </div>
+              <div class="review-text" data-lang="en" style="display:none">
+                "I noticed a difference after the very first use. AGRO products are both organic and effective."
+              </div>
+              <div class="review-text" data-lang="hi" style="display:none">
+                "पहले उपयोग के बाद ही फर्क पड़ा। AGRO उत्पाद organic और effective दोनों हैं।"
+              </div>
+              <div class="review-lang-toggle">
+                <button class="lang-pill active" data-lang="gu">ગુ</button>
+                <button class="lang-pill" data-lang="en">EN</button>
+                <button class="lang-pill" data-lang="hi">हि</button>
+              </div>
+            </div>
+
+            <!-- Review 5 -->
+            <div class="review-card reveal">
+              <div class="review-header">
+                <div class="review-avatar" aria-hidden="true">D</div>
+                <div class="review-header-text">
+                  <div class="review-name">Dakshaben Jadav</div>
+                  <div class="review-meta">Bhavnagar, Gujarat · Vegetable farmer · 5 acres</div>
+                </div>
+              </div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text" data-lang="gu" style="display:block">
+                "શાકભાજીમાં કોઈ chemical ન હોવાને કારણે બજારમાં ઊંચો ભાવ મળ્યો. ઘણો ફાયદો."
+              </div>
+              <div class="review-text" data-lang="en" style="display:none">
+                "Because there are no chemicals in the vegetables, I got a higher price in the market. Very profitable."
+              </div>
+              <div class="review-text" data-lang="hi" style="display:none">
+                "सब्जियों में कोई रसायन न होने से बाज़ार में ऊंचा दाम मिला। बहुत फायदा हुआ।"
+              </div>
+              <div class="review-lang-toggle">
+                <button class="lang-pill active" data-lang="gu">ગુ</button>
+                <button class="lang-pill" data-lang="en">EN</button>
+                <button class="lang-pill" data-lang="hi">हि</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="reviews-nav">
+          <button class="reviews-nav-btn reviews-prev" aria-label="Previous reviews">←</button>
+          <button class="reviews-nav-btn reviews-next" aria-label="Next reviews">→</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SOLUTIONS ══ -->
+    <section id="solutions" class="section">
+      <div class="section-inner">
+        <div style="max-width:560px">
+          <span class="section-eyebrow">What we offer</span>
+          <h2 class="section-title" style="color:var(--cream)">Our solutions for a healthier farm</h2>
+          <div class="section-divider" style="background:var(--gold)"></div>
+          <p class="section-sub">We don't just sell products. We provide a complete ecosystem for organic farming transition and success.</p>
+        </div>
+        <div class="solutions-grid">
+          <div class="solution-card">
+            <span class="solution-icon">🌱</span>
+            <div class="solution-title">Agri Inputs</div>
+            <p class="solution-desc">Certified organic soil enrichers, bio-stimulants, crop protectants, and growth promoters — formulated for India's diverse agri-climates.</p>
+            <a href="/products.html" class="solution-link">Browse catalogue →</a>
+          </div>
+          <div class="solution-card">
+            <span class="solution-icon">📡</span>
+            <div class="solution-title">Omnichannel Access</div>
+            <p class="solution-desc">Reach us by phone, WhatsApp, our website, IndiaMART, DeHaat, or your local dealer. We come to you — no barriers, no distance.</p>
+            <a href="/contact.html" class="solution-link">Find us near you →</a>
+          </div>
+          <div class="solution-card">
+            <span class="solution-icon">🌿</span>
+            <div class="solution-title">Farm Advisory</div>
+            <p class="solution-desc">General awareness about organic farming methods, what works for your soil type, and how to transition from chemical to organic — as a public good.</p>
+            <a href="/organic.html" class="solution-link">Read our guide →</a>
+          </div>
+          <div class="solution-card">
+            <span class="solution-icon">🔗</span>
+            <div class="solution-title">Market Linkages</div>
+            <p class="solution-desc">Information about organic certification, better market access, export channels, and how certified organic produce commands premium prices.</p>
+            <a href="/organic.html#market" class="solution-link">Learn more →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PRODUCTS PREVIEW ══ -->
+    <section id="products-preview" class="section">
+      <div class="section-inner">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:8px">
+          <div>
+            <span class="section-eyebrow">Our catalogue</span>
+            <h2 class="section-title">Products built for Indian soil</h2>
+            <div class="section-divider"></div>
+          </div>
+          <a href="/products.html" class="btn-outline" style="flex-shrink:0">View full catalogue →</a>
+        </div>
+
+        <div class="products-filter">
+          <button class="filter-pill active" data-filter="all">All</button>
+          <button class="filter-pill" data-filter="soil">Soil Enrichers</button>
+          <button class="filter-pill" data-filter="bio">Bio-stimulants</button>
+          <button class="filter-pill" data-filter="crop">Crop Protectants</button>
+          <button class="filter-pill" data-filter="growth">Growth Promoters</button>
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card" data-category="soil">
+            <div class="product-img">
+              <div class="product-badge">Soil Enricher</div>
+              <div class="product-visual product-visual--soil" aria-hidden="true">
+                <svg class="product-visual-icon" viewBox="0 0 40 48" width="40" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 44V24" stroke="rgba(247,244,238,0.45)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M20 32C12 28 7 18 7 10c8 3 13 11 13 22" fill="rgba(247,244,238,0.35)"/>
+                  <path d="M20 28C28 24 33 14 33 6c-8 3-13 11-13 22" fill="rgba(247,244,238,0.35)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-name">BioSoil Max</div>
+              <p class="product-tagline">Restores soil microbiome and increases organic carbon in 30 days.</p>
+              <div class="product-footer">
+                <span class="product-price">₹480 / kg</span>
+                <a href="/products.html" class="product-enquire">Enquire</a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card" data-category="bio">
+            <div class="product-img">
+              <div class="product-badge">Bio-stimulant</div>
+              <div class="product-visual product-visual--bio" aria-hidden="true">
+                <svg class="product-visual-icon" viewBox="0 0 40 48" width="40" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 44V24" stroke="rgba(247,244,238,0.45)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M20 32C12 28 7 18 7 10c8 3 13 11 13 22" fill="rgba(247,244,238,0.35)"/>
+                  <path d="M20 28C28 24 33 14 33 6c-8 3-13 11-13 22" fill="rgba(247,244,238,0.35)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-name">Fulvic Gold</div>
+              <p class="product-tagline">Fulvic & amino acid powder — accelerates nutrient uptake and root growth.</p>
+              <div class="product-footer">
+                <span class="product-price">₹620 / kg</span>
+                <a href="/products.html" class="product-enquire">Enquire</a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card" data-category="crop">
+            <div class="product-img">
+              <div class="product-badge">Crop Protectant</div>
+              <div class="product-visual product-visual--crop" aria-hidden="true">
+                <svg class="product-visual-icon" viewBox="0 0 40 48" width="40" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 44V24" stroke="rgba(247,244,238,0.45)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M20 32C12 28 7 18 7 10c8 3 13 11 13 22" fill="rgba(247,244,238,0.35)"/>
+                  <path d="M20 28C28 24 33 14 33 6c-8 3-13 11-13 22" fill="rgba(247,244,238,0.35)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-name">NeemShield Pro</div>
+              <p class="product-tagline">Neem-based pest control — broad spectrum, safe for beneficial insects.</p>
+              <div class="product-footer">
+                <span class="product-price">₹390 / L</span>
+                <a href="/products.html" class="product-enquire">Enquire</a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card" data-category="growth">
+            <div class="product-img">
+              <div class="product-badge">Growth Promoter</div>
+              <div class="product-visual product-visual--growth" aria-hidden="true">
+                <svg class="product-visual-icon" viewBox="0 0 40 48" width="40" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 44V24" stroke="rgba(247,244,238,0.45)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M20 32C12 28 7 18 7 10c8 3 13 11 13 22" fill="rgba(247,244,238,0.35)"/>
+                  <path d="M20 28C28 24 33 14 33 6c-8 3-13 11-13 22" fill="rgba(247,244,238,0.35)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-name">YieldBoost 3X</div>
+              <p class="product-tagline">Seaweed extract concentrate — improves flowering, fruiting, and yield by up to 25%.</p>
+              <div class="product-footer">
+                <span class="product-price">₹540 / L</span>
+                <a href="/products.html" class="product-enquire">Enquire</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ GALLERY ══ -->
+    <section id="gallery-section" class="section">
+      <div class="section-inner">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:48px">
+          <div>
+            <span class="section-eyebrow">Field & Farm Journal</span>
+            <h2 class="section-title">Seen in our fields</h2>
+            <div class="section-divider"></div>
+          </div>
+          <a href="/gallery.html" class="btn-outline" style="flex-shrink:0">View full gallery →</a>
+        </div>
+
+        <div class="gallery-masonry">
+          <div class="gallery-item gallery-item--grad-1" data-lightbox data-type="image" data-src="assets/images/gallery-1.jpg" role="button" tabindex="0" aria-label="Healthy crop field">
+            <span class="gallery-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 56" width="48" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 52V28" stroke="rgba(247,244,238,0.3)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M24 36C14 30 8 18 8 8c10 4 16 14 16 28" fill="rgba(247,244,238,0.3)"/>
+                <path d="M24 32C34 26 40 14 40 4c-10 4-16 14-16 28" fill="rgba(247,244,238,0.3)"/>
+              </svg>
+            </span>
+            <div class="gallery-item-overlay"><span class="gallery-play-icon">⊕</span></div>
+            <span class="gallery-item-caption">Healthy crop field</span>
+          </div>
+          <div class="gallery-item gallery-item--grad-2 gallery-item--offset gallery-item--tall" data-lightbox data-type="image" data-src="assets/images/gallery-2.jpg" role="button" tabindex="0" aria-label="Farmer with harvest">
+            <span class="gallery-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 56" width="48" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 52V28" stroke="rgba(247,244,238,0.3)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M24 36C14 30 8 18 8 8c10 4 16 14 16 28" fill="rgba(247,244,238,0.3)"/>
+                <path d="M24 32C34 26 40 14 40 4c-10 4-16 14-16 28" fill="rgba(247,244,238,0.3)"/>
+              </svg>
+            </span>
+            <div class="gallery-item-overlay"><span class="gallery-play-icon">⊕</span></div>
+            <span class="gallery-item-caption">Farmer with harvest</span>
+          </div>
+          <div class="gallery-item gallery-item--grad-3" data-lightbox data-type="image" data-src="assets/images/gallery-3.jpg" role="button" tabindex="0" aria-label="Product demonstration">
+            <span class="gallery-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 56" width="48" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 52V28" stroke="rgba(247,244,238,0.3)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M24 36C14 30 8 18 8 8c10 4 16 14 16 28" fill="rgba(247,244,238,0.3)"/>
+                <path d="M24 32C34 26 40 14 40 4c-10 4-16 14-16 28" fill="rgba(247,244,238,0.3)"/>
+              </svg>
+            </span>
+            <div class="gallery-item-overlay"><span class="gallery-play-icon">⊕</span></div>
+            <span class="gallery-item-caption">Product demonstration</span>
+          </div>
+          <div class="gallery-item gallery-item--grad-4 gallery-item--video" data-lightbox data-type="video" data-src="assets/videos/sample-1.mp4" role="button" tabindex="0" aria-label="Field video">
+            <span class="gallery-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 56" width="48" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 52V28" stroke="rgba(247,244,238,0.3)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M24 36C14 30 8 18 8 8c10 4 16 14 16 28" fill="rgba(247,244,238,0.3)"/>
+                <path d="M24 32C34 26 40 14 40 4c-10 4-16 14-16 28" fill="rgba(247,244,238,0.3)"/>
+              </svg>
+            </span>
+            <div class="gallery-item-overlay"><span class="gallery-play-icon">▶</span></div>
+            <span class="gallery-item-caption">Field video</span>
+          </div>
+          <div class="gallery-item gallery-item--grad-5 gallery-item--offset gallery-item--tall" data-lightbox data-type="image" data-src="assets/images/gallery-4.jpg" role="button" tabindex="0" aria-label="Soil transformation">
+            <span class="gallery-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 56" width="48" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 52V28" stroke="rgba(247,244,238,0.3)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M24 36C14 30 8 18 8 8c10 4 16 14 16 28" fill="rgba(247,244,238,0.3)"/>
+                <path d="M24 32C34 26 40 14 40 4c-10 4-16 14-16 28" fill="rgba(247,244,238,0.3)"/>
+              </svg>
+            </span>
+            <div class="gallery-item-overlay"><span class="gallery-play-icon">⊕</span></div>
+            <span class="gallery-item-caption">Soil transformation</span>
+          </div>
+          <div class="gallery-item gallery-item--grad-6" data-lightbox data-type="image" data-src="assets/images/gallery-5.jpg" role="button" tabindex="0" aria-label="Team on farm">
+            <span class="gallery-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 56" width="48" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 52V28" stroke="rgba(247,244,238,0.3)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M24 36C14 30 8 18 8 8c10 4 16 14 16 28" fill="rgba(247,244,238,0.3)"/>
+                <path d="M24 32C34 26 40 14 40 4c-10 4-16 14-16 28" fill="rgba(247,244,238,0.3)"/>
+              </svg>
+            </span>
+            <div class="gallery-item-overlay"><span class="gallery-play-icon">⊕</span></div>
+            <span class="gallery-item-caption">Team on farm</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ ORGANIC INDIA STRIP ══ -->
+    <div class="organic-strip">
+      <h2>India's organic revolution — and we're part of it</h2>
+      <p>PM Modi's PM-PRANAM scheme and Atmanirbhar Bharat push are transforming how India farms. We're proud to be a small but committed part of this movement toward chemical-free, self-reliant farming.</p>
+      <a href="/organic.html" class="btn-primary" style="background:var(--gold);color:var(--forest);">Read our farming guide →</a>
+    </div>
+
+    <!-- ══ TRANSFORM CTA ══ -->
+    <section id="transform-cta">
+      <h2>Ready to <em>transform</em> your farm?</h2>
+      <p>Join thousands of Gujarat farmers who made the switch to certified organic — and never looked back.</p>
+      <div>
+        <a href="/enquiry.html" class="btn-primary">Start your enquiry</a>
+        <a href="/contact.html" class="btn-outline" style="margin-left:16px">Contact us directly</a>
+      </div>
+    </section>
+
+    <!-- ══ CONTACT / HQ ══ -->
+    <section id="contact-section" class="section">
+      <div class="section-inner">
+        <div class="contact-grid">
+          <div class="contact-form-wrap reveal">
+            <span class="section-eyebrow">Get in touch</span>
+            <h2 class="section-title" style="font-size:2rem;margin-bottom:24px">Send us a message</h2>
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contact-form">
+              <input type="hidden" name="_subject" value="New contact from AGRO website"/>
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off"/>
+              <div class="form-group">
+                <label class="form-label" for="contact-name">Your Name</label>
+                <input class="form-input" type="text" id="contact-name" name="name" placeholder="Rameshbhai Patel" required/>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-phone">Phone Number</label>
+                <input class="form-input" type="tel" id="contact-phone" name="phone" placeholder="+91 XXXXX XXXXX"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-subject">Subject</label>
+                <select class="form-select" id="contact-subject" name="subject">
+                  <option value="general">General query</option>
+                  <option value="product">Product enquiry</option>
+                  <option value="partnership">Partnership</option>
+                  <option value="press">Press / media</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-message">Message</label>
+                <textarea class="form-textarea" id="contact-message" name="message" placeholder="Tell us how we can help..." required></textarea>
+              </div>
+              <button type="submit" class="btn-primary" style="width:100%;justify-content:center">Send message →</button>
+            </form>
+          </div>
+
+          <div class="contact-info-wrap reveal">
+            <div class="contact-office">
+              <div class="office-label">Headquarters</div>
+              <div class="office-name">AGRO Head Office</div>
+              <p class="office-address">
+                123, Agro Business Park<br>
+                Sardar Patel Ring Road<br>
+                Ahmedabad, Gujarat — 382481<br>
+                India
+              </p>
+              <div class="office-detail">📞 <a href="tel:+91XXXXXXXXXX">+91-XXXXXXXXXX</a></div>
+              <div class="office-detail">✉️ <a href="mailto:info@agrocompany.in">info@agrocompany.in</a></div>
+              <div class="office-detail">🕐 Mon–Sat, 9:00 AM – 6:00 PM</div>
+            </div>
+
+            <div class="contact-office">
+              <div class="office-label">Regional Office</div>
+              <div class="office-name">Saurashtra Office</div>
+              <p class="office-address">
+                45, Krishi Bhavan, Near Collector Office<br>
+                Rajkot, Gujarat — 360001
+              </p>
+              <div class="office-detail">📞 <a href="tel:+91XXXXXXXXXX">+91-XXXXXXXXXX</a></div>
+            </div>
+
+            <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+              <a href="/enquiry.html" class="btn-primary">Place an enquiry</a>
+              <a href="/complaint.html" class="btn-outline">File a complaint</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PARTNERS STRIP ══ -->
+    <div class="partners-strip">
+      <p class="partners-label">Trusted by farmers · Available on</p>
+      <div class="partners-logos">
+        <a href="#" class="partner-logo" target="_blank" rel="noopener">IndiaMART</a>
+        <a href="#" class="partner-logo" target="_blank" rel="noopener">DeHaat</a>
+        <span class="partner-logo">FSSAI ✓</span>
+        <span class="partner-logo">Organic Certified ✓</span>
+        <span class="partner-logo">ISO 9001 ✓</span>
+      </div>
+    </div>
+
+    <!-- ══ JOIN US TEASER ══ -->
+    <div class="join-teaser">
+      <div>
+        <h3>We're growing — come build with us</h3>
+        <p>Join a team that measures success by farmer smiles, not spreadsheets.</p>
+      </div>
+      <a href="/join.html" class="btn-dark">See opportunities →</a>
+    </div>
+
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer id="site-footer">
+    <div class="footer-top" data-stagger="0.1">
+      <div class="reveal">
+        <div class="footer-brand-logo">
+          <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+            <circle cx="18" cy="18" r="17" stroke="#4A7C42" stroke-width="1.5"/>
+            <path d="M18 28 Q18 20 18 14 Q12 10 8 6 Q14 10 18 14 Q22 10 28 6 Q24 10 18 14" fill="#4A7C42"/>
+            <circle cx="18" cy="10" r="3" fill="#C8A84B"/>
+          </svg>
+          <span class="footer-brand-name">AGRO</span>
+        </div>
+        <p class="footer-brand-desc">Rooted in Gujarat's soil. Driven by farmer trust. Certified organic agri-inputs for a healthier India.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" aria-label="Instagram">IG</a>
+          <a href="#" class="footer-social" aria-label="Facebook">FB</a>
+          <a href="#" class="footer-social" aria-label="YouTube">YT</a>
+          <a href="#" class="footer-social" aria-label="WhatsApp">WA</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="footer-col-title">Solutions</p>
+        <ul class="footer-links">
+          <li><a href="/solutions.html#farm-advisory">Farm Advisory</a></li>
+          <li><a href="/solutions.html#agri-inputs">Agri Inputs</a></li>
+          <li><a href="/solutions.html#omnichannel">Omnichannel Access</a></li>
+          <li><a href="/solutions.html#market-linkages">Market Linkages</a></li>
+          <li><a href="/products.html">Product Catalogue</a></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <p class="footer-col-title">Company</p>
+        <ul class="footer-links">
+          <li><a href="/impact.html">Our Impact</a></li>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/join.html">Join Us</a></li>
+          <li><a href="/about.html#certifications">Certifications</a></li>
+          <li><a href="/offices.html">Our Offices</a></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <p class="footer-col-title">Connect</p>
+        <ul class="footer-links">
+          <li><a href="/contact.html">Contact Us</a></li>
+          <li><a href="/enquiry.html">Enquiry</a></li>
+          <li><a href="/complaint.html">Complaint</a></li>
+          <li><a href="#" target="_blank" rel="noopener">IndiaMART</a></li>
+          <li><a href="#" target="_blank" rel="noopener">DeHaat</a></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <p class="footer-col-title">Legal</p>
+        <ul class="footer-links">
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms & Conditions</a></li>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-certs">
+      <span class="cert-badge">FSSAI Registered</span>
+      <span class="cert-badge">Organic Certified</span>
+      <span class="cert-badge">ISO 9001:2015</span>
+      <span class="cert-badge">Govt. Approved</span>
+    </div>
+    <div class="footer-bottom" style="margin-top:24px">
+      <p class="footer-copy">© 2025 AGRO. All rights reserved. Made with 🌱 in Gujarat, India.</p>
+      <div class="footer-legal">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══ AI CHAT WIDGET ══ -->
+  <div id="ai-chat-widget">
+    <div class="ai-chat-panel" id="ai-panel">
+      <div class="ai-chat-header">
+        <div class="ai-chat-avatar">🌱</div>
+        <div class="ai-chat-header-info">
+          <div class="ai-chat-name">Krishi — Your Farm Assistant</div>
+          <div class="ai-chat-status"><span class="ai-status-dot"></span> Online · Gu · Hi · EN</div>
+        </div>
+        <button class="ai-close-btn" aria-label="Close">✕</button>
+      </div>
+      <div class="ai-chat-messages" id="ai-messages">
+        <div class="chat-msg bot">Namaste! 🌾 I'm Krishi. Ask me about our products, organic farming, or how to place an enquiry — in any language!</div>
+      </div>
+      <div style="padding:8px 16px;display:flex;flex-wrap:wrap;gap:6px;border-top:1px solid var(--cream-dark)">
+        <button class="lang-pill" onclick="document.querySelector('.ai-chat-input').value=this.dataset.q;document.querySelector('.ai-chat-send').click()" data-q="What products do you have?">Our products</button>
+        <button class="lang-pill" onclick="document.querySelector('.ai-chat-input').value=this.dataset.q;document.querySelector('.ai-chat-send').click()" data-q="How do I place an enquiry?">Enquiry</button>
+        <button class="lang-pill" onclick="document.querySelector('.ai-chat-input').value=this.dataset.q;document.querySelector('.ai-chat-send').click()" data-q="What certifications do you hold?">Certifications</button>
+      </div>
+      <div class="ai-lang-row">
+        <span>Chat in:</span>
+        <button class="lang-pill active ai-lang-pill" data-lang="en">EN</button>
+        <button class="lang-pill ai-lang-pill" data-lang="hi">हिं</button>
+        <button class="lang-pill ai-lang-pill" data-lang="gu">ગુ</button>
+      </div>
+      <div class="ai-chat-input-wrap">
+        <input class="ai-chat-input" type="text" placeholder="Ask about farming, products..." maxlength="400" autocomplete="off" aria-label="Message"/>
+        <button class="ai-chat-send" aria-label="Send">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+    <button class="ai-chat-toggle" aria-label="Open farming assistant">
+      <span class="ai-chat-pulse"></span>
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+        <path d="M18 30 Q18 22 18 16 Q12 12 9 6 Q15 11 18 16 Q21 11 27 6 Q24 12 18 16" fill="rgba(247,244,238,0.9)"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button id="lightbox-close" aria-label="Close">✕</button>
+    <img id="lightbox-img" src="" alt="Gallery item" loading="lazy" decoding="async" style="display:none"/>
+    <video id="lightbox-video" controls style="display:none" playsinline></video>
+  </div>
+
+  <!-- Bounce keyframe -->
+  <style>
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+  </style>
+
+  <script src="js/main.js" defer></script>
+</body>
 </html>

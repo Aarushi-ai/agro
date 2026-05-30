@@ -1,38 +1,987 @@
-// js/main.js
+/**
+ * AGRO — Main application script
+ * Vanilla JS · no dependencies
+ */
+(function () {
+  "use strict";
 
-function initNavigation() {
-    const langBtn = document.getElementById('lang-switcher-btn');
-    const langDropdown = document.getElementById('lang-dropdown');
-    
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileDrawerClose = document.getElementById('mobile-drawer-close');
-    const mobileDrawer = document.getElementById('mobile-drawer');
+  /* ═══════════════════════════════════════════════════════════════════
+     HELPERS
+  ═══════════════════════════════════════════════════════════════════ */
 
-    // Toggle Desktop Language Dropdown
-    if(langBtn && langDropdown) {
-        langBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            langDropdown.classList.toggle('hidden');
-        });
-        
-        // Clicking outside drops the switcher menu safely
-        document.addEventListener('click', () => langDropdown.classList.add('hidden'));
+  const LOADER_DURATION_MS = 3200;
+  const IS_TOUCH =
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0 ||
+    window.matchMedia("(pointer: coarse)").matches;
+
+  const LANG_LABELS = { en: "EN", hi: "HI", gu: "GU" };
+
+  const AI_PLACEHOLDERS = {
+    en: "Ask about farming, products...",
+    hi: "खेती, उत्पादों के बारे में पूछें...",
+    gu: "ખેતી, ઉત્પાદનો વિશે પૂછો...",
+  };
+
+  /** @param {number} t 0–1 */
+  function easeOutQuart(t) {
+    return 1 - Math.pow(1 - t, 4);
+  }
+
+  function prefersReducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function normalizePath(path) {
+    if (!path || path === "/") return "/index.html";
+    const clean = path.replace(/\/$/, "");
+    return clean || "/index.html";
+  }
+
+  function pathsMatch(a, b) {
+    const na = normalizePath(a);
+    const nb = normalizePath(b);
+    if (na === nb) return true;
+    const fileA = na.split("/").pop() || "index.html";
+    const fileB = nb.split("/").pop() || "index.html";
+    return fileA === fileB;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     1. LOADING SCREEN
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initLoadingScreen() {
+    const loader = document.getElementById("loading-screen");
+    if (!loader) {
+      document.body.classList.add("loaded");
+      return;
     }
 
-    // Handle Responsive Drawer Smooth Action
-    if(mobileMenuBtn && mobileDrawer) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileDrawer.classList.remove('translate-x-full');
-        });
+    const LOADER_EXIT_MS = 500;
+
+    document.body.classList.add("is-loading");
+
+    const startAnimations = () => {
+      if (prefersReducedMotion()) {
+        loader.classList.add("loader-animate", "loader-reduced");
+      } else {
+        loader.classList.add("loader-animate");
+      }
+    };
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(startAnimations);
+    });
+
+    const finish = () => {
+      loader.classList.add("is-hiding");
+      setTimeout(() => {
+        loader.classList.add("hidden");
+        loader.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("is-loading");
+        document.body.classList.add("loaded");
+      }, LOADER_EXIT_MS);
+    };
+
+    setTimeout(finish, LOADER_DURATION_MS);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     2. CUSTOM CURSOR
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initCustomCursor() {
+    const cursor = document.querySelector(".cursor");
+    const follower = document.querySelector(".cursor-follower");
+    if (!cursor || !follower || IS_TOUCH) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let followX = mouseX;
+    let followY = mouseY;
+    let lastFrame = performance.now();
+    const lerpTauMs = 100;
+
+    const hoverSelector = "a, button, [role='button'], input, select, textarea, label";
+
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.left = `${mouseX}px`;
+      cursor.style.top = `${mouseY}px`;
+    });
+
+    document.addEventListener("mouseover", (e) => {
+      const target = e.target.closest(hoverSelector);
+      const hovering = Boolean(target);
+      cursor.classList.toggle("hovering", hovering);
+      follower.classList.toggle("hovering", hovering);
+    });
+
+    function tick(now) {
+      const dt = Math.min((now - lastFrame) / 1000, 0.05);
+      lastFrame = now;
+      const alpha = 1 - Math.exp(-dt / (lerpTauMs / 1000));
+      followX += (mouseX - followX) * alpha;
+      followY += (mouseY - followY) * alpha;
+      follower.style.left = `${followX}px`;
+      follower.style.top = `${followY}px`;
+      requestAnimationFrame(tick);
     }
 
-    if(mobileDrawerClose && mobileDrawer) {
-        mobileDrawerClose.addEventListener('click', () => {
-            mobileDrawer.classList.add('translate-x-full');
-        });
+    cursor.style.left = `${mouseX}px`;
+    cursor.style.top = `${mouseY}px`;
+    follower.style.left = `${followX}px`;
+    follower.style.top = `${followY}px`;
+    requestAnimationFrame(tick);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     3. NAVBAR
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initNavbar() {
+    const header = document.getElementById("site-header");
+    const hamburger = document.querySelector(".nav-hamburger");
+    const mobileNav = document.querySelector(".mobile-nav");
+    const closeBtn = document.querySelector(".mobile-nav-close");
+
+    if (header) {
+      const onScroll = () => {
+        header.classList.toggle("scrolled", window.scrollY > 40);
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
     }
-    
-    // Set dynamic current legal year matching the header footer system context
-    const yearEl = document.getElementById('current-year');
-    if(yearEl) yearEl.textContent = new Date().getFullYear();
-}
+
+    function setMobileNavOpen(open) {
+      hamburger?.classList.toggle("open", open);
+      mobileNav?.classList.toggle("open", open);
+      document.body.classList.toggle("nav-open", open);
+      hamburger?.setAttribute("aria-expanded", String(open));
+    }
+
+    hamburger?.addEventListener("click", () => {
+      setMobileNavOpen(!mobileNav?.classList.contains("open"));
+    });
+
+    closeBtn?.addEventListener("click", () => setMobileNavOpen(false));
+
+    mobileNav?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMobileNavOpen(false));
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setMobileNavOpen(false);
+    });
+
+    markActiveNavLinks();
+    window.addEventListener("hashchange", markActiveNavLinks);
+  }
+
+  function markActiveNavLinks() {
+    const currentPath = normalizePath(window.location.pathname);
+    const hash = window.location.hash;
+
+    const links = document.querySelectorAll(".nav-links a, .mobile-nav a");
+
+    links.forEach((link) => {
+      const href = link.getAttribute("href");
+      if (!href) return;
+
+      let isActive = false;
+
+      if (href.startsWith("#")) {
+        isActive = hash === href;
+      } else {
+        try {
+          const linkUrl = new URL(href, window.location.href);
+          isActive = pathsMatch(linkUrl.pathname, currentPath);
+        } catch {
+          isActive = false;
+        }
+      }
+
+      link.classList.toggle("is-active", isActive);
+      if (isActive) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     4. LANGUAGE SWITCHER
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initLanguageSwitcher() {
+    const switcher = document.querySelector(".lang-switcher");
+    const btn = switcher?.querySelector(".lang-btn");
+    const dropdown = switcher?.querySelector(".lang-dropdown");
+    const btnLabel = btn?.querySelector("span");
+    const options = document.querySelectorAll(".lang-option");
+
+    let stored = localStorage.getItem("agro-lang") || "en";
+    if (!["en", "hi", "gu"].includes(stored)) stored = "en";
+
+    function applyLang(lang) {
+      localStorage.setItem("agro-lang", lang);
+      if (btnLabel) btnLabel.textContent = LANG_LABELS[lang] || "EN";
+      options.forEach((opt) => {
+        opt.classList.toggle("active", opt.getAttribute("data-lang") === lang);
+      });
+      document.documentElement.lang = lang === "hi" ? "hi" : lang === "gu" ? "gu" : "en";
+    }
+
+    applyLang(stored);
+
+    btn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      switcher?.classList.toggle("open");
+    });
+
+    dropdown?.addEventListener("click", (e) => e.stopPropagation());
+
+    document.addEventListener("click", () => switcher?.classList.remove("open"));
+
+    options.forEach((opt) => {
+      opt.addEventListener("click", (e) => {
+        e.preventDefault();
+        const lang = opt.getAttribute("data-lang");
+        if (!lang) return;
+        applyLang(lang);
+        switcher?.classList.remove("open");
+      });
+    });
+
+    initReviewCardLangPills();
+  }
+
+  function initReviewCardLangPills() {
+    document.querySelectorAll(".review-card").forEach((card) => {
+      const texts = card.querySelectorAll(".review-text[data-lang]");
+      const pills = card.querySelectorAll(".review-lang-toggle .lang-pill");
+      if (!texts.length || !pills.length) return;
+
+      function showLang(lang) {
+        texts.forEach((t) => {
+          t.style.display = t.getAttribute("data-lang") === lang ? "block" : "none";
+        });
+        pills.forEach((p) => p.classList.toggle("active", p.getAttribute("data-lang") === lang));
+      }
+
+      const defaultLang =
+        localStorage.getItem("agro-lang") ||
+        pills[0]?.getAttribute("data-lang") ||
+        "gu";
+      showLang(defaultLang);
+
+      pills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          const lang = pill.getAttribute("data-lang");
+          if (lang) showLang(lang);
+        });
+      });
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     5. SCROLL REVEAL
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initScrollReveal() {
+    const reveals = document.querySelectorAll(".reveal");
+    if (!reveals.length) return;
+
+    if (prefersReducedMotion()) {
+      reveals.forEach((el) => el.classList.add("in-view"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const el = entry.target;
+          el.classList.add("in-view");
+
+          const parent = el.closest("[data-stagger]");
+          if (parent) {
+            const step = parseFloat(parent.getAttribute("data-stagger")) || 0.1;
+            const siblings = [...parent.querySelectorAll(".reveal")];
+            const index = siblings.indexOf(el);
+            if (index >= 0) {
+              el.style.transitionDelay = `${index * step}s`;
+            }
+          }
+
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    reveals.forEach((el) => observer.observe(el));
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     6. IMPACT COUNTER ANIMATION
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initImpactCounters() {
+    const section = document.getElementById("impact");
+    if (!section) return;
+
+    const counters = section.querySelectorAll("[data-count]");
+    if (!counters.length) return;
+
+    let animated = false;
+
+    const run = () => {
+      if (animated) return;
+      animated = true;
+
+      counters.forEach((el) => {
+        const target = parseFloat(el.getAttribute("data-count") || "0");
+        const suffix = el.getAttribute("data-suffix") || "";
+        const duration = 2000;
+        const start = performance.now();
+
+        const step = (now) => {
+          const t = Math.min((now - start) / duration, 1);
+          const value = Math.round(easeOutQuart(t) * target);
+          el.textContent = value.toLocaleString("en-IN") + suffix;
+          if (t < 1) requestAnimationFrame(step);
+        };
+
+        requestAnimationFrame(step);
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            run();
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(section);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     7. REVIEWS SLIDER
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initReviewsSlider() {
+    const track = document.querySelector(".reviews-track");
+    const prevBtn = document.querySelector(".reviews-prev");
+    const nextBtn = document.querySelector(".reviews-next");
+    const wrap = document.querySelector(".reviews-slider-wrap");
+    if (!track) return;
+
+    let index = 0;
+    let maxIndex = 0;
+
+    const getGap = () => parseFloat(getComputedStyle(track).gap) || 20;
+
+    const getStep = () => {
+      const card = track.querySelector(".review-card");
+      return card ? card.offsetWidth + getGap() : 340;
+    };
+
+    const updateBounds = () => {
+      const cards = track.querySelectorAll(".review-card");
+      const visible = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+      maxIndex = Math.max(0, cards.length - visible);
+      if (index > maxIndex) index = maxIndex;
+      goTo(index, false);
+    };
+
+    const goTo = (i, animate = true) => {
+      index = Math.max(0, Math.min(i, maxIndex));
+      const offset = index * getStep();
+      track.style.transition = animate ? "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)" : "none";
+      track.style.transform = `translate3d(-${offset}px, 0, 0)`;
+      prevBtn && (prevBtn.disabled = index <= 0);
+      nextBtn && (nextBtn.disabled = index >= maxIndex);
+    };
+
+    prevBtn?.addEventListener("click", () => goTo(index - 1));
+    nextBtn?.addEventListener("click", () => goTo(index + 1));
+
+    window.addEventListener("resize", updateBounds);
+    updateBounds();
+
+    if (wrap && IS_TOUCH) {
+      let startX = 0;
+      let deltaX = 0;
+
+      wrap.addEventListener(
+        "touchstart",
+        (e) => {
+          startX = e.touches[0].clientX;
+          deltaX = 0;
+        },
+        { passive: true }
+      );
+
+      wrap.addEventListener(
+        "touchmove",
+        (e) => {
+          deltaX = e.touches[0].clientX - startX;
+        },
+        { passive: true }
+      );
+
+      wrap.addEventListener("touchend", () => {
+        if (Math.abs(deltaX) < 40) return;
+        if (deltaX < 0) goTo(index + 1);
+        else goTo(index - 1);
+      });
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     8. PRODUCT FILTER
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initProductFilter() {
+    const pills = document.querySelectorAll(".filter-pill");
+    const cards = document.querySelectorAll(".product-card[data-category]");
+    if (!pills.length || !cards.length) return;
+
+    const filter = (category) => {
+      cards.forEach((card) => {
+        const match = category === "all" || card.getAttribute("data-category") === category;
+        if (match) {
+          card.classList.remove("is-filtered-out");
+          card.classList.add("is-filtered-in");
+          card.hidden = false;
+        } else {
+          card.classList.remove("is-filtered-in");
+          card.classList.add("is-filtered-out");
+          setTimeout(() => {
+            if (card.classList.contains("is-filtered-out")) card.hidden = true;
+          }, 320);
+        }
+      });
+    };
+
+    pills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const category = pill.getAttribute("data-filter") || "all";
+        pills.forEach((p) => p.classList.toggle("active", p === pill));
+        cards.forEach((c) => {
+          c.hidden = false;
+          c.classList.remove("is-filtered-out", "is-filtered-in");
+        });
+        filter(category);
+      });
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     9. VIDEO AUTOPLAY ON SCROLL
+  ═══════════════════════════════════════════════════════════════════ */
+
+  const MUTE_ICON_ON = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`;
+
+  const MUTE_ICON_OFF = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15 9a4 4 0 0 1 0 6"/><path d="M19 5a8 8 0 0 1 0 14"/></svg>`;
+
+  function initVideoAutoplay() {
+    const videos = document.querySelectorAll("video");
+
+    document.querySelectorAll(".video-mute-btn").forEach((btn) => {
+      const wrap = btn.closest(".video-cube-wrapper");
+      const video = wrap?.querySelector("video");
+      if (!video) return;
+
+      const syncIcon = () => {
+        btn.innerHTML = video.muted ? MUTE_ICON_ON : MUTE_ICON_OFF;
+        btn.setAttribute("aria-label", video.muted ? "Unmute" : "Mute");
+      };
+
+      syncIcon();
+
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        syncIcon();
+      });
+
+      video.addEventListener("volumechange", syncIcon);
+    });
+
+    if (!videos.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+          if (!(video instanceof HTMLVideoElement)) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: [0, 0.4, 0.75] }
+    );
+
+    videos.forEach((video) => observer.observe(video));
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     10. AI CHAT WIDGET
+  ═══════════════════════════════════════════════════════════════════ */
+
+  const MOCK_RESPONSES = {
+    en: {
+      default:
+        "Thank you for reaching out. For product details and orders, visit our Products page or submit an Enquiry — our Gujarat team will respond shortly.",
+      products:
+        "We offer certified organic soil enrichers, bio-stimulants, crop protectants, and growth promoters — formulated for Indian soils. Browse the full catalogue on our Products page.",
+      enquiry:
+        "To place an enquiry, use the Enquiry form on our website or call our head office in Ahmedabad. Our team typically responds within one business day.",
+      certifications:
+        "AGRO holds FSSAI registration, organic certification, and ISO 9001:2015. Full details are on our Certifications page.",
+      organic:
+        "Organic farming builds healthier soil over time. We share practical guides on our Organic India section — and our products support the transition from chemical inputs.",
+    },
+    hi: {
+      default:
+        "संपर्क करने के लिए धन्यवाद। उत्पाद और ऑर्डर के लिए Products पेज देखें या Enquiry फॉर्म भरें।",
+      products:
+        "हम प्रमाणित जैविक मिट्टी समृद्धिक, बायो-स्टिमुलेंट, फसल सुरक्षा और विकास उत्प्राद प्रदान करते हैं।",
+      enquiry:
+        "पूछताछ के लिए वेबसाइट पर Enquiry फॉर्म का उपयोग करें या अहमदाबाद कार्यालय पर कॉल करें।",
+      certifications:
+        "AGRO के पास FSSAI पंजीकरण, जैविक प्रमाणन और ISO 9001:2015 है।",
+      organic:
+        "जैविक खेती से मिट्टी स्वस्थ होती है। हमारे उत्पाद रासायनिक इनपुट से बदलाव में मदद करते हैं।",
+    },
+    gu: {
+      default:
+        "સંપર્ક કરવા બદલ આભાર. ઉત્પાદનો અને ઓર્ડર માટે Products પેજ જુઓ અથવા Enquiry ફોર્મ ભરો.",
+      products:
+        "અમે પ્રમાણિત ઓર્ગેનિક માટી સમૃદ્ધિક, બાયો-સ્ટિમ્યુલન્ટ, પાક સંરક્ષણ અને વૃદ્ધિ ઉત્પાદનો પ્રદાન કરીએ છીએ.",
+      enquiry:
+        "પૂછપરછ માટે વેબસાઇટ પર Enquiry ફોર્મ વાપરો અથવા અમદાવાદ ઓફિસે કૉલ કરો.",
+      certifications:
+        "AGRO પાસે FSSAI નોંધણી, ઓર્ગેનિક પ્રમાણન અને ISO 9001:2015 છે.",
+      organic:
+        "ઓર્ગેનિક ખેતી થી માટી સ્વસ્થ બને છે. અમારા ઉત્પાદનો રાસાયનિક ઇનપુટથી બદલાવમાં મદદ કરે છે.",
+    },
+  };
+
+  function pickMockResponse(lang, text) {
+    const dict = MOCK_RESPONSES[lang] || MOCK_RESPONSES.en;
+    const lower = text.toLowerCase();
+
+    if (/product|catalogue|catalog|बीज|ઉત્પાદન|उत्पाद/.test(lower)) return dict.products;
+    if (/enquir|order|buy|खरीद|ઓર્ડર|पूछताछ/.test(lower)) return dict.enquiry;
+    if (/certif|fssai|organic cert|प्रमाण|પ્રમાણ/.test(lower)) return dict.certifications;
+    if (/organic|जैविक|ઓર્ગેનિક/.test(lower)) return dict.organic;
+
+    return dict.default;
+  }
+
+  function initAIChat() {
+    const panel = document.querySelector(".ai-chat-panel");
+    const toggle = document.querySelector(".ai-chat-toggle");
+    const closeBtn = document.querySelector(".ai-close-btn");
+    const input = document.querySelector(".ai-chat-input");
+    const sendBtn = document.querySelector(".ai-chat-send");
+    const messages = document.getElementById("ai-messages");
+    const langPills = document.querySelectorAll(".ai-lang-pill");
+
+    if (!panel || !toggle) return;
+
+    let chatLang = localStorage.getItem("agro-lang") || "en";
+    if (!MOCK_RESPONSES[chatLang]) chatLang = "en";
+
+    const setOpen = (open) => {
+      panel.classList.toggle("open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+    };
+
+    toggle.addEventListener("click", () => setOpen(!panel.classList.contains("open")));
+    closeBtn?.addEventListener("click", () => setOpen(false));
+
+    const applyChatLang = (lang) => {
+      chatLang = lang;
+      if (input) input.placeholder = AI_PLACEHOLDERS[lang] || AI_PLACEHOLDERS.en;
+      langPills.forEach((p) => p.classList.toggle("active", p.getAttribute("data-lang") === lang));
+    };
+
+    applyChatLang(chatLang);
+
+    langPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const lang = pill.getAttribute("data-lang");
+        if (lang) applyChatLang(lang);
+      });
+    });
+
+    function appendBubble(text, role) {
+      if (!messages) return null;
+      const div = document.createElement("div");
+      div.className = `chat-msg ${role}`;
+      div.textContent = text;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+      return div;
+    }
+
+    function showTyping() {
+      if (!messages) return null;
+      const el = document.createElement("div");
+      el.className = "chat-msg bot typing-indicator";
+      el.setAttribute("aria-label", "Assistant is typing");
+      el.innerHTML = "<span></span><span></span><span></span>";
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
+      return el;
+    }
+
+    function sendMessage() {
+      const text = input?.value.trim();
+      if (!text || !messages) return;
+
+      appendBubble(text, "user");
+      if (input) input.value = "";
+
+      const typing = showTyping();
+
+      setTimeout(() => {
+        typing?.remove();
+        const reply = pickMockResponse(chatLang, text);
+        appendBubble(reply, "bot");
+      }, 1200);
+    }
+
+    sendBtn?.addEventListener("click", sendMessage);
+    input?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     11. GALLERY LIGHTBOX
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initGalleryLightbox() {
+    const overlay = document.getElementById("lightbox-overlay");
+    const imgEl = document.getElementById("lightbox-img");
+    const videoEl = document.getElementById("lightbox-video");
+    const closeBtn = document.getElementById("lightbox-close");
+    if (!overlay) return;
+
+    let scrollY = 0;
+
+    const close = () => {
+      overlay.classList.remove("open");
+      document.body.classList.remove("lightbox-open");
+      document.body.style.top = "";
+      window.scrollTo(0, scrollY);
+
+      if (imgEl) {
+        imgEl.style.display = "none";
+        imgEl.removeAttribute("src");
+      }
+      if (videoEl) {
+        videoEl.pause();
+        videoEl.style.display = "none";
+        videoEl.removeAttribute("src");
+      }
+    };
+
+    const open = (type, src) => {
+      if (!src) return;
+
+      scrollY = window.scrollY;
+      document.body.classList.add("lightbox-open");
+      document.body.style.top = `-${scrollY}px`;
+      overlay.classList.add("open");
+
+      if (type === "video" && videoEl) {
+        if (imgEl) imgEl.style.display = "none";
+        videoEl.style.display = "block";
+        videoEl.src = src;
+        videoEl.play().catch(() => {});
+      } else if (imgEl) {
+        if (videoEl) videoEl.style.display = "none";
+        imgEl.style.display = "block";
+        imgEl.src = src;
+        imgEl.alt = "Gallery image";
+      }
+    };
+
+    document.querySelectorAll("[data-lightbox]").forEach((item) => {
+      item.addEventListener("click", () => {
+        const type = item.getAttribute("data-type") || "image";
+        const src = item.getAttribute("data-src");
+        open(type, src);
+      });
+    });
+
+    closeBtn?.addEventListener("click", close);
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) close();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && overlay.classList.contains("open")) close();
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     12. HERO HEADLINE (word stagger after loader)
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initHeroHeadline() {
+    const h1 = document.getElementById("hero-headline");
+    if (!h1) return;
+
+    const reveal = () => {
+      document.body.classList.add("hero-headline-ready");
+    };
+
+    if (prefersReducedMotion()) {
+      reveal();
+      return;
+    }
+
+    const wrapWords = () => {
+      const walker = document.createTreeWalker(h1, NodeFilter.SHOW_TEXT);
+      const textNodes = [];
+      let node;
+      while ((node = walker.nextNode())) {
+        textNodes.push(node);
+      }
+
+      textNodes.forEach((textNode) => {
+        const text = textNode.textContent;
+        if (!text) return;
+        const parent = textNode.parentNode;
+        const frag = document.createDocumentFragment();
+
+        text.split(/(\s+)/).forEach((part) => {
+          if (/^\s+$/.test(part)) {
+            frag.appendChild(document.createTextNode(part));
+          } else if (part.length) {
+            const span = document.createElement("span");
+            span.className = "hero-word";
+            span.textContent = part;
+            frag.appendChild(span);
+          }
+        });
+
+        parent.replaceChild(frag, textNode);
+      });
+
+      h1.querySelectorAll(".hero-word").forEach((word, i) => {
+        word.style.transitionDelay = `${i * 0.15}s`;
+      });
+    };
+
+    const start = () => {
+      wrapWords();
+      requestAnimationFrame(reveal);
+    };
+
+    if (document.body.classList.contains("loaded")) {
+      start();
+      return;
+    }
+
+    const obs = new MutationObserver(() => {
+      if (document.body.classList.contains("loaded")) {
+        obs.disconnect();
+        start();
+      }
+    });
+    obs.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     13. BEFORE / AFTER SLIDER
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initBeforeAfter() {
+    const root = document.getElementById("before-after");
+    if (!root) return;
+
+    const afterLayer = root.querySelector(".ba-after, [data-ba-after]");
+    const divider = root.querySelector(".ba-divider, [data-ba-handle]");
+    if (!afterLayer) return;
+
+    let dragging = false;
+    let ratio = 0.5;
+
+    const setRatio = (r) => {
+      ratio = Math.max(0.05, Math.min(0.95, r));
+      const pct = ratio * 100;
+      afterLayer.style.clipPath = `inset(0 0 0 ${100 - pct}%)`;
+      if (divider) {
+        divider.style.left = `${pct}%`;
+      }
+      root.style.setProperty("--ba-split", `${pct}%`);
+    };
+
+    const pointerRatio = (clientX) => {
+      const rect = root.getBoundingClientRect();
+      return (clientX - rect.left) / rect.width;
+    };
+
+    const onMove = (clientX) => {
+      if (!dragging) return;
+      setRatio(pointerRatio(clientX));
+    };
+
+    root.addEventListener("mousedown", (e) => {
+      dragging = true;
+      setRatio(pointerRatio(e.clientX));
+    });
+
+    window.addEventListener("mouseup", () => {
+      dragging = false;
+    });
+
+    window.addEventListener("mousemove", (e) => onMove(e.clientX));
+
+    root.addEventListener(
+      "touchstart",
+      (e) => {
+        dragging = true;
+        setRatio(pointerRatio(e.touches[0].clientX));
+      },
+      { passive: true }
+    );
+
+    root.addEventListener(
+      "touchmove",
+      (e) => {
+        if (!dragging) return;
+        setRatio(pointerRatio(e.touches[0].clientX));
+      },
+      { passive: true }
+    );
+
+    root.addEventListener("touchend", () => {
+      dragging = false;
+    });
+
+    setRatio(0.5);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     14. CONTACT FORM
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initContactForm() {
+    const form = document.getElementById("contact-form");
+    if (!form) return;
+
+    let statusEl = form.querySelector(".form-status");
+    if (!statusEl) {
+      statusEl = document.createElement("p");
+      statusEl.className = "form-status";
+      statusEl.setAttribute("role", "status");
+      statusEl.hidden = true;
+      form.appendChild(statusEl);
+    }
+
+    const submitBtn = form.querySelector('[type="submit"]');
+    const defaultBtnText = submitBtn?.textContent || "Send message →";
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const action = form.getAttribute("action");
+      if (!action || action.includes("YOUR_FORM_ID")) {
+        statusEl.hidden = false;
+        statusEl.className = "form-status form-status--error";
+        statusEl.textContent =
+          "Form is not configured yet. Replace YOUR_FORM_ID in the form action with your Formspree endpoint.";
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+      }
+
+      statusEl.hidden = false;
+      statusEl.className = "form-status form-status--loading";
+      statusEl.textContent = "Sending your message…";
+
+      try {
+        const formData = new FormData(form);
+        const res = await fetch(action, {
+          method: "POST",
+          body: formData,
+          headers: { Accept: "application/json" },
+        });
+
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok) {
+          statusEl.className = "form-status form-status--success";
+          statusEl.textContent = "Thank you — your message was sent successfully. We will be in touch soon.";
+          form.reset();
+        } else {
+          const msg = data.error || data.message || "Something went wrong. Please try again.";
+          throw new Error(msg);
+        }
+      } catch (err) {
+        statusEl.className = "form-status form-status--error";
+        statusEl.textContent =
+          err.message || "Could not send your message. Check your connection and try again.";
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = defaultBtnText;
+        }
+      }
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     BOOT
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function init() {
+    initLoadingScreen();
+    initCustomCursor();
+    initNavbar();
+    initLanguageSwitcher();
+    initScrollReveal();
+    initImpactCounters();
+    initReviewsSlider();
+    initProductFilter();
+    initVideoAutoplay();
+    initAIChat();
+    initGalleryLightbox();
+    initHeroHeadline();
+    initBeforeAfter();
+    initContactForm();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
