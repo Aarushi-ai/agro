@@ -464,6 +464,10 @@ ul {
   overflow: hidden;
 }
 
+#loading-screen[hidden] {
+  display: none !important;
+}
+
 #loading-screen.is-hiding {
   opacity: 0;
   pointer-events: none;
@@ -1455,7 +1459,8 @@ body.hero-headline-ready .hero-headline .hero-word {
 
 .video-cube-wrapper.photo-field-card {
   aspect-ratio: 3 / 4;
-  background: linear-gradient(160deg, #f8f5ee 0%, #ebe4d6 100%);
+  min-height: 340px;
+  background: linear-gradient(160deg, #faf7f1 0%, #ebe4d6 100%);
   border: 1px solid rgba(184, 148, 63, 0.28);
   box-shadow: 0 12px 40px rgba(26, 61, 46, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
@@ -1466,8 +1471,9 @@ body.hero-headline-ready .hero-headline .hero-word {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: center bottom;
+  object-position: center center;
   display: block;
+  padding: 0.35rem;
   transition: transform 0.7s var(--ease-out);
 }
 

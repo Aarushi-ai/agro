@@ -58,32 +58,34 @@
       return;
     }
 
-    // Check sessionStorage for loading flag
-    if (typeof window !== 'undefined' && sessionStorage.getItem('agrocare_loaded')) {
-      // Session already loaded, skip animation
-      loader.style.display = 'none';
+    if (sessionStorage.getItem("agrocare_loaded")) {
+      loader.hidden = true;
       document.body.classList.add("loaded");
       return;
     }
 
-    // Show loader for fresh session
-    loader.style.display = 'flex';
+    loader.hidden = false;
     document.body.classList.add("is-loading");
 
-    // Auto-hide after 4 seconds or when video ends
-    const video = loader.querySelector('video');
+    const video = loader.querySelector("video");
     const hideLoader = () => {
-      sessionStorage.setItem('agrocare_loaded', '1');
-      loader.style.display = 'none';
+      sessionStorage.setItem("agrocare_loaded", "1");
+      loader.hidden = true;
       document.body.classList.remove("is-loading");
       document.body.classList.add("loaded");
     };
 
-    if (video) {
-      video.addEventListener('ended', hideLoader, { once: true });
+    if (!video) {
+      hideLoader();
+      return;
     }
 
-    setTimeout(hideLoader, 4000);
+    video.addEventListener("ended", hideLoader, { once: true });
+    video.addEventListener("error", hideLoader, { once: true });
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(hideLoader);
+    }
   }
 
   /* ═══════════════════════════════════════════════════════════════════
