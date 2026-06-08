@@ -769,19 +769,25 @@
     const grid = document.getElementById("galleryGrid");
     if (!grid || !grid.hasAttribute("data-gallery-dynamic")) return;
 
+    const imageExt = /\.(jpe?g|png|webp|gif)$/i;
     const render = (files) => {
       grid.innerHTML = "";
-      files.forEach((file) => {
-        const src = `assets/gallery/${file}`;
-        const label = file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = label;
-        img.loading = "lazy";
-        img.decoding = "async";
-        img.dataset.full = src;
-        grid.appendChild(img);
-      });
+      [...files]
+        .filter((file) => imageExt.test(file))
+        .forEach((file) => {
+          const src = `assets/gallery/${file}`;
+          const label = file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
+          const wrap = document.createElement("div");
+          wrap.className = "gallery-col-item";
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = label;
+          img.loading = "lazy";
+          img.decoding = "async";
+          img.dataset.full = src;
+          wrap.appendChild(img);
+          grid.appendChild(wrap);
+        });
       initGalleryPageLightbox();
     };
 
