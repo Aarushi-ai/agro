@@ -1,0 +1,29 @@
+:root {
+  --bg-primary: #f5f0e8;
+  --bg-secondary: #ede8dc;
+  --bg-card: #ffffff;
+  --bg-dark: #1a3d1a;
+  --text-primary: #1a2e1a;
+  --text-secondary: #4a5e3a;
+  --text-muted: #7a8e6a;
+  --accent: #2d6a2d;
+  --accent-gold: #8b6914;
+  --accent-light: #e8f5e8;
+  --border: rgba(45, 106, 45, 0.2);
+  --shadow: rgba(26, 61, 26, 0.1);
+}
+
+body {
+  background-color: #f5f0e8;
+  color: #1a2e1a;
+  font-family: "DM Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: #1a2e1a;
+}
