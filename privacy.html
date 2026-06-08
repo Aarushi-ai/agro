@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Privacy Policy — Agrocare</title>
+  <meta name="description" content="Agrocare Privacy Policy — how we collect, use, and protect your information."/>
+  <title>Privacy Policy — AGRO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <style>
-    .legal-page { max-width: 720px; margin: 0 auto; padding: 120px 24px 80px; line-height: 1.75; }
-    .legal-page h1 { font-family: "Cormorant Garamond", serif; font-size: 2.25rem; margin-bottom: 24px; }
-    .legal-page h2 { font-size: 1.1rem; margin: 28px 0 12px; }
-    .legal-page p, .legal-page li { color: #444; margin-bottom: 12px; }
-    .legal-page a { color: #2d6a4f; }
+    .legal-page { max-width: 720px; margin: 0 auto; padding: 5rem var(--gutter) 4rem; color: rgba(247,244,238,0.85); line-height: 1.75; }
+    .legal-page h1 { font-family: "Cormorant Garamond", serif; font-size: 2.5rem; color: var(--cream); margin-bottom: 0.5rem; }
+    .legal-page h2 { font-size: 1.1rem; color: #74c69d; margin: 2rem 0 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .legal-page p, .legal-page li { margin-bottom: 0.75rem; font-size: 0.95rem; }
+    .legal-page ul { padding-left: 1.25rem; }
+    .legal-updated { font-size: 0.85rem; color: rgba(247,244,238,0.5); margin-bottom: 2rem; }
   </style>
 </head>
 <body>
@@ -21,37 +26,62 @@
     <nav aria-label="Main navigation">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="privacy.html" aria-current="page">Privacy</a></li>
-        <li><a href="terms.html">Terms</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="enquiry.html">Contact</a></li>
       </ul>
     </nav>
+    <div class="nav-right">
+      <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
   </header>
+  <nav class="mobile-nav">
+    <button type="button" class="mobile-nav-close" aria-label="Close menu">✕</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+  </nav>
 
-  <main class="legal-page" id="main-content">
+  <main class="legal-page">
     <h1>Privacy Policy</h1>
-    <p><strong>Last updated:</strong> June 2026</p>
-    <p>Agrocare ("we", "our", "us") respects your privacy. This policy explains how we collect, use, and protect information when you visit our website or contact us about our organic agri-inputs.</p>
+    <p class="legal-updated">Last updated: June 2026</p>
 
-    <h2>Information we collect</h2>
-    <p>We may collect your name, phone number, email address, farm location, and enquiry details when you submit a contact form, enquiry, or complaint on this website.</p>
+    <p>Agrocare ("we", "our", or "us") respects your privacy. This policy explains how we collect, use, and safeguard information when you visit our website or contact us about our organic agri-input products.</p>
 
-    <h2>How we use your information</h2>
+    <h2>Information We Collect</h2>
+    <p>We may collect information you voluntarily provide through enquiry forms, contact forms, or email — including your name, phone number, email address, farm location, and message content.</p>
+
+    <h2>How We Use Information</h2>
     <ul>
       <li>To respond to product enquiries and provide farm advisory</li>
       <li>To process orders and complaints</li>
-      <li>To improve our products and services</li>
-      <li>To send relevant updates if you have opted in</li>
+      <li>To improve our website and customer service</li>
+      <li>To send relevant product updates (only with your consent)</li>
     </ul>
 
-    <h2>Data sharing</h2>
-    <p>We do not sell your personal data. We may share information with service providers (such as email delivery) solely to operate our business.</p>
+    <h2>Data Sharing</h2>
+    <p>We do not sell your personal information. We may share data with trusted service providers (such as email delivery) solely to operate our business, or when required by law.</p>
+
+    <h2>Cookies & Analytics</h2>
+    <p>Our website may use essential cookies for basic functionality. We do not use invasive tracking without notice.</p>
+
+    <h2>Your Rights</h2>
+    <p>You may request access, correction, or deletion of your personal data by contacting us at <a href="mailto:agrocare.aquarev@gmail.com" style="color:#74c69d">agrocare.aquarev@gmail.com</a>.</p>
 
     <h2>Contact</h2>
-    <p>Questions about this policy: <a href="mailto:agrocare.aquarev@gmail.com">agrocare.aquarev@gmail.com</a></p>
-
-    <p><a href="index.html">← Back to home</a></p>
+    <p>Agrocare · Ahmedabad, India<br>
+    Email: <a href="mailto:agrocare.aquarev@gmail.com" style="color:#74c69d">agrocare.aquarev@gmail.com</a><br>
+    Support: <a href="mailto:globsynite@gmail.com" style="color:#74c69d">globsynite@gmail.com</a></p>
   </main>
 
+  <footer id="site-footer">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 AGRO. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="index.html">Home</a>
+      </div>
+    </div>
+  </footer>
   <script src="js/main.js" defer></script>
 </body>
 </html>

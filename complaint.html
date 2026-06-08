@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="File a complaint with AGRO. We take your feedback seriously and will resolve issues promptly."/>
+  <meta name="robots" content="index, follow"/>
+  <title>File a Complaint — AGRO</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/dist/tabler-icons.min.css"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="assets/agro.css"/>
+
+  <style>
+    .complaint-page {
+      min-height: 100vh;
+      background: var(--c-bg);
+    }
+
+    .complaint-content {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: var(--sp-12) var(--sp-4);
+    }
+
+    .complaint-header {
+      text-align: center;
+      margin-bottom: var(--sp-12);
+    }
+
+    .complaint-header .t-label {
+      display: inline-block;
+      margin-bottom: var(--sp-4);
+    }
+
+    .complaint-header h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      color: var(--c-text);
+      margin: 0 0 var(--sp-4) 0;
+      font-weight: 500;
+    }
+
+    .complaint-header p {
+      color: var(--c-ink-soft);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .form-status {
+      padding: var(--sp-4);
+      border-radius: var(--r-md);
+      margin-bottom: var(--sp-6);
+      font-size: var(--text-sm);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .form-status--success {
+      background: rgba(0, 200, 83, 0.1);
+      color: var(--c-primary);
+      border: 1px solid var(--c-primary);
+    }
+
+    .form-status--error {
+      background: rgba(255, 61, 0, 0.1);
+      color: var(--c-accent);
+      border: 1px solid var(--c-accent);
+    }
+
+    .form-status--loading {
+      background: rgba(200, 230, 201, 0.2);
+      color: var(--c-ink-soft);
+      border: 1px solid var(--c-border);
+    }
+
+    .form-status a {
+      color: inherit;
+    }
+
+    .form-group {
+      margin-bottom: var(--sp-6);
+    }
+
+    .form-label {
+      display: block;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c-text);
+      margin-bottom: var(--sp-2);
+    }
+
+    .form-label .required {
+      color: var(--c-accent);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: var(--sp-3) var(--sp-4);
+      font-size: var(--text-base);
+      font-family: inherit;
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-md);
+      background: var(--c-white);
+      color: var(--c-text);
+      transition: border-color 0.2s ease;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--c-primary);
+      box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.1);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.9rem var(--sp-4);
+      background: var(--c-accent);
+      color: var(--c-white);
+      border: none;
+      border-radius: var(--r-md);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: var(--c-primary);
+      transform: translateY(-2px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      color: var(--c-primary);
+      text-decoration: none;
+      font-size: var(--text-sm);
+      margin-bottom: var(--sp-8);
+      transition: gap 0.2s ease;
+    }
+
+    .back-link:hover {
+      gap: var(--sp-3);
+    }
+
+    /* Phone input autofill fix */
+    .complaint-phone-input:-webkit-autofill,
+    .complaint-phone-input:-webkit-autofill:hover,
+    .complaint-phone-input:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0px 1000px #f5f0e8 inset !important;
+      -webkit-text-fill-color: #1b5e20 !important;
+      caret-color: #1b5e20;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="complaint-page">
+    <div class="complaint-content">
+      <a href="index.html" class="back-link">← Back to home</a>
+
+      <div class="complaint-header">
+        <span class="t-label">We're Here to Help</span>
+        <h1>File a Complaint</h1>
+        <p>We take your feedback seriously. Please share details of your concern, and we will resolve it as quickly as possible.</p>
+      </div>
+
+      <form id="complaint-form">
+        <div class="form-status" id="complaint-status" style="display: none;"></div>
+
+        <div class="form-group">
+          <label class="form-label" for="complaint-name">Your Name <span class="required">*</span></label>
+          <input
+            class="form-input"
+            type="text"
+            id="complaint-name"
+            name="name"
+            placeholder="Rameshbhai Patel"
+            autocomplete="name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="complaint-phone">Phone Number <span class="required">*</span></label>
+          <input
+            class="form-input complaint-phone-input"
+            type="tel"
+            id="complaint-phone"
+            name="phone"
+            placeholder="+91 XXXXX XXXXX"
+            autocomplete="tel"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="complaint-product">Product Name <span class="required">*</span></label>
+          <input
+            class="form-input"
+            type="text"
+            id="complaint-product"
+            name="product_name"
+            placeholder="e.g., Seaweed Extract 500ml"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="complaint-purchase-date">Date of Purchase <span class="required">*</span></label>
+          <input
+            class="form-input"
+            type="date"
+            id="complaint-purchase-date"
+            name="purchase_date"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="complaint-message">Issue Description <span class="required">*</span></label>
+          <textarea
+            class="form-textarea"
+            id="complaint-message"
+            name="complaint_details"
+            placeholder="Please describe the issue in detail — what happened and how it affected you..."
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="complaint-submit">Submit Complaint →</button>
+      </form>
+
+      <div style="margin-top: var(--sp-12); padding-top: var(--sp-12); border-top: 1px solid var(--c-border); text-align: center;">
+        <p style="font-size: var(--text-sm); color: var(--c-ink-soft); margin: 0 0 var(--sp-3) 0;">Urgent complaint? Contact us directly:</p>
+        <div style="display: flex; gap: var(--sp-4); justify-content: center; flex-wrap: wrap;">
+          <a href="https://wa.me/919427205179?text=I%20have%20an%20urgent%20complaint" target="_blank" rel="noopener noreferrer" style="color: var(--c-accent); text-decoration: underline; font-size: var(--text-sm); font-weight: 600;">WhatsApp →</a>
+          <a href="tel:+919427205179" style="color: var(--c-accent); text-decoration: underline; font-size: var(--text-sm); font-weight: 600;">Call Now →</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>

@@ -52,6 +52,7 @@
   ═══════════════════════════════════════════════════════════════════ */
 
   function initLoadingScreen() {
+    if (document.getElementById("site-loader")) return;
     const loader = document.getElementById("loading-screen");
     if (!loader) {
       document.body.classList.add("loaded");
@@ -59,33 +60,26 @@
     }
 
     if (sessionStorage.getItem("agrocare_loaded")) {
-      loader.hidden = true;
+      loader.classList.add("hidden");
       document.body.classList.add("loaded");
       return;
     }
 
-    loader.hidden = false;
+    loader.style.display = "flex";
     document.body.classList.add("is-loading");
+    loader.classList.add(prefersReducedMotion() ? "loader-reduced" : "loader-animate");
 
-    const video = loader.querySelector("video");
     const hideLoader = () => {
       sessionStorage.setItem("agrocare_loaded", "1");
-      loader.hidden = true;
-      document.body.classList.remove("is-loading");
-      document.body.classList.add("loaded");
+      loader.classList.add("is-hiding");
+      setTimeout(() => {
+        loader.classList.add("hidden");
+        document.body.classList.remove("is-loading");
+        document.body.classList.add("loaded");
+      }, 500);
     };
 
-    if (!video) {
-      hideLoader();
-      return;
-    }
-
-    video.addEventListener("ended", hideLoader, { once: true });
-    video.addEventListener("error", hideLoader, { once: true });
-    const playPromise = video.play();
-    if (playPromise && typeof playPromise.catch === "function") {
-      playPromise.catch(hideLoader);
-    }
+    setTimeout(hideLoader, LOADER_DURATION_MS);
   }
 
   /* ═══════════════════════════════════════════════════════════════════
@@ -144,27 +138,7 @@
   ═══════════════════════════════════════════════════════════════════ */
 
   function initBeforeAfterSlider() {
-    const slider = document.querySelector('.before-after-slider');
-    if (!slider) return;
-
-    const beforePanel = slider.querySelector('.ba-before');
-    const divider = slider.querySelector('.ba-divider');
-    let dragging = false;
-
-    const updateSlider = (e) => {
-      if (!dragging) return;
-      const rect = slider.getBoundingClientRect();
-      const x = (e.type.includes('touch') ? e.touches[0].clientX : e.clientX) - rect.left;
-      const pct = Math.min(Math.max(x / rect.width * 100, 5), 95);
-      beforePanel.style.width = pct + '%';
-    };
-
-    divider?.addEventListener('mousedown', () => { dragging = true; });
-    divider?.addEventListener('touchstart', () => { dragging = true; });
-    document.addEventListener('mouseup', () => { dragging = false; });
-    document.addEventListener('touchend', () => { dragging = false; });
-    document.addEventListener('mousemove', updateSlider);
-    document.addEventListener('touchmove', updateSlider);
+    /* Handled by initBeforeAfter() — clip-path slider on #before-after */
   }
 
   /* ═══════════════════════════════════════════════════════════════════
@@ -328,6 +302,14 @@
         card.querySelectorAll(".review-text[data-lang]").forEach((t) => {
           t.style.display = t.getAttribute("data-lang") === lang ? "block" : "none";
         });
+        const nameEl = card.querySelector(".review-name");
+        const metaEl = card.querySelector(".review-meta");
+        if (nameEl?.getAttribute(`data-name-${lang}`)) {
+          nameEl.textContent = nameEl.getAttribute(`data-name-${lang}`);
+        }
+        if (metaEl?.getAttribute(`data-loc-${lang}`)) {
+          metaEl.textContent = metaEl.getAttribute(`data-loc-${lang}`);
+        }
       });
       langBtns.forEach((btn) => {
         btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
@@ -439,70 +421,66 @@
   ═══════════════════════════════════════════════════════════════════ */
 
   function initReviewsSlider() {
-    const track = document.querySelector(".reviews-track");
-    const prevBtn = document.querySelector(".reviews-prev");
-    const nextBtn = document.querySelector(".reviews-next");
-    const wrap = document.querySelector(".reviews-slider-wrap");
+    const section = document.getElementById("farmers-speak-slider");
+    const track = section?.querySelector(".reviews-track") || document.querySelector(".reviews-track");
+    const prevBtn = section?.querySelector(".reviews-prev") || document.querySelector(".reviews-prev");
+    const nextBtn = section?.querySelector(".reviews-next") || document.querySelector(".reviews-next");
+    const wrap = section?.querySelector(".reviews-slider-wrap") || document.querySelector(".reviews-slider-wrap");
     if (!track) return;
 
+    const isFarmersSpeak = !!section;
     let index = 0;
     let maxIndex = 0;
+    let autoTimer = null;
 
-    const getGap = () => parseFloat(getComputedStyle(track).gap) || 20;
+    const slides = isFarmersSpeak ? track.querySelectorAll("[data-slide]") : track.querySelectorAll(".review-card");
+    const getGap = () => parseFloat(getComputedStyle(track).gap) || 0;
 
     const getStep = () => {
-      const card = track.querySelector(".review-card");
-      return card ? card.offsetWidth + getGap() : 340;
+      const slide = slides[0];
+      return slide ? slide.offsetWidth + getGap() : wrap?.offsetWidth || 340;
     };
 
     const updateBounds = () => {
-      const cards = track.querySelectorAll(".review-card");
-      const visible = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
-      maxIndex = Math.max(0, cards.length - visible);
+      const visible = isFarmersSpeak ? 1 : window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+      maxIndex = Math.max(0, slides.length - visible);
       if (index > maxIndex) index = maxIndex;
       goTo(index, false);
     };
 
     const goTo = (i, animate = true) => {
-      index = Math.max(0, Math.min(i, maxIndex));
+      index = isFarmersSpeak ? ((i % slides.length) + slides.length) % slides.length : Math.max(0, Math.min(i, maxIndex));
       const offset = index * getStep();
-      track.style.transition = animate ? "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)" : "none";
+      track.style.transition = animate ? "transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)" : "none";
       track.style.transform = `translate3d(-${offset}px, 0, 0)`;
-      prevBtn && (prevBtn.disabled = index <= 0);
-      nextBtn && (nextBtn.disabled = index >= maxIndex);
+      if (!isFarmersSpeak) {
+        if (prevBtn) prevBtn.disabled = index <= 0;
+        if (nextBtn) nextBtn.disabled = index >= maxIndex;
+      }
     };
 
-    prevBtn?.addEventListener("click", () => goTo(index - 1));
-    nextBtn?.addEventListener("click", () => goTo(index + 1));
+    const resetAuto = () => {
+      if (!isFarmersSpeak || prefersReducedMotion()) return;
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => goTo(index + 1), 5000);
+    };
+
+    prevBtn?.addEventListener("click", () => { goTo(index - 1); resetAuto(); });
+    nextBtn?.addEventListener("click", () => { goTo(index + 1); resetAuto(); });
 
     window.addEventListener("resize", updateBounds);
     updateBounds();
+    resetAuto();
 
     if (wrap && IS_TOUCH) {
       let startX = 0;
       let deltaX = 0;
-
-      wrap.addEventListener(
-        "touchstart",
-        (e) => {
-          startX = e.touches[0].clientX;
-          deltaX = 0;
-        },
-        { passive: true }
-      );
-
-      wrap.addEventListener(
-        "touchmove",
-        (e) => {
-          deltaX = e.touches[0].clientX - startX;
-        },
-        { passive: true }
-      );
-
+      wrap.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; deltaX = 0; }, { passive: true });
+      wrap.addEventListener("touchmove", (e) => { deltaX = e.touches[0].clientX - startX; }, { passive: true });
       wrap.addEventListener("touchend", () => {
         if (Math.abs(deltaX) < 40) return;
-        if (deltaX < 0) goTo(index + 1);
-        else goTo(index - 1);
+        goTo(deltaX < 0 ? index + 1 : index - 1);
+        resetAuto();
       });
     }
   }
@@ -738,7 +716,106 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════════
-     11. GALLERY LIGHTBOX
+     11. DYNAMIC GALLERY (assets/gallery/)
+  ═══════════════════════════════════════════════════════════════════ */
+
+  const GALLERY_FALLBACK = ["farmer.jpg", "WhatsApp Image 2026-05-29 at 22.52.05.jpeg"];
+
+  function initHomeGalleryMasonry() {
+    const grid = document.getElementById("home-gallery-masonry");
+    if (!grid) return;
+
+    const imageExt = /\.(jpe?g|png|webp|gif)$/i;
+    const render = (files) => {
+      grid.innerHTML = "";
+      [...files]
+        .filter((file) => imageExt.test(file))
+        .sort((a, b) => a.localeCompare(b))
+        .forEach((file) => {
+          const src = `assets/gallery/${file}`;
+          const label = file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
+          const item = document.createElement("div");
+          item.className = "gallery-item gallery-item--media";
+          item.dataset.lightbox = "";
+          item.dataset.type = "image";
+          item.dataset.src = src;
+          item.setAttribute("role", "button");
+          item.setAttribute("tabindex", "0");
+          item.setAttribute("aria-label", label);
+
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = label;
+          img.className = "gallery-item__media";
+          img.loading = "lazy";
+
+          const caption = document.createElement("span");
+          caption.className = "gallery-item-caption";
+          caption.textContent = label;
+
+          item.appendChild(img);
+          item.appendChild(caption);
+          grid.appendChild(item);
+        });
+    };
+
+    fetch("assets/gallery/manifest.json")
+      .then((r) => (r.ok ? r.json() : GALLERY_FALLBACK))
+      .then((data) => render(Array.isArray(data) ? data : GALLERY_FALLBACK))
+      .catch(() => render(GALLERY_FALLBACK));
+  }
+
+  function initDynamicGallery() {
+    const grid = document.getElementById("galleryGrid");
+    if (!grid || !grid.hasAttribute("data-gallery-dynamic")) return;
+
+    const render = (files) => {
+      grid.innerHTML = "";
+      files.forEach((file) => {
+        const src = `assets/gallery/${file}`;
+        const label = file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = label;
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.dataset.full = src;
+        grid.appendChild(img);
+      });
+      initGalleryPageLightbox();
+    };
+
+    fetch("assets/gallery/manifest.json")
+      .then((r) => (r.ok ? r.json() : GALLERY_FALLBACK))
+      .then((data) => render(Array.isArray(data) ? data : GALLERY_FALLBACK))
+      .catch(() => render(GALLERY_FALLBACK));
+  }
+
+  function initGalleryPageLightbox() {
+    const overlay = document.getElementById("gallery-lightbox");
+    const img = document.getElementById("gallery-lightbox-img");
+    const close = document.getElementById("gallery-lightbox-close");
+    if (!overlay || !img) return;
+
+    document.querySelectorAll("#galleryGrid img").forEach((el) => {
+      el.addEventListener("click", () => {
+        img.src = el.getAttribute("data-full") || el.src;
+        img.alt = el.alt;
+        overlay.classList.add("open");
+      });
+    });
+
+    close?.addEventListener("click", () => overlay.classList.remove("open"));
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) overlay.classList.remove("open");
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") overlay.classList.remove("open");
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     12. GALLERY LIGHTBOX (home page field journal)
   ═══════════════════════════════════════════════════════════════════ */
 
   function initGalleryLightbox() {
@@ -788,12 +865,22 @@
       }
     };
 
-    document.querySelectorAll("[data-lightbox]").forEach((item) => {
-      item.addEventListener("click", () => {
-        const type = item.getAttribute("data-type") || "image";
-        const src = item.getAttribute("data-src");
-        open(type, src);
-      });
+    document.addEventListener("click", (e) => {
+      const item = e.target.closest("[data-lightbox]");
+      if (!item) return;
+      const type = item.getAttribute("data-type") || "image";
+      const src = item.getAttribute("data-src");
+      open(type, src);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const item = e.target.closest("[data-lightbox]");
+      if (!item) return;
+      e.preventDefault();
+      const type = item.getAttribute("data-type") || "image";
+      const src = item.getAttribute("data-src");
+      open(type, src);
     });
 
     closeBtn?.addEventListener("click", close);
@@ -883,9 +970,9 @@
     const root = document.getElementById("before-after");
     if (!root) return;
 
-    const afterLayer = root.querySelector(".ba-after, [data-ba-after]");
+    const beforeLayer = root.querySelector(".ba-layer--before, .ba-before, .ba-img.ba-before, [data-ba-before]");
     const divider = root.querySelector(".ba-divider, [data-ba-handle]");
-    if (!afterLayer) return;
+    if (!beforeLayer) return;
 
     let dragging = false;
     let ratio = 0.5;
@@ -893,7 +980,7 @@
     const setRatio = (r) => {
       ratio = Math.max(0.05, Math.min(0.95, r));
       const pct = ratio * 100;
-      afterLayer.style.clipPath = `inset(0 0 0 ${100 - pct}%)`;
+      beforeLayer.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
       if (divider) {
         divider.style.left = `${pct}%`;
       }
@@ -915,9 +1002,13 @@
       setRatio(pointerRatio(e.clientX));
     });
 
-    window.addEventListener("mouseup", () => {
+    const stopDrag = () => {
       dragging = false;
-    });
+    };
+
+    window.addEventListener("mouseup", stopDrag);
+
+    root.addEventListener("mouseleave", stopDrag);
 
     window.addEventListener("mousemove", (e) => onMove(e.clientX));
 
@@ -939,9 +1030,7 @@
       { passive: true }
     );
 
-    root.addEventListener("touchend", () => {
-      dragging = false;
-    });
+    root.addEventListener("touchend", stopDrag);
 
     setRatio(0.5);
   }
@@ -950,47 +1039,158 @@
      14. CONTACT FORM
   ═══════════════════════════════════════════════════════════════════ */
 
-  function initContactForm() {
-    const form = document.getElementById("contact-form");
+  const AGRO_WA_NUMBER = "919427205179";
+
+  function normalizeWaPhone(phone) {
+    const digits = String(phone || "").replace(/\D/g, "");
+    if (digits.length === 10) return "91" + digits;
+    if (digits.length === 12 && digits.startsWith("91")) return digits;
+    return digits || AGRO_WA_NUMBER;
+  }
+
+  function mapEnquiryType(subject) {
+    const map = {
+      "General query": "General Query",
+      "Product enquiry": "Product Enquiry",
+      Complaint: "Complaint",
+      "Farming advice": "Farming Advice",
+      Partnership: "General Query",
+      "Press / media": "General Query",
+    };
+    return map[subject] || subject || "General Query";
+  }
+
+  function openWaTab(phone, text) {
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
+  }
+
+  function showAgroToast(message) {
+    let toast = document.getElementById("agro-toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "agro-toast";
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
+      Object.assign(toast.style, {
+        position: "fixed",
+        bottom: "24px",
+        right: "24px",
+        zIndex: "10001",
+        maxWidth: "min(360px, calc(100vw - 32px))",
+        padding: "14px 18px",
+        borderRadius: "12px",
+        background: "#1A1F0F",
+        color: "#F5F0E8",
+        boxShadow: "0 12px 36px rgba(0,0,0,0.28)",
+        fontSize: "0.92rem",
+        lineHeight: "1.5",
+        opacity: "0",
+        transform: "translateY(12px)",
+        transition: "opacity 0.35s ease, transform 0.35s ease",
+      });
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    requestAnimationFrame(() => {
+      toast.style.opacity = "1";
+      toast.style.transform = "translateY(0)";
+    });
+    clearTimeout(showAgroToast._timer);
+    showAgroToast._timer = setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transform = "translateY(12px)";
+    }, 5000);
+  }
+
+  function handleWhatsAppEnquiry({ name, phone, type, message }) {
+    const enquiryType = mapEnquiryType(type);
+    const userPhone = normalizeWaPhone(phone);
+    const userConfirm =
+      `Thank you for your enquiry! 🌿 We have received your ${enquiryType} and our team will reach out to you within 24 hours. — AgroCare Team`;
+    const teamAlert =
+      `📩 New ${enquiryType} from ${name}:\n${message}\n\nPhone: ${phone}`;
+    openWaTab(userPhone, userConfirm);
+    setTimeout(() => openWaTab(AGRO_WA_NUMBER, teamAlert), 400);
+    showAgroToast("Message registered successfully! You'll hear from us soon. 🌾");
+  }
+
+  function initComplaintForm() {
+    const form = document.getElementById("complaint-form");
     if (!form) return;
 
-    let statusEl = form.querySelector(".form-status");
-    if (!statusEl) {
-      statusEl = document.createElement("div");
-      statusEl.className = "form-status";
-      statusEl.setAttribute("role", "status");
-      statusEl.setAttribute("aria-live", "polite");
-      statusEl.style.display = "none";
-      form.appendChild(statusEl);
-    }
-
+    const statusEl = document.getElementById("complaint-status");
     const submitBtn = form.querySelector('[type="submit"]');
-    const defaultBtnText = submitBtn?.textContent || "Send message →";
+    const defaultBtnText = submitBtn?.textContent || "Submit Complaint →";
 
-    // Initialize EmailJS on first interaction
-    if (typeof emailjs !== "undefined") {
-      emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
-    }
-
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      if (typeof emailjs === "undefined") {
-        statusEl.style.display = "block";
-        statusEl.className = "form-status form-status--error";
-        statusEl.textContent = "Email service is not available. Please contact us via WhatsApp or phone.";
+      const name = form.querySelector("#complaint-name")?.value?.trim();
+      const phone = form.querySelector("#complaint-phone")?.value?.trim();
+      const product = form.querySelector("#complaint-product")?.value?.trim();
+      const purchaseDate = form.querySelector("#complaint-purchase-date")?.value?.trim();
+      const issue = form.querySelector("#complaint-message")?.value?.trim();
+
+      if (!name || !phone || !product || !purchaseDate || !issue) {
+        if (statusEl) {
+          statusEl.style.display = "block";
+          statusEl.className = "form-status form-status--error";
+          statusEl.textContent = "Please fill in all required fields.";
+        }
         return;
       }
 
-      const name = form.querySelector("#contact-name").value?.trim();
-      const phone = form.querySelector("#contact-phone").value?.trim();
-      const subject = form.querySelector("#contact-subject").value?.trim();
-      const message = form.querySelector("#contact-message").value?.trim();
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting…";
+      }
 
-      if (!name || !phone || !subject || !message) {
+      const msg = `🚨 COMPLAINT from ${name} | Phone: ${phone} | Product: ${product} | Issue: ${issue} | Date: ${purchaseDate}`;
+      window.open(`https://wa.me/919427205179?text=${encodeURIComponent(msg)}`, "_blank");
+      form.reset();
+
+      if (statusEl) {
         statusEl.style.display = "block";
-        statusEl.className = "form-status form-status--error";
-        statusEl.textContent = "Please fill in all fields.";
+        statusEl.className = "form-status form-status--success";
+        statusEl.textContent = "Complaint registered. Our team will contact you within 24 hours.";
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = defaultBtnText;
+      }
+    });
+  }
+
+  function initEnquiryForm() {
+    const form = document.getElementById("enquiry-form");
+    if (!form) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const prefill = params.get("msg") || params.get("message");
+    const messageField = form.querySelector("#enquiry-message");
+    if (prefill && messageField) {
+      messageField.value = decodeURIComponent(prefill.replace(/\+/g, " "));
+    }
+
+    const statusEl = document.getElementById("enquiry-status");
+    const submitBtn = form.querySelector('[type="submit"]');
+    const defaultBtnText = submitBtn?.textContent || "Send Enquiry →";
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = form.querySelector("#enquiry-name")?.value?.trim();
+      const phone = form.querySelector("#enquiry-phone")?.value?.trim();
+      const product = form.querySelector("#enquiry-product")?.value?.trim();
+      const message = form.querySelector("#enquiry-message")?.value?.trim();
+
+      if (!name || !phone || !product || !message) {
+        if (statusEl) {
+          statusEl.style.display = "block";
+          statusEl.className = "form-status form-status--error";
+          statusEl.textContent = "Please fill in all required fields.";
+        }
         return;
       }
 
@@ -999,48 +1199,68 @@
         submitBtn.textContent = "Sending…";
       }
 
-      statusEl.style.display = "block";
-      statusEl.className = "form-status form-status--loading";
-      statusEl.textContent = "Sending your message…";
+      const fullMessage = `Product interest: ${product}\n\n${message}`;
+      handleWhatsAppEnquiry({ name, phone, type: "Product enquiry", message: fullMessage });
+      form.reset();
 
-      try {
-        const response = await emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-          from_name: name,
-          from_email: `${phone} (via website)`,
-          subject: subject,
-          message: message,
-          phone: phone,
-          to_email: "info@agrocompany.in",
-        });
+      if (statusEl) {
+        statusEl.style.display = "block";
+        statusEl.className = "form-status form-status--success";
+        statusEl.textContent = "Message registered successfully! You'll hear from us soon. 🌾";
+      }
 
-        if (response.status === 200) {
-          statusEl.className = "form-status form-status--success";
-          statusEl.textContent =
-            "Thank you — your message was sent successfully. We will be in touch soon.";
-          form.reset();
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = defaultBtnText;
+      }
+    });
+  }
 
-          // Also offer WhatsApp contact as alternative
-          const whatsappLink = `https://wa.me/+91XXXXXXXXXX?text=Hi%2C%20I%20submitted%20a%20form:%20${encodeURIComponent(
-            `${subject} - ${message}`
-          )}`;
-          setTimeout(() => {
-            statusEl.innerHTML =
-              'Message sent! <a href="' +
-              whatsappLink +
-              '" target="_blank" style="color: var(--gold); text-decoration: underline;">Also reach us on WhatsApp →</a>';
-          }, 1500);
-        } else {
-          throw new Error("Failed to send email");
+  function initContactForm() {
+    const form = document.getElementById("contact-form");
+    if (!form) return;
+
+    const successEl = document.getElementById("form-success");
+    const submitBtn = form.querySelector('[type="submit"]');
+    const defaultBtnText = submitBtn?.textContent || "Send message →";
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = form.querySelector("#contact-name")?.value?.trim();
+      const phone = form.querySelector("#contact-phone")?.value?.trim();
+      const subject = form.querySelector("#contact-subject")?.value?.trim();
+      const message = form.querySelector("#contact-message")?.value?.trim();
+
+      if (!name || !phone || !subject || !message) {
+        if (successEl) {
+          successEl.style.display = "block";
+          successEl.style.background = "rgba(230,57,70,0.12)";
+          successEl.style.color = "#c1121f";
+          successEl.innerHTML = "Please fill in all fields.";
         }
-      } catch (err) {
-        statusEl.className = "form-status form-status--error";
-        statusEl.textContent =
-          err.message || "Could not send your message. Please try again or contact us via WhatsApp.";
-      } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = defaultBtnText;
-        }
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+      }
+
+      const companyMsg = `📩 New ${subject} | From: ${name} | Phone: ${phone} | Message: ${message}`;
+      window.open(`https://wa.me/919427205179?text=${encodeURIComponent(companyMsg)}`, "_blank");
+      form.reset();
+
+      if (successEl) {
+        successEl.innerHTML = "🌾 Message registered! We'll reach you soon.";
+        successEl.style.display = "block";
+        successEl.style.background = "rgba(116,198,157,0.15)";
+        successEl.style.color = "#2D5A1B";
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = defaultBtnText;
       }
     });
   }
@@ -1061,10 +1281,14 @@
     initProductFilter();
     initVideoAutoplay();
     initAIChat();
+    initDynamicGallery();
+    initHomeGalleryMasonry();
     initGalleryLightbox();
     initHeroHeadline();
     initBeforeAfter();
     initContactForm();
+    initComplaintForm();
+    initEnquiryForm();
   }
 
   if (document.readyState === "loading") {

@@ -3,389 +3,277 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="AgroCare — Organic Agricultural Inputs Catalogue. Seaweed-based fertilisers, humic products, and soil conditioners for healthier soil and better yields."/>
-  <meta name="keywords" content="organic fertilizer, seaweed extract, humic acid, agricultural inputs, soil conditioner, organic farming"/>
-  <meta name="robots" content="index, follow"/>
-  <meta property="og:title" content="AgroCare — Organic Agricultural Inputs | Products"/>
-  <meta property="og:description" content="Certified organic agri-inputs. Farmer-proven. Gujarat-rooted."/>
-  <meta property="og:type" content="website"/>
-
+  <meta name="description" content="AgroCare — Organic Agricultural Inputs Catalogue. Seaweed extracts, humic & fulvic products, and crop protectants."/>
   <title>AgroCare — Organic Agricultural Inputs | Products</title>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/dist/tabler-icons.min.css"/>
-
-  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/styles.css"/>
-
   <style>
-    /* Products page specific styles */
-  body { background: #f8f9fa; }
-
     .products-hero {
-      background: linear-gradient(135deg, #2d6a4f 0%, #40916c 45%, #2d6a4f 100%);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
-      color: #f5f0e8;
+      background: var(--bg-dark);
+      color: var(--text-light);
       padding: clamp(3rem, 8vw, 5rem) var(--gutter);
       text-align: center;
       position: relative;
       overflow: hidden;
     }
-
     .products-hero h1 {
-      font-family: "Cormorant Garamond", serif;
+      font-family: var(--font-display);
       font-size: clamp(2.5rem, 5vw, 3.5rem);
       font-weight: 300;
       margin-bottom: 0.75rem;
-      letter-spacing: -0.01em;
     }
-
     .products-hero p {
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: rgba(245, 240, 232, 0.8);
-      max-width: 600px;
+      font-size: 1.05rem;
+      color: rgba(248, 249, 250, 0.82);
+      max-width: 560px;
       margin: 0 auto;
       line-height: 1.7;
     }
-
-    /* Category tabs */
     .category-tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 0.65rem;
       justify-content: center;
-      padding: 2rem var(--gutter);
+      padding: 1.75rem var(--gutter);
       background: #f8f9fa;
       border-bottom: 1px solid #e0e0e0;
-      margin-top: 0;
+      position: sticky;
+      top: var(--header-h, 76px);
+      z-index: 50;
     }
-
     .category-tab {
-      padding: 0.6rem 1.25rem;
+      padding: 0.55rem 1.15rem;
       border: 1px solid #d0d0d0;
-      background: white;
+      background: #fff;
       border-radius: 100px;
-      font-size: 0.85rem;
-      font-weight: 500;
+      font-size: 0.72rem;
+      font-weight: 600;
       color: #4a4a4a;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
     }
-
-    .category-tab:hover {
-      border-color: #2d6a4f;
-      color: #2d6a4f;
-    }
-
+    .category-tab:hover { border-color: var(--accent-green); color: var(--accent-green); }
     .category-tab.active {
-      background: linear-gradient(135deg, #2d6a4f, #40916c);
-      color: white;
-      border-color: #2d6a4f;
-      box-shadow: 0 4px 14px rgba(45, 106, 79, 0.25);
+      background: var(--accent-gold);
+      color: var(--bg-dark);
+      border-color: var(--accent-gold);
+      box-shadow: 0 4px 14px rgba(45, 106, 79, 0.28);
     }
-
-    .our-price { color: #2d6a4f !important; }
-    .product-stars { color: #d4a017 !important; }
-
-    .product-discount-badge {
-      position: absolute;
-      top: 0.75rem;
-      left: 0.75rem;
-      background: #e63946;
-      color: #fff;
-      padding: 0.35rem 0.65rem;
-      border-radius: 4px;
-      font-size: 0.68rem;
-      font-weight: 700;
-      z-index: 2;
-    }
-
-    .filter-toggle-mobile {
-      display: none;
-      margin-bottom: 1rem;
-      padding: 0.65rem 1rem;
-      background: #2d6a4f;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    @media (max-width: 1023px) {
-      .filter-toggle-mobile { display: block; }
-      .filter-sidebar.is-collapsed { display: none; }
-      .filter-sidebar.is-open { display: block; }
-    }
-
-    /* Products layout */
-    .products-container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      padding: 2rem var(--gutter);
+    .catalogue-wrap {
       max-width: 1400px;
       margin: 0 auto;
+      padding: 2rem var(--gutter) 3rem;
     }
-
-    /* Filter sidebar */
-    .filter-sidebar {
-      position: sticky;
-      top: 80px;
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid #e0e0e0;
-      height: fit-content;
-      display: none;
+    .catalogue-section { margin-bottom: 3rem; }
+    .section-block-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      color: var(--bg-dark);
+      margin-bottom: 0.35rem;
     }
-
-    .filter-section {
+    .section-block-sub {
+      color: #6b756e;
+      font-size: 0.9rem;
       margin-bottom: 1.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid #f0f0f0;
     }
-
-    .filter-section:last-child {
-      border-bottom: none;
-    }
-
-    .filter-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #2d6a4f;
-      margin-bottom: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .filter-option {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 0;
-      font-size: 0.9rem;
-      color: #555;
-      cursor: pointer;
-    }
-
-    .filter-option input {
-      cursor: pointer;
-      accent-color: #2d6a4f;
-    }
-
-    /* Products grid */
-    .products-grid-wrapper {
-      flex: 1;
-    }
-
-    .sort-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .results-count {
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    .sort-select {
-      padding: 0.6rem 1rem;
-      border: 1px solid #d0d0d0;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      background: white;
-      cursor: pointer;
-      transition: border-color 0.3s ease;
-    }
-
-    .sort-select:focus {
-      outline: none;
-      border-color: #2d6a4f;
-    }
-
     .products-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      gap: 1.5rem;
     }
-
-    /* Product card */
     .product-card {
-      background: white;
+      background: #fff;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-      transition: all 0.3s ease;
-      cursor: pointer;
+      border: 1px solid #e8ece9;
+      box-shadow: 0 4px 16px rgba(27, 67, 50, 0.07);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
-
     .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      transform: translateY(-6px);
+      box-shadow: 0 14px 36px rgba(27, 67, 50, 0.14);
+      border-color: rgba(116, 198, 157, 0.45);
     }
-
+    .product-card.is-hidden { display: none; }
     .product-image {
       position: relative;
-      width: 100%;
       aspect-ratio: 1;
-      background: linear-gradient(135deg, #e8f0e6 0%, #f0f5ef 100%);
+      background: linear-gradient(145deg, #e8f0e6, #d8e8d4);
+      overflow: hidden;
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .product-image .initials {
+      position: absolute;
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
-      color: #2d6a4f;
+      font-family: var(--font-display);
+      font-size: 2.5rem;
       font-weight: 600;
-      overflow: hidden;
+      color: var(--accent-green);
+      opacity: 0.35;
     }
-
     .product-badge {
       position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
-      background: #e63946;
-      color: white;
-      padding: 0.4rem 0.75rem;
+      top: 0.65rem;
+      right: 0.65rem;
+      padding: 0.3rem 0.6rem;
       border-radius: 4px;
-      font-size: 0.7rem;
-      font-weight: 600;
+      font-size: 0.62rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       z-index: 2;
+      color: #fff;
     }
-
-    .product-badge.new {
-      background: #2d6a4f;
+    .product-badge.new { background: var(--accent-green); }
+    .product-badge.bestseller { background: var(--accent-green); }
+    .product-badge.cat {
+      top: auto;
+      bottom: 0.65rem;
+      left: 0.65rem;
+      right: auto;
+      background: rgba(27, 67, 50, 0.82);
+      font-size: 0.58rem;
     }
-
-    .product-badge.bestseller {
-      background: #f77f00;
-    }
-
-    .product-info {
-      padding: 1.25rem;
-      flex: 1;
+    .product-hover-detail {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(27, 67, 50, 0.94) 0%, rgba(27, 67, 50, 0.75) 55%, transparent 100%);
+      color: #f8f9fa;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      pointer-events: none;
     }
-
+    .product-card:hover .product-hover-detail { opacity: 1; }
+    .product-info { padding: 1.15rem; flex: 1; display: flex; flex-direction: column; gap: 0.45rem; }
     .product-name {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 1.25rem;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
       font-weight: 500;
-      color: #1a1a1a;
-      margin-bottom: 0.5rem;
+      color: var(--bg-dark);
+      line-height: 1.25;
     }
-
-    .product-tagline {
-      font-size: 0.85rem;
-      color: #666;
-      margin-bottom: 0.75rem;
-      line-height: 1.4;
+    .product-benefit {
+      font-size: 0.82rem;
+      color: #5c6b62;
+      line-height: 1.45;
     }
-
     .product-rating {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      font-size: 0.85rem;
+      gap: 0.4rem;
+      font-size: 0.8rem;
     }
-
-    .product-stars {
-      color: #f77f00;
-      font-size: 1rem;
-    }
-
-    .product-reviews {
-      color: #999;
-    }
-
-    .product-pricing {
-      margin-top: auto;
-      margin-bottom: 1rem;
-    }
-
-    .price-row {
+    .product-stars { color: #52b788; letter-spacing: 1px; }
+    .product-reviews { color: #999; }
+    .product-pricing { margin-top: auto; }
+    .price-label { font-size: 0.72rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+    .price-row { display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem; align-items: baseline; margin-top: 0.2rem; }
+    .our-price { font-size: 1.25rem; font-weight: 700; color: var(--accent-green); }
+    .market-price { font-size: 0.88rem; color: #e63946; text-decoration: line-through; }
+    .contact-price { font-size: 1rem; font-weight: 600; color: var(--accent-green); font-style: italic; }
+    .card-actions {
       display: flex;
-      gap: 0.75rem;
-      align-items: baseline;
-      margin-bottom: 0.5rem;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-top: 0.75rem;
     }
-
-    .our-price {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #2d6a4f;
-    }
-
-    .market-price {
-      font-size: 0.9rem;
-      color: #999;
-      text-decoration: line-through;
-    }
-
-    .product-btn {
-      padding: 0.75rem;
-      border: 1px solid #2d6a4f;
-      background: white;
-      color: #2d6a4f;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
+    .btn-buy, .btn-wa, .btn-enquire {
+      display: block;
       text-align: center;
+      padding: 0.65rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
     }
-
-    .product-btn:hover {
-      background: #2d6a4f;
-      color: white;
+    .btn-buy {
+      background: var(--accent-gold);
+      color: var(--bg-dark);
     }
-
-    /* Modal */
+    .btn-buy:hover { background: var(--bg-dark); }
+    .btn-wa {
+      background: #25d366;
+      color: #fff;
+    }
+    .btn-wa:hover { background: #1da851; }
+    .btn-enquire {
+      background: #fff;
+      color: var(--accent-green);
+      border: 1px solid var(--accent-green);
+    }
+    .btn-enquire:hover { background: var(--accent-green); color: #fff; }
+    .price-comparison {
+      padding: 3rem var(--gutter);
+      background: #f8f9fa;
+    }
+    .comparison-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      text-align: center;
+      color: var(--bg-dark);
+      margin-bottom: 1.5rem;
+    }
+    .comparison-table {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(27, 67, 50, 0.08);
+    }
+    .table-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      border-bottom: 1px solid #e8ece9;
+    }
+    .table-row.header { background: var(--accent-green); color: #fff; font-weight: 600; }
+    .table-cell { padding: 0.9rem 1rem; font-size: 0.9rem; }
+    .saving-col { color: #e63946; font-weight: 600; text-align: center; }
     .modal {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0,0,0,0.55);
       z-index: 1000;
       align-items: center;
       justify-content: center;
       padding: 1rem;
-      overflow-y: auto;
     }
-
-    .modal.open {
-      display: flex;
-    }
-
+    .modal.open { display: flex; }
     .modal-content {
-      background: white;
+      background: #fff;
       border-radius: 12px;
-      max-width: 700px;
+      max-width: 640px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
       padding: 2rem;
       position: relative;
     }
-
     .modal-close {
       position: absolute;
       top: 1rem;
@@ -395,315 +283,29 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      transition: all 0.3s ease;
     }
-
-    .modal-close:hover {
-      background: #e0e0e0;
-      color: #000;
-    }
-
-    .modal-header {
-      margin-bottom: 1.5rem;
-      padding-right: 2.5rem;
-    }
-
     .modal-title {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 2rem;
-      font-weight: 500;
-      color: #1a1a1a;
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      color: var(--bg-dark);
       margin-bottom: 0.5rem;
+      padding-right: 2rem;
     }
-
-    .modal-tagline {
-      color: #666;
-      font-size: 1rem;
-    }
-
-    .modal-section {
-      margin-bottom: 1.5rem;
-    }
-
-    .modal-section-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #2d6a4f;
-      margin-bottom: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .benefit-item {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-      font-size: 0.95rem;
-      color: #555;
-    }
-
-    .benefit-item::before {
-      content: "✦";
-      color: #2d6a4f;
-      flex-shrink: 0;
-      font-weight: bold;
-    }
-
-    .modal-pricing {
-      background: #f8f9fa;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-    }
-
-    .price-display {
-      display: flex;
-      gap: 1rem;
-      align-items: baseline;
-      font-size: 1.1rem;
-    }
-
-    .price-our {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: #2d6a4f;
-    }
-
-    .price-mrp {
-      color: #999;
-      text-decoration: line-through;
-    }
-
-    .modal-buttons {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .btn-primary {
-      flex: 1;
-      padding: 0.9rem 1.5rem;
-      background: #2d6a4f;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .btn-primary:hover {
-      background: #1a4d2e;
-    }
-
-    .btn-secondary {
-      flex: 1;
-      padding: 0.9rem 1.5rem;
-      background: #25d366;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .btn-secondary:hover {
-      background: #1da851;
-    }
-
-    /* Reviews in modal */
-    .reviews-section {
-      background: #f8f9fa;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-top: 1.5rem;
-    }
-
-    .review-item {
-      background: white;
-      padding: 1rem;
-      border-radius: 6px;
-      margin-bottom: 0.75rem;
-    }
-
-    .review-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      margin-bottom: 0.5rem;
-    }
-
-    .review-name {
-      font-weight: 600;
-      color: #1a1a1a;
-    }
-
-    .review-rating {
-      color: #f77f00;
-      font-size: 0.9rem;
-    }
-
-    .review-location {
-      font-size: 0.85rem;
-      color: #999;
-      margin-bottom: 0.5rem;
-    }
-
-    .review-text {
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    /* Price comparison table */
-    .price-comparison {
-      padding: 3rem var(--gutter);
-      background: #f8f9fa;
-    }
-
-    .comparison-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .comparison-title {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 2rem;
-      font-weight: 500;
-      color: #1a1a1a;
-      margin-bottom: 0.5rem;
-    }
-
-    .comparison-table {
-      max-width: 900px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    }
-
-    .table-row {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    .table-row:last-child {
-      border-bottom: none;
-    }
-
-    .table-cell {
-      padding: 1rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .table-row.header {
-      background: #2d6a4f;
-      color: white;
-      font-weight: 600;
-    }
-
-    .table-row.header .table-cell {
-      color: white;
-    }
-
-    .product-col {
-      font-weight: 500;
-      color: #1a1a1a;
-    }
-
-    .price-col {
-      text-align: center;
-    }
-
-    .saving-col {
-      text-align: center;
-      color: #e63946;
-      font-weight: 600;
-    }
-
-    /* Responsive */
-    @media (min-width: 1024px) {
-      .products-container {
-        grid-template-columns: 250px 1fr;
-      }
-
-      .filter-sidebar {
-        display: block;
-      }
-
-      .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (min-width: 768px) and (max-width: 1023px) {
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .table-row {
-        grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 767px) {
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .modal-content {
-        padding: 1.5rem;
-      }
-
-      .modal-buttons {
-        flex-direction: column;
-      }
-
-      .table-row {
-        grid-template-columns: 1fr 1fr;
-        gap: 0;
-      }
-
-      .table-cell {
-        padding: 0.75rem;
-        font-size: 0.85rem;
-      }
-
-      .table-row.header {
-        display: none;
-      }
-
-      .table-row.header ~ .table-row .table-cell:nth-child(n+3) {
-        display: none;
-      }
+    .benefit-item { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; font-size: 0.92rem; color: #555; }
+    .benefit-item::before { content: "✦"; color: var(--accent-green); }
+    .modal-buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+    .footer-social--icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); }
+    @media (max-width: 1023px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .table-row { grid-template-columns: 1fr 1fr; }
+      .table-row.header { display: none; }
     }
   </style>
 </head>
-
 <body>
-  <!-- HEADER (same as main site) -->
   <header id="site-header">
     <a href="index.html" class="nav-logo" aria-label="Agrocare Home">
       <img src="assets/logo/agrocare-logo.png" alt="Agrocare" style="height:40px;width:auto"/>
@@ -715,438 +317,464 @@
         <li><a href="products.html" aria-current="page">Products</a></li>
         <li><a href="index.html#solutions">Solutions</a></li>
         <li><a href="index.html#impact">Our Impact</a></li>
-        <li><a href="stories.html">Stories</a></li>
+        <li><a href="our-stories.html">Stories</a></li>
+        <li><a href="join.html">Join Us</a></li>
         <li><a href="index.html#contact-section">About Us</a></li>
-        <li class="nav-cta"><a href="https://wa.me/919427205179" target="_blank">Enquire Now</a></li>
+        <li class="nav-cta"><a href="enquiry.html">Enquire Now</a></li>
       </ul>
     </nav>
     <div class="nav-right">
-      <button class="nav-hamburger" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </header>
-
-  <!-- Mobile nav -->
   <nav class="mobile-nav">
     <button type="button" class="mobile-nav-close" aria-label="Close menu">✕</button>
-    <a href="index.html#why-us">Why Us</a>
+    <a href="index.html">Home</a>
     <a href="products.html">Products</a>
-    <a href="index.html#solutions">Solutions</a>
-    <a href="index.html#impact">Our Impact</a>
-    <a href="stories.html">Stories</a>
-    <a href="index.html#contact-section">About Us</a>
-    <a href="https://wa.me/919427205179" target="_blank">Enquire Now</a>
+    <a href="enquiry.html">Enquire Now</a>
+    <a href="index.html#contact-section">Contact</a>
   </nav>
 
   <main id="main-content">
-    <!-- Hero Banner -->
     <section class="products-hero">
       <h1>Pure Organic. Proven Results.</h1>
-      <p>Seaweed-based agricultural inputs for healthier soil and better yields.</p>
+      <p>Seaweed-based agricultural inputs for healthier soil and better yields — certified, farmer-proven, Gujarat-rooted.</p>
     </section>
 
-    <!-- Category Tabs -->
     <div class="category-tabs" id="categoryTabs">
-      <button class="category-tab active" data-category="all">All Products</button>
-      <button class="category-tab" data-category="new">New Arrivals</button>
-      <button class="category-tab" data-category="bestseller">Best Sellers</button>
-      <button class="category-tab" data-category="organic-inputs">Organic Inputs</button>
-      <button class="category-tab" data-category="soil-conditioners">Soil Conditioners</button>
-      <button class="category-tab" data-category="pest-control">Pest Control</button>
+      <button class="category-tab active" data-category="all">All</button>
+      <button class="category-tab" data-category="seaweed-extracts">Seaweed Extracts</button>
+      <button class="category-tab" data-category="humic-fulvic">Humic &amp; Fulvic</button>
+      <button class="category-tab" data-category="crop-protectants">Crop Protectants</button>
+      <button class="category-tab" data-category="combo-others">Combo &amp; Others</button>
     </div>
 
-    <!-- Main Products Section -->
-    <div class="products-container">
-      <!-- Filter Sidebar -->
-      <aside class="filter-sidebar is-collapsed" id="filterSidebar">
-        <div class="filter-section">
-          <div class="filter-title">Category</div>
-          <label class="filter-option">
-            <input type="checkbox" value="organic-inputs" class="filter-check"> Organic Inputs
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" value="soil-conditioners" class="filter-check"> Soil Conditioners
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" value="pest-control" class="filter-check"> Pest Control
-          </label>
-        </div>
-
-        <div class="filter-section">
-          <div class="filter-title">Form</div>
-          <label class="filter-option">
-            <input type="checkbox" value="liquid" class="filter-check"> Liquid
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" value="granules" class="filter-check"> Granules
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" value="powder" class="filter-check"> Powder
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" value="gel" class="filter-check"> Gel
-          </label>
-        </div>
-
-        <div class="filter-section">
-          <div class="filter-title">Price Range</div>
-          <label class="filter-option">
-            <input type="checkbox" value="0-100" class="filter-check"> ₹0 - ₹100
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" value="100-300" class="filter-check"> ₹100 - ₹300
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" value="300-1000" class="filter-check"> ₹300 - ₹1000
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" value="1000+" class="filter-check"> ₹1000+
-          </label>
-        </div>
-      </aside>
-
-      <!-- Products Grid -->
-      <div class="products-grid-wrapper">
-        <div class="sort-bar">
-          <button type="button" class="filter-toggle-mobile" id="filterToggle">Show Filters</button>
-          <div class="results-count" id="resultsCount">Showing 10 products</div>
-          <select class="sort-select" id="sortSelect">
-            <option value="featured">Featured</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="rating">Top Rated</option>
-          </select>
-        </div>
-
-        <div class="products-grid" id="productsGrid">
-          <!-- Products will be inserted here by JavaScript -->
-        </div>
-      </div>
+    <div class="catalogue-wrap">
+      <section class="catalogue-section" id="section-new">
+        <h2 class="section-block-title">New Arrivals</h2>
+        <p class="section-block-sub">Latest additions to the AgroCare organic range</p>
+        <div class="products-grid" data-section="new"></div>
+      </section>
+      <section class="catalogue-section" id="section-bestseller">
+        <h2 class="section-block-title">Best Sellers</h2>
+        <p class="section-block-sub">Farmer favourites — proven in fields across India</p>
+        <div class="products-grid" data-section="bestseller"></div>
+      </section>
+      <section class="catalogue-section" id="section-all">
+        <h2 class="section-block-title">All Products</h2>
+        <p class="section-block-sub">Complete AgroCare catalogue — seaweed, humic, protectants &amp; combos</p>
+        <div class="products-grid" data-section="all"></div>
+      </section>
     </div>
 
-    <!-- Price Comparison Table -->
     <section class="price-comparison">
-      <div class="comparison-header">
-        <h2 class="comparison-title">Why Buy from AgroCare?</h2>
-        <p style="color: #666; font-size: 1rem;">We deliver certified organic inputs at the most competitive prices</p>
-      </div>
-
+      <h2 class="comparison-title">Why Buy from AgroCare?</h2>
       <div class="comparison-table">
         <div class="table-row header">
           <div class="table-cell">Product</div>
-          <div class="table-cell" style="text-align: center;">Market Price</div>
-          <div class="table-cell" style="text-align: center;">Our Price</div>
+          <div class="table-cell" style="text-align:center">Market Price</div>
+          <div class="table-cell" style="text-align:center">Our Price</div>
           <div class="table-cell saving-col">You Save</div>
         </div>
         <div class="table-row">
-          <div class="table-cell product-col">Potassium Humate (1kg)</div>
-          <div class="table-cell price-col">₹130</div>
-          <div class="table-cell price-col" style="font-weight: 600; color: #2d6a4f;">₹90</div>
-          <div class="table-cell saving-col">₹40 (31%)</div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell product-col">Seaweed Granules (10kg)</div>
-          <div class="table-cell price-col">₹200</div>
-          <div class="table-cell price-col" style="font-weight: 600; color: #2d6a4f;">₹150</div>
-          <div class="table-cell saving-col">₹50 (25%)</div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell product-col">Seaweed Liquid (1L)</div>
-          <div class="table-cell price-col">₹200</div>
-          <div class="table-cell price-col" style="font-weight: 600; color: #2d6a4f;">₹150</div>
-          <div class="table-cell saving-col">₹50 (25%)</div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell product-col">Seaweed Gel (1kg)</div>
-          <div class="table-cell price-col">₹110</div>
-          <div class="table-cell price-col" style="font-weight: 600; color: #2d6a4f;">₹90</div>
+          <div class="table-cell">Magic Gel (1 kg)</div>
+          <div class="table-cell" style="text-align:center;color:#e63946;text-decoration:line-through">₹110</div>
+          <div class="table-cell" style="text-align:center;font-weight:600;color:var(--accent-green)">₹90</div>
           <div class="table-cell saving-col">₹20 (18%)</div>
         </div>
         <div class="table-row">
-          <div class="table-cell product-col">Neem Oil (1L)</div>
-          <div class="table-cell price-col">₹450</div>
-          <div class="table-cell price-col" style="font-weight: 600; color: #2d6a4f;">₹350</div>
+          <div class="table-cell">Energy Balls (10 kg)</div>
+          <div class="table-cell" style="text-align:center;color:#e63946;text-decoration:line-through">₹200</div>
+          <div class="table-cell" style="text-align:center;font-weight:600;color:var(--accent-green)">₹150</div>
+          <div class="table-cell saving-col">₹50 (25%)</div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell">Humic Acid / Power Gold (1 kg)</div>
+          <div class="table-cell" style="text-align:center;color:#e63946;text-decoration:line-through">₹157+</div>
+          <div class="table-cell" style="text-align:center;font-weight:600;color:var(--accent-green)">₹90</div>
+          <div class="table-cell saving-col">₹67+ (43%)</div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell">Neem Oil (250 ml)</div>
+          <div class="table-cell" style="text-align:center;color:#e63946;text-decoration:line-through">₹450</div>
+          <div class="table-cell" style="text-align:center;font-weight:600;color:var(--accent-green)">₹350</div>
           <div class="table-cell saving-col">₹100 (22%)</div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell">Boron 21%</div>
+          <div class="table-cell" style="text-align:center;color:#e63946;text-decoration:line-through">₹200</div>
+          <div class="table-cell" style="text-align:center;font-weight:600;color:var(--accent-green)">₹150</div>
+          <div class="table-cell saving-col">₹50 (25%)</div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER (same as main site) -->
   <footer id="site-footer">
-    <div class="footer-top" data-stagger="0.1">
-      <div class="reveal">
+    <div class="footer-top">
+      <div>
         <div class="footer-brand-logo">
-          <img src="assets/logo/agrocare-logo.png" alt="Agrocare" style="width:32px;height:32px"/>
-          <span class="footer-brand-name">AGRO</span>
+          <img src="assets/logo/agrocare-logo.png" alt="AgroCare" style="width:32px;height:32px"/>
+          <span class="footer-brand-name">AgroCare</span>
         </div>
-        <p class="footer-brand-desc">Rooted in Gujarat's soil. Driven by farmer trust. Certified organic agri-inputs for a healthier India.</p>
+        <p class="footer-brand-desc">Rooted in India's soil. Driven by farmer trust.</p>
+        <p class="footer-marketplace" style="font-size:0.8rem;color:rgba(247,244,238,0.55);margin:12px 0 16px">
+          Sold on: Local Shops |
+          <a href="https://www.meesho.com/search?q=Agrocare" target="_blank" rel="noopener noreferrer" style="color:#74c69d">Meesho</a> |
+          <a href="https://www.indiamart.com/search.mp?ss=Agrocare" target="_blank" rel="noopener noreferrer" style="color:#74c69d">IndiaMART</a>
+        </p>
         <div class="footer-socials">
-          <a href="#" class="footer-social" aria-label="Instagram">IG</a>
-          <a href="#" class="footer-social" aria-label="Facebook">FB</a>
-          <a href="#" class="footer-social" aria-label="YouTube">YT</a>
-          <a href="https://wa.me/919427205179" class="footer-social" aria-label="WhatsApp">WA</a>
+          <a href="https://www.linkedin.com/in/agrocare-aquarev-5b2a63413" class="footer-social footer-social--icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 114.126 0 2.063 2.063 0 01-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/___agrocare___" class="footer-social footer-social--icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://x.com/AgroCare9d" class="footer-social footer-social--icon" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://youtube.com/@pulkitjain-q9u" class="footer-social footer-social--icon" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
         </div>
       </div>
-      <div class="reveal">
-        <p class="footer-col-title">Solutions</p>
+      <div>
+        <p class="footer-col-title">Legal</p>
         <ul class="footer-links">
-          <li><a href="index.html#solutions">Farm Advisory</a></li>
-          <li><a href="products.html">Agri Inputs</a></li>
-          <li><a href="index.html#solutions">Omnichannel Access</a></li>
-          <li><a href="index.html#solutions">Market Linkages</a></li>
-          <li><a href="products.html">Product Catalogue</a></li>
-        </ul>
-      </div>
-      <div class="reveal">
-        <p class="footer-col-title">Company</p>
-        <ul class="footer-links">
-          <li><a href="index.html#impact">Our Impact</a></li>
-          <li><a href="index.html#contact-section">About Us</a></li>
-          <li><a href="index.html#join-us">Join Us</a></li>
-          <li><a href="index.html#contact-section">Contact</a></li>
-          <li><a href="products.html">Products</a></li>
-        </ul>
-      </div>
-      <div class="reveal">
-        <p class="footer-col-title">Connect</p>
-        <ul class="footer-links">
-          <li><a href="https://wa.me/919427205179" target="_blank">WhatsApp</a></li>
-          <li><a href="tel:+919427205179">Call Us</a></li>
-          <li><a href="https://www.indiamart.com/agrocare-una/" target="_blank">IndiaMART</a></li>
-          <li><a href="https://meesho.com" target="_blank">Meesho</a></li>
-          <li><a href="#">Feedback</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="policy.html">Terms &amp; Conditions</a></li>
         </ul>
       </div>
     </div>
+    <div class="footer-certs">
+      <span class="cert-badge">ISO 9001 ✓</span>
+      <span class="cert-badge">Organic Certified ✓</span>
+    </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2025 AgroCare. All rights reserved. Made with 🌱 in Gujarat, India.</p>
+      <p class="footer-copy">© 2025 AgroCare. Agriculture Through Seaweeds.</p>
     </div>
   </footer>
 
-  <!-- Product Modal -->
   <div class="modal" id="productModal">
     <div class="modal-content">
-      <button class="modal-close" id="modalClose">×</button>
-      <div class="modal-header">
-        <h2 class="modal-title" id="modalTitle">Product Name</h2>
-        <p class="modal-tagline" id="modalTagline">Product tagline</p>
-      </div>
-
-      <div class="modal-section">
-        <div class="modal-section-title">Description</div>
-        <p id="modalDescription" style="color: #555; line-height: 1.6;"></p>
-      </div>
-
-      <div class="modal-pricing">
-        <div class="price-display">
-          <span class="price-our" id="modalOurPrice">₹0</span>
-          <span class="price-mrp" id="modalMrp">₹0</span>
-          <span style="color: #e63946; font-weight: 600;" id="modalDiscount">0% off</span>
-        </div>
-      </div>
-
-      <div class="modal-section">
-        <div class="modal-section-title">Key Benefits</div>
-        <div id="modalBenefits"></div>
-      </div>
-
-      <div class="modal-section">
-        <div class="modal-section-title">Dosage & Details</div>
-        <p id="modalDosage" style="color: #555; line-height: 1.6;"></p>
-      </div>
-
-      <div class="modal-section">
-        <div class="modal-section-title">Composition</div>
-        <p id="modalComposition" style="color: #555; line-height: 1.6;"></p>
-      </div>
-
-      <div class="reviews-section" id="reviewsSection"></div>
-
-      <div class="modal-buttons">
-        <a href="#" id="modalBuyLink" class="btn-primary" target="_blank" rel="noopener noreferrer">Buy on IndiaMART</a>
-        <a href="https://wa.me/919427205179" id="modalWhatsApp" class="btn-secondary" target="_blank" rel="noopener noreferrer">📱 Contact Us to Order</a>
-      </div>
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close">×</button>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <p id="modalDescription" style="color:#555;line-height:1.65;margin-bottom:1rem"></p>
+      <div id="modalBenefits"></div>
+      <p id="modalDosage" style="color:#555;margin:1rem 0;font-size:0.9rem"></p>
+      <div class="modal-buttons" id="modalButtons"></div>
     </div>
   </div>
 
   <script src="js/main.js" defer></script>
   <script>
-    const WA_LINK = "https://wa.me/919427205179";
-
-    const productReviews = {
-      "potassium-humate": [
-        { name: "Ramesh Patel", location: "Anand, Gujarat", rating: 5, text: "Used on cotton — yield increased noticeably. Soil feels softer after 2 seasons." },
-        { name: "Suresh Desai", location: "Rajkot, Gujarat", rating: 4, text: "Good product, price is reasonable. Delivery was fast." },
-        { name: "Meena Farms", location: "Surat", rating: 5, text: "Replaced 30% of our urea with humic acid this kharif. No drop in yield, lower cost." }
-      ],
-      "vanchetan-davya": [
-        { name: "Jayesh Solanki", location: "Junagadh, Gujarat", rating: 5, text: "Mitti maa jiv avi gayi chhe — mara khetarma. Highly recommend." },
-        { name: "Bhavesh Agro Farm", location: "Amreli", rating: 4, text: "Roots are visibly stronger. Will use next season too." }
-      ],
-      "energy-balls": [
-        { name: "Dinesh Patil", location: "Vadodara", rating: 4, text: "Applied at sowing time with DAP. Good results on chilli crop." },
-        { name: "Kiran Patel", location: "Mehsana", rating: 5, text: "Soil water retention improved. Less irrigation needed." }
-      ],
-      "neem-oil": [
-        { name: "Haresh Thakor", location: "Gandhinagar", rating: 4, text: "Whitefly problem on tomato solved in 2 sprays. Happy with it." },
-        { name: "Maniben Farms", location: "Bhavnagar", rating: 5, text: "100% organic and it works. Bees in the field are safe." }
-      ]
-    };
+    const WA_BASE = "https://wa.me/919427205179";
+    const INDIAMART = "https://www.indiamart.com/agrocare-una/";
+    const MEESHO_SEARCH = "https://www.meesho.com/search?q=AgroCare+humic+acid+fertilizer";
 
     const products = [
-      { id: 1, slug: "vanchetan-davya", name: "VanChetan Davya (વનચેતન દ્રવ્ય)", categories: ["organic-inputs", "new", "bestseller"], form: "liquid", price: 200, priceLabel: "₹200", mrp: 260, mrpLabel: "₹260", discount: 23, rating: 4.5, reviewCount: 28, tagline: "Soil microbial booster — the living boost your soil needs", description: "A premium seaweed-based microbial enhancer that acts like \"Jivamrut\" for your soil. Revives beneficial microorganisms, strengthens roots, and improves nutrient availability naturally.", dosage: "2 litres per acre", composition: "Seaweed extract (Kappaphycus), beneficial soil microorganisms, humic substances", crops: "Vegetables, cereals, pulses, cotton, sugarcane, fruit crops", benefits: ["Boosts beneficial soil microorganisms (bacteria, fungi, actinomycetes)", "Softens compacted soil and improves aeration", "Strengthens root development for deeper nutrient access", "Improves nutrient absorption — especially nitrogen and phosphorus", "Increases crop yield by 15–25% over chemical-only programmes", "100% organic — safe for all crops, safe for soil biology"], buyLink: null },
-      { id: 2, slug: "energy-balls", name: "Seaweed Granules (Energy Balls)", categories: ["bestseller", "organic-inputs"], form: "granules", price: 150, priceLabel: "₹150", mrp: 200, mrpLabel: "₹200", discount: 25, rating: 4.4, reviewCount: 19, tagline: "Slow-release seaweed granules for season-long soil health", description: "A granular blend of seaweed extract, humic acid, and protein hydrolysate. Releases nutrients slowly over the season, feeds soil microbes, and dramatically improves root zone health.", dosage: "10 kg per acre", composition: "Sargassum seaweed granules 2% (FCO grade), humic acid, protein hydrolysate", crops: "All crops — especially sugarcane, cotton, paddy, vegetables", benefits: ["Mixture of Seaweed Extract + Humic Acid + Protein Hydrolysate", "Slow-release nutrition — reduces need for repeat applications", "Improves soil water retention by up to 30%", "Stimulates earthworm activity and beneficial microbial colonies", "Strengthens cell walls — improves resistance to fungal disease", "Suitable for basal application at sowing/transplanting"], buyLink: "https://www.indiamart.com/proddetail/sargassum-seaweed-granules-2-fco-grade-2850622755015.html" },
-      { id: 3, slug: "seaweed-liquid", name: "Seaweed Liquid (VanChetan Taral)", categories: ["organic-inputs", "bestseller"], form: "liquid", price: 150, priceLabel: "₹150", mrp: 200, mrpLabel: "₹200", discount: 25, rating: 4.3, reviewCount: 14, tagline: "Natural growth hormones from the sea — for your soil", description: "Cold-processed liquid extract from Ascophyllum nodosum seaweed. Rich in natural cytokinins, auxins, gibberellins, and 60+ micronutrients. Delivers rapid stress recovery and visible greening within 5–7 days.", dosage: "2 litres per acre (foliar: 3–4 ml per litre of water)", composition: "Ascophyllum nodosum 10% (FCO grade), liquid form", crops: "Vegetables, fruits, flowers, cereals", benefits: ["Natural plant hormones (cytokinins, auxins, gibberellins) for faster growth", "60+ trace minerals including iodine, zinc, manganese, iron", "Improves drought and heat stress tolerance", "Boosts flowering set and reduces flower drop", "Safe to mix with most water-soluble fertilisers", "Certified organic — FCO grade, 10% seaweed content"], buyLink: "https://www.indiamart.com/proddetail/ascophyllum-nodosum-15-liquid-fco-grade-2850622948630.html" },
-      { id: 4, slug: "seaweed-gel", name: "Seaweed Gel Extract (Magic Gel)", categories: ["organic-inputs"], form: "gel", price: 90, priceLabel: "₹90/kg", mrp: 110, mrpLabel: "₹110/kg", discount: 18, rating: 4.2, reviewCount: 11, tagline: "100% water-soluble seaweed gel — ALGINIC + cytokinin powerhouse", description: "A thick seaweed extract gel containing alginic acid, cytokinins, and macro-micro nutrients. Specially suited for drip irrigation or foliar spray. Improves nutrient uptake and activates dormant soil microbes.", dosage: "5 kg per acre (drip/foliar)", composition: "Seaweed extract gel (Kappaphycus/Sargassum), 98% purity", crops: "Vegetables, fruits, sugarcane, flower crops", benefits: ["High alginic acid content improves soil water-holding capacity", "Cytokinin-rich — stimulates cell division and shoot growth", "Drip-soluble formulation (100% water soluble)", "Boosts flowering and fruit set", "Shelf life: 12 months", "No synthetic additives — 99% pure seaweed extract"], buyLink: "https://www.indiamart.com/proddetail/seaweed-extract-gel-2850622878815.html" },
-      { id: 5, slug: "potassium-humate", name: "Potassium Humate (Power Gold)", categories: ["soil-conditioners", "bestseller"], form: "powder", price: 90, priceLabel: "₹90/kg", mrp: 130, mrpLabel: "₹130/kg", discount: 31, rating: 4.6, reviewCount: 32, tagline: "Unlock your soil's hidden nutrient reserves", description: "Premium-grade potassium humate with 70% humic acid, 10% fulvic acid, and 10% potash. Transforms chemically degraded soils, dramatically improves fertiliser efficiency, and builds long-term soil carbon. ISO 9001:2015 certified product.", dosage: "2 kg per acre", composition: "Humic Acid 70%, Fulvic Acid 10%, Potassium 10%, Balance organic carbon & moisture", crops: "All crops", benefits: ["70% Humic Acid + 10% Fulvic Acid + 10% Potash — triple-action formula", "Chelates micronutrients — makes locked-up iron, zinc, manganese plant-available", "Increases CEC (cation exchange capacity) — soil holds more nutrients", "Reduces chemical fertiliser requirement by 20–30%", "Stimulates beneficial bacteria (Firmicutes) up to 1.16× in treated soils", "Improves seed germination rate and early root establishment", "Proven in drought-prone regions — retains moisture even in sandy soils", "ISO 9001:2015 certified | Batch: 11/OC/25 | Expiry: Oct 2025 (latest batch)"], buyLink: "https://www.indiamart.com/agrocare-una/" },
-      { id: 6, slug: "neem-oil", name: "Neem Oil", categories: ["pest-control", "organic-inputs"], form: "liquid", price: 350, priceLabel: "₹350 (1L)", mrp: 450, mrpLabel: "₹450 (1L)", discount: 22, rating: 4.3, reviewCount: 17, tagline: "India's most trusted organic pest control — cold pressed, 99% pure", description: "Cold-pressed neem oil from Azadirachta indica seeds. 99% purity, golden colour. Its active compound azadirachtin doesn't kill pests instantly — it disrupts their feeding, growth, and reproduction, giving lasting protection without harming beneficial insects, bees, or earthworms.", dosage: "3–5 ml per litre of water as foliar spray", composition: "Cold-pressed Azadirachta indica seed oil, 99% purity, pH 8, golden colour", crops: "All crops", benefits: ["Active compound azadirachtin disrupts insect feeding, growth & reproduction", "Controls 200+ pest species including whitefly, aphids, mites, and leaf miners", "Antifungal + antibacterial — prevents powdery mildew, downy mildew, rust", "Encourages earthworm activity — improves soil aeration naturally", "Safe for bees, butterflies, earthworms, birds, and mammals", "Biodegradable — no soil residue buildup", "Can be used throughout entire crop cycle — pre- and post-flowering"], buyLink: "https://www.indiamart.com/proddetail/250ml-neem-oil-2850623066330.html" },
-      { id: 7, slug: "boron-21", name: "Boron 21%", categories: ["soil-conditioners", "organic-inputs"], form: "powder", price: 150, priceLabel: "₹150", mrp: 200, mrpLabel: "₹200", discount: 25, rating: 4.1, reviewCount: 8, tagline: "Critical micronutrient — prevents hollow heart, boosts pollination", description: "Boron 21% is an essential micronutrient supplement used across all crops. Boron deficiency causes hollow heart in root vegetables, poor pollen germination, fruit cracking, and tip burn in leaves. This corrects boron deficiency quickly and reliably.", dosage: "Standard application rates per crop", composition: "Borax / Boric acid, 21% Boron", crops: "All crops", benefits: ["21% Boron concentration — highly effective at low dose", "Improves pollen germination and fruit set", "Prevents hollow heart in potato, sugar beet, radish", "Corrects tip burn and leaf distortion in young shoots", "Improves sugar translocation — better brix in fruit crops", "Works well as foliar or soil application"], buyLink: null },
-      { id: 8, slug: "granular-biozyme", name: "Granular Biozyme Fertiliser", categories: ["soil-conditioners"], form: "granules", price: 18, priceLabel: "₹18/kg", mrp: 28, mrpLabel: "₹28/kg", discount: 36, rating: 4.0, reviewCount: 6, tagline: "Biozyme granules that rebuild your soil from the ground up", description: "Granular biozyme fertiliser derived from humic substances and beneficial soil bacteria. Recommended at 20 g/acre. Strengthens root architecture, increases microbial diversity, and improves soil aggregate stability for better water infiltration.", dosage: "20 kg per acre", composition: "Humic extract, beneficial soil microorganisms, mineral base", crops: "All crops", benefits: ["Rebuilds soil structure degraded by chemical fertiliser overuse", "Humic substances feed and multiply beneficial bacteria", "Improves water infiltration and prevents waterlogging", "Organic certified — safe for all crops"], buyLink: null },
-      { id: 9, slug: "fulvic-acid", name: "Fulvic Acid Fertiliser", categories: ["soil-conditioners"], form: "powder", price: 130, priceLabel: "₹130/kg", mrp: 180, mrpLabel: "₹180/kg", discount: 28, rating: 4.2, reviewCount: 9, tagline: "Nano-sized nutrient carrier — fulvic acid penetrates where nothing else can", description: "Pure fulvic acid fertiliser — the smaller, more mobile fraction of humic substances. Fulvic acid penetrates plant cell membranes directly, acting as a natural chelator and micro-nutrient transporter. Dramatic results visible within 7–10 days.", dosage: "Standard application rates per crop", composition: "Fulvic acid 95%+, pH 3–4", crops: "All crops", benefits: ["Lowest molecular weight humic substance — highest bioavailability", "Chelates iron, zinc, copper, manganese — delivers them directly into cells", "Fully soluble in water — suitable for drip and foliar application", "Increases photosynthesis efficiency and chlorophyll production", "Reduces toxic heavy metal uptake by crops"], buyLink: null },
-      { id: 10, slug: "combo-solution", name: "Combo Solution", categories: ["new", "bestseller"], form: "mixed", price: null, priceLabel: "Contact for pricing", mrp: null, mrpLabel: null, discount: 35, rating: 4.7, reviewCount: 5, tagline: "Our most popular combo — complete soil + crop nutrition in one order", description: "A curated combo of AgroCare's best-selling inputs designed for a full crop cycle. Typically includes VanChetan Davya liquid + Energy Balls granules + Humic acid powder. Ideal for farmers starting organic inputs for the first time.", dosage: "Matched dosages — no guesswork", composition: "VanChetan Davya + Energy Balls + Power Gold Powder", crops: "All crops", benefits: ["Covers soil, root, and foliar nutrition in one purchase", "Matched dosages — no guesswork", "30–35% savings compared to buying separately", "Comes with free usage guide (WhatsApp PDF)"], buyLink: null }
+      {
+        id: "magic-gel",
+        name: "Magic Gel (Energy Gel)",
+        category: "seaweed-extracts",
+        categoryLabel: "Seaweed Extracts",
+        flags: ["bestseller"],
+        initials: "MG",
+        ourPrice: "₹90/kg",
+        marketPrice: "₹110",
+        priceNum: 90,
+        benefit: "Boosts cell division • Enhances nutrient uptake • Increases yield up to 20%",
+        description: "Seaweed gel rich in Alginic acid, cytokinin & auxins. Improves root development, flowering & fruit setting. Ideal for all crops.",
+        benefits: ["Boosts cell division", "Enhances nutrient uptake", "Increases yield up to 20%", "Improves flowering & fruit setting", "Ideal for drip and foliar use"],
+        dosage: "5 kg/acre",
+        form: "Gel",
+        rating: 4.5,
+        reviews: 11,
+        buyType: "meesho",
+        buyLink: MEESHO_SEARCH
+      },
+      {
+        id: "energy-balls",
+        name: "Energy Balls",
+        category: "seaweed-extracts",
+        categoryLabel: "Seaweed Extracts",
+        flags: ["bestseller"],
+        image: "assets/products/Magic Balls.jpg",
+        initials: "EB",
+        ourPrice: "₹30/kg",
+        ourPriceSub: "(₹150 for 10 kg pack)",
+        marketPrice: "₹200",
+        priceNum: 150,
+        benefit: "Improves soil structure • Feeds beneficial microbes • Long-lasting nutrition",
+        description: "Granular seaweed fertiliser — mixture of seaweed extract, humic acid & protein hydrolysate. Slow-release nutrition for soil.",
+        benefits: ["Improves soil structure", "Feeds beneficial microbes", "Long-lasting slow-release nutrition", "Rich in natural plant hormones", "Basal application at sowing"],
+        dosage: "10 kg/acre",
+        form: "Granules",
+        rating: 4.4,
+        reviews: 19,
+        buyType: "indiamart",
+        buyLink: "https://www.indiamart.com/proddetail/sargassum-seaweed-granules-2-fco-grade-2850622755015.html"
+      },
+      {
+        id: "vanchetan-taral",
+        name: "VanChetan Taral (Van Sahitam)",
+        category: "seaweed-extracts",
+        categoryLabel: "Seaweed Extracts",
+        flags: ["new"],
+        initials: "VT",
+        ourPrice: "₹50/litre",
+        ourPriceSub: "(2L pack — ₹100)",
+        marketPrice: "₹130",
+        priceNum: 100,
+        benefit: "Activates soil microbes • Strengthens roots • Healthy crop & better yield",
+        description: "Liquid seaweed bio-stimulant — Jivamrut for your soil. Promotes microbial growth, root strength and soil life.",
+        gujarati: "માટી જીવંત, પાક તંદુરસ્ત, ઉત્પાદન ઉત્તમ",
+        benefits: ["Activates soil microbes", "Strengthens roots", "Improves water retention", "Healthy crop & better yield", "100% organic liquid bio-stimulant"],
+        dosage: "2 litre/acre",
+        form: "Liquid",
+        rating: 4.5,
+        reviews: 28,
+        buyType: "contact"
+      },
+      {
+        id: "power-gold",
+        name: "Humic Acid / Power Gold Powder",
+        category: "humic-fulvic",
+        categoryLabel: "Humic & Fulvic",
+        flags: ["bestseller"],
+        image: "assets/products/Humic Granuels.jpeg",
+        initials: "PG",
+        ourPrice: "₹90/kg",
+        ourPriceSub: "(25 kg pack — ₹1,500)",
+        marketPrice: "₹157+",
+        priceNum: 90,
+        benefit: "Improves fertiliser absorption • Enhances flowering & fruiting • Eco-friendly",
+        description: "Plant growth stimulant & soil conditioner. Contains Humic 70%, Potash 10%, Fulvic 10%. ISO 9001 certified.",
+        benefits: ["Improves fertiliser absorption", "Micro & macro nutrient uptake", "Enhances flowering & fruiting", "Eco-friendly & ISO 9001 certified", "Builds long-term soil carbon"],
+        dosage: "2 kg/acre",
+        form: "Powder",
+        rating: 4.45,
+        reviews: 3,
+        buyType: "meesho",
+        buyLink: MEESHO_SEARCH
+      },
+      {
+        id: "potassium-humate",
+        name: "Potassium Humate",
+        category: "humic-fulvic",
+        categoryLabel: "Humic & Fulvic",
+        flags: [],
+        image: "assets/products/potassium humate.jpg",
+        initials: "KH",
+        ourPrice: null,
+        contactPrice: true,
+        benefit: "Increases CEC of soil • Chelates micronutrients • Improves drought resistance",
+        description: "Concentrated potassium humate for enhanced soil fertility and crop growth.",
+        benefits: ["Increases CEC of soil", "Chelates locked micronutrients", "Improves drought resistance", "Reduces chemical fertiliser need", "Suitable for all crops"],
+        dosage: "2 kg/acre",
+        form: "Granules / Powder",
+        rating: 4.6,
+        reviews: 32,
+        buyType: "contact"
+      },
+      {
+        id: "seaweed-granules",
+        name: "Seaweed Granules (Sargassum 2% FCO Grade)",
+        category: "seaweed-extracts",
+        categoryLabel: "Seaweed Extracts",
+        flags: [],
+        image: "assets/products/Powder Seaweed Extract Fertilizer.jpg",
+        initials: "SG",
+        ourPrice: "₹12/kg",
+        ourPriceSub: "(10 kg pack — ₹150)",
+        marketPrice: "₹200",
+        priceNum: 150,
+        benefit: "Improves soil biology • Rich in natural plant hormones • Organic certified",
+        description: "Sargassum seaweed granules, 2% FCO grade. For all crops. Production capacity 500 MT/month.",
+        benefits: ["Improves soil biology", "Rich in natural plant hormones", "Organic certified FCO grade", "Slow-release basal nutrition", "Suitable for all crops"],
+        dosage: "10 kg/acre",
+        form: "Granules",
+        rating: 4.4,
+        reviews: 19,
+        buyType: "indiamart",
+        buyLink: "https://www.indiamart.com/proddetail/sargassum-seaweed-granules-2-fco-grade-2850622755015.html"
+      },
+      {
+        id: "neem-oil",
+        name: "Neem Oil (250 ml)",
+        category: "crop-protectants",
+        categoryLabel: "Crop Protectants",
+        flags: ["bestseller"],
+        initials: "NO",
+        ourPrice: "₹350",
+        marketPrice: "₹450",
+        priceNum: 350,
+        benefit: "Broad-spectrum pest control • Safe for beneficial insects • Organic & chemical-free",
+        description: "Cold-pressed 250 ml Neem Oil. 99% pure, golden colour. Treats fungal infections, repels pests naturally. Shelf life: 12 months.",
+        benefits: ["Broad-spectrum pest control", "Safe for beneficial insects & bees", "Antifungal & antibacterial", "99% pure cold-pressed", "Biodegradable — no soil residue"],
+        dosage: "3–5 ml per litre of water (foliar spray)",
+        form: "Liquid",
+        rating: 4.3,
+        reviews: 17,
+        buyType: "indiamart",
+        buyLink: "https://www.indiamart.com/proddetail/250ml-neem-oil-2850623066330.html"
+      },
+      {
+        id: "boron-21",
+        name: "Boron 21%",
+        category: "crop-protectants",
+        categoryLabel: "Crop Protectants",
+        flags: [],
+        initials: "B21",
+        ourPrice: "₹150",
+        marketPrice: "₹200",
+        priceNum: 150,
+        benefit: "Prevents hollow heart • Boosts fruit set • Essential for reproductive growth",
+        description: "Boron micronutrient for all crops. Improves pollination, cell wall strength and fruit quality.",
+        benefits: ["Prevents hollow heart in root vegetables", "Boosts fruit set & pollination", "Improves cell wall strength", "Corrects tip burn in young shoots", "Foliar or soil application"],
+        dosage: "As per crop requirement",
+        form: "Powder",
+        rating: 4.1,
+        reviews: 8,
+        buyType: "contact"
+      },
+      {
+        id: "combo-solution",
+        name: "Combo Solution",
+        category: "combo-others",
+        categoryLabel: "Combo & Others",
+        flags: ["new"],
+        initials: "CS",
+        ourPrice: null,
+        contactPrice: true,
+        benefit: "All-in-one package • Cost effective • Best results for Gujarat crops",
+        description: "AgroCare's combo pack — complete crop nutrition solution combining seaweed, humic and bio-stimulants.",
+        benefits: ["All-in-one complete nutrition", "30–35% savings vs buying separately", "Matched dosages — no guesswork", "Covers soil, root & foliar needs", "Free usage guide on WhatsApp"],
+        dosage: "Customised per crop cycle",
+        form: "Mixed (Liquid + Granules)",
+        rating: 4.7,
+        reviews: 5,
+        buyType: "contact"
+      }
     ];
 
-    let filteredProducts = [...products];
     let activeCategory = "all";
 
-    function renderStars(rating) {
-      const full = Math.floor(rating);
-      const half = rating % 1 >= 0.3;
-      return "★".repeat(full) + (half ? "✦" : "") + "☆".repeat(5 - full - (half ? 1 : 0));
+    function waLink(name) {
+      return WA_BASE + "?text=" + encodeURIComponent("Hi AgroCare, I want to enquire about " + name + ". Please share price and availability.");
     }
 
-    function getPriceRange(price) {
-      if (price == null) return null;
-      if (price <= 100) return "0-100";
-      if (price <= 300) return "100-300";
-      if (price <= 1000) return "300-1000";
-      return "1000+";
+    function renderStars(r) {
+      const full = Math.floor(r);
+      const half = r % 1 >= 0.25 && r % 1 < 0.75;
+      return "★".repeat(full) + (half ? "½" : "") + "☆".repeat(5 - full - (half ? 1 : 0));
     }
 
-    function applySidebarFilters(list) {
-      const cats = [...document.querySelectorAll('.filter-check[value="organic-inputs"], .filter-check[value="soil-conditioners"], .filter-check[value="pest-control"]')].filter(c => c.checked).map(c => c.value);
-      const forms = [...document.querySelectorAll('.filter-check[value="liquid"], .filter-check[value="granules"], .filter-check[value="powder"], .filter-check[value="gel"]')].filter(c => c.checked).map(c => c.value);
-      const prices = [...document.querySelectorAll('.filter-check[value="0-100"], .filter-check[value="100-300"], .filter-check[value="300-1000"], .filter-check[value="1000+"]')].filter(c => c.checked).map(c => c.value);
-
-      return list.filter(p => {
-        if (cats.length && !cats.some(c => p.categories.includes(c))) return false;
-        if (forms.length && !forms.includes(p.form) && !(forms.includes("liquid") && p.form === "mixed")) return false;
-        if (prices.length) {
-          const pr = getPriceRange(p.price);
-          if (!pr || !prices.includes(pr)) return false;
-        }
-        return true;
-      });
+    function matchesCategory(p) {
+      return activeCategory === "all" || p.category === activeCategory;
     }
 
-    function renderProducts() {
-      const grid = document.getElementById("productsGrid");
-      const sort = document.getElementById("sortSelect").value;
-      let list = applySidebarFilters([...filteredProducts]);
-      if (sort === "price-low") list.sort((a, b) => (a.price ?? 99999) - (b.price ?? 99999));
-      else if (sort === "price-high") list.sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
-      else if (sort === "rating") list.sort((a, b) => b.rating - a.rating);
-
-      grid.innerHTML = list.map(p => {
-        const initials = p.name.replace(/[()અ-હ]/g, "").split(" ").filter(Boolean).map(w => w[0]).join("").substring(0, 2).toUpperCase();
-        const statusBadge = p.categories.includes("new") ? { cls: "new", text: "NEW" } : p.categories.includes("bestseller") ? { cls: "bestseller", text: "BEST SELLER" } : null;
-        return `
-          <div class="product-card" onclick="openProductModal(${p.id})">
-            <div class="product-image">
-              ${p.discount ? `<div class="product-discount-badge">${p.discount}% OFF</div>` : ""}
-              ${statusBadge ? `<div class="product-badge ${statusBadge.cls}">${statusBadge.text}</div>` : ""}
-              ${initials}
-            </div>
-            <div class="product-info">
-              <div class="product-name">${p.name}</div>
-              <div class="product-tagline">${p.tagline}</div>
-              <div class="product-rating">
-                <span class="product-stars">${renderStars(p.rating)}</span>
-                <span class="product-reviews">(${p.reviewCount} reviews)</span>
-              </div>
-              <div class="product-pricing">
-                <div class="price-row">
-                  <span class="our-price">${p.priceLabel}</span>
-                  ${p.mrpLabel ? `<span class="market-price">${p.mrpLabel}</span>` : ""}
-                </div>
-              </div>
-              <button class="product-btn" type="button">View Details</button>
-            </div>
-          </div>`;
+    function buildCard(p) {
+      const flags = p.flags.map(f => {
+        if (f === "new") return '<span class="product-badge new">New</span>';
+        if (f === "bestseller") return '<span class="product-badge bestseller">Best Seller</span>';
+        return "";
       }).join("");
 
-      document.getElementById("resultsCount").textContent = `Showing ${list.length} product${list.length !== 1 ? "s" : ""}`;
+      const imgBlock = p.image
+        ? `<img src="${p.image}" alt="${p.name}" loading="lazy"/>`
+        : `<span class="initials">${p.initials}</span>`;
+
+      const pricing = p.contactPrice
+        ? `<div class="contact-price">Contact for price</div>`
+        : `<div class="price-row">
+            <span class="our-price">Our Price: ${p.ourPrice}</span>
+            ${p.marketPrice ? `<span class="market-price">Market: ${p.marketPrice}</span>` : ""}
+          </div>
+          ${p.ourPriceSub ? `<div style="font-size:0.78rem;color:#888">${p.ourPriceSub}</div>` : ""}`;
+
+      let actions = `<a href="${waLink(p.name)}" class="btn-wa" target="_blank" rel="noopener" onclick="event.stopPropagation()">Enquire on WhatsApp</a>`;
+      if (p.buyType === "indiamart" && p.buyLink) {
+        actions = `<a href="${p.buyLink}" class="btn-buy" target="_blank" rel="noopener" onclick="event.stopPropagation()">Buy on IndiaMART</a>` + actions;
+      } else if (p.buyType === "meesho" && p.buyLink) {
+        actions = `<a href="${p.buyLink}" class="btn-buy" target="_blank" rel="noopener" onclick="event.stopPropagation()">Buy on Meesho</a>` + actions;
+      } else {
+        actions = `<a href="enquiry.html" class="btn-enquire" onclick="event.stopPropagation()">Contact to Buy</a>` + actions;
+      }
+
+      return `<article class="product-card" data-id="${p.id}" data-category="${p.category}" onclick="openModal('${p.id}')">
+        <div class="product-image">
+          ${imgBlock}
+          ${flags}
+          <span class="product-badge cat">${p.categoryLabel}</span>
+          <div class="product-hover-detail">
+            <p>${p.description}</p>
+            <p style="margin-top:0.5rem;opacity:0.85">Dosage: ${p.dosage} · Form: ${p.form}</p>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">${p.name}</h3>
+          <p class="product-benefit">${p.benefit}</p>
+          <div class="product-rating">
+            <span class="product-stars">${renderStars(p.rating)}</span>
+            <span>${p.rating}/5</span>
+            <span class="product-reviews">(${p.reviews} reviews)</span>
+          </div>
+          <div class="product-pricing">${pricing}</div>
+          <div class="card-actions">${actions}</div>
+        </div>
+      </article>`;
+    }
+
+    function renderSection(gridEl, filterFn) {
+      const list = products.filter(p => matchesCategory(p) && filterFn(p));
+      gridEl.innerHTML = list.map(buildCard).join("");
+      gridEl.closest(".catalogue-section").style.display = list.length ? "" : "none";
+    }
+
+    function renderAll() {
+      renderSection(document.querySelector('[data-section="new"]'), p => p.flags.includes("new"));
+      renderSection(document.querySelector('[data-section="bestseller"]'), p => p.flags.includes("bestseller"));
+      renderSection(document.querySelector('[data-section="all"]'), () => true);
+    }
+
+    function openModal(id) {
+      const p = products.find(x => x.id === id);
+      if (!p) return;
+      document.getElementById("modalTitle").textContent = p.name;
+      let desc = p.description;
+      if (p.gujarati) desc += "\n\n" + p.gujarati;
+      document.getElementById("modalDescription").textContent = desc;
+      document.getElementById("modalBenefits").innerHTML = p.benefits.map(b => `<div class="benefit-item">${b}</div>`).join("");
+      document.getElementById("modalDosage").textContent = `Dosage: ${p.dosage} · Form: ${p.form}` + (p.contactPrice ? "" : ` · Our Price: ${p.ourPrice}`);
+
+      let btns = `<a href="${waLink(p.name)}" class="btn-wa" target="_blank" rel="noopener">Enquire on WhatsApp</a>`;
+      if (p.buyType === "indiamart" && p.buyLink) {
+        btns = `<a href="${p.buyLink}" class="btn-buy" target="_blank" rel="noopener">Buy on IndiaMART</a>` + btns;
+      } else if (p.buyType === "meesho" && p.buyLink) {
+        btns = `<a href="${p.buyLink}" class="btn-buy" target="_blank" rel="noopener">Buy on Meesho</a>` + btns;
+      } else {
+        btns = `<a href="enquiry.html" class="btn-enquire">Contact to Buy</a>` + btns;
+      }
+      document.getElementById("modalButtons").innerHTML = btns;
+      document.getElementById("productModal").classList.add("open");
     }
 
     document.querySelectorAll(".category-tab").forEach(tab => {
       tab.addEventListener("click", () => {
         document.querySelectorAll(".category-tab").forEach(t => t.classList.remove("active"));
         tab.classList.add("active");
-        activeCategory = tab.getAttribute("data-category");
-        filteredProducts = activeCategory === "all" ? [...products] : products.filter(p => p.categories.includes(activeCategory));
-        document.getElementById("sortSelect").value = "featured";
-        renderProducts();
+        activeCategory = tab.dataset.category;
+        renderAll();
       });
     });
 
-    document.querySelectorAll(".filter-check").forEach(cb => cb.addEventListener("change", renderProducts));
-    document.getElementById("sortSelect").addEventListener("change", renderProducts);
-
-    document.getElementById("filterToggle")?.addEventListener("click", () => {
-      const sb = document.getElementById("filterSidebar");
-      sb.classList.toggle("is-open");
-      sb.classList.toggle("is-collapsed");
-      document.getElementById("filterToggle").textContent = sb.classList.contains("is-open") ? "Hide Filters" : "Show Filters";
+    document.getElementById("modalClose").addEventListener("click", () => document.getElementById("productModal").classList.remove("open"));
+    document.getElementById("productModal").addEventListener("click", e => {
+      if (e.target.id === "productModal") document.getElementById("productModal").classList.remove("open");
     });
 
-    function openProductModal(id) {
-      const product = products.find(p => p.id === id);
-      if (!product) return;
-
-      document.getElementById("modalTitle").textContent = product.name;
-      document.getElementById("modalTagline").textContent = product.tagline;
-      document.getElementById("modalDescription").textContent = product.description;
-      document.getElementById("modalDosage").textContent = `Dosage: ${product.dosage}${product.crops ? `\n\nSuitable crops: ${product.crops}` : ""}`;
-      document.getElementById("modalComposition").textContent = product.composition;
-      document.getElementById("modalBenefits").innerHTML = product.benefits.map(b => `<div class="benefit-item">${b}</div>`).join("");
-
-      document.getElementById("modalOurPrice").textContent = product.priceLabel;
-      document.getElementById("modalMrp").textContent = product.mrpLabel || "";
-      document.getElementById("modalDiscount").textContent = product.discount ? `${product.discount}% off` : "";
-
-      const buyLink = document.getElementById("modalBuyLink");
-      if (product.buyLink) {
-        buyLink.href = product.buyLink;
-        buyLink.textContent = "Buy on IndiaMART";
-        buyLink.style.display = "flex";
-      } else {
-        buyLink.style.display = "none";
-      }
-
-      document.getElementById("modalWhatsApp").href = WA_LINK;
-
-      const reviews = productReviews[product.slug] || [];
-      const reviewsSection = document.getElementById("reviewsSection");
-      reviewsSection.innerHTML = reviews.length ? `
-        <div class="modal-section-title">Customer Reviews</div>
-        ${reviews.map(r => `
-          <div class="review-item">
-            <div class="review-header">
-              <div><div class="review-name">${r.name}</div><div class="review-location">${r.location}</div></div>
-              <div class="review-rating">${"★".repeat(r.rating)}</div>
-            </div>
-            <div class="review-text">"${r.text}"</div>
-          </div>`).join("")}` : "";
-
-      document.getElementById("productModal").classList.add("open");
-    }
-
-    document.getElementById("modalClose").addEventListener("click", () => document.getElementById("productModal").classList.remove("open"));
-    document.getElementById("productModal").addEventListener("click", e => { if (e.target.id === "productModal") document.getElementById("productModal").classList.remove("open"); });
-
-    renderProducts();
+    renderAll();
   </script>
 </body>
 </html>

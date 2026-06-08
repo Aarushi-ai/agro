@@ -310,6 +310,17 @@
   <main id="main-content" role="main">
     <!-- ══ HERO ══ -->
     <section id="hero">
+      <video
+        class="hero-bg-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        src="assets/field video.mp4"
+        aria-hidden="true"
+      ></video>
+      <div class="hero-bg-overlay" aria-hidden="true"></div>
+
       <div class="hero-inner">
         <div class="hero-grid">
           <div class="hero-col hero-col--copy">
@@ -332,27 +343,19 @@
               </a>
             </div>
           </div>
-
-          <div class="hero-col hero-col--art">
-            <video
-              autoplay
-              loop
-              playsinline
-              controls
-              class="hero-foreground-video hero-video"
-              src="assets/field video.mp4"
-              aria-label="AgroCare field footage"
-            ></video>
-          </div>
         </div>
 
         <div id="before-after" class="hero-compare before-after-slider" role="group" aria-label="Farm transformation before and after AGRO">
-          <img class="ba-img ba-before" src="assets/before agrocare.jpg" alt="Before AGRO"/>
-          <span class="ba-label ba-label--before">Before AGRO</span>
-          <img class="ba-img ba-after" src="assets/after agrocare.jpg" alt="After AGRO"/>
-          <span class="ba-label ba-label--after">After AGRO</span>
+          <div class="ba-layer ba-layer--after">
+            <img src="assets/after agrocare.jpg" alt="After" />
+            <span class="ba-badge ba-badge--after">AFTER AGRO</span>
+          </div>
+          <div class="ba-layer ba-layer--before">
+            <img src="assets/before agrocare.jpg" alt="Before" />
+            <span class="ba-badge ba-badge--before">BEFORE AGRO</span>
+          </div>
           <div class="ba-divider" data-ba-handle aria-hidden="true">
-            <span class="ba-handle"></span>
+            <span class="ba-handle">◄►</span>
           </div>
         </div>
       </div>

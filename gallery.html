@@ -3,65 +3,103 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Agrocare field gallery — farmers, crops, and organic farming across India."/>
-  <title>Gallery — Agrocare</title>
+  <meta name="description" content="Agrocare field gallery — photos from farms across India using certified organic inputs."/>
+  <title>Gallery — AGRO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <style>
-    .gallery-page { background: #071407; min-height: 100vh; padding: 120px 24px 80px; }
-    .gallery-page h1 { font-family: "Cormorant Garamond", serif; color: #f5f0e8; font-size: clamp(2rem,4vw,3rem); text-align: center; margin-bottom: 8px; }
-    .gallery-page .sub { text-align: center; color: rgba(245,240,232,0.6); margin-bottom: 40px; }
-    .gallery-grid-page {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-      max-width: 1200px; margin: 0 auto;
+    .gallery-page-hero {
+      background: var(--forest-mid);
+      padding: clamp(4rem, 10vw, 6rem) var(--gutter) 3rem;
+      text-align: center;
     }
-    .gallery-grid-page img {
-      width: 100%; height: auto; border-radius: 12px; object-fit: cover;
-      cursor: pointer; transition: transform 0.5s ease;
+    .gallery-page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--cream);
+      font-weight: 300;
+      margin-bottom: 0.5rem;
     }
-    .gallery-grid-page img:hover { transform: scale(1.05); }
-    @media (max-width: 768px) { .gallery-grid-page { grid-template-columns: 1fr; } }
+    .gallery-page-hero p { color: rgba(247,244,238,0.65); }
+    .gallery-full-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem var(--gutter) 5rem;
+    }
+    .gallery-full-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.5s ease;
+    }
+    .gallery-full-grid img:hover { transform: scale(1.05); }
+    @media (max-width: 768px) {
+      .gallery-full-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .gallery-full-grid { grid-template-columns: 1fr; }
+    }
     #gallery-lightbox {
-      position: fixed; inset: 0; z-index: 5000; background: rgba(0,0,0,0.92);
-      display: none; align-items: center; justify-content: center; padding: 24px;
+      position: fixed; inset: 0; z-index: 5000;
+      background: rgba(7,20,7,0.95);
+      display: none; align-items: center; justify-content: center;
+      backdrop-filter: blur(8px);
     }
     #gallery-lightbox.open { display: flex; }
-    #gallery-lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 12px; object-fit: contain; }
+    #gallery-lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 12px; object-fit: contain; }
     #gallery-lightbox-close {
-      position: absolute; top: 20px; right: 24px; background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2); color: #fff; width: 44px; height: 44px;
-      border-radius: 50%; cursor: pointer; font-size: 1.2rem;
+      position: absolute; top: 20px; right: 24px;
+      background: rgba(247,244,238,0.1); border: 1px solid rgba(247,244,238,0.2);
+      color: var(--cream); border-radius: 50%; width: 44px; height: 44px;
+      font-size: 1.2rem; cursor: pointer;
     }
-    .back-link { display: block; text-align: center; margin-top: 32px; color: #c9a84c; text-decoration: none; }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
   <header id="site-header">
     <a href="index.html" class="nav-logo" aria-label="Agrocare Home">
       <img src="assets/logo/agrocare-logo.png" alt="Agrocare" style="height:40px;width:auto"/>
     </a>
     <nav aria-label="Main navigation">
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#why-us">Why Us</a></li>
         <li><a href="products.html">Products</a></li>
-        <li><a href="stories.html">Stories</a></li>
+        <li><a href="index.html#impact">Our Impact</a></li>
+        <li><a href="our-stories.html">Stories</a></li>
+        <li><a href="join.html">Join Us</a></li>
         <li><a href="about.html">About Us</a></li>
         <li class="nav-cta"><a href="enquiry.html">Enquire Now</a></li>
       </ul>
     </nav>
-  </header>
-
-  <main id="main-content" class="gallery-page">
-    <p class="section-eyebrow" style="text-align:center;color:#c9a84c;display:block">Field Gallery</p>
-    <h1>Seen in our fields</h1>
-    <p class="sub">Real farmers. Real crops. Real results across India.</p>
-    <div class="gallery-grid-page" id="gallery-grid">
-      <img src="assets/gallery/farmer.jpg" alt="Agrocare farmer in the field" data-lightbox-img/>
+    <div class="nav-right">
+      <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
-    <a href="index.html#gallery-section" class="back-link">← Back to homepage</a>
+  </header>
+  <nav class="mobile-nav">
+    <button type="button" class="mobile-nav-close" aria-label="Close menu">✕</button>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="our-stories.html">Stories</a>
+    <a href="join.html">Join Us</a>
+    <a href="about.html">About Us</a>
+    <a href="enquiry.html">Enquiry</a>
+  </nav>
+
+  <main>
+    <section class="gallery-page-hero">
+      <span class="section-eyebrow" style="color:var(--gold)">Field & Farm Journal</span>
+      <h1>Full Gallery</h1>
+      <p>Moments from fields across India where Agrocare organic inputs are making a difference.</p>
+    </section>
+
+    <div class="gallery-full-grid" id="galleryGrid" data-gallery-dynamic aria-live="polite"></div>
   </main>
 
   <div id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
@@ -69,21 +107,17 @@
     <img id="gallery-lightbox-img" src="" alt="Gallery image"/>
   </div>
 
-  <script>
-    (function () {
-      const overlay = document.getElementById("gallery-lightbox");
-      const imgEl = document.getElementById("gallery-lightbox-img");
-      document.querySelectorAll("[data-lightbox-img]").forEach((img) => {
-        img.addEventListener("click", () => {
-          imgEl.src = img.src;
-          imgEl.alt = img.alt;
-          overlay.classList.add("open");
-        });
-      });
-      document.getElementById("gallery-lightbox-close").addEventListener("click", () => overlay.classList.remove("open"));
-      overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.classList.remove("open"); });
-    })();
-  </script>
+  <footer id="site-footer">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 AGRO. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="policy.html">Terms & Conditions</a>
+        <a href="index.html">Home</a>
+      </div>
+    </div>
+  </footer>
+
   <script src="js/main.js" defer></script>
 </body>
 </html>
