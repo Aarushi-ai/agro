@@ -226,6 +226,44 @@
       border: 1px solid var(--accent-green);
     }
     .btn-enquire:hover { background: var(--accent-green); color: #fff; }
+    .product-specs {
+      margin-top: 12px;
+      border-top: 1px solid rgba(45, 106, 45, 0.15);
+      padding-top: 12px;
+    }
+    .product-spec-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 6px;
+      font-size: 12px;
+    }
+    .product-spec-label { color: #7a8e6a; flex-shrink: 0; }
+    .product-spec-value { color: #1a2e1a; font-weight: 600; text-align: right; }
+    .product-hook {
+      margin-top: 10px;
+      font-size: 12px;
+      font-style: italic;
+      color: #8b6914;
+      line-height: 1.5;
+      border-left: 2px solid #c9a84c;
+      padding-left: 8px;
+    }
+    .btn-indiamart {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #f5a623;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+    .btn-indiamart:hover { background: #e09510; color: #fff; }
     .price-comparison {
       padding: 3rem var(--gutter);
       background: #f8f9fa;
@@ -474,187 +512,148 @@
 
     const products = [
       {
-        id: "magic-gel",
-        name: "Magic Gel (Energy Gel)",
-        category: "seaweed-extracts",
-        categoryLabel: "Seaweed Extracts",
-        flags: ["bestseller"],
-        initials: "MG",
-        ourPrice: "₹90/kg",
-        marketPrice: "₹110",
-        priceNum: 90,
-        benefit: "Boosts cell division • Enhances nutrient uptake • Increases yield up to 20%",
-        description: "Seaweed gel rich in Alginic acid, cytokinin & auxins. Improves root development, flowering & fruit setting. Ideal for all crops.",
-        benefits: ["Boosts cell division", "Enhances nutrient uptake", "Increases yield up to 20%", "Improves flowering & fruit setting", "Ideal for drip and foliar use"],
-        dosage: "5 kg/acre",
-        form: "Gel",
-        rating: 4.5,
-        reviews: 11,
-        buyType: "meesho",
-        buyLink: MEESHO_SEARCH
-      },
-      {
-        id: "energy-balls",
-        name: "Energy Balls",
-        category: "seaweed-extracts",
-        categoryLabel: "Seaweed Extracts",
-        flags: ["bestseller"],
-        image: "assets/products/Magic Balls.jpg",
-        initials: "EB",
-        ourPrice: "₹30/kg",
-        ourPriceSub: "(₹150 for 10 kg pack)",
-        marketPrice: "₹200",
-        priceNum: 150,
-        benefit: "Improves soil structure • Feeds beneficial microbes • Long-lasting nutrition",
-        description: "Granular seaweed fertiliser — mixture of seaweed extract, humic acid & protein hydrolysate. Slow-release nutrition for soil.",
-        benefits: ["Improves soil structure", "Feeds beneficial microbes", "Long-lasting slow-release nutrition", "Rich in natural plant hormones", "Basal application at sowing"],
-        dosage: "10 kg/acre",
-        form: "Granules",
-        rating: 4.4,
-        reviews: 19,
-        buyType: "indiamart",
-        buyLink: "https://www.indiamart.com/proddetail/sargassum-seaweed-granules-2-fco-grade-2850622755015.html"
-      },
-      {
-        id: "vanchetan-taral",
-        name: "VanChetan Taral (Van Sahitam)",
-        category: "seaweed-extracts",
-        categoryLabel: "Seaweed Extracts",
-        flags: ["new"],
-        initials: "VT",
-        ourPrice: "₹50/litre",
-        ourPriceSub: "(2L pack — ₹100)",
-        marketPrice: "₹130",
-        priceNum: 100,
-        benefit: "Activates soil microbes • Strengthens roots • Healthy crop & better yield",
-        description: "Liquid seaweed bio-stimulant — Jivamrut for your soil. Promotes microbial growth, root strength and soil life.",
-        gujarati: "માટી જીવંત, પાક તંદુરસ્ત, ઉત્પાદન ઉત્તમ",
-        benefits: ["Activates soil microbes", "Strengthens roots", "Improves water retention", "Healthy crop & better yield", "100% organic liquid bio-stimulant"],
-        dosage: "2 litre/acre",
-        form: "Liquid",
-        rating: 4.5,
-        reviews: 28,
-        buyType: "contact"
-      },
-      {
-        id: "power-gold",
-        name: "Humic Acid / Power Gold Powder",
+        id: 1,
+        name: "BioSoil Max",
+        badge: "SOIL ENRICHER",
+        tagline: "Revive your soil in 30 days",
+        image: "assets/products/Potash Bio Fertilizer.jpg",
+        price: "₹480 / kg",
+        indiamart: "https://www.indiamart.com/agrocare",
         category: "humic-fulvic",
         categoryLabel: "Humic & Fulvic",
         flags: ["bestseller"],
-        image: "assets/products/Humic Granuels.jpeg",
-        initials: "PG",
-        ourPrice: "₹90/kg",
-        ourPriceSub: "(25 kg pack — ₹1,500)",
-        marketPrice: "₹157+",
-        priceNum: 90,
-        benefit: "Improves fertiliser absorption • Enhances flowering & fruiting • Eco-friendly",
-        description: "Plant growth stimulant & soil conditioner. Contains Humic 70%, Potash 10%, Fulvic 10%. ISO 9001 certified.",
-        benefits: ["Improves fertiliser absorption", "Micro & macro nutrient uptake", "Enhances flowering & fruiting", "Eco-friendly & ISO 9001 certified", "Builds long-term soil carbon"],
-        dosage: "2 kg/acre",
-        form: "Powder",
-        rating: 4.45,
-        reviews: 3,
-        buyType: "meesho",
-        buyLink: MEESHO_SEARCH
+        specs: [
+          { label: "Active Ingredient", value: "Microbial Consortium + Humic Acid" },
+          { label: "Organic Carbon Boost", value: "+35% in 30 days" },
+          { label: "Application", value: "Soil drench / Broadcast" },
+          { label: "Crop Suitability", value: "All crops — especially Cotton, Wheat, Soybean" },
+          { label: "Pack Size", value: "500g / 1kg / 5kg" },
+          { label: "Certified", value: "FSSAI · Organic India Certified" }
+        ],
+        customerHook: "Farmers report visible soil darkening (sign of organic carbon) in just 3 weeks",
+        benefits: ["Restores beneficial microbes", "Reduces chemical fertilizer need by 40%", "Improves water retention", "Zero chemical residue"],
+        rating: 4.8,
+        reviews: 142
       },
       {
-        id: "potassium-humate",
-        name: "Potassium Humate",
+        id: 2,
+        name: "Fulvic Gold",
+        badge: "BIO-STIMULANT",
+        tagline: "The nutrient accelerator your roots need",
+        image: "assets/products/Fulvic Acid Fertilizer.jpg",
+        price: "₹620 / kg",
+        indiamart: "https://www.indiamart.com/agrocare",
         category: "humic-fulvic",
         categoryLabel: "Humic & Fulvic",
-        flags: [],
-        image: "assets/products/potassium humate.jpg",
-        initials: "KH",
-        ourPrice: null,
-        contactPrice: true,
-        benefit: "Increases CEC of soil • Chelates micronutrients • Improves drought resistance",
-        description: "Concentrated potassium humate for enhanced soil fertility and crop growth.",
-        benefits: ["Increases CEC of soil", "Chelates locked micronutrients", "Improves drought resistance", "Reduces chemical fertiliser need", "Suitable for all crops"],
-        dosage: "2 kg/acre",
-        form: "Granules / Powder",
-        rating: 4.6,
-        reviews: 32,
-        buyType: "contact"
+        flags: ["bestseller"],
+        specs: [
+          { label: "Key Compound", value: "Fulvic Acid 12% + Amino Acids 8%" },
+          { label: "Nutrient Uptake Boost", value: "Up to 60% better absorption" },
+          { label: "Application", value: "Foliar spray / Drip irrigation" },
+          { label: "Crop Suitability", value: "Fruits, Vegetables, Cash Crops" },
+          { label: "Pack Size", value: "250g / 500g / 2kg" },
+          { label: "Solubility", value: "100% water soluble" }
+        ],
+        customerHook: "Farmers see visibly darker green leaves within 7 days — the fulvic acid difference",
+        benefits: ["60% faster nutrient absorption", "Stronger root network", "Drought stress resistance", "Boosts flowering & fruiting"],
+        rating: 4.9,
+        reviews: 98
       },
       {
-        id: "seaweed-granules",
-        name: "Seaweed Granules (Sargassum 2% FCO Grade)",
-        category: "seaweed-extracts",
-        categoryLabel: "Seaweed Extracts",
-        flags: [],
-        image: "assets/products/Powder Seaweed Extract Fertilizer.jpg",
-        initials: "SG",
-        ourPrice: "₹12/kg",
-        ourPriceSub: "(10 kg pack — ₹150)",
-        marketPrice: "₹200",
-        priceNum: 150,
-        benefit: "Improves soil biology • Rich in natural plant hormones • Organic certified",
-        description: "Sargassum seaweed granules, 2% FCO grade. For all crops. Production capacity 500 MT/month.",
-        benefits: ["Improves soil biology", "Rich in natural plant hormones", "Organic certified FCO grade", "Slow-release basal nutrition", "Suitable for all crops"],
-        dosage: "10 kg/acre",
-        form: "Granules",
-        rating: 4.4,
-        reviews: 19,
-        buyType: "indiamart",
-        buyLink: "https://www.indiamart.com/proddetail/sargassum-seaweed-granules-2-fco-grade-2850622755015.html"
-      },
-      {
-        id: "neem-oil",
-        name: "Neem Oil (250 ml)",
+        id: 3,
+        name: "NeemShield Pro",
+        badge: "CROP PROTECTANT",
+        tagline: "Nature's pest warrior — safe for your soil",
+        image: "assets/products/Amino Acid Powder 80%.jpg",
+        price: "₹390 / L",
+        indiamart: "https://www.indiamart.com/agrocare",
         category: "crop-protectants",
         categoryLabel: "Crop Protectants",
         flags: ["bestseller"],
-        initials: "NO",
-        ourPrice: "₹350",
-        marketPrice: "₹450",
-        priceNum: 350,
-        benefit: "Broad-spectrum pest control • Safe for beneficial insects • Organic & chemical-free",
-        description: "Cold-pressed 250 ml Neem Oil. 99% pure, golden colour. Treats fungal infections, repels pests naturally. Shelf life: 12 months.",
-        benefits: ["Broad-spectrum pest control", "Safe for beneficial insects & bees", "Antifungal & antibacterial", "99% pure cold-pressed", "Biodegradable — no soil residue"],
-        dosage: "3–5 ml per litre of water (foliar spray)",
-        form: "Liquid",
-        rating: 4.3,
-        reviews: 17,
-        buyType: "indiamart",
-        buyLink: "https://www.indiamart.com/proddetail/250ml-neem-oil-2850623066330.html"
-      },
-      {
-        id: "boron-21",
-        name: "Boron 21%",
-        category: "crop-protectants",
-        categoryLabel: "Crop Protectants",
-        flags: [],
-        initials: "B21",
-        ourPrice: "₹150",
-        marketPrice: "₹200",
-        priceNum: 150,
-        benefit: "Prevents hollow heart • Boosts fruit set • Essential for reproductive growth",
-        description: "Boron micronutrient for all crops. Improves pollination, cell wall strength and fruit quality.",
-        benefits: ["Prevents hollow heart in root vegetables", "Boosts fruit set & pollination", "Improves cell wall strength", "Corrects tip burn in young shoots", "Foliar or soil application"],
-        dosage: "As per crop requirement",
-        form: "Powder",
-        rating: 4.1,
-        reviews: 8,
-        buyType: "contact"
-      },
-      {
-        id: "combo-solution",
-        name: "Combo Solution",
-        category: "combo-others",
-        categoryLabel: "Combo & Others",
-        flags: ["new"],
-        initials: "CS",
-        ourPrice: null,
-        contactPrice: true,
-        benefit: "All-in-one package • Cost effective • Best results for Gujarat crops",
-        description: "AgroCare's combo pack — complete crop nutrition solution combining seaweed, humic and bio-stimulants.",
-        benefits: ["All-in-one complete nutrition", "30–35% savings vs buying separately", "Matched dosages — no guesswork", "Covers soil, root & foliar needs", "Free usage guide on WhatsApp"],
-        dosage: "Customised per crop cycle",
-        form: "Mixed (Liquid + Granules)",
+        specs: [
+          { label: "Active Compound", value: "Azadirachtin 1500 ppm (Neem Extract)" },
+          { label: "Pest Control", value: "Broad spectrum — 200+ pest species" },
+          { label: "Safety", value: "Safe for bees, earthworms, birds" },
+          { label: "Application", value: "Foliar spray — 2-3ml per litre water" },
+          { label: "Residue-Free Period", value: "3 days before harvest" },
+          { label: "Pack Size", value: "500ml / 1L / 5L" }
+        ],
+        customerHook: "Zero chemical residue — your produce can be sold as organic-certified",
+        benefits: ["Kills 200+ pest species", "Safe for beneficial insects", "No resistance build-up", "Harvest-safe in 3 days"],
         rating: 4.7,
-        reviews: 5,
-        buyType: "contact"
+        reviews: 203
+      },
+      {
+        id: 4,
+        name: "YieldBoost 3X",
+        badge: "GROWTH PROMOTER",
+        tagline: "25% more yield. Proven. Guaranteed.",
+        image: "assets/products/Organic Plant Growth Promoter.jpg",
+        price: "₹540 / L",
+        indiamart: "https://www.indiamart.com/agrocare",
+        category: "seaweed-extracts",
+        categoryLabel: "Seaweed Extracts",
+        flags: ["bestseller"],
+        specs: [
+          { label: "Source", value: "Cold-processed Ascophyllum nodosum Seaweed" },
+          { label: "Yield Increase", value: "20-30% in field trials" },
+          { label: "Key Phytohormones", value: "Cytokinin + Auxin + Betaine" },
+          { label: "Application", value: "Foliar / Drip — 1-2ml per litre" },
+          { label: "Best Used At", value: "Flowering + Fruit set stage" },
+          { label: "Pack Size", value: "500ml / 1L / 5L" }
+        ],
+        customerHook: "Applied at flowering stage = 25% more fruits per plant. Farmers call it 'magic spray'",
+        benefits: ["25% average yield increase", "Bigger fruit size", "Earlier maturity by 5-7 days", "Better post-harvest shelf life"],
+        rating: 4.9,
+        reviews: 176
+      },
+      {
+        id: 5,
+        name: "SeaGrow Plus",
+        badge: "BIO-STIMULANT",
+        tagline: "Ocean-sourced power for your roots",
+        image: "assets/products/Powder Seaweed Extract Fertilizer.jpg",
+        price: "₹580 / L",
+        indiamart: "https://www.indiamart.com/agrocare",
+        category: "seaweed-extracts",
+        categoryLabel: "Seaweed Extracts",
+        flags: ["new"],
+        specs: [
+          { label: "Seaweed Concentration", value: "60% Seaweed Extract (cold-press)" },
+          { label: "Stress Tolerance", value: "Drought, Heat, Salinity resistant" },
+          { label: "Root Growth Boost", value: "40% more root biomass" },
+          { label: "Application", value: "Seed treatment / Soil drench / Foliar" },
+          { label: "Compatible With", value: "All fertilizers and pesticides" },
+          { label: "Pack Size", value: "500ml / 1L / 5L" }
+        ],
+        customerHook: "Root biomass doubles in 3 weeks — plants that survive drought stress without stress",
+        benefits: ["40% stronger root system", "Tolerates drought & heat stress", "Works as seed treatment", "Compatible with all inputs"],
+        rating: 4.8,
+        reviews: 87
+      },
+      {
+        id: 6,
+        name: "AquaHumus",
+        badge: "SOIL ENRICHER",
+        tagline: "Feed your soil what it was born with",
+        image: "assets/products/potassium humate.jpg",
+        price: "₹420 / kg",
+        indiamart: "https://www.indiamart.com/agrocare",
+        category: "humic-fulvic",
+        categoryLabel: "Humic & Fulvic",
+        flags: [],
+        specs: [
+          { label: "Humic Acid Content", value: "85% (vermicompost-derived)" },
+          { label: "Water Retention Improvement", value: "+50% field capacity" },
+          { label: "Soil pH Correction", value: "Balances acidic & alkaline soils" },
+          { label: "Application", value: "Broadcast / Soil drench / Fertigation" },
+          { label: "Best For", value: "Sandy / Degraded / Clay-heavy soils" },
+          { label: "Pack Size", value: "1kg / 5kg / 25kg" }
+        ],
+        customerHook: "Farmers in water-scarce regions report 50% less irrigation needed after 2 seasons",
+        benefits: ["50% better water retention", "Unlocks locked nutrients in soil", "Corrects soil pH naturally", "Ideal for degraded soils"],
+        rating: 4.6,
+        reviews: 119
       }
     ];
 
@@ -675,7 +674,7 @@
     }
 
     function buildCard(p) {
-      const flags = p.flags.map(f => {
+      const flags = (p.flags || []).map(f => {
         if (f === "new") return '<span class="product-badge new">New</span>';
         if (f === "bestseller") return '<span class="product-badge bestseller">Best Seller</span>';
         return "";
@@ -683,38 +682,52 @@
 
       const imgBlock = p.image
         ? `<img src="${p.image}" alt="${p.name}" loading="lazy"/>`
-        : `<span class="initials">${p.initials}</span>`;
+        : `<span class="initials">${p.name.slice(0, 2).toUpperCase()}</span>`;
 
-      const pricing = p.contactPrice
-        ? `<div class="contact-price">Contact for price</div>`
-        : `<div class="price-row">
-            <span class="our-price">Our Price: ${p.ourPrice}</span>
-            ${p.marketPrice ? `<span class="market-price">Market: ${p.marketPrice}</span>` : ""}
-          </div>
-          ${p.ourPriceSub ? `<div style="font-size:0.78rem;color:#888">${p.ourPriceSub}</div>` : ""}`;
+      const specsHtml = (p.specs || []).slice(0, 3).map(s =>
+        `<div class="product-spec-row">
+          <span class="product-spec-label">${s.label}</span>
+          <span class="product-spec-value">${s.value}</span>
+        </div>`
+      ).join("");
 
-      let actions = `<a href="${waLink(p.name)}" class="btn-wa" target="_blank" rel="noopener" onclick="event.stopPropagation()">Enquire on WhatsApp</a>`;
-      if (p.buyType === "indiamart" && p.buyLink) {
-        actions = `<a href="${p.buyLink}" class="btn-buy" target="_blank" rel="noopener" onclick="event.stopPropagation()">Buy on IndiaMART</a>` + actions;
-      } else if (p.buyType === "meesho" && p.buyLink) {
-        actions = `<a href="${p.buyLink}" class="btn-buy" target="_blank" rel="noopener" onclick="event.stopPropagation()">Buy on Meesho</a>` + actions;
-      } else {
-        actions = `<a href="enquiry.html" class="btn-enquire" onclick="event.stopPropagation()">Contact to Buy</a>` + actions;
-      }
+      const specsBlock = specsHtml
+        ? `<div class="product-specs">${specsHtml}</div>`
+        : "";
 
-      return `<article class="product-card" data-id="${p.id}" data-category="${p.category}" onclick="openModal('${p.id}')">
+      const hookBlock = p.customerHook
+        ? `<p class="product-hook">"${p.customerHook}"</p>`
+        : "";
+
+      const indiamartBlock = p.indiamart
+        ? `<a href="${p.indiamart}" class="btn-indiamart" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">🛒 Buy on IndiaMART</a>`
+        : "";
+
+      const pricing = `<div class="price-row"><span class="our-price">${p.price}</span></div>`;
+
+      const actions = `<a href="${waLink(p.name)}" class="btn-wa" target="_blank" rel="noopener" onclick="event.stopPropagation()">Enquire on WhatsApp</a>`;
+
+      const hoverSpec = (p.specs || [])[2];
+      const hoverDetail = hoverSpec
+        ? `${p.tagline}<br><span style="opacity:0.85">${hoverSpec.label}: ${hoverSpec.value}</span>`
+        : p.tagline;
+
+      return `<article class="product-card" data-id="${p.id}" data-category="${p.category}" onclick="openModal(${p.id})">
         <div class="product-image">
           ${imgBlock}
+          <span class="product-badge">${p.badge}</span>
           ${flags}
           <span class="product-badge cat">${p.categoryLabel}</span>
           <div class="product-hover-detail">
-            <p>${p.description}</p>
-            <p style="margin-top:0.5rem;opacity:0.85">Dosage: ${p.dosage} · Form: ${p.form}</p>
+            <p>${hoverDetail}</p>
           </div>
         </div>
         <div class="product-info">
           <h3 class="product-name">${p.name}</h3>
-          <p class="product-benefit">${p.benefit}</p>
+          <p class="product-benefit">${p.tagline}</p>
+          ${specsBlock}
+          ${hookBlock}
+          ${indiamartBlock}
           <div class="product-rating">
             <span class="product-stars">${renderStars(p.rating)}</span>
             <span>${p.rating}/5</span>
@@ -742,20 +755,19 @@
       const p = products.find(x => x.id === id);
       if (!p) return;
       document.getElementById("modalTitle").textContent = p.name;
-      let desc = p.description;
-      if (p.gujarati) desc += "\n\n" + p.gujarati;
+      let desc = p.tagline;
+      if (p.customerHook) desc += '\n\n"' + p.customerHook + '"';
       document.getElementById("modalDescription").textContent = desc;
       document.getElementById("modalBenefits").innerHTML = p.benefits.map(b => `<div class="benefit-item">${b}</div>`).join("");
-      document.getElementById("modalDosage").textContent = `Dosage: ${p.dosage} · Form: ${p.form}` + (p.contactPrice ? "" : ` · Our Price: ${p.ourPrice}`);
+      document.getElementById("modalDosage").innerHTML = (p.specs || [])
+        .map(s => `<strong>${s.label}:</strong> ${s.value}`)
+        .join("<br>") + `<br><br><strong>Price:</strong> ${p.price}`;
 
-      let btns = `<a href="${waLink(p.name)}" class="btn-wa" target="_blank" rel="noopener">Enquire on WhatsApp</a>`;
-      if (p.buyType === "indiamart" && p.buyLink) {
-        btns = `<a href="${p.buyLink}" class="btn-buy" target="_blank" rel="noopener">Buy on IndiaMART</a>` + btns;
-      } else if (p.buyType === "meesho" && p.buyLink) {
-        btns = `<a href="${p.buyLink}" class="btn-buy" target="_blank" rel="noopener">Buy on Meesho</a>` + btns;
-      } else {
-        btns = `<a href="enquiry.html" class="btn-enquire">Contact to Buy</a>` + btns;
+      let btns = "";
+      if (p.indiamart) {
+        btns += `<a href="${p.indiamart}" class="btn-buy" target="_blank" rel="noopener">Buy on IndiaMART</a>`;
       }
+      btns += `<a href="${waLink(p.name)}" class="btn-wa" target="_blank" rel="noopener">Enquire on WhatsApp</a>`;
       document.getElementById("modalButtons").innerHTML = btns;
       document.getElementById("productModal").classList.add("open");
     }
