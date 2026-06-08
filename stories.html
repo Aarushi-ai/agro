@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Stories from the field — real farmers, real results with Agrocare organic inputs across India."/>
+  <title>Our Stories — Agrocare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <style>
+    body { background: #071407; color: #f5f0e8; }
+    .stories-hero {
+      padding: 140px 24px 80px; text-align: center; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #0d2b0d 0%, #071407 100%);
+    }
+    .stories-hero::before {
+      content: ''; position: absolute; inset: 0; opacity: 0.15;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a84c'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .stories-hero h1 { font-family: "Cormorant Garamond", serif; font-size: clamp(2.5rem,5vw,3.5rem); position: relative; }
+    .stories-hero p { color: rgba(245,240,232,0.7); margin-top: 12px; position: relative; }
+    .stories-section { padding: 64px 24px; max-width: 1200px; margin: 0 auto; }
+    .featured-split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 900px) { .featured-split { grid-template-columns: 1fr; } }
+    .featured-split video { width: 100%; border-radius: 1rem; object-fit: cover; aspect-ratio: 16/10; }
+    .stars-row { color: #c9a84c; margin-top: 16px; font-size: 0.9rem; }
+    .faces-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 768px) { .faces-grid { grid-template-columns: 1fr; } }
+    .face-card { border-radius: 1rem; overflow: hidden; position: relative; aspect-ratio: 4/5; }
+    .face-card video, .face-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .face-card:hover video, .face-card:hover img { transform: scale(1.05); }
+    .face-caption {
+      position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center;
+      padding: 16px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      opacity: 0; transition: opacity 0.3s; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .face-card:hover .face-caption { opacity: 1; }
+    .reviews-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 900px) { .reviews-masonry { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .reviews-masonry { grid-template-columns: 1fr; } }
+    .review-screenshot-card {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 1rem; padding: 1rem;
+    }
+    .review-screenshot-card img { width: 100%; border-radius: 8px; }
+    .story-carousel { display: grid; gap: 24px; }
+    .story-card {
+      display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: start;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 1rem; padding: 24px;
+    }
+    @media (max-width: 640px) { .story-card { grid-template-columns: 1fr; } }
+    .story-card img { width: 100%; border-radius: 12px; object-fit: cover; aspect-ratio: 1; }
+    .story-card h3 { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; margin: 8px 0; }
+    .social-bar { text-align: center; padding: 48px 24px 80px; }
+    .social-bar h3 { font-family: "Cormorant Garamond", serif; font-size: 1.75rem; margin-bottom: 24px; }
+    .social-icons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .social-icons a {
+      width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center; color: #f5f0e8;
+      transition: all 0.3s;
+    }
+    .social-icons a:hover { border-color: #c9a84c; color: #c9a84c; }
+  </style>
+</head>
+<body>
+  <header id="site-header">
+    <a href="index.html" class="nav-logo" aria-label="Agrocare Home">
+      <img src="assets/logo/agrocare-logo.png" alt="Agrocare" style="height:40px;width:auto"/>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="stories.html" aria-current="page">Stories</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="nav-cta"><a href="enquiry.html">Enquire Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="stories-hero">
+    <span class="section-eyebrow" style="color:#c9a84c;position:relative">Our Stories</span>
+    <h1>Stories from the Field</h1>
+    <p>Real farmers. Real results. Real India.</p>
+  </section>
+
+  <section class="stories-section">
+    <div class="featured-split">
+      <video autoplay muted loop playsinline src="assets/videos/Farmers Review.mp4" aria-label="Farmer reviews video"></video>
+      <div>
+        <span class="section-eyebrow" style="color:#c9a84c">Farmer Voices</span>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;margin:12px 0 16px">The joy in their fields is our greatest achievement</h2>
+        <p style="line-height:1.8;color:rgba(245,240,232,0.75)">
+          Every bottle of BioSoil Max, every litre of Fulvic Gold that reaches a farmer's hands
+          carries with it years of research, care, and a deep commitment to organic farming.
+          Hear directly from the farmers who have transformed their fields — and their lives.
+        </p>
+        <div class="stars-row">★★★★★ <span style="color:rgba(245,240,232,0.6);margin-left:8px">4.9 / 5 across 200+ farmers</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stories-section">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:24px">Faces of Agrocare</h2>
+    <div class="faces-grid">
+      <div class="face-card">
+        <video autoplay muted loop playsinline src="assets/our story/h_farmers- 1.mp4"></video>
+        <div class="face-caption">Happy Farmer · Agrocare Family</div>
+      </div>
+      <div class="face-card">
+        <video autoplay muted loop playsinline src="assets/our story/h_farmers-2.mp4"></video>
+        <div class="face-caption">Happy Farmer · Agrocare Family</div>
+      </div>
+      <div class="face-card">
+        <video autoplay muted loop playsinline src="assets/our story/h_farmer-3.mp4"></video>
+        <div class="face-caption">Happy Farmer · Agrocare Family</div>
+      </div>
+      <div class="face-card">
+        <video autoplay muted loop playsinline src="assets/our story/h_farmer-4.mp4"></video>
+        <div class="face-caption">Happy Farmer · Agrocare Family</div>
+      </div>
+      <div class="face-card">
+        <img src="assets/images/farmers/farmer-1.jpg" alt="Agrocare farmer"/>
+        <div class="face-caption">Happy Farmer · Agrocare Family</div>
+      </div>
+      <div class="face-card">
+        <img src="assets/images/farmers/farmer-2.jpg" alt="Agrocare farmer"/>
+        <div class="face-caption">Happy Farmer · Agrocare Family</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stories-section">
+    <span class="section-eyebrow" style="color:#c9a84c">Verified Reviews From Across India</span>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;margin:12px 0 24px">What people are saying</h2>
+    <div class="reviews-masonry">
+      <div class="review-screenshot-card">
+        <img src="assets/our story/review-1.jpg" alt="Customer review screenshot"/>
+        <div class="stars-row" style="margin-top:12px">★★★★★</div>
+      </div>
+      <div class="review-screenshot-card">
+        <img src="assets/our story/review-2.jpg" alt="Customer review screenshot"/>
+        <div class="stars-row" style="margin-top:12px">★★★★★</div>
+      </div>
+      <div class="review-screenshot-card">
+        <img src="assets/our story/review-3.jpg" alt="Customer review screenshot"/>
+        <div class="stars-row" style="margin-top:12px">★★★★★</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stories-section">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:24px">Farmer Stories</h2>
+    <div class="story-carousel">
+      <article class="story-card">
+        <img src="assets/images/farmers/farmer-rajkot.jpg" alt="Rameshbhai Patel"/>
+        <div>
+          <span style="color:#c9a84c;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase">Rajkot</span>
+          <h3>Rameshbhai Patel — From chemical dependency to organic abundance</h3>
+          <p style="line-height:1.75;color:rgba(245,240,232,0.75)">
+            I had been using chemical fertilizers for 15 years. My soil was degrading, my costs were
+            rising, and my yields were falling. When an Agrocare representative visited my village in 2021,
+            I was skeptical. But after one season with BioSoil Max, my organic carbon levels improved visibly.
+            Today I am completely chemical-free and my income has increased by ₹45,000 per year.
+          </p>
+        </div>
+      </article>
+      <article class="story-card">
+        <img src="assets/images/farmers/farmer-bilaspur.jpg" alt="Bhavesh Solanki"/>
+        <div>
+          <span style="color:#c9a84c;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase">Saurashtra</span>
+          <h3>Bhavesh Solanki — The seaweed that saved my cotton crop</h3>
+          <p style="line-height:1.75;color:rgba(245,240,232,0.75)">
+            My cotton crop was suffering from poor root development for two consecutive seasons.
+            SeaGrow Plus changed everything. The root mass doubled, the plants were more resilient to drought,
+            and my yield increased by 30%. I now recommend Agrocare to every farmer in my village.
+          </p>
+        </div>
+      </article>
+      <article class="story-card">
+        <img src="assets/images/farmers/farmer-songadh.jpg" alt="Natvarbhai Thakor"/>
+        <div>
+          <span style="color:#c9a84c;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase">Songadh</span>
+          <h3>Natvarbhai Thakor — ₹18,000 saved. A daughter's education funded.</h3>
+          <p style="line-height:1.75;color:rgba(245,240,232,0.75)">
+            The money I saved by switching to Agrocare's organic inputs — ₹18,000 in the first year
+            alone — paid for my daughter's college admission. That is what organic farming means to my family.
+            It is not just about crops. It is about dignity and a better future.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="social-bar" id="follow">
+    <h3>Follow our journey</h3>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/agrocare-aquarev-5b2a63413" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 114.126 0 2.063 2.063 0 01-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/___agrocare___" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg>
+      </a>
+      <a href="https://x.com/AgroCare9d" target="_blank" rel="noopener noreferrer" aria-label="X">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://youtube.com/@pulkitjain-q9u" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    </div>
+    <p style="margin-top:24px;font-size:0.85rem;color:rgba(245,240,232,0.5)">
+      <a href="mailto:agrocare.aquarev@gmail.com" style="color:#c9a84c">agrocare.aquarev@gmail.com</a> ·
+      <a href="mailto:globsynite@gmail.com" style="color:#c9a84c">globsynite@gmail.com</a>
+    </p>
+  </section>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

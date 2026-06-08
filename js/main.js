@@ -58,33 +58,32 @@
       return;
     }
 
-    const LOADER_EXIT_MS = 500;
+    // Check sessionStorage for loading flag
+    if (typeof window !== 'undefined' && sessionStorage.getItem('agrocare_loaded')) {
+      // Session already loaded, skip animation
+      loader.style.display = 'none';
+      document.body.classList.add("loaded");
+      return;
+    }
 
+    // Show loader for fresh session
+    loader.style.display = 'flex';
     document.body.classList.add("is-loading");
 
-    const startAnimations = () => {
-      if (prefersReducedMotion()) {
-        loader.classList.add("loader-animate", "loader-reduced");
-      } else {
-        loader.classList.add("loader-animate");
-      }
+    // Auto-hide after 4 seconds or when video ends
+    const video = loader.querySelector('video');
+    const hideLoader = () => {
+      sessionStorage.setItem('agrocare_loaded', '1');
+      loader.style.display = 'none';
+      document.body.classList.remove("is-loading");
+      document.body.classList.add("loaded");
     };
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(startAnimations);
-    });
+    if (video) {
+      video.addEventListener('ended', hideLoader, { once: true });
+    }
 
-    const finish = () => {
-      loader.classList.add("is-hiding");
-      setTimeout(() => {
-        loader.classList.add("hidden");
-        loader.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("is-loading");
-        document.body.classList.add("loaded");
-      }, LOADER_EXIT_MS);
-    };
-
-    setTimeout(finish, LOADER_DURATION_MS);
+    setTimeout(hideLoader, 4000);
   }
 
   /* ═══════════════════════════════════════════════════════════════════
@@ -136,6 +135,34 @@
     follower.style.left = `${followX}px`;
     follower.style.top = `${followY}px`;
     requestAnimationFrame(tick);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     2B. BEFORE/AFTER SLIDER
+  ═══════════════════════════════════════════════════════════════════ */
+
+  function initBeforeAfterSlider() {
+    const slider = document.querySelector('.before-after-slider');
+    if (!slider) return;
+
+    const beforePanel = slider.querySelector('.ba-before');
+    const divider = slider.querySelector('.ba-divider');
+    let dragging = false;
+
+    const updateSlider = (e) => {
+      if (!dragging) return;
+      const rect = slider.getBoundingClientRect();
+      const x = (e.type.includes('touch') ? e.touches[0].clientX : e.clientX) - rect.left;
+      const pct = Math.min(Math.max(x / rect.width * 100, 5), 95);
+      beforePanel.style.width = pct + '%';
+    };
+
+    divider?.addEventListener('mousedown', () => { dragging = true; });
+    divider?.addEventListener('touchstart', () => { dragging = true; });
+    document.addEventListener('mouseup', () => { dragging = false; });
+    document.addEventListener('touchend', () => { dragging = false; });
+    document.addEventListener('mousemove', updateSlider);
+    document.addEventListener('touchmove', updateSlider);
   }
 
   /* ═══════════════════════════════════════════════════════════════════
@@ -255,6 +282,7 @@
     });
 
     initReviewCardLangPills();
+    initFarmerReviewsGlobalLang();
   }
 
   function initReviewCardLangPills() {
@@ -281,6 +309,36 @@
           const lang = pill.getAttribute("data-lang");
           if (lang) showLang(lang);
         });
+      });
+    });
+  }
+
+  function initFarmerReviewsGlobalLang() {
+    const section = document.getElementById("farmer-reviews");
+    if (!section) return;
+
+    const langBtns = section.querySelectorAll(".reviews-section-lang .reviews-lang-btn");
+    const cards = section.querySelectorAll(".review-card--v2");
+    if (!langBtns.length || !cards.length) return;
+
+    function showLang(lang) {
+      cards.forEach((card) => {
+        card.querySelectorAll(".review-text[data-lang]").forEach((t) => {
+          t.style.display = t.getAttribute("data-lang") === lang ? "block" : "none";
+        });
+      });
+      langBtns.forEach((btn) => {
+        btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+      });
+    }
+
+    const defaultLang = localStorage.getItem("agro-lang") || "gu";
+    showLang(defaultLang);
+
+    langBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const lang = btn.getAttribute("data-lang");
+        if (lang) showLang(lang);
       });
     });
   }
@@ -896,25 +954,41 @@
 
     let statusEl = form.querySelector(".form-status");
     if (!statusEl) {
-      statusEl = document.createElement("p");
+      statusEl = document.createElement("div");
       statusEl.className = "form-status";
       statusEl.setAttribute("role", "status");
-      statusEl.hidden = true;
+      statusEl.setAttribute("aria-live", "polite");
+      statusEl.style.display = "none";
       form.appendChild(statusEl);
     }
 
     const submitBtn = form.querySelector('[type="submit"]');
     const defaultBtnText = submitBtn?.textContent || "Send message →";
 
+    // Initialize EmailJS on first interaction
+    if (typeof emailjs !== "undefined") {
+      emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
+    }
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const action = form.getAttribute("action");
-      if (!action || action.includes("YOUR_FORM_ID")) {
-        statusEl.hidden = false;
+      if (typeof emailjs === "undefined") {
+        statusEl.style.display = "block";
         statusEl.className = "form-status form-status--error";
-        statusEl.textContent =
-          "Form is not configured yet. Replace YOUR_FORM_ID in the form action with your Formspree endpoint.";
+        statusEl.textContent = "Email service is not available. Please contact us via WhatsApp or phone.";
+        return;
+      }
+
+      const name = form.querySelector("#contact-name").value?.trim();
+      const phone = form.querySelector("#contact-phone").value?.trim();
+      const subject = form.querySelector("#contact-subject").value?.trim();
+      const message = form.querySelector("#contact-message").value?.trim();
+
+      if (!name || !phone || !subject || !message) {
+        statusEl.style.display = "block";
+        statusEl.className = "form-status form-status--error";
+        statusEl.textContent = "Please fill in all fields.";
         return;
       }
 
@@ -923,32 +997,43 @@
         submitBtn.textContent = "Sending…";
       }
 
-      statusEl.hidden = false;
+      statusEl.style.display = "block";
       statusEl.className = "form-status form-status--loading";
       statusEl.textContent = "Sending your message…";
 
       try {
-        const formData = new FormData(form);
-        const res = await fetch(action, {
-          method: "POST",
-          body: formData,
-          headers: { Accept: "application/json" },
+        const response = await emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+          from_name: name,
+          from_email: `${phone} (via website)`,
+          subject: subject,
+          message: message,
+          phone: phone,
+          to_email: "info@agrocompany.in",
         });
 
-        const data = await res.json().catch(() => ({}));
-
-        if (res.ok) {
+        if (response.status === 200) {
           statusEl.className = "form-status form-status--success";
-          statusEl.textContent = "Thank you — your message was sent successfully. We will be in touch soon.";
+          statusEl.textContent =
+            "Thank you — your message was sent successfully. We will be in touch soon.";
           form.reset();
+
+          // Also offer WhatsApp contact as alternative
+          const whatsappLink = `https://wa.me/+91XXXXXXXXXX?text=Hi%2C%20I%20submitted%20a%20form:%20${encodeURIComponent(
+            `${subject} - ${message}`
+          )}`;
+          setTimeout(() => {
+            statusEl.innerHTML =
+              'Message sent! <a href="' +
+              whatsappLink +
+              '" target="_blank" style="color: var(--gold); text-decoration: underline;">Also reach us on WhatsApp →</a>';
+          }, 1500);
         } else {
-          const msg = data.error || data.message || "Something went wrong. Please try again.";
-          throw new Error(msg);
+          throw new Error("Failed to send email");
         }
       } catch (err) {
         statusEl.className = "form-status form-status--error";
         statusEl.textContent =
-          err.message || "Could not send your message. Check your connection and try again.";
+          err.message || "Could not send your message. Please try again or contact us via WhatsApp.";
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -965,6 +1050,7 @@
   function init() {
     initLoadingScreen();
     initCustomCursor();
+    initBeforeAfterSlider();
     initNavbar();
     initLanguageSwitcher();
     initScrollReveal();

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="About Agrocare — certified organic agri-inputs since 2011. Seaweeds, bio-stimulants, and soil enrichers across India."/>
+  <title>About Us — Agrocare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <style>
+    .about-page { background: #071407; color: #f5f0e8; padding: 120px 24px 80px; }
+    .about-inner { max-width: 800px; margin: 0 auto; }
+    .about-page h1 { font-family: "Cormorant Garamond", serif; font-size: clamp(2.2rem,4vw,3.2rem); margin-bottom: 24px; }
+    .about-page p { line-height: 1.8; color: rgba(245,240,232,0.8); margin-bottom: 1.25rem; }
+    .founder-block { display: flex; gap: 2rem; align-items: center; margin-top: 3rem; flex-wrap: wrap; }
+    .founder-block img { width: 128px; height: 128px; border-radius: 50%; object-fit: cover; border: 2px solid #c9a84c; }
+    .founder-label { color: #c9a84c; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px; }
+    .founder-name { font-family: "Cormorant Garamond", serif; font-size: 1.75rem; color: #fff; }
+    .certs-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 3rem; align-items: center; }
+    .iso-badge { display: flex; align-items: center; gap: 8px; border: 1px solid rgba(201,168,76,0.4); border-radius: 100px; padding: 8px 16px; }
+    .iso-badge span:first-child { color: #c9a84c; font-weight: 700; font-size: 0.875rem; }
+    .iso-badge span:last-child { color: rgba(255,255,255,0.7); font-size: 0.75rem; }
+    .cert-pill { border: 1px solid rgba(255,255,255,0.2); border-radius: 100px; padding: 8px 16px; font-size: 0.8rem; color: rgba(255,255,255,0.75); }
+  </style>
+</head>
+<body>
+  <header id="site-header">
+    <a href="index.html" class="nav-logo" aria-label="Agrocare Home">
+      <img src="assets/logo/agrocare-logo.png" alt="Agrocare" style="height:40px;width:auto"/>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="about.html" aria-current="page">About Us</a></li>
+        <li class="nav-cta"><a href="enquiry.html">Enquire Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="about-page" id="main-content">
+    <div class="about-inner">
+      <span class="section-eyebrow" style="color:#c9a84c">About Agrocare</span>
+      <h1>Rooted in soil. Driven by farmers.</h1>
+
+      <p>Incepted in the year 2011, Agrocare is a partnership firm driven by a group of cohort individuals with diverse backgrounds, united by a single vision — to transform Indian agriculture through certified organic inputs. We are involved in the cultivation, supply, and export of seaweeds and organic bio-stimulants.</p>
+
+      <p>Guided by the inspiration of our founder Vardabhai, we set out to research and develop products that could improve fields naturally, reduce dependency on harmful chemicals, and lift the financial condition of farmers from poverty — helping them spend less, earn more, and live better lives while keeping their land fertile for generations.</p>
+
+      <p>What began as a small company with a big dream has grown into a trusted name across 18+ districts of India. Quality is the primary attribute imbibed in every product we make, leaving no scope for complaints from our customers. We currently serve clients across India and are actively looking forward to fruitful business opportunities abroad. We also supply customized products according to customer requirements and specifications.</p>
+
+      <div class="founder-block" id="founder">
+        <img src="assets/images/founder/Founder.jpg" alt="Founder, Agrocare"/>
+        <div>
+          <p class="founder-label">Founder &amp; Visionary</p>
+          <h3 class="founder-name">Vardabhai</h3>
+          <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;margin-top:8px;max-width:28rem">
+            With roots in Gujarat's farming communities, Vardabhai envisioned a future where every Indian farmer
+            could access certified organic inputs at affordable prices — and Agrocare was born from that dream.
+          </p>
+        </div>
+      </div>
+
+      <div class="certs-row" id="certifications">
+        <div class="iso-badge">
+          <span>ISO</span>
+          <span>9001 Certified</span>
+        </div>
+        <span class="cert-pill">FSSAI ✓</span>
+        <span class="cert-pill">Organic Certified ✓</span>
+        <span class="cert-pill">Available on IndiaMART</span>
+        <span class="cert-pill">Available on Meesho</span>
+        <span class="cert-pill">Local Retail Stores</span>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

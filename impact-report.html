@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impact Report — AgroCare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f4ed;
+    --bg-card: #ffffff;
+    --bg-card2: #f0ebe2;
+    --green-light: #5a9e68;
+    --green-mid: #3d7a52;
+    --green-pale: #8fbc9a;
+    --cream: #1a2e22;
+    --muted: #5c7264;
+    --gold: #b8943f;
+    --border: rgba(184,148,63,0.22);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(250,247,241,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--sans); font-weight: 500;
+    font-size: 0.82rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--green-light); text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo-ring {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 1.5px solid var(--green-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--cream); text-decoration: none; opacity: 0.6; transition: opacity .2s;
+  }
+  .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--green-light); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), #d4b85a); color: #1a2e22;
+    padding: 0.5rem 1.4rem; border-radius: 50px;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--green-light); color: var(--bg); }
+
+  /* HERO */
+  .hero {
+    min-height: 80vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 2rem 5rem;
+    position: relative; overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(58,158,82,0.18) 0%, transparent 65%);
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--green-mid), transparent);
+  }
+  .hero-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(111,207,122,0.3);
+    background: rgba(58,158,82,0.1);
+    padding: 6px 18px; border-radius: 50px;
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--green-light); margin-bottom: 1.8rem;
+    opacity: 0; animation: fadeUp 0.7s 0.1s ease forwards;
+  }
+  .hero-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-light); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(3.2rem, 7.5vw, 7rem);
+    line-height: 1.02; color: var(--cream);
+    margin-bottom: 1.6rem;
+    opacity: 0; animation: fadeUp 0.9s 0.25s ease forwards;
+  }
+  .hero h1 em { font-style: italic; color: var(--green-light); }
+  .hero-sub {
+    font-size: 1rem; color: var(--muted); max-width: 540px;
+    opacity: 0; animation: fadeUp 0.9s 0.4s ease forwards;
+    margin-bottom: 3.5rem;
+  }
+  .hero-stats {
+    display: flex; gap: 0; flex-wrap: wrap; justify-content: center;
+    border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+    opacity: 0; animation: fadeUp 0.9s 0.55s ease forwards;
+  }
+  .hero-stat {
+    padding: 1.6rem 2.4rem; text-align: center;
+    border-right: 1px solid var(--border);
+    background: rgba(255,255,255,0.92);
+    transition: background .25s;
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat:hover { background: #fff; box-shadow: 0 8px 24px rgba(26,61,46,0.08); }
+  .hero-stat-num {
+    font-family: var(--serif); font-size: 2.8rem; font-weight: 300;
+    color: var(--green-light); line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-top: 5px;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* LAYOUT */
+  .section { padding: 5.5rem 3rem; max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--green-light); margin-bottom: 0.7rem;
+  }
+  .section-title {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+    color: var(--cream); line-height: 1.08; margin-bottom: 0.9rem;
+  }
+  .section-title em { font-style: italic; color: var(--green-pale); }
+  .section-body { color: var(--muted); font-size: 0.93rem; max-width: 560px; margin-bottom: 2.8rem; }
+  .full-divider { width: 100%; height: 1px; background: var(--border); }
+
+  /* METRICS GRID */
+  .metrics-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+  }
+  .metric-card {
+    background: var(--bg-card); padding: 2.4rem 1.8rem;
+    position: relative; transition: background .25s;
+  }
+  .metric-card:hover { background: var(--bg-card2); }
+  .metric-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--green-mid), transparent);
+    opacity: 0; transition: opacity .3s;
+  }
+  .metric-card:hover::before { opacity: 1; }
+  .metric-num {
+    font-family: var(--serif); font-size: 3rem; font-weight: 300;
+    color: var(--green-light); line-height: 1; margin-bottom: 0.4rem;
+  }
+  .metric-label {
+    font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.9rem;
+  }
+  .metric-detail { font-size: 0.8rem; color: var(--cream); opacity: 0.55; line-height: 1.55; }
+
+  /* INDIA MAP SECTION */
+  .india-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start; margin-top: 2rem; }
+  .state-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .state-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.4rem 1.6rem;
+    transition: border-color .25s, background .25s;
+  }
+  .state-card:hover { border-color: rgba(111,207,122,0.4); background: var(--bg-card2); }
+  .state-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 0.8rem; }
+  .state-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-mid); flex-shrink: 0; }
+  .state-name { font-size: 0.88rem; color: var(--cream); font-weight: 400; }
+  .state-farmers { font-family: var(--serif); font-size: 1.9rem; color: var(--green-light); line-height: 1; margin-bottom: 3px; }
+  .state-meta { font-size: 0.7rem; color: var(--muted); }
+  .state-crops { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 0.7rem; }
+  .crop-pill {
+    font-size: 0.62rem; padding: 2px 9px; border-radius: 50px;
+    background: rgba(58,158,82,0.12); color: var(--green-pale);
+    border: 1px solid rgba(111,207,122,0.2);
+    letter-spacing: 0.04em;
+  }
+
+  /* SVG INDIA MAP */
+  .map-wrap {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.5rem; position: relative;
+  }
+  .map-title { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .india-svg { width: 100%; height: auto; display: block; }
+  .india-svg .land { fill: #1a2d1e; stroke: rgba(111,207,122,0.25); stroke-width: 0.8; }
+  .india-svg .highlight { fill: #2a5c36; stroke: var(--green-light); stroke-width: 1.2; }
+  .india-svg .highlight-strong { fill: var(--green-mid); stroke: var(--green-light); stroke-width: 1.5; }
+  .map-legend { display: flex; flex-direction: column; gap: 7px; margin-top: 1rem; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.7rem; color: var(--muted); }
+  .legend-swatch { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+  /* PRODUCT TABLE */
+  .product-rows {
+    display: flex; flex-direction: column; gap: 1px;
+    background: var(--border); border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .product-row {
+    background: var(--bg-card);
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr 1fr;
+    align-items: center; padding: 1.1rem 1.8rem; gap: 1rem;
+    transition: background .2s;
+  }
+  .product-row:hover { background: var(--bg-card2); }
+  .product-row.header {
+    background: rgba(13,31,18,0.9);
+    font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); padding: 0.8rem 1.8rem;
+  }
+  .product-name { font-size: 0.86rem; color: var(--cream); }
+  .product-form {
+    font-size: 0.67rem; padding: 3px 10px; border-radius: 50px;
+    background: rgba(111,207,122,0.1); color: var(--green-light);
+    border: 1px solid rgba(111,207,122,0.22); display: inline-block; letter-spacing: 0.04em;
+  }
+  .product-dosage, .product-price { font-size: 0.82rem; color: var(--muted); }
+  .product-saving { font-size: 0.82rem; color: var(--green-light); }
+
+  /* BAR CHARTS */
+  .bar-section { margin: 0; }
+  .bar-group { margin-bottom: 1.3rem; }
+  .bar-label { display: flex; justify-content: space-between; font-size: 0.76rem; color: var(--muted); margin-bottom: 7px; }
+  .bar-label span:last-child { color: var(--green-light); font-weight: 400; }
+  .bar-track { height: 5px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+  .bar-fill {
+    height: 100%; border-radius: 4px;
+    background: linear-gradient(90deg, var(--green-mid), var(--green-light));
+    width: 0; transition: width 1.5s cubic-bezier(.16,1,.3,1);
+  }
+
+  /* STORIES */
+  .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .story-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem; position: relative;
+    overflow: hidden; transition: border-color .3s, background .25s;
+  }
+  .story-card:hover { border-color: rgba(111,207,122,0.38); background: var(--bg-card2); }
+  .story-card::before {
+    content: '\201C'; position: absolute; top: -8px; left: 14px;
+    font-family: var(--serif); font-size: 7rem; color: rgba(111,207,122,0.07);
+    line-height: 1; pointer-events: none;
+  }
+  .story-text { font-size: 0.86rem; color: var(--cream); opacity: 0.82; line-height: 1.72; margin-bottom: 1.4rem; }
+  .story-author { display: flex; align-items: center; gap: 10px; }
+  .story-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(58,158,82,0.15); border: 1px solid rgba(111,207,122,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.68rem; color: var(--green-light); font-weight: 500;
+  }
+  .story-name { font-size: 0.78rem; color: var(--cream); }
+  .story-location { font-size: 0.68rem; color: var(--muted); }
+  .story-crop {
+    margin-top: 1.1rem; display: flex; align-items: center; gap: 8px;
+    font-size: 0.68rem; color: var(--muted);
+    border-top: 1px solid var(--border); padding-top: 0.9rem;
+  }
+  .story-crop-badge {
+    font-size: 0.63rem; padding: 2px 8px; border-radius: 50px;
+    background: rgba(58,158,82,0.13); color: var(--green-light);
+    border: 1px solid rgba(111,207,122,0.22);
+  }
+
+  /* SUSTAINABILITY */
+  .sustain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+  .sustain-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem; transition: border-color .25s;
+  }
+  .sustain-card:hover { border-color: rgba(111,207,122,0.35); }
+  .sustain-icon { font-size: 1.7rem; margin-bottom: 0.9rem; }
+  .sustain-title { font-family: var(--serif); font-size: 1.25rem; color: var(--cream); margin-bottom: 0.4rem; }
+  .sustain-num { font-family: var(--serif); font-size: 2.1rem; color: var(--green-light); margin: 0.7rem 0 0.15rem; }
+  .sustain-unit { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .sustain-body { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-top: 0.75rem; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item { position: relative; margin-bottom: 2.2rem; }
+  .timeline-dot {
+    position: absolute; left: -2.36rem; top: 5px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green-mid); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 4px rgba(58,158,82,0.18);
+  }
+  .timeline-year { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-light); margin-bottom: 3px; }
+  .timeline-title { font-size: 0.9rem; color: var(--cream); margin-bottom: 3px; }
+  .timeline-body { font-size: 0.78rem; color: var(--muted); }
+
+  /* CTA */
+  .cta-section {
+    text-align: center; padding: 7rem 2rem; position: relative; overflow: hidden;
+    background: radial-gradient(ellipse 65% 80% at 50% 50%, rgba(58,158,82,0.13) 0%, transparent 65%);
+  }
+  .cta-title {
+    font-family: var(--serif); font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+    font-weight: 300; color: var(--cream); margin-bottom: 1rem; line-height: 1.05;
+  }
+  .cta-title em { font-style: italic; color: var(--green-light); }
+  .cta-sub { font-size: 0.92rem; color: var(--muted); margin-bottom: 2.5rem; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--green-mid); color: #fff;
+    padding: 0.9rem 2.4rem; border-radius: 50px;
+    font-family: var(--sans); font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: background .2s, transform .15s;
+  }
+  .btn-primary:hover { background: var(--green-light); color: var(--bg); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid rgba(111,207,122,0.3); color: var(--cream);
+    padding: 0.9rem 2.4rem; border-radius: 50px;
+    font-family: var(--sans); font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: border-color .2s, background .2s;
+  }
+  .btn-outline:hover { border-color: var(--green-mid); background: rgba(58,158,82,0.1); }
+
+  footer {
+    border-top: 1px solid var(--border); padding: 2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.7rem; color: var(--muted);
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--green-light); }
+
+  @media (max-width: 960px) {
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .india-grid { grid-template-columns: 1fr; }
+    .stories-grid { grid-template-columns: 1fr 1fr; }
+    .sustain-grid { grid-template-columns: 1fr 1fr; }
+    .product-row { grid-template-columns: 1fr 1fr; }
+    .product-row .product-dosage, .product-row .product-saving { display: none; }
+    .product-row.header { display: none; }
+    nav .nav-links { display: none; }
+    .section { padding: 3.5rem 1.5rem; }
+    nav { padding: 1rem 1.5rem; }
+  }
+  @media (max-width: 600px) {
+    .hero-stats { flex-direction: column; width: 100%; border-radius: 12px; }
+    .hero-stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-stat:last-child { border-bottom: none; }
+    .stories-grid { grid-template-columns: 1fr; }
+    .state-cards { grid-template-columns: 1fr; }
+    .sustain-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-ring">🌿</span>
+    AGRO
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Why Us</a></li>
+    <li><a href="#">Our Mission</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="#">Solutions</a></li>
+    <li><a href="impact-report.html" class="active">Our Impact</a></li>
+    <li><a href="#">Stories</a></li>
+    <li><a href="#">About Us</a></li>
+  </ul>
+  <a href="https://wa.me/919427205179" class="nav-cta">Enquire Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pill"><span class="hero-pill-dot"></span>AgroCare Impact Report · 2024–25</div>
+  <h1>Behind every number<br>is a <em>real farmer.</em></h1>
+  <p class="hero-sub">Eight years. Three states. 200+ farmers. Real change, measured and growing — across India.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">200+</div>
+      <div class="hero-stat-label">Farmers Reached</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">States Covered</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">350 MT</div>
+      <div class="hero-stat-label">Chemicals Replaced</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">8 yrs</div>
+      <div class="hero-stat-label">Years of Trust</div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- METRICS -->
+<section class="section">
+  <p class="section-eyebrow">At a Glance</p>
+  <h2 class="section-title">What eight years of<br><em>organic farming</em> looks like</h2>
+  <p class="section-body">From a single product in Una, Gujarat to a three-state network serving 200+ farmers — measured, certified, and still growing.</p>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-num">200+</div>
+      <div class="metric-label">Farmers Reached</div>
+      <div class="metric-detail">Active farmers across Gujarat, Karnataka, and Uttar Pradesh who have used at least one AgroCare product in the last 24 months.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">3 States</div>
+      <div class="metric-label">Pan-India Presence</div>
+      <div class="metric-detail">Gujarat (home state), Karnataka (South India), and Uttar Pradesh (North India). Expanding further in 2025–26.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">350 MT</div>
+      <div class="metric-label">Chemicals Replaced</div>
+      <div class="metric-detail">Metric tonnes of synthetic pesticides and chemical fertilisers displaced by organic AgroCare inputs since 2017.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">8 yrs</div>
+      <div class="metric-label">Years of Trust</div>
+      <div class="metric-detail">Continuously operating since 2017. ISO 9001:2015 certified. Manufactured in Una, Gujarat.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">18+</div>
+      <div class="metric-label">Districts in Gujarat</div>
+      <div class="metric-detail">Full coverage across Saurashtra, South Gujarat, North Gujarat, and Central Gujarat regions.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">500 MT</div>
+      <div class="metric-label">Monthly Capacity</div>
+      <div class="metric-detail">Seaweed granule production at the Una facility. Scalable for bulk orders across all states.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">20–30%</div>
+      <div class="metric-label">Chemical Cost Reduction</div>
+      <div class="metric-detail">Average reduction in synthetic fertiliser spend reported by farmers on AgroCare's humic acid programme.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">4.45 ★</div>
+      <div class="metric-label">Average Rating</div>
+      <div class="metric-detail">Aggregated across Meesho, IndiaMART, and direct feedback from farmers in all three states.</div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- PAN-INDIA MAP & STATE BREAKDOWN -->
+<section class="section">
+  <p class="section-eyebrow">Pan-India Reach</p>
+  <h2 class="section-title">Gujarat. Karnataka.<br><em>Uttar Pradesh.</em></h2>
+  <p class="section-body">AgroCare's impact spans three states across India's most important agricultural belts — from the cotton fields of Saurashtra to the horticultural farms of Karnataka and the wheat plains of UP.</p>
+
+  <div class="india-grid">
+    <div class="state-cards">
+      <div class="state-card">
+        <div class="state-card-header">
+          <span class="state-dot" style="background:#3a9e52"></span>
+          <span class="state-name">Gujarat</span>
+        </div>
+        <div class="state-farmers">140+</div>
+        <div class="state-meta">18 districts · Home state since 2017</div>
+        <div class="state-crops">
+          <span class="crop-pill">Cotton</span>
+          <span class="crop-pill">Groundnut</span>
+          <span class="crop-pill">Vegetables</span>
+          <span class="crop-pill">Sugarcane</span>
+          <span class="crop-pill">Wheat</span>
+        </div>
+      </div>
+      <div class="state-card">
+        <div class="state-card-header">
+          <span class="state-dot" style="background:#6fcf7a"></span>
+          <span class="state-name">Karnataka</span>
+        </div>
+        <div class="state-farmers">40+</div>
+        <div class="state-meta">4 districts · Expanded 2022</div>
+        <div class="state-crops">
+          <span class="crop-pill">Tomato</span>
+          <span class="crop-pill">Ragi</span>
+          <span class="crop-pill">Grapes</span>
+          <span class="crop-pill">Pomegranate</span>
+          <span class="crop-pill">Paddy</span>
+        </div>
+      </div>
+      <div class="state-card">
+        <div class="state-card-header">
+          <span class="state-dot" style="background:#c9a84c"></span>
+          <span class="state-name">Uttar Pradesh</span>
+        </div>
+        <div class="state-farmers">20+</div>
+        <div class="state-meta">3 districts · Expanded 2023</div>
+        <div class="state-crops">
+          <span class="crop-pill">Wheat</span>
+          <span class="crop-pill">Paddy</span>
+          <span class="crop-pill">Potato</span>
+          <span class="crop-pill">Sugarcane</span>
+          <span class="crop-pill">Onion</span>
+        </div>
+      </div>
+      <div class="state-card" style="background:rgba(58,158,82,0.07); border-style:dashed; border-color:rgba(111,207,122,0.25);">
+        <div class="state-card-header">
+          <span class="state-dot" style="background:var(--muted)"></span>
+          <span class="state-name" style="color:var(--muted)">Coming Soon</span>
+        </div>
+        <div class="state-farmers" style="color:var(--muted)">2025–26</div>
+        <div class="state-meta">Maharashtra · Rajasthan · MP</div>
+        <div class="state-crops">
+          <span class="crop-pill" style="opacity:.5">Soybean</span>
+          <span class="crop-pill" style="opacity:.5">Onion</span>
+          <span class="crop-pill" style="opacity:.5">Orange</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SVG INDIA MAP -->
+    <div class="map-wrap">
+      <div class="map-title">Active regions — AgroCare 2024–25</div>
+      <svg class="india-svg" viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg">
+        <!-- Simplified India outline paths -->
+        <!-- Gujarat -->
+        <path class="highlight-strong" d="M80,140 L120,130 L145,145 L155,165 L150,190 L135,200 L115,195 L95,185 L75,170 Z" />
+        <!-- Rajasthan -->
+        <path class="land" d="M120,80 L180,70 L210,80 L215,120 L200,140 L175,145 L145,145 L120,130 L110,110 Z" />
+        <!-- Punjab/Haryana -->
+        <path class="land" d="M155,55 L200,45 L220,55 L220,80 L200,80 L175,70 L155,65 Z" />
+        <!-- Himachal/Uttarakhand -->
+        <path class="land" d="M200,45 L240,40 L255,50 L250,70 L230,75 L220,70 L220,55 Z" />
+        <!-- UP -->
+        <path class="highlight" d="M210,80 L270,72 L295,88 L290,110 L275,125 L250,130 L230,125 L215,120 Z" />
+        <!-- Bihar -->
+        <path class="land" d="M270,88 L310,85 L320,100 L310,115 L290,118 L275,110 Z" />
+        <!-- West Bengal -->
+        <path class="land" d="M310,90 L335,88 L345,105 L340,125 L325,130 L310,120 L310,100 Z" />
+        <!-- MP -->
+        <path class="land" d="M175,145 L240,140 L270,150 L265,180 L240,190 L205,195 L180,185 L165,170 Z" />
+        <!-- Chhattisgarh -->
+        <path class="land" d="M265,150 L300,148 L310,168 L305,195 L280,200 L260,190 Z" />
+        <!-- Jharkhand/Odisha -->
+        <path class="land" d="M305,115 L335,118 L345,140 L340,165 L315,175 L300,165 L305,145 Z" />
+        <!-- Maharashtra -->
+        <path class="land" d="M150,190 L215,195 L240,205 L245,235 L225,255 L195,265 L165,255 L145,235 L140,215 Z" />
+        <!-- Goa -->
+        <path class="land" d="M155,255 L168,250 L172,265 L160,270 Z" />
+        <!-- Karnataka -->
+        <path class="highlight" d="M165,255 L225,255 L240,270 L245,300 L235,325 L215,335 L195,330 L175,315 L160,290 L155,268 Z" />
+        <!-- Andhra/Telangana -->
+        <path class="land" d="M240,255 L280,250 L295,268 L295,300 L280,318 L260,325 L240,318 L230,300 L235,275 Z" />
+        <!-- Tamil Nadu -->
+        <path class="land" d="M195,330 L230,325 L255,340 L255,375 L235,400 L210,405 L190,395 L175,370 L175,345 Z" />
+        <!-- Kerala -->
+        <path class="land" d="M175,340 L195,335 L190,370 L175,390 L162,380 L160,360 Z" />
+        <!-- Northeast states (simplified) -->
+        <path class="land" d="M335,90 L360,85 L375,100 L370,120 L350,130 L335,120 Z" />
+        <!-- J&K -->
+        <path class="land" d="M155,30 L200,20 L230,25 L245,40 L240,45 L210,45 L175,40 Z" />
+
+        <!-- State Labels -->
+        <text x="105" y="172" font-family="Jost,sans-serif" font-size="7" fill="#6fcf7a" font-weight="500" text-anchor="middle">GUJARAT</text>
+        <text x="245" y="100" font-family="Jost,sans-serif" font-size="7" fill="#a8ddb2" font-weight="400" text-anchor="middle">UP</text>
+        <text x="205" y="300" font-family="Jost,sans-serif" font-size="7" fill="#a8ddb2" font-weight="400" text-anchor="middle">KARNATAKA</text>
+
+        <!-- Dots on active states -->
+        <circle cx="112" cy="168" r="5" fill="#6fcf7a" opacity="0.9">
+          <animate attributeName="r" values="4;7;4" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="250" cy="100" r="4" fill="#6fcf7a" opacity="0.85">
+          <animate attributeName="r" values="3;6;3" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.85;0.35;0.85" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="207" cy="295" r="4" fill="#6fcf7a" opacity="0.85">
+          <animate attributeName="r" values="3;6;3" dur="2.8s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.85;0.35;0.85" dur="2.8s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+      <div class="map-legend">
+        <div class="legend-item"><span class="legend-swatch" style="background:var(--green-mid)"></span>Primary hub (Gujarat)</div>
+        <div class="legend-item"><span class="legend-swatch" style="background:#2a5c36"></span>Active state (Karnataka, UP)</div>
+        <div class="legend-item"><span class="legend-swatch" style="background:#1a2d1e"></span>Other regions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- PRODUCT IMPACT TABLE -->
+<section class="section">
+  <p class="section-eyebrow">Product Portfolio</p>
+  <h2 class="section-title">Every product.<br><em>Every dose. Every result.</em></h2>
+  <p class="section-body">Full product range with dosages, pricing, and farmer savings vs market rate — applicable across all three states.</p>
+  <div class="product-rows">
+    <div class="product-row header">
+      <span>Product</span><span>Form</span><span>Dosage/Acre</span><span>Our Price</span><span>Farmer Saving</span>
+    </div>
+    <div class="product-row">
+      <span class="product-name">VanChetan Davya — Microbial Booster</span>
+      <span><span class="product-form">Liquid</span></span>
+      <span class="product-dosage">2 litres</span>
+      <span class="product-price">₹200 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹260</span></span>
+      <span class="product-saving">Save ₹60 (23%)</span>
+    </div>
+    <div class="product-row">
+      <span class="product-name">Energy Balls — Seaweed Granules</span>
+      <span><span class="product-form">Granules</span></span>
+      <span class="product-dosage">10 kg</span>
+      <span class="product-price">₹150 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹200</span></span>
+      <span class="product-saving">Save ₹50 (25%)</span>
+    </div>
+    <div class="product-row">
+      <span class="product-name">Seaweed Liquid — VanChetan Taral</span>
+      <span><span class="product-form">Liquid</span></span>
+      <span class="product-dosage">2 litres</span>
+      <span class="product-price">₹300 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹400</span></span>
+      <span class="product-saving">Save ₹100 (25%)</span>
+    </div>
+    <div class="product-row">
+      <span class="product-name">Magic Gel — Seaweed Extract Gel</span>
+      <span><span class="product-form">Gel</span></span>
+      <span class="product-dosage">5 kg</span>
+      <span class="product-price">₹450 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹550</span></span>
+      <span class="product-saving">Save ₹100 (18%)</span>
+    </div>
+    <div class="product-row">
+      <span class="product-name">Power Gold — Potassium Humate 70%</span>
+      <span><span class="product-form">Powder</span></span>
+      <span class="product-dosage">2 kg</span>
+      <span class="product-price">₹180 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹260</span></span>
+      <span class="product-saving">Save ₹80 (31%)</span>
+    </div>
+    <div class="product-row">
+      <span class="product-name">Neem Oil — Cold Pressed 99% Pure</span>
+      <span><span class="product-form">Liquid</span></span>
+      <span class="product-dosage">3–5 ml/L water</span>
+      <span class="product-price">₹350/L <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹450</span></span>
+      <span class="product-saving">Save ₹100 (22%)</span>
+    </div>
+    <div class="product-row">
+      <span class="product-name">Boron 21% — Micronutrient</span>
+      <span><span class="product-form">Powder</span></span>
+      <span class="product-dosage">As directed</span>
+      <span class="product-price">₹150 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹200</span></span>
+      <span class="product-saving">Save ₹50 (25%)</span>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- YIELD BARS -->
+<section class="section">
+  <p class="section-eyebrow">Crop Performance — All States</p>
+  <h2 class="section-title">Average yield improvement<br><em>by crop type</em></h2>
+  <p class="section-body">Based on field trials and farmer-reported data from Gujarat, Karnataka, and Uttar Pradesh. Improvements vs chemical-only control plots.</p>
+  <div class="bar-section" id="bars">
+    <div class="bar-group">
+      <div class="bar-label"><span>Cotton (Gujarat)</span><span>+24% yield increase</span></div>
+      <div class="bar-track"><div class="bar-fill" data-width="78"></div></div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-label"><span>Tomato & Chilli (Karnataka + Gujarat)</span><span>+28% yield increase</span></div>
+      <div class="bar-track"><div class="bar-fill" data-width="86"></div></div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-label"><span>Wheat & Paddy (Uttar Pradesh + Gujarat)</span><span>+18% yield increase</span></div>
+      <div class="bar-track"><div class="bar-fill" data-width="58"></div></div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-label"><span>Grapes & Pomegranate (Karnataka)</span><span>+22% quality improvement</span></div>
+      <div class="bar-track"><div class="bar-fill" data-width="70"></div></div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-label"><span>Sugarcane (Gujarat + UP)</span><span>+21% yield increase</span></div>
+      <div class="bar-track"><div class="bar-fill" data-width="66"></div></div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-label"><span>Groundnut (Gujarat)</span><span>+19% yield increase</span></div>
+      <div class="bar-track"><div class="bar-fill" data-width="62"></div></div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-label"><span>Fertiliser Input Cost Reduction (all states avg.)</span><span>–26% cost saving</span></div>
+      <div class="bar-track"><div class="bar-fill" data-width="72"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- FARMER STORIES -->
+<section class="section">
+  <p class="section-eyebrow">Farmer Stories — Across India</p>
+  <h2 class="section-title">In their <em>own words</em></h2>
+  <p class="section-body">Farmers across Gujarat, Karnataka, and Uttar Pradesh share what changed in their fields after switching to AgroCare organic inputs.</p>
+  <div class="stories-grid">
+    <div class="story-card">
+      <p class="story-text">"Mitti maa jiv avi gayi chhe — mara khetarma. The soil in my field has come alive. After two seasons of Power Gold and Energy Balls, my cotton roots go 30% deeper."</p>
+      <div class="story-author">
+        <div class="story-avatar">JS</div>
+        <div><div class="story-name">Jayesh Solanki</div><div class="story-location">Junagadh, Gujarat</div></div>
+      </div>
+      <div class="story-crop"><span class="story-crop-badge">Cotton · Gujarat</span></div>
+    </div>
+    <div class="story-card">
+      <p class="story-text">"Used seaweed liquid on my tomato crop in Kolar. Fruit size improved, less cracking. The AgroCare team even helped with dosage on a WhatsApp call."</p>
+      <div class="story-author">
+        <div class="story-avatar">MR</div>
+        <div><div class="story-name">Manjunath Reddy</div><div class="story-location">Kolar, Karnataka</div></div>
+      </div>
+      <div class="story-crop"><span class="story-crop-badge">Tomato · Karnataka</span></div>
+    </div>
+    <div class="story-card">
+      <p class="story-text">"Humne pehle baar humic acid use kiya tha gehu mein. Jad zyada gayi, paudha majboot raha. Chemical fertiliser 25% kam lagaya aur yield same rahi."</p>
+      <div class="story-author">
+        <div class="story-avatar">RY</div>
+        <div><div class="story-name">Ramesh Yadav</div><div class="story-location">Lucknow, Uttar Pradesh</div></div>
+      </div>
+      <div class="story-crop"><span class="story-crop-badge">Wheat · Uttar Pradesh</span></div>
+    </div>
+    <div class="story-card">
+      <p class="story-text">"Neem oil spray se whitefly problem tomato mein 2 sprays mein solve ho gayi. No chemical pesticide needed. Bees in the field are safe too."</p>
+      <div class="story-author">
+        <div class="story-avatar">HT</div>
+        <div><div class="story-name">Haresh Thakor</div><div class="story-location">Gandhinagar, Gujarat</div></div>
+      </div>
+      <div class="story-crop"><span class="story-crop-badge">Tomato · Gujarat</span></div>
+    </div>
+    <div class="story-card">
+      <p class="story-text">"Our grape quality improved significantly — berry size, colour, and brix all went up. We now use seaweed gel through drip every season in Vijayapura."</p>
+      <div class="story-author">
+        <div class="story-avatar">SP</div>
+        <div><div class="story-name">Suresh Patil</div><div class="story-location">Vijayapura, Karnataka</div></div>
+      </div>
+      <div class="story-crop"><span class="story-crop-badge">Grapes · Karnataka</span></div>
+    </div>
+    <div class="story-card">
+      <p class="story-text">"Replaced 30% of our urea with humic acid this kharif. No drop in yield — actually slightly better. Input cost dropped ₹1,800 per acre."</p>
+      <div class="story-author">
+        <div class="story-avatar">MF</div>
+        <div><div class="story-name">Meena Farms</div><div class="story-location">Surat, Gujarat</div></div>
+      </div>
+      <div class="story-crop"><span class="story-crop-badge">Mixed Crops · Gujarat</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- SUSTAINABILITY -->
+<section class="section">
+  <p class="section-eyebrow">Environmental Impact</p>
+  <h2 class="section-title">Chemistry out.<br><em>Biology in.</em></h2>
+  <p class="section-body">Every kilogram of AgroCare product that replaces a synthetic input is a measurable step toward a healthier food system — across all three states.</p>
+  <div class="sustain-grid">
+    <div class="sustain-card">
+      <div class="sustain-icon">🌱</div>
+      <div class="sustain-title">Soil Carbon Rebuilt</div>
+      <div class="sustain-num">+25%</div>
+      <div class="sustain-unit">organic matter increase</div>
+      <div class="sustain-body">Humic acid + seaweed together increase soil organic matter by up to 25%, rebuilding carbon reserves degraded by decades of chemical use.</div>
+    </div>
+    <div class="sustain-card">
+      <div class="sustain-icon">💧</div>
+      <div class="sustain-title">Water Saved</div>
+      <div class="sustain-num">30%</div>
+      <div class="sustain-unit">reduction in irrigation need</div>
+      <div class="sustain-body">Improved water-holding capacity from humic and seaweed granules means 25–30% less irrigation. Critical in drought-prone Gujarat and Karnataka.</div>
+    </div>
+    <div class="sustain-card">
+      <div class="sustain-icon">🐛</div>
+      <div class="sustain-title">Chemicals Displaced</div>
+      <div class="sustain-num">350 MT</div>
+      <div class="sustain-unit">since 2017 across 3 states</div>
+      <div class="sustain-body">Neem oil and biostimulant programmes have collectively displaced an estimated 350 MT of synthetic pesticides and fertilisers since founding.</div>
+    </div>
+    <div class="sustain-card">
+      <div class="sustain-icon">🐝</div>
+      <div class="sustain-title">Pollinator-Safe</div>
+      <div class="sustain-num">100%</div>
+      <div class="sustain-unit">products safe for bees & birds</div>
+      <div class="sustain-body">Every AgroCare product is safe for bees, butterflies, earthworms, and birds — preserving farm biodiversity that supports long-term yields.</div>
+    </div>
+    <div class="sustain-card">
+      <div class="sustain-icon">🦠</div>
+      <div class="sustain-title">Microbial Diversity</div>
+      <div class="sustain-num">1.16×</div>
+      <div class="sustain-unit">increase in beneficial bacteria</div>
+      <div class="sustain-body">Humic acid stimulates Firmicutes and other beneficial bacteria up to 1.16× in treated soils, restoring the soil ecosystem chemical farming destroys.</div>
+    </div>
+    <div class="sustain-card">
+      <div class="sustain-icon">🌊</div>
+      <div class="sustain-title">Ocean-Farmed Base</div>
+      <div class="sustain-num">Renewable</div>
+      <div class="sustain-unit">no land use · no freshwater</div>
+      <div class="sustain-body">All seaweed raw materials (Ascophyllum nodosum, Kappaphycus, Sargassum) are sustainably ocean-farmed — requiring zero agricultural land to produce.</div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- TIMELINE -->
+<section class="section">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+    <div>
+      <p class="section-eyebrow">8-Year Journey</p>
+      <h2 class="section-title">From Una to<br><em>all of India</em></h2>
+      <p class="section-body">What started as a single seaweed product in a small Gujarat town is now a three-state organic input company with ISO certification and 200+ farmer relationships.</p>
+    </div>
+    <div class="timeline" style="padding-top:1rem">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2017</div>
+        <div class="timeline-title">Founded in Una, Gujarat</div>
+        <div class="timeline-body">First product: Ascophyllum nodosum seaweed liquid. 40 farmers in Bhavnagar district.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2019</div>
+        <div class="timeline-title">Granules & Gel launched</div>
+        <div class="timeline-body">Energy Balls and seaweed gel added. 5 Gujarat districts, 90+ farmers.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2021</div>
+        <div class="timeline-title">Humic acid & Neem Oil range</div>
+        <div class="timeline-body">Power Gold, Potassium Humate, Neem Oil. IndiaMART presence. 150+ farmers.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2022</div>
+        <div class="timeline-title">Karnataka expansion</div>
+        <div class="timeline-body">Entered South India. Kolar, Vijayapura, Tumkur, Dharwad districts. Tomato, grape, paddy crops.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2023</div>
+        <div class="timeline-title">ISO 9001:2015 · UP expansion</div>
+        <div class="timeline-body">ISO certified. Entered Uttar Pradesh (Lucknow, Kanpur, Varanasi). 200+ farmers milestone.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2025</div>
+      <div class="timeline-title">3 states · 200+ farmers</div>
+      <div class="timeline-body">500 MT/month capacity. 10 product lines. 350 MT chemicals replaced. Maharashtra expansion planned.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-title">Ready to add your farm<br>to the <em>impact story?</em></h2>
+  <p class="cta-sub">Gujarat, Karnataka, UP — wherever you farm, our team is ready to recommend the right inputs for your crop and soil.</p>
+  <div class="cta-buttons">
+    <a href="https://wa.me/919427205179" class="btn-primary">WhatsApp Us — +91 94272 05179</a>
+    <a href="https://www.indiamart.com/agrocare-una/" class="btn-outline">Visit IndiaMART Store →</a>
+  </div>
+</section>
+
+<footer>
+  <div>© 2025 AgroCare · Una, Gujarat · AgroCare.co.in</div>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="https://wa.me/919427205179">WhatsApp</a>
+    <a href="https://www.indiamart.com/agrocare-una/">IndiaMART</a>
+    <a href="products.html">Products</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+<script>
+  const fills = document.querySelectorAll('.bar-fill');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.dataset.width + '%';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  fills.forEach(f => io.observe(f));
+</script>
+</body>
+</html>
