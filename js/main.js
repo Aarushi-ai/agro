@@ -1234,6 +1234,27 @@
     });
   }
 
+  function renderEnquiryFormStatus(formStatus, statusEl) {
+    if (!statusEl) return;
+
+    if (formStatus === "loading") {
+      statusEl.innerHTML = `<div style="margin-top:14px;padding:14px 18px;border-radius:12px;background:#e8f5e8;border:1px solid rgba(45,80,22,0.2);color:#2d5016;font-size:14px;display:flex;align-items:center;gap:10px;font-family:Nunito,sans-serif"><span style="display:inline-block;animation:spin 1s linear infinite">🌱</span>Submitting your enquiry...</div>`;
+      return;
+    }
+
+    if (formStatus === "success") {
+      statusEl.innerHTML = `<div style="margin-top:14px;padding:18px 20px;border-radius:12px;background:#e8f5e8;border:2px solid #2d5016;font-family:Nunito,sans-serif"><div style="font-weight:700;font-size:16px;color:#1a3d08;margin-bottom:6px">✅ Enquiry Submitted Successfully!</div><div style="color:#3d6b1f;font-size:14px;line-height:1.6">You will receive a WhatsApp confirmation shortly. Our team will reach out to you soon. 🌿</div></div>`;
+      return;
+    }
+
+    if (formStatus === "error") {
+      statusEl.innerHTML = `<div style="margin-top:14px;padding:14px 18px;border-radius:12px;background:#fff8f0;border:1px solid rgba(180,80,0,0.25);color:#8b3a00;font-size:14px;font-family:Nunito,sans-serif">⚠️ Something went wrong. Please try again or WhatsApp us directly at <strong>+91-9427205179</strong></div>`;
+      return;
+    }
+
+    statusEl.innerHTML = "";
+  }
+
   function initEnquiryForm() {
     const form = document.getElementById("enquiry-form");
     if (!form) return;
@@ -1245,41 +1266,51 @@
       messageField.value = decodeURIComponent(prefill.replace(/\+/g, " "));
     }
 
-    const statusEl = document.getElementById("enquiry-status");
+    const statusEl = document.getElementById("enquiry-form-status");
     const submitBtn = form.querySelector('[type="submit"]');
     const defaultBtnText = submitBtn?.textContent || "Send Enquiry →";
+    let formStatus = null;
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const name = form.querySelector("#enquiry-name")?.value?.trim();
       const phone = form.querySelector("#enquiry-phone")?.value?.trim();
-      const product = form.querySelector("#enquiry-product")?.value?.trim();
+      const subject = form.querySelector("#enquiry-product")?.value?.trim();
       const message = form.querySelector("#enquiry-message")?.value?.trim();
 
-      if (!name || !phone || !product || !message) {
+      if (!name || !phone || !subject || !message) {
+        formStatus = "error";
+        renderEnquiryFormStatus(formStatus, statusEl);
         if (statusEl) {
-          statusEl.style.display = "block";
-          statusEl.className = "form-status form-status--error";
-          statusEl.textContent = "Please fill in all required fields.";
+          statusEl.innerHTML = `<div style="margin-top:14px;padding:14px 18px;border-radius:12px;background:#fff8f0;border:1px solid rgba(180,80,0,0.25);color:#8b3a00;font-size:14px;font-family:Nunito,sans-serif">Please fill in all required fields.</div>`;
         }
         return;
       }
+
+      formStatus = "loading";
+      renderEnquiryFormStatus(formStatus, statusEl);
 
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = "Sending…";
       }
 
-      const text =
-        `Hello AgroCare 🌱\n\nNew Enquiry from your website:\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Subject:* ${product}\n*Message:* ${message}\n\n_Sent from AgroCare website_`;
-      window.open(`https://wa.me/${AGRO_WA_NUMBER}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
-      form.reset();
-
-      if (statusEl) {
-        statusEl.style.display = "block";
-        statusEl.className = "form-status form-status--success";
-        statusEl.textContent = "✅ WhatsApp opened! Please send the message to complete your enquiry.";
+      try {
+        const { handleEnquirySubmit } = await import("../src/utils/enquiryHandler.js");
+        await handleEnquirySubmit({ name, phone, subject, message });
+        formStatus = "success";
+        renderEnquiryFormStatus(formStatus, statusEl);
+        form.querySelector("#enquiry-name").value = "";
+        form.querySelector("#enquiry-phone").value = "";
+        form.querySelector("#enquiry-product").value = "";
+        form.querySelector("#enquiry-message").value = "";
+        const emailField = form.querySelector("#enquiry-email");
+        if (emailField) emailField.value = "";
+      } catch (err) {
+        console.error("[Agrocare Form Error]:", err);
+        formStatus = "error";
+        renderEnquiryFormStatus(formStatus, statusEl);
       }
 
       if (submitBtn) {
