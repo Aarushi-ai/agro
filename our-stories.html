@@ -12,20 +12,20 @@
   <style>
     body { background: var(--bg-primary); }
     .os-hero {
-      background: var(--bg-dark);
+      background: linear-gradient(180deg, #ebd9a0 0%, var(--bg-primary) 100%);
       padding: clamp(5rem, 12vw, 7rem) var(--gutter) 3.5rem;
       text-align: center;
     }
     .os-hero h1 {
       font-family: "Cormorant Garamond", serif;
       font-size: clamp(2.2rem, 5vw, 3.4rem);
-      color: #f8f9fa;
+      color: var(--text-primary);
       font-weight: 300;
       max-width: 18ch;
       margin: 0.75rem auto 0;
       line-height: 1.15;
     }
-    .os-hero p { color: rgba(248,249,250,0.7); margin-top: 1rem; }
+    .os-hero p { color: var(--text-muted); margin-top: 1rem; }
     .os-video-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -46,12 +46,12 @@
     .os-video-copy h2 {
       font-family: "Cormorant Garamond", serif;
       font-size: clamp(1.5rem, 3vw, 2rem);
-      color: #f8f9fa;
+      color: var(--text-primary);
       margin: 0.75rem 0 1rem;
       font-weight: 400;
       line-height: 1.3;
     }
-    .os-video-copy p { color: rgba(248,249,250,0.78); line-height: 1.75; font-size: 1.02rem; }
+    .os-video-copy p { color: var(--text-muted); line-height: 1.75; font-size: 1.02rem; }
     .os-section-label {
       text-align: center;
       color: #74c69d;
@@ -64,7 +64,7 @@
       text-align: center;
       font-family: "Cormorant Garamond", serif;
       font-size: clamp(1.75rem, 3vw, 2.25rem);
-      color: #f8f9fa;
+      color: var(--text-primary);
       margin-bottom: 2rem;
       font-weight: 400;
     }
@@ -80,8 +80,10 @@
       position: relative;
       border-radius: 0.85rem;
       overflow: hidden;
-      background: var(--bg-dark);
+      background: #fff;
       min-height: 180px;
+      box-shadow: 0 4px 20px rgba(45, 54, 30, 0.1);
+      border: 1px solid rgba(74, 93, 35, 0.1);
     }
     .mag-item img, .mag-item video { width: 100%; height: 100%; object-fit: cover; min-height: 180px; display: block; }
     .mag-item--a { grid-column: span 5; grid-row: span 2; min-height: 360px; }
@@ -112,26 +114,29 @@
     .board-pin .stars { color: #52b788; margin-top: 0.6rem; font-size: 0.85rem; text-align: center; }
     .written-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 1.25rem;
       max-width: 1100px;
       margin: 0 auto;
       padding: 0 var(--gutter) 3.5rem;
     }
     .written-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(116,198,157,0.2);
+      background: #fff;
+      border: 1px solid rgba(74, 93, 35, 0.12);
       border-radius: 1rem;
       padding: 1.5rem;
+      box-shadow: 0 4px 16px rgba(45, 54, 30, 0.08);
     }
     .written-card img {
-      width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
-      border: 2px solid #74c69d; margin-bottom: 1rem;
+      width: 100%; height: 200px; border-radius: 10px;
+      object-fit: contain; object-position: center top;
+      background: var(--bg-secondary, #ebd9a0);
+      border: none; margin-bottom: 1rem;
     }
-    .written-card h3 { font-family: "Cormorant Garamond", serif; color: #f8f9fa; font-size: 1.2rem; margin-bottom: 0.2rem; }
-    .written-card .loc { color: #74c69d; font-size: 0.8rem; margin-bottom: 0.65rem; }
+    .written-card h3 { font-family: "Cormorant Garamond", serif; color: var(--text-primary); font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .written-card .loc { color: var(--accent-primary); font-size: 0.8rem; margin-bottom: 0.65rem; }
     .written-card .stars { color: #52b788; margin-bottom: 0.65rem; }
-    .written-card p { color: rgba(248,249,250,0.78); font-size: 0.92rem; line-height: 1.65; font-style: italic; }
+    .written-card p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.65; font-style: italic; }
     .os-social {
       text-align: center;
       padding: 3rem var(--gutter);
@@ -210,14 +215,85 @@
 
     <p class="os-section-label">Faces of AgroCare</p>
     <h2 class="os-section-title">Happy Farmer · AgroCare Family</h2>
-    <div class="magazine-grid">
-      <div class="mag-item mag-item--a"><video autoplay loop playsinline controls src="assets/our story/h_farmers- 1.mp4" aria-label="Happy farmer"></video></div>
-      <div class="mag-item mag-item--b"><video autoplay loop playsinline controls src="assets/our story/h_farmers-2.mp4" aria-label="Happy farmer"></video></div>
-      <div class="mag-item mag-item--c"><video autoplay loop playsinline controls src="assets/our story/h_farmer-3.mp4" aria-label="Happy farmer"></video></div>
-      <div class="mag-item mag-item--d"><video autoplay loop playsinline controls src="assets/our story/h_farmer-4.mp4" aria-label="Happy farmer"></video></div>
-      <div class="mag-item mag-item--e"><img src="assets/images/farmers/farmer-bilaspur.jpg" alt="AgroCare farmer"/></div>
-      <div class="mag-item mag-item--f"><img src="assets/images/farmers/farmer-rajkot.jpg" alt="AgroCare farmer"/></div>
+    <div style="max-width:1100px;margin:0 auto;padding:0 var(--gutter) 3.5rem">
+      <div style="background:#8B6914;border-radius:16px;padding:32px 24px;box-shadow:inset 0 2px 8px rgba(0,0,0,0.3),0 8px 32px rgba(0,0,0,0.2);background-image:repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(0,0,0,0.05) 31px,rgba(0,0,0,0.05) 32px),repeating-linear-gradient(90deg,transparent,transparent 31px,rgba(0,0,0,0.05) 31px,rgba(0,0,0,0.05) 32px)">
+        <div style="text-align:center;margin-bottom:28px;position:relative">
+          <div style="display:inline-block;background:#fdf6ec;padding:8px 24px;border-radius:4px;box-shadow:0 4px 12px rgba(0,0,0,0.3);transform:rotate(-1deg);font-family:'Playfair Display',Georgia,serif;font-size:18px;color:#1c3a0f;font-weight:600">📌 AgroCare Farmer Stories</div>
+        </div>
+        <div id="facesBulletinGrid" style="columns:3 280px;gap:16px;column-fill:balance"></div>
+      </div>
     </div>
+    <script>
+    (function () {
+      var rotations = [-2, 1, -1, 2, -0.5, 1.5, -1.5, 0.5];
+      var pinColors = ['#c0392b', '#2d5016', '#8b6410', '#1a3d8f', '#c0392b'];
+      var media = [
+        { type: 'image', src: 'assets/our story/our story-1.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'video', src: 'assets/our story/h_farmers-2.mp4', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'video', src: 'assets/our story/h_farmers- 1.mp4', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'video', src: 'assets/our story/our story-6.mp4', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our story/our story-7.mp4', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our story/our story-8.mp4', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our story/our story-9.mp4', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our story/our story-10.mp4', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our story/h_farmer-3.mp4', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'video', src: 'assets/our story/h_farmer-4.mp4', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-1.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-2.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-3.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-4.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-5.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-6.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-bilaspur.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-songadh.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-rajkot.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-una.jpg', caption: 'Happy Farmer · AgroCare Family' }
+      ];
+      var grid = document.getElementById('facesBulletinGrid');
+      if (!grid) return;
+      media.forEach(function (item, i) {
+        var rot = rotations[i % rotations.length];
+        var pin = pinColors[i % pinColors.length];
+        var card = document.createElement('div');
+        card.style.cssText = 'break-inside:avoid;margin-bottom:16px;background:#fdf6ec;border-radius:' + (item.type === 'video' ? '8px' : '4px') + ';padding:8px' + (item.type === 'image' ? ' 8px 24px' : '') + ';box-shadow:4px 4px 12px rgba(0,0,0,0.3)' + (item.type === 'video' ? ',0 0 0 1px rgba(0,0,0,0.1)' : '') + ';transform:rotate(' + rot + 'deg);transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;position:relative;z-index:1';
+        card.onmouseenter = function () {
+          card.style.transform = 'rotate(0deg) scale(1.03)';
+          card.style.boxShadow = '8px 8px 24px rgba(0,0,0,0.4)';
+          card.style.zIndex = '10';
+        };
+        card.onmouseleave = function () {
+          card.style.transform = 'rotate(' + rot + 'deg)';
+          card.style.boxShadow = '4px 4px 12px rgba(0,0,0,0.3)';
+          card.style.zIndex = '1';
+        };
+        var pinEl = document.createElement('div');
+        pinEl.style.cssText = 'position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:' + (item.type === 'video' ? '16' : '14') + 'px;height:' + (item.type === 'video' ? '16' : '14') + 'px;border-radius:50%;background:' + pin + ';box-shadow:0 2px 4px rgba(0,0,0,0.' + (item.type === 'video' ? '4' : '3') + ');z-index:2';
+        card.appendChild(pinEl);
+        if (item.type === 'video') {
+          var video = document.createElement('video');
+          video.controls = true;
+          video.playsInline = true;
+          video.style.cssText = 'width:100%;border-radius:4px;display:block;max-height:240px;object-fit:cover';
+          var source = document.createElement('source');
+          source.src = item.src;
+          source.type = 'video/mp4';
+          video.appendChild(source);
+          card.appendChild(video);
+        } else {
+          var img = document.createElement('img');
+          img.src = item.src;
+          img.alt = 'AgroCare farmer';
+          img.style.cssText = 'width:100%;border-radius:2px;display:block';
+          card.appendChild(img);
+        }
+        var cap = document.createElement('p');
+        cap.style.cssText = 'text-align:center;font-size:11px;color:#6b7c52;margin:6px 0 0;font-style:italic';
+        cap.textContent = item.caption;
+        card.appendChild(cap);
+        grid.appendChild(card);
+      });
+    })();
+    </script>
 
     <p class="os-section-label">From the Community</p>
     <h2 class="os-section-title">Reviews from Platforms</h2>
@@ -231,48 +307,85 @@
     <h2 class="os-section-title">Written Reviews</h2>
     <div class="written-grid">
       <article class="written-card">
-        <img src="assets/images/farmers/farmer-1.jpg" alt="Rameshbhai Patel"/>
-        <h3>Rameshbhai Patel</h3>
-        <p class="loc">Bilaspur</p>
+        <img src="assets/our story/our story-2.jpg" alt="Potassium Humate review"/>
+        <h3>Ramesh Patel</h3>
+        <p class="loc">Anand, Gujarat · Potassium Humate 98%</p>
         <div class="stars">★★★★★</div>
-        <p>"After using AgroCare's Energy Balls, my soil health improved dramatically. Production increased by 30%."</p>
+        <p class="review-quote" style="color:#4a5e3a;font-size:13px;font-style:italic;margin:8px 0 0;line-height:1.5"
+           data-english="Used on cotton — yield increased noticeably. Soil feels softer after 2 seasons."
+           data-hindi="कपास पर इस्तेमाल किया — उपज में अच्छी वृद्धि। 2 सीजन बाद मिट्टी मुलायम हो गई।"
+           data-gujarati="Kapas par upayog karyo — utpadan vadhyu. 2 season pachhi jamin namm thayi.">"Used on cotton — yield increased noticeably. Soil feels softer after 2 seasons."</p>
+        <div class="review-lang-row" style="display:flex;gap:4px;margin-top:10px;padding-top:8px;border-top:1px solid rgba(45,80,22,0.1)">
+          <button type="button" class="review-lang-btn active" data-lang="english" style="padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:none;background:#2d5016;color:white;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px">EN</button>
+          <button type="button" class="review-lang-btn" data-lang="hindi" style="padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:1px solid rgba(45,80,22,0.2);background:transparent;color:#6b7c52;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px">हि</button>
+          <button type="button" class="review-lang-btn" data-lang="gujarati" style="padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:1px solid rgba(45,80,22,0.2);background:transparent;color:#6b7c52;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px">ગુ</button>
+        </div>
       </article>
       <article class="written-card">
-        <img src="assets/images/farmers/farmer-2.jpg" alt="Bhaveshbhai Chaudhary"/>
-        <h3>Bhaveshbhai Chaudhary</h3>
-        <p class="loc">Rajkot</p>
-        <div class="stars">★★★★★</div>
-        <p>"VanChetan Taral brought my soil back to life. More yield, less spending — AgroCare is excellent."</p>
-      </article>
-      <article class="written-card">
-        <img src="assets/images/farmers/farmer-3.jpg" alt="Kantibhai Vasava"/>
-        <h3>Kantibhai Vasava</h3>
-        <p class="loc">Songadh</p>
-        <div class="stars">★★★★★</div>
-        <p>"The Neem Oil and Magic Gel combination greatly benefited my crops. Fewer diseases, more fruits."</p>
-      </article>
-      <article class="written-card">
-        <img src="assets/images/farmers/farmer-4.jpg" alt="Maheshbhai Solanki"/>
-        <h3>Maheshbhai Solanki</h3>
-        <p class="loc">Gujarat</p>
-        <div class="stars">★★★★★</div>
-        <p>"After using Humic Acid powder, soil fertility improved greatly. Been with AgroCare for 8 years."</p>
-      </article>
-      <article class="written-card">
-        <img src="assets/images/farmers/farmer-5.jpg" alt="Jayeshbhai Thakor"/>
-        <h3>Jayeshbhai Thakor</h3>
-        <p class="loc">Una, Bhavnagar</p>
-        <div class="stars">★★★★★</div>
-        <p>"Seaweed Granules gave excellent cotton yield. AgroCare products are very trustworthy."</p>
-      </article>
-      <article class="written-card">
-        <img src="assets/images/farmers/farmer-6.jpg" alt="Dinesh Patil"/>
+        <img src="assets/our story/our story-3.jpg" alt="Energy Balls review"/>
         <h3>Dinesh Patil</h3>
-        <p class="loc">Vadodara, Gujarat</p>
+        <p class="loc">Vadodara · Energy Balls</p>
+        <div class="stars">★★★★★</div>
+        <p class="review-quote" style="color:#4a5e3a;font-size:13px;font-style:italic;margin:8px 0 0;line-height:1.5"
+           data-english="Applied Energy Balls at sowing with DAP. Excellent results on chilli crop."
+           data-hindi="बुवाई पर DAP के साथ Energy Balls डाले। मिर्च की फसल पर शानदार नतीजे।"
+           data-gujarati="Vavani vakhte DAP sathe Energy Balls nakya. Marcha ni fasal par khub sarun parinam.">"Applied Energy Balls at sowing with DAP. Excellent results on chilli crop."</p>
+        <div class="review-lang-row" style="display:flex;gap:4px;margin-top:10px;padding-top:8px;border-top:1px solid rgba(45,80,22,0.1)">
+          <button type="button" class="review-lang-btn active" data-lang="english" style="padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:none;background:#2d5016;color:white;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px">EN</button>
+          <button type="button" class="review-lang-btn" data-lang="hindi" style="padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:1px solid rgba(45,80,22,0.2);background:transparent;color:#6b7c52;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px">हि</button>
+          <button type="button" class="review-lang-btn" data-lang="gujarati" style="padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:1px solid rgba(45,80,22,0.2);background:transparent;color:#6b7c52;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px">ગુ</button>
+        </div>
+      </article>
+      <article class="written-card">
+        <img src="assets/our story/our story-4.jpg" alt="Seaweed Liquid review"/>
+        <h3>Manjunath Reddy</h3>
+        <p class="loc">Coimbatore, Tamil Nadu · Seaweed Liquid</p>
+        <div class="stars">★★★★★</div>
+        <p class="review-quote" style="color:#4a5e3a;font-size:13px;font-style:italic;margin:8px 0 0;line-height:1.5"
+           data-english="Used Seaweed Liquid on tomato. Fruit size improved, less cracking. Results in 6 days!"
+           data-hindi="टमाटर पर सीवीड लिक्विड लगाया। फल बड़े हुए, कम फटे। 6 दिन में असर दिखा!"
+           data-gujarati="Tameta par Seaweed Liquid vaparyun. Fal mota thaya, oto ochhun fatyu. 6 divs ma asar!">"Used Seaweed Liquid on tomato. Fruit size improved, less cracking. Results in 6 days!"</p>
+        <div class="review-lang-row" style="display:flex;gap:4px;margin-top:10px;padding-top:8px;border-top:1px solid rgba(45,80,22,0.1)">
+          <button type="button" class="review-lang-btn active" data-lang="english" style="padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:none;background:#2d5016;color:white;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px">EN</button>
+          <button type="button" class="review-lang-btn" data-lang="hindi" style="padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:1px solid rgba(45,80,22,0.2);background:transparent;color:#6b7c52;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px">हि</button>
+          <button type="button" class="review-lang-btn" data-lang="gujarati" style="padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:1px solid rgba(45,80,22,0.2);background:transparent;color:#6b7c52;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px">ગુ</button>
+        </div>
+      </article>
+      <article class="written-card">
+        <img src="assets/our story/our story-5.jpg" alt="Neem Oil review"/>
+        <h3>Haresh Thakor</h3>
+        <p class="loc">Gandhinagar · Neem Oil</p>
         <div class="stars">★★★★☆</div>
-        <p>"Applied Energy Balls at sowing with great results on my chilli crop. Soil water retention improved noticeably."</p>
+        <p class="review-quote" style="color:#4a5e3a;font-size:13px;font-style:italic;margin:8px 0 0;line-height:1.5"
+           data-english="Whitefly problem on tomato solved in just 2 sprays of Neem Oil. Very happy!"
+           data-hindi="Neem Oil के 2 छिड़काव में टमाटर की सफ़ेद मक्खी की समस्या हल हो गई!"
+           data-gujarati="Neem Oil na 2 chhantikaran ma tameta ni safed machi ni samasya hal thayi!">"Whitefly problem on tomato solved in just 2 sprays of Neem Oil. Very happy!"</p>
+        <div class="review-lang-row" style="display:flex;gap:4px;margin-top:10px;padding-top:8px;border-top:1px solid rgba(45,80,22,0.1)">
+          <button type="button" class="review-lang-btn active" data-lang="english" style="padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:none;background:#2d5016;color:white;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px">EN</button>
+          <button type="button" class="review-lang-btn" data-lang="hindi" style="padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:1px solid rgba(45,80,22,0.2);background:transparent;color:#6b7c52;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px">हि</button>
+          <button type="button" class="review-lang-btn" data-lang="gujarati" style="padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:1px solid rgba(45,80,22,0.2);background:transparent;color:#6b7c52;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px">ગુ</button>
+        </div>
       </article>
     </div>
+    <script>
+    document.querySelectorAll('.written-card').forEach(function (card) {
+      var quote = card.querySelector('.review-quote');
+      if (!quote) return;
+      card.querySelectorAll('.review-lang-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var lang = btn.getAttribute('data-lang');
+          quote.textContent = '"' + quote.getAttribute('data-' + lang) + '"';
+          card.querySelectorAll('.review-lang-btn').forEach(function (b) {
+            var on = b === btn;
+            b.classList.toggle('active', on);
+            b.style.background = on ? '#2d5016' : 'transparent';
+            b.style.color = on ? 'white' : '#6b7c52';
+            b.style.border = on ? 'none' : '1px solid rgba(45,80,22,0.2)';
+          });
+        });
+      });
+    });
+    </script>
 
     <section class="os-social">
       <h3>Follow our journey</h3>
