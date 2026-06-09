@@ -5,7 +5,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap");
 
 :root {
-  --color-cream: #ffffff;
+  --color-cream: #F5EED8;
+  --color-page-green: #6B8F5E;
   --color-dark-teal: #1A3A38;
   --color-mid-teal: #2A5A54;
   --color-sage: #6B8F5E;
@@ -15,8 +16,8 @@
   --color-text-dark: #1A3A38;
   --color-text-mid: #4A6741;
   --color-text-muted: #7A8C6E;
-  --color-card-green: #ffffff;
-  --color-card-teal: #ffffff;
+  --color-card-green: #F5EED8;
+  --color-card-teal: #F5EED8;
   --color-border: #C8D8B8;
 
   --color-primary-green: var(--color-sage);
@@ -26,7 +27,7 @@
   /* Aliases used across components */
   --c-bg: var(--color-bg-light);
   --c-white: #ffffff;
-  --c-surface: #ffffff;
+  --c-surface: #F5EED8;
   --c-primary: var(--color-sage);
   --c-accent: var(--color-accent-red);
   --c-text: var(--color-text-dark);
@@ -37,7 +38,7 @@
   --c-sage: var(--color-sage);
   --c-sage-deep: var(--color-dark-teal);
   --c-sage-dark: var(--color-dark-teal);
-  --c-sage-mist: #ffffff;
+  --c-sage-mist: #F5EED8;
 
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
@@ -804,10 +805,10 @@ header,
 [class*="nav"],
 [class*="header"],
 [class*="Navbar"] {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
-  border-bottom: 1px solid rgba(74, 94, 42, 0.12) !important;
-  color: #1c3a0f !important;
+  background: var(--color-cream) !important;
+  background-color: var(--color-cream) !important;
+  border-bottom: 2.5px solid var(--color-dark-teal) !important;
+  color: var(--color-text-dark) !important;
 }
 
 section {
@@ -815,34 +816,34 @@ section {
 }
 
 section:nth-child(even) {
-  background-color: #ffffff !important;
+  background-color: var(--color-cream) !important;
 }
 
 section:nth-child(odd) {
-  background-color: #ffffff !important;
+  background-color: var(--color-cream) !important;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #ffffff;
+    --bg-primary: var(--color-cream);
+    --bg-secondary: var(--color-cream);
     --bg-card: #ffffff;
     --text-primary: #1A3A38;
     --text-secondary: #4A6741;
     --text-muted: #7A8C6E;
     --border: var(--color-border);
-    --color-bg-light: #ffffff;
+    --color-bg-light: var(--color-cream);
     --color-text-dark: #1A3A38;
   }
 
   body {
-    background-color: #ffffff !important;
+    background-color: var(--color-cream) !important;
     color: #1A3A38 !important;
   }
 
   nav,
   header,
   .navbar {
-    background: #ffffff !important;
+    background: var(--color-cream) !important;
   }
 }

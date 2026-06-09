@@ -31,16 +31,16 @@
   };
 
   const IMAGE_MAP = {
-    "vanchetan-davya": "assets/images/products/van chetan dravya.jpg",
-    "energy-balls": "assets/images/products/Magic Balls.jpg",
-    "seaweed-liquid": "assets/images/products/seaweed liquid.jpg",
-    "powder-seaweed-extract": "assets/images/products/Powder Seaweed Extract Fertilizer.jpg",
-    "seaweed-gel": "assets/images/products/seaweed gel.jpg",
-    "potassium-humate": "assets/images/products/potassium humate.jpg",
-    "humic-acid-fco": "assets/images/products/Humic Granuels.jpeg",
-    "neem-oil": "assets/images/products/neem oil.jpg",
-    "boron-21": "assets/images/products/boron.jpg",
-    "fulvic-acid": "assets/images/products/Fulvic Acid Fertilizer.jpg",
+    "vanchetan-davya": "assets/images/products/van chetan dravya.webp",
+    "energy-balls": "assets/images/products/Magic Balls.webp",
+    "seaweed-liquid": "assets/images/products/seaweed liquid.webp",
+    "powder-seaweed-extract": "assets/images/products/Powder Seaweed Extract Fertilizer.webp",
+    "seaweed-gel": "assets/images/products/seaweed gel.webp",
+    "potassium-humate": "assets/images/products/potassium humate.webp",
+    "humic-acid-fco": "assets/images/products/Humic Granuels.webp",
+    "neem-oil": "assets/images/products/neem oil.webp",
+    "boron-21": "assets/images/products/boron.webp",
+    "fulvic-acid": "assets/images/products/Fulvic Acid Fertilizer.webp",
     "combo-solution": null,
   };
 

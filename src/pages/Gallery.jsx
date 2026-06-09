@@ -1,19 +1,19 @@
 import { useState } from "react";
 
 const galleryImages = [
-  "assets/gallery/farmer.jpg",
-  "assets/gallery/WhatsApp Image 2026-05-29 at 22.52.05.jpeg",
+  "assets/gallery/farmer.webp",
+  "assets/gallery/WhatsApp Image 2026-05-29 at 22.52.05.webp",
 ];
 
 export default function Gallery() {
   const [selected, setSelected] = useState(null);
   return (
-    <main style={{ background: "#ffffff", minHeight: "100vh", fontFamily: "DM Sans, sans-serif" }}>
+    <main style={{ background: "#F5EED8", minHeight: "100vh", fontFamily: "DM Sans, sans-serif" }}>
       <section
         style={{
           padding: "100px 24px 60px",
           textAlign: "center",
-          background: "#ffffff",
+          background: "#F5EED8",
         }}
       >
         <p

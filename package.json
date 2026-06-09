@@ -1,4 +1,7 @@
 {
   "name": "agro",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "sharp": "^0.34.5"
+  }
 }

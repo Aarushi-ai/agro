@@ -1,6 +1,7 @@
 :root {
-  --color-cream: #ffffff;
+  --color-cream: #F5EED8;
   --color-dark-teal: #1A3A38;
+  --color-page-green: #6B8F5E;
   --color-mid-teal: #2A5A54;
   --color-sage: #6B8F5E;
   --color-sage-light: #8BAF7A;
@@ -9,25 +10,25 @@
   --color-text-dark: #1A3A38;
   --color-text-mid: #4A6741;
   --color-text-muted: #7A8C6E;
-  --color-card-green: #ffffff;
-  --color-card-teal: #ffffff;
+  --color-card-green: #F5EED8;
+  --color-card-teal: #F5EED8;
   --color-border: #C8D8B8;
 
   --bg: var(--color-cream);
   --bg-card: #ffffff;
-  --bg-card2: #ffffff;
-  --bg-section-alt: #ffffff;
+  --bg-card2: #F5EED8;
+  --bg-section-alt: #F5EED8;
   --bg-primary: var(--color-cream);
-  --bg-secondary: #ffffff;
+  --bg-secondary: var(--color-cream);
   --bg-dark: var(--color-dark-teal);
   --green-dark: var(--color-dark-teal);
   --green-mid: var(--color-sage);
   --green-light: var(--color-sage-light);
   --green-pale: var(--color-card-green);
   --gold: var(--color-gold);
-  --gold-pale: #FFF8E8;
+  --gold-pale: #F5EED8;
   --terracotta: var(--color-dark-teal);
-  --terra-pale: #FFF8E8;
+  --terra-pale: #F5EED8;
   --sky: var(--color-mid-teal);
   --sky-pale: var(--color-card-teal);
   --text-primary: var(--color-text-dark);
@@ -58,7 +59,7 @@ h5 {
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-primary: var(--color-cream);
-    --bg-secondary: #ffffff;
+    --bg-secondary: var(--color-cream);
     --bg-card: #ffffff;
     --text-primary: var(--color-text-dark);
     --text-secondary: var(--color-text-mid);

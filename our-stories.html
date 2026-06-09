@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/styles.css?v=20260609"/>
   <style>
     body { background: var(--bg-primary); }
     .os-hero {
-      background: linear-gradient(180deg, #ffffff 0%, var(--bg-primary) 100%);
+      background: linear-gradient(180deg, #F5EED8 0%, var(--bg-primary) 100%);
       padding: clamp(5rem, 12vw, 7rem) var(--gutter) 3.5rem;
       text-align: center;
     }
@@ -130,7 +130,7 @@
     .written-card img {
       width: 100%; height: 200px; border-radius: 10px;
       object-fit: contain; object-position: center top;
-      background: var(--bg-secondary, #ffffff);
+      background: var(--bg-secondary, #F5EED8);
       border: none; margin-bottom: 1rem;
     }
     .written-card h3 { font-family: "Cormorant Garamond", serif; color: var(--text-primary); font-size: 1.2rem; margin-bottom: 0.2rem; }
@@ -170,7 +170,7 @@
 <body>
   <header id="site-header">
     <a href="index.html" class="nav-logo" aria-label="Agrocare Home">
-      <img src="assets/logo/agrocare-logo.png" alt="Agrocare" style="height:40px;width:auto"/>
+      <img src="assets/logo/agrocare-logo.webp" alt="Agrocare" style="height:40px;width:auto"/>
     </a>
     <nav aria-label="Main navigation">
       <ul class="nav-links">
@@ -204,7 +204,7 @@
 
     <section class="os-video-split">
       <div class="os-video-wrap">
-        <video autoplay muted loop playsinline controls preload="metadata" poster="assets/gallery/farmer.jpg" src="assets/videos/Farmers%20Review.mp4" aria-label="Farmer review video"></video>
+        <video autoplay muted loop playsinline controls preload="metadata" poster="assets/gallery/farmer.webp" src="assets/videos/Farmers%20Review.mp4" aria-label="Farmer review video"></video>
       </div>
       <div class="os-video-copy">
         <p class="eyebrow">Farmer Voices</p>
@@ -228,33 +228,33 @@
       var rotations = [-2, 1, -1, 2, -0.5, 1.5, -1.5, 0.5];
       var pinColors = ['#c0392b', '#2d5016', '#8b6410', '#1a3d8f', '#c0392b'];
       var media = [
-        { type: 'image', src: 'assets/our story/our story-1.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'video', src: 'assets/our%20story/h_farmers-2.mp4', poster: 'assets/gallery/gallery-1.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'video', src: 'assets/our%20story/h_farmers-%201.mp4', poster: 'assets/gallery/gallery-2.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'video', src: 'assets/our%20story/our%20story-6.mp4', poster: 'assets/our%20story/our%20story-1.jpg', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our%20story/our%20story-7.mp4', poster: 'assets/our%20story/our%20story-2.jpg', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our%20story/our%20story-8.mp4', poster: 'assets/our%20story/our%20story-4.jpg', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our%20story/our%20story-9.mp4', poster: 'assets/our%20story/our%20story-5.jpg', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our%20story/our%20story-10.mp4', poster: 'assets/gallery/gallery-3.jpg', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our%20story/our%20story-11.mp4', poster: 'assets/our%20story/our%20story-1.jpg', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our%20story/our%20story-12.mp4', poster: 'assets/our%20story/our%20story-2.jpg', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our%20story/our%20story-13.mp4', poster: 'assets/our%20story/our%20story-4.jpg', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our%20story/our%20story-14.mp4', poster: 'assets/our%20story/our%20story-5.jpg', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our%20story/our%20story-15.mp4', poster: 'assets/gallery/gallery-4.jpg', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our%20story/our%20story-16.mp4', poster: 'assets/gallery/gallery-5.jpg', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our%20story/our%20story-17.mp4', poster: 'assets/gallery/gallery-7.jpg', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/gallery/h_farmer-3.mp4', poster: 'assets/gallery/gallery-1.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'video', src: 'assets/gallery/h_farmer-4.mp4', poster: 'assets/gallery/gallery-2.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'image', src: 'assets/images/farmers/farmer-1.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'image', src: 'assets/images/farmers/farmer-2.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'image', src: 'assets/images/farmers/farmer-3.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'image', src: 'assets/images/farmers/farmer-4.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'image', src: 'assets/images/farmers/farmer-5.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'image', src: 'assets/images/farmers/farmer-6.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'image', src: 'assets/images/farmers/farmer-bilaspur.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'image', src: 'assets/images/farmers/farmer-songadh.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'image', src: 'assets/images/farmers/farmer-rajkot.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'image', src: 'assets/images/farmers/farmer-una.jpg', caption: 'Happy Farmer · AgroCare Family' }
+        { type: 'image', src: 'assets/our story/our story-1.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'video', src: 'assets/our%20story/h_farmers-2.mp4', poster: 'assets/gallery/gallery-1.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'video', src: 'assets/our%20story/h_farmers-%201.mp4', poster: 'assets/gallery/gallery-2.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'video', src: 'assets/our%20story/our%20story-6.mp4', poster: 'assets/our%20story/our%20story-1.webp', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-7.mp4', poster: 'assets/our%20story/our%20story-2.webp', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-8.mp4', poster: 'assets/our%20story/our%20story-4.webp', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-9.mp4', poster: 'assets/our%20story/our%20story-5.webp', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-10.mp4', poster: 'assets/gallery/gallery-3.webp', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-11.mp4', poster: 'assets/our%20story/our%20story-1.webp', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-12.mp4', poster: 'assets/our%20story/our%20story-2.webp', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-13.mp4', poster: 'assets/our%20story/our%20story-4.webp', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-14.mp4', poster: 'assets/our%20story/our%20story-5.webp', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-15.mp4', poster: 'assets/gallery/gallery-4.webp', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-16.mp4', poster: 'assets/gallery/gallery-5.webp', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-17.mp4', poster: 'assets/gallery/gallery-7.webp', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/gallery/h_farmer-3.mp4', poster: 'assets/gallery/gallery-1.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'video', src: 'assets/gallery/h_farmer-4.mp4', poster: 'assets/gallery/gallery-2.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-1.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-2.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-3.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-4.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-5.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-6.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-bilaspur.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-songadh.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-rajkot.webp', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'image', src: 'assets/images/farmers/farmer-una.webp', caption: 'Happy Farmer · AgroCare Family' }
       ];
       var grid = document.getElementById('facesBulletinGrid');
       if (!grid) return;
@@ -304,16 +304,16 @@
     <p class="os-section-label">From the Community</p>
     <h2 class="os-section-title">Reviews from Platforms</h2>
     <div class="board-wall" id="reviewBoard">
-      <div class="board-pin" style="transform:rotate(-2.5deg)"><img src="assets/our story/review-1.jpg" alt="Platform review screenshot"/><div class="stars">★★★★★ Verified review</div></div>
-      <div class="board-pin" style="transform:rotate(1.8deg)"><img src="assets/our story/review-2.jpg" alt="Platform review screenshot"/><div class="stars">★★★★★ Verified review</div></div>
-      <div class="board-pin" style="transform:rotate(-1.2deg)"><img src="assets/our story/review-3.jpg" alt="Platform review screenshot"/><div class="stars">★★★★★ Verified review</div></div>
+      <div class="board-pin" style="transform:rotate(-2.5deg)"><img src="assets/our story/review-1.webp" alt="Platform review screenshot"/><div class="stars">★★★★★ Verified review</div></div>
+      <div class="board-pin" style="transform:rotate(1.8deg)"><img src="assets/our story/review-2.webp" alt="Platform review screenshot"/><div class="stars">★★★★★ Verified review</div></div>
+      <div class="board-pin" style="transform:rotate(-1.2deg)"><img src="assets/our story/review-3.webp" alt="Platform review screenshot"/><div class="stars">★★★★★ Verified review</div></div>
     </div>
 
     <p class="os-section-label">In Their Words</p>
     <h2 class="os-section-title">Written Reviews</h2>
     <div class="written-grid">
       <article class="written-card">
-        <img src="assets/our story/our story-2.jpg" alt="Potassium Humate review"/>
+        <img src="assets/our story/our story-2.webp" alt="Potassium Humate review"/>
         <h3>Ramesh Patel</h3>
         <p class="loc">Anand, Gujarat · Potassium Humate 98%</p>
         <div class="stars">★★★★★</div>
@@ -328,7 +328,7 @@
         </div>
       </article>
       <article class="written-card">
-        <img src="assets/our story/our story-3.jpg" alt="Energy Balls review"/>
+        <img src="assets/our story/our story-3.webp" alt="Energy Balls review"/>
         <h3>Dinesh Patil</h3>
         <p class="loc">Vadodara · Energy Balls</p>
         <div class="stars">★★★★★</div>
@@ -343,7 +343,7 @@
         </div>
       </article>
       <article class="written-card">
-        <img src="assets/our story/our story-4.jpg" alt="Seaweed Liquid review"/>
+        <img src="assets/our story/our story-4.webp" alt="Seaweed Liquid review"/>
         <h3>Manjunath Reddy</h3>
         <p class="loc">Coimbatore, Tamil Nadu · Seaweed Liquid</p>
         <div class="stars">★★★★★</div>
@@ -358,7 +358,7 @@
         </div>
       </article>
       <article class="written-card">
-        <img src="assets/our story/our story-5.jpg" alt="Neem Oil review"/>
+        <img src="assets/our story/our story-5.webp" alt="Neem Oil review"/>
         <h3>Haresh Thakor</h3>
         <p class="loc">Gandhinagar · Neem Oil</p>
         <div class="stars">★★★★☆</div>

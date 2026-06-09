@@ -56,12 +56,12 @@ export default function OmniChannels() {
     },
   ];
   return (
-    <main style={{ background: "#ffffff", minHeight: "100vh", fontFamily: "DM Sans,sans-serif" }}>
+    <main style={{ background: "#F5EED8", minHeight: "100vh", fontFamily: "DM Sans,sans-serif" }}>
       <section
         style={{
           padding: "100px 24px 60px",
           textAlign: "center",
-          background: "#ffffff",
+          background: "#F5EED8",
         }}
       >
         <p

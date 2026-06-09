@@ -68,12 +68,12 @@ export default function MarketLinkages() {
     },
   ];
   return (
-    <main style={{ background: "#ffffff", minHeight: "100vh", fontFamily: "DM Sans,sans-serif" }}>
+    <main style={{ background: "#F5EED8", minHeight: "100vh", fontFamily: "DM Sans,sans-serif" }}>
       <section
         style={{
           padding: "100px 24px 60px",
           textAlign: "center",
-          background: "#ffffff",
+          background: "#F5EED8",
         }}
       >
         <p
@@ -139,7 +139,7 @@ export default function MarketLinkages() {
                 display: "inline-block",
                 padding: "4px 12px",
                 borderRadius: "999px",
-                background: "#ffffff",
+                background: "#F5EED8",
                 color: "#2d6a2d",
                 fontSize: "11px",
                 fontWeight: 700,
@@ -172,7 +172,7 @@ export default function MarketLinkages() {
                 <div
                   key={j}
                   style={{
-                    background: "#ffffff",
+                    background: "#F5EED8",
                     borderRadius: "10px",
                     padding: "10px",
                     textAlign: "center",

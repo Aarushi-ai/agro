@@ -844,7 +844,7 @@
      11. DYNAMIC GALLERY (assets/gallery/)
   ═══════════════════════════════════════════════════════════════════ */
 
-  const GALLERY_FALLBACK = ["farmer.jpg", "WhatsApp Image 2026-05-29 at 22.52.05.jpeg"];
+  const GALLERY_FALLBACK = ["farmer.webp", "WhatsApp Image 2026-05-29 at 22.52.05.webp"];
 
   function initHomeGalleryMasonry() {
     const grid = document.getElementById("home-gallery-masonry");
