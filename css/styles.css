@@ -15,34 +15,34 @@
 }
 
 :root {
-  /* Backgrounds — Garden of Cedar warmth */
-  --bg-primary: #faf6ef;
-  --bg-secondary: #f0ebe0;
+  /* Backgrounds — off-white milky cream (no brown tones) */
+  --bg-primary: #faf8f4;
+  --bg-secondary: #f5f3ee;
   --bg-card: #ffffff;
-  --bg-olive: #4a5e2a;
-  --bg-forest: #2d5016;
-  --bg-dark-green: #1a3d08;
-  --bg-tan: #e8dfc8;
-  --bg-cream: #fdf9f3;
+  --bg-olive: #4a5d23;
+  --bg-forest: #4a5d23;
+  --bg-dark-green: #2d361e;
+  --bg-tan: #f0eee8;
+  --bg-cream: #faf8f4;
 
   /* Text */
-  --text-primary: #1c2e0f;
-  --text-secondary: #3d5220;
-  --text-muted: #6b7c52;
-  --text-on-dark: #faf6ef;
-  --text-gold: #8b6410;
+  --text-primary: #2d361e;
+  --text-secondary: #3d4f28;
+  --text-muted: #6b7560;
+  --text-on-dark: #faf8f4;
+  --text-gold: #4a5d23;
 
-  /* Accents — warm amber/gold like Garden of Cedar buttons */
-  --accent-primary: #2d5016;
-  --accent-gold: #c49a1a;
-  --accent-warm: #8b6410;
-  --accent-hover: #3d6b1f;
+  /* Accents — sap green only */
+  --accent-primary: #4a5d23;
+  --accent-gold: #4a5d23;
+  --accent-warm: #3d4f1e;
+  --accent-hover: #5a6f2e;
 
   /* Borders & shadows */
-  --border: rgba(74, 94, 42, 0.18);
-  --shadow-sm: 0 2px 8px rgba(28, 46, 15, 0.08);
-  --shadow-md: 0 8px 32px rgba(28, 46, 15, 0.12);
-  --shadow-lg: 0 20px 60px rgba(28, 46, 15, 0.16);
+  --border: rgba(74, 93, 35, 0.14);
+  --shadow-sm: 0 2px 8px rgba(45, 54, 30, 0.08);
+  --shadow-md: 0 8px 32px rgba(45, 54, 30, 0.12);
+  --shadow-lg: 0 20px 60px rgba(45, 54, 30, 0.16);
 
   /* Legacy aliases (sitewide compatibility) */
   --bg: var(--bg-primary);
@@ -53,9 +53,9 @@
   --green-dark: var(--bg-dark-green);
   --green-mid: var(--accent-primary);
   --green-light: var(--accent-hover);
-  --green-pale: #e8f0dc;
+  --green-pale: #e5e8d4;
   --gold: var(--accent-gold);
-  --gold-pale: #fdf3d7;
+  --gold-pale: #f5e6c8;
   --accent-green: var(--accent-primary);
   --forest: var(--accent-primary);
   --forest-light: var(--accent-hover);
@@ -87,7 +87,7 @@
   --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
   --shadow-soft: var(--shadow-sm);
   --shadow-deep: var(--shadow-lg);
-  --shadow-gold: 0 12px 36px rgba(196, 154, 26, 0.28);
+  --shadow-gold: 0 12px 36px rgba(74, 93, 35, 0.18);
 
   /* Patterns */
   --leaf-pattern: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M36 64V38c-10-6-18-16-18-28 6 8 12 14 18 18 6-4 12-10 18-18-0 12-8 22-18 28z' fill='%232D5A28' fill-opacity='0.05'/%3E%3C/svg%3E");
@@ -252,11 +252,11 @@ ul {
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.06em;
-  color: var(--bg-dark);
+  color: var(--text-on-dark);
   background: var(--accent-gold);
   border: 1px solid var(--accent-gold);
   border-radius: 100px;
-  box-shadow: 0 4px 18px rgba(200, 168, 75, 0.35);
+  box-shadow: 0 4px 18px rgba(74, 93, 35, 0.2);
   transition:
     background 0.3s var(--ease-out),
     transform 0.3s var(--ease-out),
@@ -264,9 +264,9 @@ ul {
 }
 
 .btn-primary:hover {
-  background: #d4bc6a;
+  background: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(200, 168, 75, 0.45);
+  box-shadow: 0 8px 28px rgba(74, 93, 35, 0.25);
 }
 
 .btn-outline {
@@ -517,7 +517,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(165deg, #f5f0e8 0%, #e8f0e4 45%, #dce8d6 100%);
+  background: linear-gradient(165deg, #faf8f4 0%, #f5f3ee 45%, #f0eee8 100%);
   overflow: hidden;
   transition: opacity 0.6s ease;
 }
@@ -973,7 +973,7 @@ body.loaded #loading-screen:not(.hidden) {
   align-items: center;
   gap: 1rem;
   padding: 0 var(--gutter);
-  background: rgba(245, 240, 232, 0.97);
+  background: rgba(250, 248, 244, 0.97);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(26, 77, 46, 0.1);
@@ -1029,7 +1029,7 @@ body.loaded #loading-screen:not(.hidden) {
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(26, 46, 26, 0.7);
+  color: var(--text-secondary);
   white-space: nowrap;
   padding: 0.35rem 0;
   position: relative;
@@ -1235,10 +1235,11 @@ main {
    ───────────────────────────────────────────────────────────────────────── */
 #hero {
   position: relative;
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
-  padding: calc(var(--header-h) + clamp(2rem, 5vw, 3.5rem)) var(--gutter) 0;
+  align-items: center;
+  padding: calc(var(--header-h) + clamp(2.5rem, 5vw, 4rem)) var(--gutter) clamp(2rem, 4vw, 3rem);
   background: var(--bg-primary);
   color: var(--text-primary);
   overflow: hidden;
@@ -1251,7 +1252,7 @@ main {
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  opacity: 0.35;
+  opacity: 0.4;
   pointer-events: none;
 }
 
@@ -1260,12 +1261,11 @@ main {
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(ellipse at 30% 20%, rgba(45, 122, 69, 0.08), transparent 55%),
+    radial-gradient(ellipse at 50% 30%, rgba(250, 248, 244, 0.5), transparent 60%),
     linear-gradient(
-      135deg,
-      rgba(245, 240, 232, 0.85) 0%,
-      rgba(245, 240, 232, 0.4) 50%,
-      rgba(245, 240, 232, 0.1) 100%
+      180deg,
+      rgba(250, 248, 244, 0.92) 0%,
+      rgba(250, 248, 244, 0.88) 100%
     );
   pointer-events: none;
 }
@@ -1273,25 +1273,30 @@ main {
 .hero-inner {
   position: relative;
   z-index: 2;
-  flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: clamp(1.75rem, 3.5vw, 2.75rem);
-  max-width: var(--site-max);
+  max-width: 52rem;
   margin-inline: auto;
   width: 100%;
-  padding-bottom: clamp(4.5rem, 7vw, 5.5rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .hero-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
 }
 
 .hero-col--copy {
   min-width: 0;
+  max-width: 42rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .hero-col--art {
@@ -1302,28 +1307,29 @@ main {
 .hero-eyebrow {
   display: inline-block;
   width: fit-content;
-  margin-bottom: 1.75rem;
+  margin: 0 auto 1.75rem;
   padding: 0.4rem 1rem;
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--accent-gold);
-  border: 1px solid rgba(200, 168, 75, 0.45);
+  color: var(--accent-primary);
+  border: 1px solid rgba(74, 93, 35, 0.25);
   border-radius: 100px;
-  background: rgba(200, 168, 75, 0.08);
+  background: rgba(255, 255, 255, 0.65);
 }
 
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
   font-weight: 500;
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  max-width: 12ch;
-  margin-bottom: 1.5rem;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+  margin: 0 auto 1.25rem;
   color: var(--green-dark);
+  text-align: center;
 }
 
 .hero-headline .hero-word {
@@ -1349,24 +1355,26 @@ body.hero-headline-ready .hero-headline .hero-word {
 
 .hero-sub {
   font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
   font-weight: 400;
-  line-height: 1.7;
-  max-width: 34rem;
+  line-height: 1.75;
+  max-width: 36rem;
   color: var(--text-secondary);
-  margin-bottom: 2.25rem;
+  margin: 0 auto 2rem;
+  text-align: center;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
 }
 
 #hero .btn-primary {
-  background: var(--accent-gold);
-  border-color: var(--accent-gold);
-  color: var(--bg-dark);
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: var(--text-on-dark);
   font-weight: 700;
 }
 
@@ -1385,6 +1393,8 @@ body.hero-headline-ready .hero-headline .hero-word {
 .hero-compare {
   position: relative;
   width: 100%;
+  max-width: 56rem;
+  margin-inline: auto;
   aspect-ratio: 16 / 8;
   border-radius: 20px;
   overflow: hidden;
@@ -1628,9 +1638,9 @@ body.hero-headline-ready .hero-headline .hero-word {
 
 .video-cube-wrapper.photo-field-card {
   aspect-ratio: 3 / 4;
-  background: var(--bg-dark);
-  border: 1px solid rgba(45, 90, 27, 0.15);
-  box-shadow: 0 18px 48px rgba(26, 26, 26, 0.12);
+  background: var(--bg-card);
+  border: 1px solid rgba(74, 93, 35, 0.12);
+  box-shadow: 0 8px 32px rgba(45, 54, 30, 0.08);
 }
 
 .photo-field-card__img {
@@ -3467,17 +3477,17 @@ body.hero-headline-ready .hero-headline .hero-word {
   }
 
   .hero-col--copy {
-    text-align: left;
+    text-align: center;
   }
 
   .hero-eyebrow {
-    margin-inline: 0;
+    margin-inline: auto;
   }
 
   .hero-headline {
-    max-width: none;
-    margin-inline: 0;
-    font-size: clamp(2.5rem, 9vw, 3.25rem);
+    max-width: 18ch;
+    margin-inline: auto;
+    font-size: clamp(2rem, 8vw, 2.75rem);
   }
 
   .hero-sub {
@@ -3820,20 +3830,20 @@ h4 {
   color: var(--text-primary);
 }
 
-/* Elk Ridge style: crisp white navbar */
+/* Garden of Cedar: milky cream navbar */
 nav,
 header[class*="nav"],
 .navbar,
 #site-header {
-  background: #ffffff !important;
-  border-bottom: 1px solid rgba(74, 94, 42, 0.12) !important;
-  box-shadow: 0 2px 16px rgba(28, 46, 15, 0.06) !important;
+  background: var(--bg-primary) !important;
+  border-bottom: 1px solid rgba(74, 93, 35, 0.15) !important;
+  box-shadow: 0 2px 16px rgba(45, 54, 30, 0.06) !important;
 }
 
 nav a,
 .nav-link,
 .nav-links a {
-  color: var(--text-primary) !important;
+  color: var(--text-secondary) !important;
   font-family: "Nunito", sans-serif !important;
   font-weight: 600 !important;
   letter-spacing: 0.5px !important;
@@ -3847,7 +3857,7 @@ a[class*="btn-primary"],
 button[class*="enquire"],
 .btn-cta {
   background: var(--accent-gold) !important;
-  color: #1c2e0f !important;
+  color: var(--text-on-dark) !important;
   border-radius: 999px !important;
   font-family: "Nunito", sans-serif !important;
   font-weight: 700 !important;
@@ -3861,16 +3871,16 @@ button[class*="primary"]:hover,
 a[class*="btn-primary"]:hover {
   background: var(--accent-warm) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px rgba(196, 154, 26, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(74, 93, 35, 0.2) !important;
 }
 
-/* Section alternation like Garden of Cedar */
-section:nth-child(even) {
-  background: var(--bg-tan);
-}
-
+/* Section alternation — soft cream tones only */
 section:nth-child(odd) {
-  background: var(--bg-cream);
+  background: var(--bg-primary);
+}
+
+section:nth-child(even) {
+  background: var(--bg-secondary);
 }
 
 @keyframes spin {
