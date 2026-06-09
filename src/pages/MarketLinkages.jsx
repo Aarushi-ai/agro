@@ -4,7 +4,7 @@ export default function MarketLinkages() {
       name: "IndiaMART B2B Portal",
       type: "Online B2B",
       desc: "Our verified seller profile on IndiaMART connects us with 5 crore+ buyers across India. Submit your bulk enquiry and get a quote within 24 hours.",
-      link: "https://www.indiamart.com/agrocare",
+      link: "https://www.indiamart.com/agrocare-una/",
       stats: [
         { l: "Active Listings", v: "6 Products" },
         { l: "Response Time", v: "< 24 hrs" },
@@ -15,7 +15,7 @@ export default function MarketLinkages() {
       name: "Meesho Direct Sales",
       type: "D2C E-commerce",
       desc: "Individual farmers and home gardeners can order small quantities with home delivery across India. No minimum order.",
-      link: "https://www.meesho.com",
+      link: "https://www.meesho.com/s/p/9wuylx?utm_source=s_wb",
       stats: [
         { l: "Delivery", v: "Pan India" },
         { l: "Min Order", v: "No minimum" },

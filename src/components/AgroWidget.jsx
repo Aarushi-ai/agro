@@ -45,7 +45,7 @@ PRODUCT 1: VanChetan Davya (વનચેતન દ્રવ્ય)
 - Visible result: 7-14 days
 - Dose: 2L per acre in 200L water
 - For: Cotton, Vegetables, Pulses, Wheat, Paddy, Sugarcane, Fruits
-- Buy: WhatsApp only → wa.me/919427205179
+- Buy: WhatsApp only → https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20want%20to%20order%20VanChetan%20Davya.%20Please%20share%20details.
 
 PRODUCT 2: Energy Balls (Seaweed Granules)
 - Form: Granules, Price: ₹150 per 10kg bag (₹15/kg)
@@ -55,8 +55,8 @@ PRODUCT 2: Energy Balls (Seaweed Granules)
 - Slow release: feeds soil 60-90 days from ONE application
 - Dose: 10kg per acre at sowing time
 - For: All crops — Cotton, Paddy, Sugarcane, Vegetables
-- Buy: IndiaMART → indiamart.com/proddetail/sargassum-seaweed-granules-2-fco-grade-2850622755015.html
-  WhatsApp → wa.me/919427205179
+- Buy: IndiaMART → https://www.indiamart.com/proddetail/sargassum-seaweed-granules-2-fco-grade-2850622755015.html
+  WhatsApp → https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20want%20to%20order%20Energy%20Balls%20Seaweed%20Granules.
 
 PRODUCT 3: Seaweed Liquid (VanChetan Taral)
 - Form: Liquid, Price: ₹150/litre
@@ -66,9 +66,9 @@ PRODUCT 3: Seaweed Liquid (VanChetan Taral)
 - Visible result: 5-7 days (deeper green color)
 - Dose: 3-4ml per litre (foliar) or 2L per acre (soil drench)
 - For: Tomato, Chilli, Grapes, Mango, Cotton, Wheat, Flowers
-- Buy: Website → agrocare.co.in/seaweed-extract.html
-  IndiaMART → indiamart.com/proddetail/ascophyllum-nodosum-15-liquid-fco-grade-2850622948630.html
-  WhatsApp → wa.me/919427205179
+- Buy: Website → https://www.agrocare.co.in/seaweed-extract.html
+  IndiaMART → https://www.indiamart.com/proddetail/ascophyllum-nodosum-15-liquid-fco-grade-2850622948630.html
+  WhatsApp → https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20want%20to%20order%20Seaweed%20Liquid.
 
 PRODUCT 4: Seaweed Extract Gel (Magic Gel / Energy Gel)
 - Form: Gel, Price: ₹90/kg (retail 7kg) | 50kg bulk available
@@ -78,8 +78,8 @@ PRODUCT 4: Seaweed Extract Gel (Magic Gel / Energy Gel)
 - Shelf life: 12 months
 - Dose: 5kg per acre | Foliar: 5-10g per litre
 - For: Vegetables, Fruits, Sugarcane, Flowers, Grapes
-- Buy: IndiaMART (50kg) → indiamart.com/proddetail/seaweed-extract-gel-2849560501488.html
-  WhatsApp (7kg retail) → wa.me/919427205179
+- Buy: IndiaMART (50kg) → https://www.indiamart.com/proddetail/seaweed-extract-gel-2849560501488.html
+  WhatsApp (7kg retail) → https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20want%20to%20order%20Seaweed%20Extract%20Gel.
 
 PRODUCT 5: Potassium Humate Shiny Flakes 98%
 - Form: Shiny Flakes, Price: ₹90/kg (1kg retail | 25kg bulk = ₹1500)
@@ -89,9 +89,9 @@ PRODUCT 5: Potassium Humate Shiny Flakes 98%
 - Chemical saving: reduces urea + DAP need by 20-30%
 - Dose: 2kg per acre
 - For: All crops
-- Buy: Meesho → meesho.com/s/p/9wuylx
-  Website → agrocare.co.in/potassium-humate-shiny-flakes.html
-  WhatsApp → wa.me/919427205179
+- Buy: Meesho → https://www.meesho.com/s/p/9wuylx?utm_source=s_wb
+  Website → https://www.agrocare.co.in/potassium-humate-shiny-flakes.html
+  WhatsApp → https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20want%20to%20order%20Potassium%20Humate%2025kg%20bulk.
 
 PRODUCT 6: Humic Acid 5% FCO Grade Powder
 - Form: Powder, Price: ₹90/kg
@@ -101,8 +101,8 @@ PRODUCT 6: Humic Acid 5% FCO Grade Powder
 - Dose: 2-3kg per acre
 - Pack: 1kg | 25kg bulk
 - For: All crops, especially good for Gujarat alkaline soils
-- Buy: Website → agrocare.co.in/humic-aid-powder.html
-  WhatsApp → wa.me/919427205179
+- Buy: Website → https://www.agrocare.co.in/humic-aid-powder.html
+  WhatsApp → https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20want%20to%20order%20Humic%20Acid%20FCO%20Grade%20Powder.
 
 PRODUCT 7: Neem Oil (Cold Pressed, 99% Pure)
 - Form: Liquid, Price: ₹350/litre (250ml = ₹100)
@@ -113,8 +113,8 @@ PRODUCT 7: Neem Oil (Cold Pressed, 99% Pure)
 - Antifungal: controls powdery mildew, downy mildew, rust, blight
 - Residue free: biodegrades in 3-7 days
 - Dose: 3-5ml per litre, spray morning or evening
-- Buy: IndiaMART → indiamart.com/proddetail/250ml-neem-oil-2850623066330.html
-  WhatsApp → wa.me/919427205179
+- Buy: IndiaMART → https://www.indiamart.com/proddetail/250ml-neem-oil-2850623066330.html
+  WhatsApp → https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20want%20to%20order%20Neem%20Oil.
 
 PRODUCT 8: Boron 21%
 - Form: Powder, Price: ₹150
@@ -124,7 +124,7 @@ PRODUCT 8: Boron 21%
 - Improves: Sugar translocation → higher brix → better market price
 - CRITICAL: Must apply BEFORE flowering for full effect
 - Dose: 0.5-1g per litre (foliar) | 1-2kg per acre (soil)
-- Buy: WhatsApp only → wa.me/919427205179
+- Buy: WhatsApp only → https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20want%20to%20order%20Boron%2021%25.
 
 PRODUCT 9: Fulvic Acid Fertiliser
 - Form: Powder, Price: ₹130/kg (1kg | 25kg bulk)
@@ -136,7 +136,7 @@ PRODUCT 9: Fulvic Acid Fertiliser
 - Boosts chlorophyll and photosynthesis
 - 100% drip compatible
 - Dose: 1-2kg/acre (drip) | 1-2g/litre (foliar)
-- Buy: WhatsApp only → wa.me/919427205179
+- Buy: WhatsApp only → https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20want%20to%20order%20Fulvic%20Acid%20Fertiliser.
 
 PRODUCT 10: Combo Solution (1 Acre Kit)
 - Includes: VanChetan Davya (2L) + Energy Balls (10kg) + Humic Acid (2kg)
@@ -144,7 +144,7 @@ PRODUCT 10: Combo Solution (1 Acre Kit)
 - Best for: First-time organic farmers
 - Free: WhatsApp advisory for full season
 - Price: Contact for quote
-- Buy: WhatsApp → wa.me/919427205179
+- Buy: WhatsApp → https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20am%20interested%20in%20the%20Combo%20Solution%20for%201%20acre.%20Please%20share%20pricing.
 
 ═══════════════════════════════════════════════════
 SPECIFIC QUESTIONS — ANSWER THESE EXACTLY:

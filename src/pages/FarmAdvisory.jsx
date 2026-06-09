@@ -119,7 +119,7 @@ export default function FarmAdvisory() {
             📞 Call an Expert
           </a>
           <a
-            href="https://wa.me/919427205179"
+            href="https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20need%20help%20choosing%20the%20right%20product%20for%20my%20farm."
             target="_blank"
             rel="noopener noreferrer"
             style={{
