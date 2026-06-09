@@ -83,7 +83,7 @@
 
     /* Organic strip */
     .organic-strip {
-      background: var(--bg-dark);
+      background: var(--bg-secondary);
       padding: 72px 48px;
       text-align: center;
       position: relative;
@@ -98,11 +98,11 @@
     .organic-strip h2 {
       font-family: var(--font-display);
       font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-      color: var(--cream); font-weight: 300;
+      color: var(--text-primary); font-weight: 300;
       margin-bottom: 12px; position: relative;
     }
     .organic-strip p {
-      color: rgba(247,244,238,0.65); font-size: 0.95rem;
+      color: var(--text-muted); font-size: 0.95rem;
       max-width: 560px; margin: 0 auto 28px;
       line-height: 1.7; position: relative;
     }
@@ -154,13 +154,13 @@
     .join-teaser h3 {
       font-family: var(--font-display);
       font-size: 1.6rem;
-      color: var(--bg-dark);
+      color: var(--text-primary);
       font-weight: 500;
     }
     .join-teaser p { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
     .btn-dark {
-      background: var(--bg-dark);
-      color: var(--text-light);
+      background: var(--forest);
+      color: var(--cream);
       padding: 12px 24px;
       border-radius: 40px;
       text-decoration: none;
@@ -176,9 +176,9 @@
     .contact-phone-input:-webkit-autofill,
     .contact-phone-input:-webkit-autofill:hover,
     .contact-phone-input:-webkit-autofill:focus {
-      -webkit-box-shadow: 0 0 0px 1000px #2d361e inset !important;
-      -webkit-text-fill-color: #f2e8cf !important;
-      caret-color: #f2e8cf;
+      -webkit-box-shadow: 0 0 0px 1000px #fdf6ec inset !important;
+      -webkit-text-fill-color: #1c3a0f !important;
+      caret-color: #1c3a0f;
       transition: background-color 5000s ease-in-out 0s;
     }
 
@@ -231,7 +231,7 @@
       font-family: "Playfair Display", Georgia, serif; font-size: 5rem;
       color: rgba(45,122,69,0.06); line-height: 1; pointer-events: none;
     }
-    .review-card--v2 .review-name { font-family: "Playfair Display", Georgia, serif; font-size: 1.35rem; color: #2d361e; }
+    .review-card--v2 .review-name { font-family: "Playfair Display", Georgia, serif; font-size: 1.35rem; color: #1c3a0f; }
     .review-card--v2 .review-meta { font-size: 0.8rem; color: #7a8c7a; margin-top: 0.2rem; }
     .review-card--v2 .review-stars { color: var(--gold); margin: 0.85rem 0; font-size: 1rem; }
     .review-text--v2 { font-family: "Playfair Display", Georgia, serif; font-style: italic; color: #4a5e4a; line-height: 1.65; font-size: 1.05rem; }
@@ -244,7 +244,7 @@
   </style>
 </head>
 
-<body>
+<body style="background-color: #fdf6ec; color: #1c3a0f;">
   <div id="site-loader" class="site-loader" aria-live="polite" aria-label="Loading AgroCare">
     <div class="site-loader__leaves" aria-hidden="true"></div>
     <div class="site-loader__content">
@@ -278,7 +278,7 @@
       <ul class="nav-links">
         <li><a href="#why-us">Why Us</a></li>
         <li><a href="#vision-section">Our Mission</a></li>
-        <li><a href="/products">Products</a></li>
+        <li><a href="products.html">Products</a></li>
         <li><a href="#solutions">Solutions</a></li>
         <li><a href="#impact">Our Impact</a></li>
         <li><a href="our-stories.html">Stories</a></li>
@@ -313,7 +313,7 @@
   <nav class="mobile-nav">
     <button type="button" class="mobile-nav-close" aria-label="Close menu">✕</button>
     <a href="#why-us">Why Us</a>
-    <a href="/products">Products</a>
+    <a href="products.html">Products</a>
     <a href="#solutions">Solutions</a>
     <a href="#impact">Our Impact</a>
     <a href="our-stories.html">Stories</a>
@@ -333,7 +333,7 @@
         muted
         loop
         playsinline
-        src="assets/field video.mp4"
+        src="assets/Field Video.mp4"
         aria-hidden="true"
       ></video>
       <div class="hero-bg-overlay" aria-hidden="true"></div>
@@ -348,11 +348,11 @@
             </h1>
 
             <p class="hero-sub">
-              AgroCare brings India's farmers certified organic seaweed bio-stimulants — grown from the ocean, tested across India's diverse soils, trusted for 8+ years.
+              AgroCare brings India's farmers certified organic agri inputs, tested across India's diverse soils, trusted for 8+ years.
             </p>
 
             <div class="hero-actions">
-              <a href="/products.html" class="btn-primary">
+              <a href="products.html" class="btn-primary">
                 Explore Products →
               </a>
               <a href="#ai-chat-widget" class="btn-outline" onclick="document.querySelector('.ai-chat-panel').classList.add('open');return false;">
@@ -365,11 +365,11 @@
         <div id="before-after" class="hero-compare before-after-slider" role="group" aria-label="Farm transformation before and after AGRO">
           <div class="ba-layer ba-layer--after">
             <img src="assets/after agrocare.jpg" alt="After" />
-            <span class="ba-badge ba-badge--after">AFTER AGRO</span>
+            <span class="ba-badge ba-badge--after">AFTER AGROCARE</span>
           </div>
           <div class="ba-layer ba-layer--before">
             <img src="assets/before agrocare.jpg" alt="Before" />
-            <span class="ba-badge ba-badge--before">BEFORE AGRO</span>
+            <span class="ba-badge ba-badge--before">BEFORE AGROCARE</span>
           </div>
           <div class="ba-divider" data-ba-handle aria-hidden="true">
             <span class="ba-handle">◄►</span>
@@ -383,7 +383,7 @@
       </div>
 
       <ul class="hero-stats-strip" aria-label="AGRO impact highlights">
-        <li>200+ Farmers Reached</li>
+        <li>2,355+ Farmers Reached</li>
         <li>Operated in more than 18 Districts all over India</li>
         <li>350 MT Chemicals Replaced</li>
         <li>8+ Years of Trust</li>
@@ -398,28 +398,20 @@
       </div>
       <div class="video-cubes-grid">
         <div class="video-cube-wrapper photo-field-card">
-          <img src="assets/images/field-journal/Farmer with harvest.jpg" alt="Farmer with harvest" class="photo-field-card__img"/>
-          <div class="photo-field-card__caption">
-            <span>Farmer with harvest</span>
-          </div>
+          <img src="assets/images/field-journal/farmer-a.jpg" alt="Farmer inspecting crop health" class="photo-field-card__img"/>
+          <div class="photo-field-card__caption"><span>Field advisory — crop health check</span></div>
         </div>
         <div class="video-cube-wrapper photo-field-card">
-          <img src="assets/images/field-journal/Happy Farmers.jpg" alt="Happy Farmers" class="photo-field-card__img"/>
-          <div class="photo-field-card__caption">
-            <span>Happy Farmers</span>
-          </div>
+          <img src="assets/images/field-journal/farmer-b.jpg" alt="Farmer in green field" class="photo-field-card__img"/>
+          <div class="photo-field-card__caption"><span>Organic inputs — greener fields</span></div>
         </div>
         <div class="video-cube-wrapper photo-field-card">
-          <img src="assets/images/field-journal/Healthy Crop Field.jpg" alt="Healthy Crop Field" class="photo-field-card__img"/>
-          <div class="photo-field-card__caption">
-            <span>Healthy Crop Field</span>
-          </div>
+          <img src="assets/images/field-journal/farmer-c.jpg" alt="Farmer with standing crop" class="photo-field-card__img"/>
+          <div class="photo-field-card__caption"><span>Strong stand — healthy vegetative growth</span></div>
         </div>
         <div class="video-cube-wrapper photo-field-card">
-          <img src="assets/images/field-journal/Soil Transformation.jpg" alt="Soil Transformation" class="photo-field-card__img"/>
-          <div class="photo-field-card__caption">
-            <span>Soil Transformation</span>
-          </div>
+          <img src="assets/images/field-journal/farmer-d.jpg" alt="Farmer at harvest" class="photo-field-card__img"/>
+          <div class="photo-field-card__caption"><span>Harvest season — results in the field</span></div>
         </div>
       </div>
     </section>
@@ -452,7 +444,7 @@
             <div class="vmm-plant-corner" aria-hidden="true">
               <svg viewBox="0 0 32 40" fill="none"><line x1="16" y1="38" x2="16" y2="20" stroke="#3D7A34" stroke-width="1.5"/><path d="M16 26 Q9 20 8 12 Q15 16 16 24" fill="#4A8C40"/><path d="M16 24 Q23 18 24 10 Q17 14 16 22" fill="#5A9E50"/></svg>
             </div>
-            <img src="assets/images/farmers/farmer-songadh.jpg" alt="Farmer in Songadh field" class="card-image" onerror="this.style.display='none'"/>
+            <img src="assets/images/farmers/farmer-rajkot.jpg" alt="Farmer in Rajkot field" class="card-image" onerror="this.style.display='none'"/>
             <div class="vmm-number">02</div>
             <div class="vmm-label">Our Mission</div>
             <div class="vmm-title">Affordable organic inputs, delivered to your doorstep</div>
@@ -464,7 +456,7 @@
             <div class="vmm-plant-corner" aria-hidden="true">
               <svg viewBox="0 0 32 40" fill="none"><line x1="16" y1="38" x2="16" y2="20" stroke="#3D7A34" stroke-width="1.5"/><path d="M16 26 Q9 20 8 12 Q15 16 16 24" fill="#4A8C40"/><path d="M16 24 Q23 18 24 10 Q17 14 16 22" fill="#5A9E50"/></svg>
             </div>
-            <img src="assets/images/farmers/farmer-una.jpg" alt="Farmer in Una field" class="card-image" onerror="this.style.display='none'"/>
+            <img src="assets/images/farmers/farmer-songadh.jpg" alt="Farmer in Songadh field" class="card-image" onerror="this.style.display='none'"/>
             <div class="vmm-number">03</div>
             <div class="vmm-label">Our Motto</div>
             <div class="vmm-title">Mitti se, Kisan tak — From the Soil to the Farmer</div>
@@ -479,7 +471,7 @@
       <div class="section-inner">
         <div style="max-width:560px">
           <span class="section-eyebrow section-eyebrow--gold">Why AgroCare</span>
-          <h2 class="section-title section-title--light">Why farmers across India trust us</h2>
+          <h2 class="section-title">Why farmers across India trust us</h2>
           <div class="section-divider section-divider--gold"></div>
           <p class="section-sub">Not marketing claims — commitments earned farm by farm, season by season.</p>
         </div>
@@ -529,7 +521,7 @@
         </div>
         <div class="impact-grid stats-grid" data-stagger="0.1">
           <div class="impact-card reveal">
-            <div class="impact-number" data-count="200" data-suffix="+">0</div>
+            <div class="impact-number" data-count="2355" data-suffix="+">0</div>
             <div class="impact-label">FARMERS REACHED</div>
           </div>
           <div class="impact-card reveal">
@@ -557,7 +549,7 @@
         <div class="farmers-speak-header">
           <div>
             <span class="section-eyebrow" style="color:var(--accent-gold)">Farmer Voices</span>
-            <h2 class="section-title section-title--light">Our Farmers Speak</h2>
+            <h2 class="section-title">Our Farmers Speak</h2>
             <div class="section-divider section-divider--gold"></div>
             <p class="section-sub">Real voices. Real fields. Real change.</p>
           </div>
@@ -571,68 +563,62 @@
           </div>
         </div>
 
-        <div class="reviews-slider-row" id="farmers-speak-slider">
-          <button class="reviews-nav-btn reviews-prev" type="button" aria-label="Previous review">←</button>
-          <div class="reviews-slider-wrap">
-            <div class="farmers-speak-track reviews-track">
-              <div class="farmers-speak-slide review-card review-card--v2" data-slide>
-                <img src="assets/images/farmers/farmer-1.jpg" alt="Rameshbhai Patel" class="farmer-speak-photo" width="80" height="80"/>
-                <div>
-                  <div class="review-name" data-name-gu="રમેશભાઈ પટેલ" data-name-hi="रमेशभाई पटेल" data-name-en="Rameshbhai Patel">રમેશભાઈ પટેલ</div>
-                  <div class="review-meta" data-loc-gu="બિલાસપુર" data-loc-hi="बिलासपुर" data-loc-en="Bilaspur">બિલાસપુર</div>
-                  <div class="review-stars">★★★★★</div>
-                  <div class="review-text review-text--v2" data-lang="gu">"AgroCare ના Energy Balls વાપર્યા પછી મારી જમીન ખૂબ સારી થઈ ગઈ. ઉત્પાદન 30% વધ્યું અને ખર્ચ ઘટ્યો."</div>
-                  <div class="review-text review-text--v2" data-lang="hi" style="display:none">"AgroCare के Energy Balls इस्तेमाल करने के बाद मेरी जमीन बहुत अच्छी हो गई। उत्पादन 30% बढ़ा।"</div>
-                  <div class="review-text review-text--v2" data-lang="en" style="display:none">"After using AgroCare's Energy Balls, my soil health improved dramatically. Production increased by 30%."</div>
-                </div>
-              </div>
-              <div class="farmers-speak-slide review-card review-card--v2" data-slide>
-                <img src="assets/images/farmers/farmer-2.jpg" alt="Bhaveshbhai Chaudhary" class="farmer-speak-photo" width="80" height="80"/>
-                <div>
-                  <div class="review-name" data-name-gu="ભાવેશભાઈ ચૌધરી" data-name-hi="भावेशभाई चौधरी" data-name-en="Bhaveshbhai Chaudhary">ભાવેશભાઈ ચૌધરી</div>
-                  <div class="review-meta" data-loc-gu="રાજકોટ" data-loc-hi="राजकोट" data-loc-en="Rajkot">રાજકોટ</div>
-                  <div class="review-stars">★★★★★</div>
-                  <div class="review-text review-text--v2" data-lang="gu">"VanChetan Taral ના ઉપયોગ થી મારા ખેતરની માટી જીવંત બની. ઓછા ખર્ચે વધારે ઉત્પાદન — AgroCare ખૂબ ઉત્તમ."</div>
-                  <div class="review-text review-text--v2" data-lang="hi" style="display:none">"VanChetan Taral से मेरे खेत की मिट्टी जीवंत हो गई। कम खर्च में ज्यादा उत्पादन।"</div>
-                  <div class="review-text review-text--v2" data-lang="en" style="display:none">"VanChetan Taral brought my soil back to life. More yield, less spending — AgroCare is excellent."</div>
-                </div>
-              </div>
-              <div class="farmers-speak-slide review-card review-card--v2" data-slide>
-                <img src="assets/images/farmers/farmer-3.jpg" alt="Kantibhai Vasava" class="farmer-speak-photo" width="80" height="80"/>
-                <div>
-                  <div class="review-name" data-name-gu="કાંતિભાઈ વસાવા" data-name-hi="कांतिभाई वसावा" data-name-en="Kantibhai Vasava">કાંતિભાઈ વસાવા</div>
-                  <div class="review-meta" data-loc-gu="સોનગઢ" data-loc-hi="सोनगढ़" data-loc-en="Songadh">સોનગઢ</div>
-                  <div class="review-stars">★★★★★</div>
-                  <div class="review-text review-text--v2" data-lang="gu">"Neem Oil અને Magic Gel ના combination થી મારા પાકને ખૂબ ફાયદો થયો. રોગ ઓછા, ફળ વધારે."</div>
-                  <div class="review-text review-text--v2" data-lang="hi" style="display:none">"Neem Oil और Magic Gel के combination से मेरी फसल को बहुत फायदा हुआ।"</div>
-                  <div class="review-text review-text--v2" data-lang="en" style="display:none">"The Neem Oil and Magic Gel combination greatly benefited my crops. Fewer diseases, more fruits."</div>
-                </div>
-              </div>
-              <div class="farmers-speak-slide review-card review-card--v2" data-slide>
-                <img src="assets/images/farmers/farmer-4.jpg" alt="Maheshbhai Solanki" class="farmer-speak-photo" width="80" height="80"/>
-                <div>
-                  <div class="review-name" data-name-gu="મહેશભાઈ સોલંકી" data-name-hi="महेशभाई सोलंकी" data-name-en="Maheshbhai Solanki">મહેશભાઈ સોલંકી</div>
-                  <div class="review-meta" data-loc-gu="ગુજરાત" data-loc-hi="गुजरात" data-loc-en="Gujarat">ગુજરાત</div>
-                  <div class="review-stars">★★★★★</div>
-                  <div class="review-text review-text--v2" data-lang="gu">"Humic Acid powder વાપર્યા પછી જમીનની ફળદ્રુપતા ખૂબ વધી. 8 વર્ષ થી AgroCare સાથે છીએ."</div>
-                  <div class="review-text review-text--v2" data-lang="hi" style="display:none">"Humic Acid powder से जमीन की उर्वरता बहुत बढ़ी। 8 साल से AgroCare के साथ हैं।"</div>
-                  <div class="review-text review-text--v2" data-lang="en" style="display:none">"After using Humic Acid powder, soil fertility improved greatly. Been with AgroCare for 8 years."</div>
-                </div>
-              </div>
-              <div class="farmers-speak-slide review-card review-card--v2" data-slide>
-                <img src="assets/images/farmers/farmer-5.jpg" alt="Jayeshbhai Thakor" class="farmer-speak-photo" width="80" height="80"/>
-                <div>
-                  <div class="review-name" data-name-gu="જયેશભાઈ ઠાકોર" data-name-hi="जयेशभाई ठाकोर" data-name-en="Jayeshbhai Thakor">જયેશભાઈ ઠાકોર</div>
-                  <div class="review-meta" data-loc-gu="ઉના, ભાવનગર" data-loc-hi="उना, भावनगर" data-loc-en="Una, Bhavnagar">ઉના, ભાવનગર</div>
-                  <div class="review-stars">★★★★★</div>
-                  <div class="review-text review-text--v2" data-lang="gu">"Seaweed Granules થી મારી કપાસ ની ઉપજ ખૂબ સારી આવી. AgroCare ના ઉત્પાદનો ખૂબ ભરોસાપાત્ર છે."</div>
-                  <div class="review-text review-text--v2" data-lang="hi" style="display:none">"Seaweed Granules से मेरी कपास की उपज बहुत अच्छी हुई। AgroCare के उत्पाद बहुत भरोसेमंद हैं।"</div>
-                  <div class="review-text review-text--v2" data-lang="en" style="display:none">"Seaweed Granules gave excellent cotton yield. AgroCare products are very trustworthy."</div>
-                </div>
-              </div>
+        <div class="farmers-blog-grid" id="farmers-speak-slider">
+          <article class="farmer-blog-card review-card review-card--v2">
+            <img src="assets/images/farmers/farmer-1.jpg" alt="Rameshbhai Patel" class="farmer-blog-card__img"/>
+            <div class="farmer-blog-card__body">
+              <div class="review-name" data-name-gu="રમેશભાઈ પટેલ" data-name-hi="रमेशभाई पटेल" data-name-en="Rameshbhai Patel">રમેશભાઈ પટેલ</div>
+              <div class="review-meta" data-loc-gu="બિલાસપુર" data-loc-hi="बिलासपुर" data-loc-en="Bilaspur">બિલાસપુર</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text review-text--v2" data-lang="gu">"Energy Balls બોવાઈ પર લગાવ્યા — માટી નરમ થઈ, પાણી લાંબા સમય સુધી રહે છે. પાછલા વર્ષ કરતાં કપાસ સારો."</div>
+              <div class="review-text review-text--v2" data-lang="hi" style="display:none">"बोवाई पर Energy Balls लगाए — मिट्टी नरम हुई, पानी ज्यादा देर तक रुकता है। पिछले साल से कपास बेहतर।"</div>
+              <div class="review-text review-text--v2" data-lang="en" style="display:none">"Put Energy Balls at sowing — soil got softer and holds water longer. Cotton came out better than last year."</div>
             </div>
-          </div>
-          <button class="reviews-nav-btn reviews-next" type="button" aria-label="Next review">→</button>
+          </article>
+          <article class="farmer-blog-card review-card review-card--v2">
+            <img src="assets/images/farmers/farmer-3.jpg" alt="Ramkumar" class="farmer-blog-card__img"/>
+            <div class="farmer-blog-card__body">
+              <div class="review-name" data-name-gu="રામકુમાર" data-name-hi="रामकुमार" data-name-en="Ramkumar">રામકુમાર</div>
+              <div class="review-meta" data-loc-gu="સોનગઢ" data-loc-hi="सोनगढ़" data-loc-en="Songadh, Gujarat">સોનગઢ</div>
+              <div class="review-stars">★★★★☆</div>
+              <div class="review-text review-text--v2" data-lang="gu">"Neem Oil એ મરચાં પર થીળી ઘટાડી. Seaweed Gel થી ફૂલ સારા આવ્યા — પહેલા જેટલો ખર્ચ નહીં."</div>
+              <div class="review-text review-text--v2" data-lang="hi" style="display:none">"Neem Oil से मिर्च पर सफेद मक्खी कम हुई। Seaweed Gel से फूल अच्छे आए — पहले जितना खर्च नहीं लगा।"</div>
+              <div class="review-text review-text--v2" data-lang="en" style="display:none">"Neem Oil cut whitefly on my chilli. Seaweed Gel improved flowering — didn't spend as much as before on sprays."</div>
+            </div>
+          </article>
+          <article class="farmer-blog-card review-card review-card--v2">
+            <img src="assets/images/farmers/farmer-5.jpg" alt="Jayeshbhai Thakor" class="farmer-blog-card__img"/>
+            <div class="farmer-blog-card__body">
+              <div class="review-name" data-name-gu="જયેશભાઈ ઠાકોર" data-name-hi="जयेशभाई ठाकोर" data-name-en="Jayeshbhai Thakor">જયેશભાઈ ઠાકોર</div>
+              <div class="review-meta" data-loc-gu="ઉના, ભાવનગર" data-loc-hi="उना, भावनगर" data-loc-en="Una, Bhavnagar">ઉના, ભાવનગર</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text review-text--v2" data-lang="gu">"Energy Balls થી કપાસની ઉપજ સારી આવી. AgroCare ભરોસાપાત્ર છે."</div>
+              <div class="review-text review-text--v2" data-lang="hi" style="display:none">"Energy Balls से कपास की अच्छी उपज। AgroCare भरोसेमंद है।"</div>
+              <div class="review-text review-text--v2" data-lang="en" style="display:none">"Energy Balls gave excellent cotton yield. AgroCare products are very trustworthy."</div>
+            </div>
+          </article>
+          <article class="farmer-blog-card review-card review-card--v2">
+            <img src="assets/images/farmers/farmer-4.jpg" alt="Maheshbhai Solanki" class="farmer-blog-card__img"/>
+            <div class="farmer-blog-card__body">
+              <div class="review-name" data-name-gu="મહેશભાઈ સોલંકી" data-name-hi="महेशभाई सोलंकी" data-name-en="Maheshbhai Solanki">મહેશભાઈ સોલંકી</div>
+              <div class="review-meta" data-loc-gu="ગુજરાત" data-loc-hi="गुजरात" data-loc-en="Gujarat">ગુજરાત</div>
+              <div class="review-stars">★★★★☆</div>
+              <div class="review-text review-text--v2" data-lang="gu">"Humic Acid FCO થી માટી ડાર્ક થઈ — ઓછું યુરિયા લાગે છે. 8 વર્ષથી AgroCare સાથે છું."</div>
+              <div class="review-text review-text--v2" data-lang="hi" style="display:none">"Humic Acid FCO से मिट्टी गहरी हुई — कम यूरिया लगता है। 8 साल से AgroCare के साथ हूं।"</div>
+              <div class="review-text review-text--v2" data-lang="en" style="display:none">"Humic Acid FCO darkened my soil — I use less urea now. Been with AgroCare 8 years, still happy."</div>
+            </div>
+          </article>
+          <article class="farmer-blog-card review-card review-card--v2">
+            <img src="assets/images/farmers/farmer-6.jpg" alt="Shantabai" class="farmer-blog-card__img"/>
+            <div class="farmer-blog-card__body">
+              <div class="review-name" data-name-gu="શાંતાબેન" data-name-hi="शांताबाई" data-name-en="Shantabai">શાંતાબેન</div>
+              <div class="review-meta" data-loc-gu="વડોદરા" data-loc-hi="वडोदरा" data-loc-en="Vadodara">વડોદરા</div>
+              <div class="review-stars">★★★★☆</div>
+              <div class="review-text review-text--v2" data-lang="gu">"Energy Balls બોવાઈ સમયે લગાવ્યા — મરચાંમાં પાણી ઓછું લાગે છે, ફૂલ સારા આવે છે."</div>
+              <div class="review-text review-text--v2" data-lang="hi" style="display:none">"बोवाई पर Energy Balls — मिर्च में कम पानी, अच्छे फूल।"</div>
+              <div class="review-text review-text--v2" data-lang="en" style="display:none">"Applied Energy Balls at sowing — less irrigation on chilli, better flowering."</div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -651,7 +637,7 @@
             <span class="solution-icon">🌱</span>
             <div class="solution-title">Agri Inputs</div>
             <p class="solution-desc">Certified organic soil enrichers, bio-stimulants, crop protectants, and growth promoters — formulated for India's diverse agri-climates.</p>
-            <a href="/products.html" class="solution-link">Browse catalogue →</a>
+            <a href="products.html" class="solution-link">Browse catalogue →</a>
           </div>
           <div class="solution-card">
             <span class="solution-icon">📡</span>
@@ -684,127 +670,9 @@
             <h2 class="section-title">Products built for Indian soil</h2>
             <div class="section-divider"></div>
           </div>
-          <a href="/products.html" class="btn-outline" style="flex-shrink:0">View full catalogue →</a>
+          <a href="products.html" class="btn-outline" style="flex-shrink:0">View full catalogue →</a>
         </div>
-
-        <div class="products-filter">
-          <button class="filter-pill active" data-filter="all">All</button>
-          <button class="filter-pill" data-filter="seaweed-extracts">Seaweed Extracts</button>
-          <button class="filter-pill" data-filter="humic-fulvic">Humic &amp; Fulvic</button>
-          <button class="filter-pill" data-filter="crop-protectants">Crop Protectants</button>
-          <button class="filter-pill" data-filter="combo-others">Combo &amp; Others</button>
-        </div>
-
-        <div class="products-grid product-grid">
-          <div class="product-card" data-category="humic-fulvic">
-            <div class="product-img">
-              <div class="product-badge">SOIL ENRICHER</div>
-              <img src="assets/products/Potash Bio Fertilizer.jpg" alt="BioSoil Max" style="width:100%;height:100%;object-fit:cover"/>
-            </div>
-            <div class="product-info">
-              <div class="product-name">BioSoil Max</div>
-              <p class="product-tagline">Revive your soil in 30 days</p>
-              <div class="product-specs">
-                <div class="product-spec-row"><span class="product-spec-label">Active Ingredient</span><span class="product-spec-value">Microbial Consortium + Humic Acid</span></div>
-                <div class="product-spec-row"><span class="product-spec-label">Organic Carbon Boost</span><span class="product-spec-value">+35% in 30 days</span></div>
-                <div class="product-spec-row"><span class="product-spec-label">Application</span><span class="product-spec-value">Soil drench / Broadcast</span></div>
-              </div>
-              <p class="product-hook">"Farmers report visible soil darkening (sign of organic carbon) in just 3 weeks"</p>
-              <a href="https://www.indiamart.com/agrocare" class="btn-indiamart" target="_blank" rel="noopener noreferrer">🛒 Buy on IndiaMART</a>
-              <div class="product-footer"><span class="product-price">₹480 / kg</span><a href="products.html" class="product-enquire">Enquire</a></div>
-            </div>
-          </div>
-          <div class="product-card" data-category="humic-fulvic">
-            <div class="product-img">
-              <div class="product-badge">BIO-STIMULANT</div>
-              <img src="assets/products/Fulvic Acid Fertilizer.jpg" alt="Fulvic Gold" style="width:100%;height:100%;object-fit:cover"/>
-            </div>
-            <div class="product-info">
-              <div class="product-name">Fulvic Gold</div>
-              <p class="product-tagline">The nutrient accelerator your roots need</p>
-              <div class="product-specs">
-                <div class="product-spec-row"><span class="product-spec-label">Key Compound</span><span class="product-spec-value">Fulvic Acid 12% + Amino Acids 8%</span></div>
-                <div class="product-spec-row"><span class="product-spec-label">Nutrient Uptake Boost</span><span class="product-spec-value">Up to 60% better absorption</span></div>
-                <div class="product-spec-row"><span class="product-spec-label">Application</span><span class="product-spec-value">Foliar spray / Drip irrigation</span></div>
-              </div>
-              <p class="product-hook">"Farmers see visibly darker green leaves within 7 days — the fulvic acid difference"</p>
-              <a href="https://www.indiamart.com/agrocare" class="btn-indiamart" target="_blank" rel="noopener noreferrer">🛒 Buy on IndiaMART</a>
-              <div class="product-footer"><span class="product-price">₹620 / kg</span><a href="products.html" class="product-enquire">Enquire</a></div>
-            </div>
-          </div>
-          <div class="product-card" data-category="crop-protectants">
-            <div class="product-img">
-              <div class="product-badge">CROP PROTECTANT</div>
-              <img src="assets/products/Amino Acid Powder 80%.jpg" alt="NeemShield Pro" style="width:100%;height:100%;object-fit:cover"/>
-            </div>
-            <div class="product-info">
-              <div class="product-name">NeemShield Pro</div>
-              <p class="product-tagline">Nature's pest warrior — safe for your soil</p>
-              <div class="product-specs">
-                <div class="product-spec-row"><span class="product-spec-label">Active Compound</span><span class="product-spec-value">Azadirachtin 1500 ppm (Neem Extract)</span></div>
-                <div class="product-spec-row"><span class="product-spec-label">Pest Control</span><span class="product-spec-value">Broad spectrum — 200+ pest species</span></div>
-                <div class="product-spec-row"><span class="product-spec-label">Safety</span><span class="product-spec-value">Safe for bees, earthworms, birds</span></div>
-              </div>
-              <p class="product-hook">"Zero chemical residue — your produce can be sold as organic-certified"</p>
-              <a href="https://www.indiamart.com/agrocare" class="btn-indiamart" target="_blank" rel="noopener noreferrer">🛒 Buy on IndiaMART</a>
-              <div class="product-footer"><span class="product-price">₹390 / L</span><a href="products.html" class="product-enquire">Enquire</a></div>
-            </div>
-          </div>
-          <div class="product-card" data-category="seaweed-extracts">
-            <div class="product-img">
-              <div class="product-badge">GROWTH PROMOTER</div>
-              <img src="assets/products/Organic Plant Growth Promoter.jpg" alt="YieldBoost 3X" style="width:100%;height:100%;object-fit:cover"/>
-            </div>
-            <div class="product-info">
-              <div class="product-name">YieldBoost 3X</div>
-              <p class="product-tagline">25% more yield. Proven. Guaranteed.</p>
-              <div class="product-specs">
-                <div class="product-spec-row"><span class="product-spec-label">Source</span><span class="product-spec-value">Cold-processed Ascophyllum nodosum Seaweed</span></div>
-                <div class="product-spec-row"><span class="product-spec-label">Yield Increase</span><span class="product-spec-value">20-30% in field trials</span></div>
-                <div class="product-spec-row"><span class="product-spec-label">Key Phytohormones</span><span class="product-spec-value">Cytokinin + Auxin + Betaine</span></div>
-              </div>
-              <p class="product-hook">"Applied at flowering stage = 25% more fruits per plant. Farmers call it 'magic spray'"</p>
-              <a href="https://www.indiamart.com/agrocare" class="btn-indiamart" target="_blank" rel="noopener noreferrer">🛒 Buy on IndiaMART</a>
-              <div class="product-footer"><span class="product-price">₹540 / L</span><a href="products.html" class="product-enquire">Enquire</a></div>
-            </div>
-          </div>
-          <div class="product-card" data-category="seaweed-extracts">
-            <div class="product-img">
-              <div class="product-badge">BIO-STIMULANT</div>
-              <img src="assets/products/Powder Seaweed Extract Fertilizer.jpg" alt="SeaGrow Plus" style="width:100%;height:100%;object-fit:cover"/>
-            </div>
-            <div class="product-info">
-              <div class="product-name">SeaGrow Plus</div>
-              <p class="product-tagline">Ocean-sourced power for your roots</p>
-              <div class="product-specs">
-                <div class="product-spec-row"><span class="product-spec-label">Seaweed Concentration</span><span class="product-spec-value">60% Seaweed Extract (cold-press)</span></div>
-                <div class="product-spec-row"><span class="product-spec-label">Stress Tolerance</span><span class="product-spec-value">Drought, Heat, Salinity resistant</span></div>
-                <div class="product-spec-row"><span class="product-spec-label">Root Growth Boost</span><span class="product-spec-value">40% more root biomass</span></div>
-              </div>
-              <p class="product-hook">"Root biomass doubles in 3 weeks — plants that survive drought stress without stress"</p>
-              <a href="https://www.indiamart.com/agrocare" class="btn-indiamart" target="_blank" rel="noopener noreferrer">🛒 Buy on IndiaMART</a>
-              <div class="product-footer"><span class="product-price">₹580 / L</span><a href="products.html" class="product-enquire">Enquire</a></div>
-            </div>
-          </div>
-          <div class="product-card" data-category="humic-fulvic">
-            <div class="product-img">
-              <div class="product-badge">SOIL ENRICHER</div>
-              <img src="assets/products/potassium humate.jpg" alt="AquaHumus" style="width:100%;height:100%;object-fit:cover"/>
-            </div>
-            <div class="product-info">
-              <div class="product-name">AquaHumus</div>
-              <p class="product-tagline">Feed your soil what it was born with</p>
-              <div class="product-specs">
-                <div class="product-spec-row"><span class="product-spec-label">Humic Acid Content</span><span class="product-spec-value">85% (vermicompost-derived)</span></div>
-                <div class="product-spec-row"><span class="product-spec-label">Water Retention Improvement</span><span class="product-spec-value">+50% field capacity</span></div>
-                <div class="product-spec-row"><span class="product-spec-label">Soil pH Correction</span><span class="product-spec-value">Balances acidic &amp; alkaline soils</span></div>
-              </div>
-              <p class="product-hook">"Farmers in water-scarce regions report 50% less irrigation needed after 2 seasons"</p>
-              <a href="https://www.indiamart.com/agrocare" class="btn-indiamart" target="_blank" rel="noopener noreferrer">🛒 Buy on IndiaMART</a>
-              <div class="product-footer"><span class="product-price">₹420 / kg</span><a href="products.html" class="product-enquire">Enquire</a></div>
-            </div>
-          </div>
-        </div>
+        <div class="products-grid product-grid" id="home-products-grid"></div>
       </div>
     </section>
 
@@ -821,25 +689,25 @@
         </div>
 
         <div class="gallery-masonry gallery-masonry--journal" id="field-journal-tabs">
-          <div class="gallery-item gallery-item--media" data-lightbox data-type="image" data-src="assets/images/field-journal/Farmer with harvest.jpg" role="button" tabindex="0" aria-label="Farmer with harvest">
-            <img src="assets/images/field-journal/Farmer with harvest.jpg" alt="Farmer with harvest" class="gallery-item__media"/>
-            <span class="gallery-item-caption">Farmer with harvest</span>
+          <div class="gallery-item gallery-item--media" data-lightbox data-type="image" data-src="assets/images/field-journal/farmer-a.jpg" role="button" tabindex="0" aria-label="Field advisory visit">
+            <img src="assets/images/field-journal/farmer-a.jpg" alt="Field advisory visit" class="gallery-item__media"/>
+            <span class="gallery-item-caption">Field advisory — crop health check</span>
           </div>
-          <div class="gallery-item gallery-item--media" data-lightbox data-type="image" data-src="assets/images/field-journal/Happy Farmers.jpg" role="button" tabindex="0" aria-label="Happy Farmers">
-            <img src="assets/images/field-journal/Happy Farmers.jpg" alt="Happy Farmers" class="gallery-item__media"/>
-            <span class="gallery-item-caption">Happy Farmers</span>
+          <div class="gallery-item gallery-item--media" data-lightbox data-type="image" data-src="assets/images/field-journal/farmer-b.jpg" role="button" tabindex="0" aria-label="Greener fields">
+            <img src="assets/images/field-journal/farmer-b.jpg" alt="Greener fields after organic inputs" class="gallery-item__media"/>
+            <span class="gallery-item-caption">Organic inputs — greener fields</span>
           </div>
-          <div class="gallery-item gallery-item--media" data-lightbox data-type="image" data-src="assets/images/field-journal/Healthy Crop Field.jpg" role="button" tabindex="0" aria-label="Healthy Crop Field">
-            <img src="assets/images/field-journal/Healthy Crop Field.jpg" alt="Healthy Crop Field" class="gallery-item__media"/>
-            <span class="gallery-item-caption">Healthy Crop Field</span>
+          <div class="gallery-item gallery-item--media" data-lightbox data-type="image" data-src="assets/images/field-journal/farmer-c.jpg" role="button" tabindex="0" aria-label="Healthy vegetative growth">
+            <img src="assets/images/field-journal/farmer-c.jpg" alt="Healthy vegetative growth" class="gallery-item__media"/>
+            <span class="gallery-item-caption">Strong stand — healthy vegetative growth</span>
           </div>
-          <div class="gallery-item gallery-item--media" data-lightbox data-type="image" data-src="assets/images/field-journal/Soil Transformation.jpg" role="button" tabindex="0" aria-label="Soil Transformation">
-            <img src="assets/images/field-journal/Soil Transformation.jpg" alt="Soil Transformation" class="gallery-item__media"/>
-            <span class="gallery-item-caption">Soil Transformation</span>
+          <div class="gallery-item gallery-item--media" data-lightbox data-type="image" data-src="assets/images/field-journal/farmer-d.jpg" role="button" tabindex="0" aria-label="Harvest season">
+            <img src="assets/images/field-journal/farmer-d.jpg" alt="Harvest season in the field" class="gallery-item__media"/>
+            <span class="gallery-item-caption">Harvest season — results in the field</span>
           </div>
-          <div class="gallery-item gallery-item--media" data-lightbox data-type="image" data-src="assets/images/field-journal/Happy Farmers.jpg" role="button" tabindex="0" aria-label="Happy Farmers in the field">
-            <img src="assets/images/field-journal/Happy Farmers.jpg" alt="Happy Farmers in the field" class="gallery-item__media"/>
-            <span class="gallery-item-caption">Happy Farmers in the field</span>
+          <div class="gallery-item gallery-item--media" data-lightbox data-type="image" data-src="assets/images/field-journal/farmer-e.jpg" role="button" tabindex="0" aria-label="Farmer with standing crop">
+            <img src="assets/images/field-journal/farmer-e.jpg" alt="Farmer with standing crop" class="gallery-item__media"/>
+            <span class="gallery-item-caption">Standing crop — farmer confidence</span>
           </div>
           <div class="gallery-item gallery-item--media gallery-item--video" data-lightbox data-type="video" data-src="assets/videos/Product Demonstration.mp4" role="button" tabindex="0" aria-label="Product demonstration video">
             <video autoplay loop playsinline controls src="assets/videos/Product Demonstration.mp4" class="gallery-item__media"></video>
@@ -848,14 +716,16 @@
           </div>
         </div>
 
-        <div class="gallery-masonry gallery-masonry--columns" id="home-gallery-masonry" data-gallery-home aria-label="Gallery images"></div>
+        <p class="section-eyebrow" style="margin-top:3rem;text-align:center">Memories bulletin board</p>
+        <h3 class="section-title" style="text-align:center;margin-bottom:1.5rem">Our Gallery</h3>
+        <div class="gallery-masonry gallery-masonry--columns" id="home-gallery-masonry" data-gallery-home aria-label="Gallery memories"></div>
       </div>
     </section>
 
     <!-- ══ GALLERY PREVIEW ══ -->
-    <section id="gallery-preview" style="background:#faf8f4;padding:80px 24px;text-align:center">
-      <p style="color:#4a5d23;font-size:11px;letter-spacing:4px;text-transform:uppercase;margin-bottom:12px">GALLERY</p>
-      <h2 style="font-family:Cormorant Garamond,Georgia,serif;font-size:clamp(28px,4vw,48px);color:#2d361e;font-weight:400;margin:0 0 40px">
+    <section id="gallery-preview" style="background:#fdf6ec;padding:80px 24px;text-align:center">
+      <p style="color:#3d5c1f;font-size:11px;letter-spacing:4px;text-transform:uppercase;margin-bottom:12px">GALLERY</p>
+      <h2 style="font-family:Cormorant Garamond,Georgia,serif;font-size:clamp(28px,4vw,48px);color:#1c3a0f;font-weight:400;margin:0 0 40px">
         Seen in Our Fields
       </h2>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:900px;margin:0 auto 32px">
@@ -866,7 +736,7 @@
           <img src="assets/gallery/WhatsApp Image 2026-05-29 at 22.52.05.jpeg" alt="Field 2" style="width:100%;height:100%;object-fit:cover"/>
         </div>
       </div>
-      <a href="gallery.html" style="display:inline-flex;align-items:center;gap:8px;padding:12px 32px;border-radius:999px;font-size:14px;font-weight:600;background:#4a5d23;color:#faf8f4;text-decoration:none;letter-spacing:1px">
+      <a href="gallery.html" style="display:inline-flex;align-items:center;gap:8px;padding:12px 32px;border-radius:999px;font-size:14px;font-weight:600;background:#2d5016;color:#fdf6ec;text-decoration:none;letter-spacing:1px">
         View Full Gallery →
       </a>
     </section>
@@ -1025,13 +895,13 @@
           <li><a href="/solutions.html#agri-inputs">Agri Inputs</a></li>
           <li><a href="omni-channels.html">Omnichannel Access</a></li>
           <li><a href="market-linkages.html">Market Linkages</a></li>
-          <li><a href="/products.html">Product Catalogue</a></li>
+          <li><a href="products.html">Product Catalogue</a></li>
         </ul>
       </div>
       <div class="reveal">
         <p class="footer-col-title">Company</p>
         <ul class="footer-links">
-          <li><a href="/impact.html">Our Impact</a></li>
+          <li><a href="impact-report.html">Our Impact</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="our-stories.html">Stories</a></li>
           <li><a href="join.html">Join Us</a></li>
@@ -1045,8 +915,9 @@
           <li><a href="/contact.html">Contact Us</a></li>
           <li><a href="/enquiry.html">Enquiry</a></li>
           <li><a href="/complaint.html">Complaint</a></li>
-          <li><a href="https://www.indiamart.com/search.mp?ss=Agrocare" target="_blank" rel="noopener noreferrer">IndiaMART</a></li>
-          <li><a href="https://www.meesho.com/search?q=Agrocare" target="_blank" rel="noopener noreferrer">Meesho</a></li>
+          <li><a href="https://www.indiamart.com/agrocare-una/" target="_blank" rel="noopener noreferrer">IndiaMART Store</a></li>
+          <li><a href="https://www.meesho.com/s/p/9wuylx" target="_blank" rel="noopener noreferrer">Meesho — Potassium Humate</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
           <li><a href="#">Local Shops</a></li>
         </ul>
       </div>
@@ -1125,6 +996,8 @@
     @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
   </style>
 
+  <script src="js/agro-knowledge.js"></script>
+  <script src="js/products-catalogue.js"></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>

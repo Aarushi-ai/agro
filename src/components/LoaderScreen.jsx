@@ -51,18 +51,18 @@ export default function LoaderScreen() {
 
   // Leaf data — generated once
   const leaves = [
-    { left: 8, delay: 0, dur: 5.2, size: 22, hue: "#4a5d23", drift: 40 },
-    { left: 15, delay: 0.8, dur: 4.8, size: 16, hue: "#5a6f2e", drift: -30 },
-    { left: 23, delay: 1.5, dur: 6.0, size: 28, hue: "#2d361e", drift: 60 },
-    { left: 31, delay: 0.3, dur: 5.5, size: 18, hue: "#4a5d23", drift: -50 },
+    { left: 8, delay: 0, dur: 5.2, size: 22, hue: "#2d5016", drift: 40 },
+    { left: 15, delay: 0.8, dur: 4.8, size: 16, hue: "#3d6b1f", drift: -30 },
+    { left: 23, delay: 1.5, dur: 6.0, size: 28, hue: "#1c3a0f", drift: 60 },
+    { left: 31, delay: 0.3, dur: 5.5, size: 18, hue: "#2d5016", drift: -50 },
     { left: 42, delay: 1.1, dur: 4.5, size: 24, hue: "#3d4f1e", drift: 35 },
-    { left: 50, delay: 2.0, dur: 5.8, size: 20, hue: "#4a5d23", drift: -40 },
-    { left: 58, delay: 0.6, dur: 6.2, size: 26, hue: "#2d361e", drift: 55 },
-    { left: 67, delay: 1.8, dur: 5.0, size: 17, hue: "#5a6f2e", drift: -25 },
-    { left: 75, delay: 0.4, dur: 4.7, size: 23, hue: "#4a5d23", drift: 45 },
-    { left: 83, delay: 1.3, dur: 5.5, size: 19, hue: "#2d361e", drift: -60 },
+    { left: 50, delay: 2.0, dur: 5.8, size: 20, hue: "#2d5016", drift: -40 },
+    { left: 58, delay: 0.6, dur: 6.2, size: 26, hue: "#1c3a0f", drift: 55 },
+    { left: 67, delay: 1.8, dur: 5.0, size: 17, hue: "#3d6b1f", drift: -25 },
+    { left: 75, delay: 0.4, dur: 4.7, size: 23, hue: "#2d5016", drift: 45 },
+    { left: 83, delay: 1.3, dur: 5.5, size: 19, hue: "#1c3a0f", drift: -60 },
     { left: 90, delay: 0.9, dur: 6.0, size: 25, hue: "#3d4f1e", drift: 30 },
-    { left: 5, delay: 2.2, dur: 5.3, size: 21, hue: "#4a5d23", drift: -35 },
+    { left: 5, delay: 2.2, dur: 5.3, size: 21, hue: "#2d5016", drift: -35 },
   ];
 
   return (
@@ -101,7 +101,7 @@ export default function LoaderScreen() {
           width: "100vw",
           height: "100vh",
           zIndex: 99999,
-          background: "#faf8f4",
+          background: "#fdf6ec",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -199,7 +199,7 @@ export default function LoaderScreen() {
             <div
               style={{
                 height: "100%",
-                background: "linear-gradient(90deg, #4a5d23, #5a6f2e)",
+                background: "linear-gradient(90deg, #2d5016, #3d6b1f)",
                 borderRadius: "999px",
                 animation: "loaderPulse 1.5s ease-in-out infinite",
               }}
@@ -208,7 +208,7 @@ export default function LoaderScreen() {
 
           <p
             style={{
-              color: "#4a5d23",
+              color: "#2d5016",
               fontSize: "11px",
               letterSpacing: "4px",
               textTransform: "uppercase",

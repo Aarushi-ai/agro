@@ -124,7 +124,7 @@ main {
   justify-content: center;
   flex-direction: column;
   gap: var(--sp-2);
-  background: linear-gradient(145deg, #e8f8ef 0%, #d4f0e0 100%);
+  background: linear-gradient(180deg, #e8f0d8 0%, #fdf6ec 100%);
   color: var(--color-text-dark);
   font-size: var(--text-sm);
   text-align: center;
@@ -362,7 +362,7 @@ main {
 
 .farmer-photo {
   aspect-ratio: 4/3;
-  background: linear-gradient(160deg, #c8e6c9 0%, #a5d6a7 50%, #81c784 100%);
+  background: linear-gradient(180deg, #e8f0d8 0%, #f5ead8 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -555,12 +555,12 @@ main {
 }
 
 .cta-banner {
-  background: linear-gradient(135deg, var(--color-text-dark) 0%, #2e7d32 100%);
+  background: linear-gradient(180deg, #e8f0d8 0%, #fdf6ec 100%);
   border-radius: var(--r-xl);
   padding: var(--sp-12) var(--sp-6);
   text-align: center;
   margin-block: var(--sp-16);
-  color: var(--color-bg-light);
+  color: #1c3a0f;
 }
 
 .cta-banner h2 {
@@ -581,8 +581,8 @@ main {
 }
 
 .cta-banner .btn-outline {
-  border-color: rgba(255, 255, 255, 0.4);
-  color: #fff;
+  border-color: rgba(74, 94, 42, 0.25);
+  color: #1c3a0f;
 }
 
 /* Contact block on home */
@@ -614,4 +614,28 @@ main {
   text-transform: uppercase;
   color: var(--color-primary-green);
   margin-bottom: var(--sp-3);
+}
+
+nav,
+header,
+.navbar,
+[class*="nav"],
+[class*="header"],
+[class*="Navbar"] {
+  background: #fdf6ec !important;
+  background-color: #fdf6ec !important;
+  border-bottom: 1px solid rgba(74, 94, 42, 0.12) !important;
+  color: #1c3a0f !important;
+}
+
+section {
+  background-color: transparent;
+}
+
+section:nth-child(even) {
+  background-color: #f5ead8 !important;
+}
+
+section:nth-child(odd) {
+  background-color: #fdf6ec !important;
 }

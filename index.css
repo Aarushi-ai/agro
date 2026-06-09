@@ -1,34 +1,34 @@
 :root {
-  --bg: #faf8f4;
+  --bg: #fdf6ec;
   --bg-card: #ffffff;
-  --bg-card2: #f5f3ee;
-  --bg-section-alt: #f5f3ee;
-  --bg-primary: #faf8f4;
-  --bg-secondary: #f5f3ee;
-  --bg-dark: #2d361e;
-  --green-dark: #2d361e;
-  --green-mid: #4a5d23;
-  --green-light: #5a6f2e;
-  --green-pale: #eef0e8;
-  --gold: #4a5d23;
-  --gold-pale: #faf8f4;
-  --terracotta: #4a5d23;
-  --terra-pale: #f5f3ee;
-  --sky: #4a5d23;
-  --sky-pale: #f5f3ee;
-  --text-primary: #2d361e;
-  --text-secondary: #3d4f28;
-  --text-muted: #6b7560;
-  --accent: #4a5d23;
-  --accent-gold: #4a5d23;
-  --accent-light: #eef0e8;
-  --border: rgba(74, 93, 35, 0.14);
-  --shadow: rgba(45, 54, 30, 0.08);
+  --bg-card2: #ede0c8;
+  --bg-section-alt: #f5ead8;
+  --bg-primary: #fdf6ec;
+  --bg-secondary: #f5ead8;
+  --bg-dark: #2d5016;
+  --green-dark: #1c3a0f;
+  --green-mid: #2d5016;
+  --green-light: #3d6b1f;
+  --green-pale: #e8f0d8;
+  --gold: #c49a1a;
+  --gold-pale: #f5ead8;
+  --terracotta: #2d5016;
+  --terra-pale: #f5ead8;
+  --sky: #2d5016;
+  --sky-pale: #f5ead8;
+  --text-primary: #1c3a0f;
+  --text-secondary: #3d5c1f;
+  --text-muted: #6b7c52;
+  --accent: #2d5016;
+  --accent-gold: #c49a1a;
+  --accent-light: #e8f0d8;
+  --border: rgba(74, 94, 42, 0.15);
+  --shadow: rgba(28, 58, 15, 0.08);
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--text-primary);
+  background-color: #fdf6ec !important;
+  color: #1c3a0f !important;
   font-family: "DM Sans", sans-serif;
 }
 
@@ -38,5 +38,28 @@ h3,
 h4,
 h5 {
   font-family: "Cormorant Garamond", Georgia, serif;
-  color: var(--green-dark);
+  color: #1c3a0f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #2d3a1f;
+    --bg-secondary: #243016;
+    --bg-card: #354525;
+    --text-primary: #f5ead8;
+    --text-secondary: #d4c9a8;
+    --text-muted: #a89878;
+    --border: rgba(196, 154, 26, 0.2);
+  }
+
+  body {
+    background-color: #2d3a1f !important;
+    color: #f5ead8 !important;
+  }
+
+  nav,
+  header,
+  .navbar {
+    background: #243016 !important;
+  }
 }

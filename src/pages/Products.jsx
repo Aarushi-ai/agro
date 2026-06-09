@@ -568,7 +568,7 @@ const priceComparison = [
 
 function StarRating({ rating }) {
   return (
-    <span style={{ color:'#4a5d23', fontSize:'14px' }}>
+    <span style={{ color:'#2d5016', fontSize:'14px' }}>
       {[1,2,3,4,5].map(i => (
         <span key={i}>{i <= Math.floor(rating) ? '★' : i - rating < 1 ? '½' : '☆'}</span>
       ))}
@@ -592,25 +592,25 @@ function ImageOrPlaceholder({ product }) {
                   display:'flex', alignItems:'center', justifyContent:'center',
                   flexDirection:'column', gap:'8px' }}>
       <div style={{ fontSize:'40px' }}>🌿</div>
-      <div style={{ color:'#4a5d23', fontWeight:700, fontSize:'14px',
+      <div style={{ color:'#2d5016', fontWeight:700, fontSize:'14px',
                     textAlign:'center', padding:'0 12px' }}>
         {product.name}
       </div>
-      <div style={{ color:'#4a5d23', fontSize:'12px', opacity:0.6 }}>{initials}</div>
+      <div style={{ color:'#2d5016', fontSize:'12px', opacity:0.6 }}>{initials}</div>
     </div>
   );
 }
 
 function BadgePill({ label }) {
   const colors = {
-    'Best Seller':    { bg:'#eef0e8', color:'#2d361e' },
+    'Best Seller':    { bg:'#eef0e8', color:'#1c3a0f' },
     'ISO 9001:2015':  { bg:'#e5e8d4', color:'#3d4f1e' },
-    'FCO Grade':      { bg:'#f0eee8', color:'#4a5d23' },
-    'FCO Certified':  { bg:'#f0eee8', color:'#4a5d23' },
-    'Most Popular':   { bg:'#eef0e8', color:'#2d361e' },
-    'New':            { bg:'#f5f3ee', color:'#4a5d23' },
+    'FCO Grade':      { bg:'#f0eee8', color:'#2d5016' },
+    'FCO Certified':  { bg:'#f0eee8', color:'#2d5016' },
+    'Most Popular':   { bg:'#eef0e8', color:'#1c3a0f' },
+    'New':            { bg:'#f5ead8', color:'#2d5016' },
   };
-  const c = colors[label] || { bg:'#eef0e8', color:'#4a5d23' };
+  const c = colors[label] || { bg:'#eef0e8', color:'#2d5016' };
   return (
     <span style={{ padding:'2px 10px', borderRadius:'999px',
                    background:c.bg, color:c.color,
@@ -638,13 +638,13 @@ function BuyButtons({ buyLinks, size = 'card' }) {
     background: variant === 'whatsapp'
       ? '#25d366'
       : variant === 'indiamart'
-      ? '#4a5d23'
+      ? '#2d5016'
       : variant === 'meesho'
-      ? '#4a5d23'
+      ? '#2d5016'
       : 'white',
     color: variant === 'whatsapp' || variant === 'indiamart' || variant === 'meesho'
       ? 'white'
-      : '#4a5d23',
+      : '#2d5016',
   });
 
   return (
@@ -686,7 +686,7 @@ function ProductModal({ product, onClose }) {
                background:'rgba(45,54,30,0.5)',
                display:'flex', alignItems:'center', justifyContent:'center',
                padding:'20px', overflowY:'auto' }}>
-      <div style={{ background:'#faf8f4', borderRadius:'20px',
+      <div style={{ background:'#fdf6ec', borderRadius:'20px',
                     maxWidth:'900px', width:'100%',
                     maxHeight:'90vh', overflowY:'auto',
                     position:'relative', boxShadow:'0 24px 80px rgba(45,54,30,0.2)' }}>
@@ -695,7 +695,7 @@ function ProductModal({ product, onClose }) {
           style={{ position:'absolute', top:16, right:16, zIndex:10,
                    width:36, height:36, borderRadius:'50%',
                    background:'rgba(45,54,30,0.08)', border:'none',
-                   fontSize:18, cursor:'pointer', color:'#2d361e' }}>
+                   fontSize:18, cursor:'pointer', color:'#1c3a0f' }}>
           ✕
         </button>
 
@@ -715,7 +715,7 @@ function ProductModal({ product, onClose }) {
                 {product.suitableFor.map(crop => (
                   <span key={crop} style={{ padding:'4px 12px',
                     borderRadius:'999px', background:'#eef0e8',
-                    color:'#4a5d23', fontSize:'12px', fontWeight:600 }}>
+                    color:'#2d5016', fontSize:'12px', fontWeight:600 }}>
                     🌾 {crop}
                   </span>
                 ))}
@@ -729,12 +729,12 @@ function ProductModal({ product, onClose }) {
             </div>
 
             <h2 style={{ fontFamily:'Playfair Display,Georgia,serif',
-                         fontSize:'24px', color:'#2d361e',
+                         fontSize:'24px', color:'#1c3a0f',
                          margin:'0 0 4px' }}>
               {product.name}
             </h2>
             {product.nameGu && (
-              <p style={{ color:'#4a5d23', fontSize:'14px',
+              <p style={{ color:'#2d5016', fontSize:'14px',
                           margin:'0 0 6px' }}>{product.nameGu}</p>
             )}
             <p style={{ color:'#6b7560', fontSize:'14px',
@@ -753,7 +753,7 @@ function ProductModal({ product, onClose }) {
             <div style={{ background:'#eef0e8', border:'1px solid rgba(74,93,35,0.15)',
                           borderRadius:'10px', padding:'12px 16px',
                           marginBottom:'16px', fontSize:'14px',
-                          fontWeight:700, color:'#2d361e' }}>
+                          fontWeight:700, color:'#1c3a0f' }}>
               {product.keySpec}
             </div>
 
@@ -761,7 +761,7 @@ function ProductModal({ product, onClose }) {
               <div style={{ display:'flex', alignItems:'center',
                             gap:'12px', marginBottom:'16px' }}>
                 <span style={{ fontSize:'24px', fontWeight:800,
-                               color:'#4a5d23' }}>
+                               color:'#2d5016' }}>
                   ₹{product.price}
                 </span>
                 <span style={{ fontSize:'14px', color:'#6b7560',
@@ -789,7 +789,7 @@ function ProductModal({ product, onClose }) {
                           marginBottom:'16px' }}>
               <div style={{ display:'grid',
                             gridTemplateColumns:'1fr 1fr 1.5fr',
-                            background:'#4a5d23', padding:'8px 12px',
+                            background:'#2d5016', padding:'8px 12px',
                             gap:'8px' }}>
                 {['Spec','Value','What It Means For You'].map(h => (
                   <span key={h} style={{ color:'white', fontSize:'11px',
@@ -803,14 +803,14 @@ function ProductModal({ product, onClose }) {
                 <div key={i} style={{
                   display:'grid', gridTemplateColumns:'1fr 1fr 1.5fr',
                   padding:'8px 12px', gap:'8px',
-                  background: i%2===0 ? '#faf8f4' : '#f5f3ee',
+                  background: i%2===0 ? '#fdf6ec' : '#f5ead8',
                   borderTop:'1px solid rgba(74,93,35,0.06)'
                 }}>
                   <span style={{ color:'#6b7560', fontSize:'12px',
                                   fontWeight:600 }}>{row[0]}</span>
-                  <span style={{ color:'#2d361e', fontSize:'12px',
+                  <span style={{ color:'#1c3a0f', fontSize:'12px',
                                   fontWeight:700 }}>{row[1]}</span>
-                  <span style={{ color:'#4a5d23', fontSize:'12px',
+                  <span style={{ color:'#2d5016', fontSize:'12px',
                                   fontStyle:'italic' }}>{row[2]}</span>
                 </div>
               ))}
@@ -824,25 +824,25 @@ function ProductModal({ product, onClose }) {
                          margin:'0 0 16px', display:'flex',
                          flexDirection:'column', gap:'6px' }}>
               {product.benefits.map((b,i) => (
-                <li key={i} style={{ fontSize:'13px', color:'#2d361e',
+                <li key={i} style={{ fontSize:'13px', color:'#1c3a0f',
                                       padding:'6px 10px', borderRadius:'8px',
-                                      background: i%2===0 ? '#f5f3ee' : 'white',
+                                      background: i%2===0 ? '#f5ead8' : 'white',
                                       lineHeight:'1.4' }}>
                   {b}
                 </li>
               ))}
             </ul>
 
-            <div style={{ background:'#f5f3ee',
+            <div style={{ background:'#f5ead8',
                           border:'1px solid rgba(74,93,35,0.15)',
                           borderRadius:'10px', padding:'14px',
                           marginBottom:'16px' }}>
-              <p style={{ color:'#4a5d23', fontSize:'11px',
+              <p style={{ color:'#2d5016', fontSize:'11px',
                           letterSpacing:'2px', textTransform:'uppercase',
                           margin:'0 0 6px', fontWeight:700 }}>
                 ⚗️ Dosage & Application
               </p>
-              <p style={{ color:'#2d361e', fontSize:'13px',
+              <p style={{ color:'#1c3a0f', fontSize:'13px',
                           lineHeight:'1.6', margin:0 }}>
                 {product.dosage}
               </p>
@@ -867,13 +867,13 @@ function ProductModal({ product, onClose }) {
                                     marginBottom:'6px' }}>
                         <div>
                           <span style={{ fontWeight:700, fontSize:'13px',
-                                          color:'#2d361e' }}>{r.name}</span>
+                                          color:'#1c3a0f' }}>{r.name}</span>
                           <span style={{ color:'#6b7560', fontSize:'12px',
                                           marginLeft:'8px' }}>— {r.location}</span>
                         </div>
                         <StarRating rating={r.rating} />
                       </div>
-                      <p style={{ color:'#4a5d23', fontSize:'13px',
+                      <p style={{ color:'#2d5016', fontSize:'13px',
                                    fontStyle:'italic', margin:0,
                                    lineHeight:'1.5' }}>
                         "{r.text}"
@@ -920,7 +920,7 @@ function ProductCard({ product, onViewDetails }) {
         <ImageOrPlaceholder product={product} />
         {product.discount > 0 && (
           <div style={{ position:'absolute', top:12, left:12,
-                        background:'#4a5d23', color:'white',
+                        background:'#2d5016', color:'white',
                         padding:'3px 10px', borderRadius:'999px',
                         fontSize:'11px', fontWeight:800 }}>
             -{product.discount}%
@@ -944,7 +944,7 @@ function ProductCard({ product, onViewDetails }) {
         )}
 
         <h3 style={{ fontFamily:'Playfair Display,Georgia,serif',
-                     fontSize:'17px', color:'#2d361e',
+                     fontSize:'17px', color:'#1c3a0f',
                      margin:0, lineHeight:'1.3' }}>
           {product.name}
         </h3>
@@ -957,7 +957,7 @@ function ProductCard({ product, onViewDetails }) {
 
         <div style={{ background:'#eef0e8', borderRadius:'8px',
                       padding:'8px 10px', fontSize:'12px',
-                      fontWeight:700, color:'#2d361e' }}>
+                      fontWeight:700, color:'#1c3a0f' }}>
           {product.keySpec}
         </div>
 
@@ -967,11 +967,11 @@ function ProductCard({ product, onViewDetails }) {
             <div key={i} style={{
               display:'flex', justifyContent:'space-between',
               padding:'5px 10px', fontSize:'11px',
-              background: i%2===0 ? '#faf8f4' : '#f5f3ee',
+              background: i%2===0 ? '#fdf6ec' : '#f5ead8',
               gap:'8px'
             }}>
               <span style={{ color:'#6b7560', flexShrink:0 }}>{row[0]}</span>
-              <span style={{ color:'#2d361e', fontWeight:700,
+              <span style={{ color:'#1c3a0f', fontWeight:700,
                               textAlign:'right' }}>{row[1]}</span>
             </div>
           ))}
@@ -989,7 +989,7 @@ function ProductCard({ product, onViewDetails }) {
           {product.price ? (
             <>
               <span style={{ fontSize:'20px', fontWeight:800,
-                             color:'#4a5d23' }}>
+                             color:'#2d5016' }}>
                 ₹{product.price}
               </span>
               <span style={{ fontSize:'12px', color:'#888',
@@ -1000,7 +1000,7 @@ function ProductCard({ product, onViewDetails }) {
                              fontWeight:700 }}>{product.unit}</span>
             </>
           ) : (
-            <span style={{ fontSize:'14px', color:'#4a5d23',
+            <span style={{ fontSize:'14px', color:'#2d5016',
                            fontWeight:700 }}>
               Contact for pricing
             </span>
@@ -1013,16 +1013,16 @@ function ProductCard({ product, onViewDetails }) {
           <button onClick={() => onViewDetails(product)}
             style={{ flex:1, padding:'9px', borderRadius:'999px',
                      border:'1px solid rgba(74,93,35,0.25)',
-                     background:'white', color:'#4a5d23',
+                     background:'white', color:'#2d5016',
                      fontSize:'12px', fontWeight:700,
                      cursor:'pointer', transition:'all 0.2s' }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = '#4a5d23';
+              e.currentTarget.style.background = '#2d5016';
               e.currentTarget.style.color = 'white';
             }}
             onMouseLeave={e => {
               e.currentTarget.style.background = 'white';
-              e.currentTarget.style.color = '#4a5d23';
+              e.currentTarget.style.color = '#2d5016';
             }}>
             View Details
           </button>
@@ -1052,18 +1052,18 @@ export default function Products() {
     : products.filter(p => p.category.includes(activeFilter));
 
   return (
-    <main style={{ background:'#faf8f4', minHeight:'100vh',
+    <main style={{ background:'#fdf6ec', minHeight:'100vh',
                    fontFamily:'Nunito, DM Sans, sans-serif' }}>
 
       <section style={{ padding:'90px 24px 60px', textAlign:'center',
-                        background:'linear-gradient(180deg, #f5f3ee 0%, #faf8f4 100%)',
+                        background:'linear-gradient(180deg, #f5ead8 0%, #fdf6ec 100%)',
                         borderBottom:'1px solid rgba(74,93,35,0.1)' }}>
-        <p style={{ color:'#4a5d23', fontSize:'11px', letterSpacing:'4px',
+        <p style={{ color:'#2d5016', fontSize:'11px', letterSpacing:'4px',
                     textTransform:'uppercase', marginBottom:'12px' }}>
           CERTIFIED ORGANIC INPUTS
         </p>
         <h1 style={{ fontFamily:'Playfair Display,Georgia,serif',
-                     fontSize:'clamp(32px,5vw,60px)', color:'#2d361e',
+                     fontSize:'clamp(32px,5vw,60px)', color:'#1c3a0f',
                      fontWeight:400, margin:'0 0 16px', lineHeight:'1.15' }}>
           Pure Organic. Proven Results.
         </h1>
@@ -1077,7 +1077,7 @@ export default function Products() {
           <button
             onClick={() => document.getElementById('product-grid')?.scrollIntoView({ behavior:'smooth' })}
             style={{ padding:'12px 28px', borderRadius:'999px',
-                     background:'#4a5d23', color:'#faf8f4',
+                     background:'#2d5016', color:'#fdf6ec',
                      border:'none', fontWeight:700, fontSize:'14px',
                      cursor:'pointer', letterSpacing:'0.5px' }}>
             Shop All Products ↓
@@ -1085,7 +1085,7 @@ export default function Products() {
           <a href="https://www.indiamart.com/agrocare-una/"
              target="_blank" rel="noopener noreferrer"
              style={{ padding:'12px 28px', borderRadius:'999px',
-                      border:'2px solid #4a5d23', color:'#4a5d23',
+                      border:'2px solid #2d5016', color:'#2d5016',
                       fontWeight:700, fontSize:'14px',
                       textDecoration:'none', letterSpacing:'0.5px' }}>
             View IndiaMART Store →
@@ -1095,7 +1095,7 @@ export default function Products() {
 
       <section style={{ padding:'20px 24px 0',
                         position:'sticky', top:0, zIndex:100,
-                        background:'#faf8f4',
+                        background:'#fdf6ec',
                         borderBottom:'1px solid rgba(74,93,35,0.1)',
                         boxShadow:'0 2px 12px rgba(45,54,30,0.04)' }}>
         <div style={{ maxWidth:'1200px', margin:'0 auto',
@@ -1109,8 +1109,8 @@ export default function Products() {
                 border: activeFilter === f.id
                   ? 'none'
                   : '1px solid rgba(74,93,35,0.2)',
-                background: activeFilter === f.id ? '#4a5d23' : 'white',
-                color: activeFilter === f.id ? '#faf8f4' : '#4a5d23',
+                background: activeFilter === f.id ? '#2d5016' : 'white',
+                color: activeFilter === f.id ? '#fdf6ec' : '#2d5016',
                 fontSize:'13px', fontWeight:600, cursor:'pointer',
                 whiteSpace:'nowrap', transition:'all 0.2s',
                 flexShrink:0
@@ -1138,15 +1138,15 @@ export default function Products() {
         </div>
       </section>
 
-      <section style={{ background:'#f5f3ee', padding:'60px 24px' }}>
+      <section style={{ background:'#f5ead8', padding:'60px 24px' }}>
         <div style={{ maxWidth:'900px', margin:'0 auto' }}>
-          <p style={{ color:'#4a5d23', fontSize:'11px', letterSpacing:'4px',
+          <p style={{ color:'#2d5016', fontSize:'11px', letterSpacing:'4px',
                       textTransform:'uppercase', textAlign:'center',
                       marginBottom:'8px' }}>
             DIRECT FROM MANUFACTURER
           </p>
           <h2 style={{ fontFamily:'Playfair Display,Georgia,serif',
-                       fontSize:'clamp(24px,4vw,40px)', color:'#2d361e',
+                       fontSize:'clamp(24px,4vw,40px)', color:'#1c3a0f',
                        textAlign:'center', fontWeight:400,
                        margin:'0 0 8px' }}>
             Why Buy From AgroCare Directly?
@@ -1159,7 +1159,7 @@ export default function Products() {
                         boxShadow:'0 8px 32px rgba(45,54,30,0.08)' }}>
             <div style={{ display:'grid',
                           gridTemplateColumns:'2fr 1fr 1fr 1fr',
-                          background:'#4a5d23', padding:'12px 20px',
+                          background:'#2d5016', padding:'12px 20px',
                           gap:'8px' }}>
               {['Product','Market Price','AgroCare Price','You Save'].map(h => (
                 <span key={h} style={{ color:'white', fontSize:'12px',
@@ -1173,10 +1173,10 @@ export default function Products() {
               <div key={i} style={{
                 display:'grid', gridTemplateColumns:'2fr 1fr 1fr 1fr',
                 padding:'12px 20px', gap:'8px',
-                background: i%2===0 ? 'white' : '#faf8f4',
+                background: i%2===0 ? 'white' : '#fdf6ec',
                 alignItems:'center'
               }}>
-                <span style={{ color:'#2d361e', fontSize:'13px',
+                <span style={{ color:'#1c3a0f', fontSize:'13px',
                                 fontWeight:600 }}>
                   {row.product}
                 </span>
@@ -1184,7 +1184,7 @@ export default function Products() {
                                 textDecoration:'line-through' }}>
                   ₹{row.market}
                 </span>
-                <span style={{ color:'#4a5d23', fontSize:'15px',
+                <span style={{ color:'#2d5016', fontSize:'15px',
                                 fontWeight:800 }}>
                   ₹{row.ours}
                 </span>
@@ -1204,9 +1204,9 @@ export default function Products() {
       </section>
 
       <section style={{ textAlign:'center', padding:'60px 24px',
-                        background:'#faf8f4' }}>
+                        background:'#fdf6ec' }}>
         <h2 style={{ fontFamily:'Playfair Display,Georgia,serif',
-                     fontSize:'clamp(22px,3vw,36px)', color:'#2d361e',
+                     fontSize:'clamp(22px,3vw,36px)', color:'#1c3a0f',
                      fontWeight:400, margin:'0 0 12px' }}>
           Not sure which product you need?
         </h2>

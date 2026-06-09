@@ -5,26 +5,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap");
 
 :root {
-  --color-primary-green: #00c853;
+  --color-primary-green: #2d5016;
   --color-accent-red: #ff3d00;
-  --color-text-dark: #1b5e20;
-  --color-bg-light: #f4fbf7;
+  --color-text-dark: #1c3a0f;
+  --color-bg-light: #fdf6ec;
 
   /* Aliases used across components */
   --c-bg: var(--color-bg-light);
   --c-white: #ffffff;
-  --c-surface: #e8f5e9;
+  --c-surface: #f5ead8;
   --c-primary: var(--color-primary-green);
   --c-accent: var(--color-accent-red);
   --c-text: var(--color-text-dark);
   --c-ink: var(--color-text-dark);
-  --c-ink-soft: #388e3c;
-  --c-ink-faint: #66bb6a;
-  --c-border: #c8e6c9;
+  --c-ink-soft: #3d5c1f;
+  --c-ink-faint: #6b7c52;
+  --c-border: rgba(74, 94, 42, 0.15);
   --c-sage: var(--color-primary-green);
   --c-sage-deep: var(--color-text-dark);
   --c-sage-dark: var(--color-text-dark);
-  --c-sage-mist: #e8f5e9;
+  --c-sage-mist: #e8f0d8;
 
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
@@ -78,8 +78,8 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 400;
-  background: var(--color-bg-light);
-  color: var(--color-text-dark);
+  background-color: #fdf6ec !important;
+  color: #1c3a0f !important;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   min-height: 100vh;
@@ -783,4 +783,53 @@ body.mobile-menu-open { overflow: hidden; }
 
 @media (min-width: 640px) {
   .footer-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+nav,
+header,
+.navbar,
+[class*="nav"],
+[class*="header"],
+[class*="Navbar"] {
+  background: #fdf6ec !important;
+  background-color: #fdf6ec !important;
+  border-bottom: 1px solid rgba(74, 94, 42, 0.12) !important;
+  color: #1c3a0f !important;
+}
+
+section {
+  background-color: transparent;
+}
+
+section:nth-child(even) {
+  background-color: #f5ead8 !important;
+}
+
+section:nth-child(odd) {
+  background-color: #fdf6ec !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #2d3a1f;
+    --bg-secondary: #243016;
+    --bg-card: #354525;
+    --text-primary: #f5ead8;
+    --text-secondary: #d4c9a8;
+    --text-muted: #a89878;
+    --border: rgba(196, 154, 26, 0.2);
+    --color-bg-light: #2d3a1f;
+    --color-text-dark: #f5ead8;
+  }
+
+  body {
+    background-color: #2d3a1f !important;
+    color: #f5ead8 !important;
+  }
+
+  nav,
+  header,
+  .navbar {
+    background: #243016 !important;
+  }
 }

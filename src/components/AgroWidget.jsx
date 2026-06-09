@@ -257,7 +257,7 @@ export default function AgroWidget() {
           width:        '60px',
           height:       '60px',
           borderRadius: '50%',
-          background:   'linear-gradient(135deg, #4a5d23 0%, #4a5d23 100%)',
+          background:   'linear-gradient(135deg, #2d5016 0%, #2d5016 100%)',
           border:       '3px solid #b87352',
           color:        'white',
           fontSize:     '26px',
@@ -312,7 +312,7 @@ export default function AgroWidget() {
         >
           {/* Header */}
           <div style={{
-            background:  'linear-gradient(135deg, #4a5d23 0%, #4a5d23 100%)',
+            background:  'linear-gradient(135deg, #2d5016 0%, #2d5016 100%)',
             padding:     '14px 18px',
             display:     'flex',
             alignItems:  'center',
@@ -405,7 +405,7 @@ export default function AgroWidget() {
                     ? '18px 18px 4px 18px'
                     : '18px 18px 18px 4px',
                   background:   msg.role === 'user'
-                    ? 'linear-gradient(135deg, #4a5d23, #4a5d23)'
+                    ? 'linear-gradient(135deg, #2d5016, #2d5016)'
                     : '#ffffff',
                   color:        msg.role === 'user' 
                     ? 'white' 
@@ -472,7 +472,7 @@ export default function AgroWidget() {
                     width:        '8px',
                     height:       '8px',
                     borderRadius: '50%',
-                    background:   '#4a5d23',
+                    background:   '#2d5016',
                     animation:    `widgetBounce 1.2s ${i * 0.2}s infinite ease-in-out`,
                   }} />
                 ))}
@@ -500,7 +500,7 @@ export default function AgroWidget() {
                     borderRadius: '999px',
                     background:   '#e8f5e8',
                     border:       '1px solid rgba(45,80,22,0.2)',
-                    color:        '#4a5d23',
+                    color:        '#2d5016',
                     fontSize:     '12px',
                     fontWeight:   600,
                     cursor:       'pointer',
@@ -508,12 +508,12 @@ export default function AgroWidget() {
                     fontFamily:   'Nunito, sans-serif',
                   }}
                   onMouseEnter={e => {
-                    e.currentTarget.style.background = '#4a5d23';
+                    e.currentTarget.style.background = '#2d5016';
                     e.currentTarget.style.color = 'white';
                   }}
                   onMouseLeave={e => {
                     e.currentTarget.style.background = '#e8f5e8';
-                    e.currentTarget.style.color = '#4a5d23';
+                    e.currentTarget.style.color = '#2d5016';
                   }}
                 >
                   {q}
@@ -557,7 +557,7 @@ export default function AgroWidget() {
                 transition:   'border 0.2s',
               }}
               onFocus={e => {
-                e.target.style.border = '1px solid #4a5d23';
+                e.target.style.border = '1px solid #2d5016';
               }}
               onBlur={e => {
                 e.target.style.border = 
@@ -573,7 +573,7 @@ export default function AgroWidget() {
                 height:         '40px',
                 borderRadius:   '50%',
                 background:     input.trim() && !loading 
-                  ? '#4a5d23' 
+                  ? '#2d5016' 
                   : '#d0d8c8',
                 border:         'none',
                 color:          'white',
@@ -589,13 +589,13 @@ export default function AgroWidget() {
               }}
               onMouseEnter={e => {
                 if (input.trim() && !loading) {
-                  e.currentTarget.style.background = '#4a5d23';
+                  e.currentTarget.style.background = '#2d5016';
                   e.currentTarget.style.transform = 'scale(1.05)';
                 }
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.background = 
-                  input.trim() && !loading ? '#4a5d23' : '#d0d8c8';
+                  input.trim() && !loading ? '#2d5016' : '#d0d8c8';
                 e.currentTarget.style.transform = 'scale(1)';
               }}
             >
