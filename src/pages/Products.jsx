@@ -69,6 +69,17 @@ function normalizeStem(value) {
 function resolveImage(imageLookup) {
   if (!imageLookup?.length) return null;
 
+  const first = imageLookup[0];
+  if (first && (
+    first.startsWith('/') ||
+    first.startsWith('./') ||
+    first.startsWith('../') ||
+    first.includes('assets/') ||
+    first.includes('images/')
+  )) {
+    return first.startsWith('/') ? first : `/${first.replace(/\\/g, '/')}`;
+  }
+
   for (const lookup of imageLookup) {
     const key = normalizeStem(lookup);
     for (const file of ASSET_FILES) {
@@ -130,7 +141,7 @@ const products = [
       "🔒 Stress Shield — drought and temperature shock protection",
       "♻️ 100% Organic — no residue, safe any stage of crop cycle"
     ],
-    imageLookup: ["vanchetan-davya","VanChetan","vanchetan_davya","vanchetan"],
+    imageLookup: ["assets/images/products/van chetan dravya .jpg","vanchetan-davya","VanChetan","vanchetan_davya","vanchetan"],
     reviews: [
       { name:"Jayesh Solanki", location:"Junagadh, Gujarat", rating:5,
         text:"Mitti maa jiv avi gayi chhe — mara khetarma. Highly recommend." },
@@ -275,7 +286,7 @@ const products = [
       "🔒 No Synthetic Additives — 98% pure, organic certified safe",
       "📅 12-Month Shelf Life — buy bulk without wastage worry"
     ],
-    imageLookup: ["magic-gel","energy-gel","MagicGel","seaweed-gel","seaweed_extract_gel","granular-biozyme"],
+    imageLookup: ["assets/images/products/seaweed gel.jpg","magic-gel","energy-gel","MagicGel","seaweed-gel","seaweed_extract_gel","granular-biozyme"],
     reviews: [
       { name:"Bhavesh Patel", location:"Amreli, Gujarat", rating:4,
         text:"Applied via drip on chilli. Flowering improved noticeably." }
@@ -421,7 +432,7 @@ const products = [
       "♻️ Biodegradable — zero residue, safe right up to harvest",
       "💰 3-in-1 — pesticide + fungicide + soil improver"
     ],
-    imageLookup: ["neem-oil","NeemOil","neem_oil","neem"],
+    imageLookup: ["assets/images/products/neem oil.jpg","neem-oil","NeemOil","neem_oil","neem"],
     reviews: [
       { name:"Haresh Thakor", location:"Gandhinagar", rating:4,
         text:"Whitefly problem on tomato solved in 2 sprays. Happy." },
@@ -465,7 +476,7 @@ const products = [
       "🌿 Fixes Tip Burn — corrects brown/dead leaf tips immediately",
       "💪 21% Strength — twice as concentrated as budget products"
     ],
-    imageLookup: ["boron","boron21","Boron_21","Boron"],
+    imageLookup: ["assets/images/products/boron.jpg","boron","boron21","Boron_21","Boron"],
     reviews: []
   },
   {
