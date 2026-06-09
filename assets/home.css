@@ -40,8 +40,8 @@ main {
   gap: var(--sp-2);
   margin-bottom: var(--sp-4);
   padding: 0.35rem 0.85rem;
-  background: rgba(0, 200, 83, 0.1);
-  border: 1px solid rgba(0, 200, 83, 0.25);
+  background: rgba(107, 143, 94, 0.12);
+  border: 1px solid rgba(107, 143, 94, 0.28);
   border-radius: var(--r-full);
 }
 

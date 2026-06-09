@@ -1,0 +1,42 @@
+/* AgroCare company knowledge — powers the on-site AI assistant */
+window.AGRO_KNOWLEDGE = {
+  company: "AgroCare",
+  founded: 2011,
+  hq: "Namah Siddh Nagar, Vyajpur, Una 362560, Gujarat",
+  phone: "+91-9427205179",
+  whatsapp: "https://wa.me/919427205179",
+  email: "agrocare.aquarev@gmail.com",
+  farmersReached: "2,355+",
+  districtsCount: "18+",
+  chemicalsReplaced: "350 MT",
+  yearsTrust: "8+",
+  states: ["Gujarat", "Tamil Nadu", "Uttar Pradesh"],
+  gujaratDistricts: [
+    "Bhavnagar", "Amreli", "Junagadh", "Rajkot", "Surendranagar", "Botad",
+    "Gir Somnath", "Jamnagar", "Porbandar", "Anand", "Vadodara", "Bharuch",
+    "Surat", "Valsad", "Navsari", "Mehsana", "Gandhinagar", "Una",
+  ],
+  tamilNaduDistricts: ["Coimbatore", "Salem", "Erode", "Madurai"],
+  upDistricts: ["Lucknow", "Kanpur", "Varanasi"],
+  products: [
+    { name: "VanChetan Davya", form: "Liquid", dose: "2 litres/acre", price: 100, mrp: 130 },
+    { name: "Energy Balls", form: "Granules", dose: "10 kg/acre", price: 200, mrp: 270 },
+    { name: "Seaweed Liquid (VanChetan Taral)", form: "Liquid", dose: "2 litres/acre", price: 220, mrp: 295 },
+    { name: "Seaweed Extract Gel (Magic Gel)", form: "Gel", dose: "5 kg/acre", price: 400, mrp: 490 },
+    { name: "Potassium Humate 98% (Power Gold)", form: "Flakes", dose: "2 kg/acre", price: 120, mrp: 175 },
+    { name: "Humic Acid 5% FCO", form: "Powder", dose: "2–3 kg/acre", humic: "5% FCO grade", price: 90, mrp: 130 },
+    { name: "Neem Oil 99%", form: "Liquid", dose: "3–5 ml/L water", price: 250, mrp: 320 },
+    { name: "Boron 21%", form: "Powder", dose: "As directed", price: 250, mrp: 335 },
+    { name: "Fulvic Acid", form: "Powder", dose: "1–2 kg/acre", fulvic: "95%+", price: 130, mrp: 180 },
+  ],
+  humicAcidFCO: {
+    composition: "5% Humic Acid (FCO certified), government-verified concentration under India's Fertiliser Control Order",
+    benefits: "Improves CEC, chelates micronutrients, reduces urea/DAP need 20–30%, builds soil carbon",
+    form: "Powder — dissolve in water or mix with FYM",
+  },
+  potassiumHumate: {
+    composition: "98% Potassium Humate shiny flakes — 70% Humic Acid, 10% Fulvic Acid, 10% Potash",
+    certification: "ISO 9001:2015",
+  },
+  certifications: ["ISO 9001:2015", "FCO Grade products", "Organic certified inputs"],
+};

@@ -9,20 +9,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f5e6c8;
-    --bg-card: #faf3e4;
-    --bg-card2: #f2e8cf;
-    --bg-section-alt: #ede0c4;
+    --bg: #f2e3b5;
+    --bg-card: #faf4dc;
+    --bg-card2: #ebd9a0;
+    --bg-section-alt: #e0d09a;
     --green-dark: #2d361e;
     --green-mid: #4a5d23;
     --green-light: #5a6f2e;
     --green-pale: #e5e8d4;
     --gold: #b87352;
-    --gold-pale: #f5e6c8;
+    --gold-pale: #f5e9c4;
     --terracotta: #b87352;
-    --terra-pale: #ede0c4;
+    --terra-pale: #ebd9a0;
     --sky: #4a5d23;
-    --sky-pale: #ede0c4;
+    --sky-pale: #ebd9a0;
     --text-primary: #2d361e;
     --text-secondary: #4a5d23;
     --muted: #6b7354;
@@ -33,7 +33,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    background: var(--bg);
+    background: #F5EED8;
     color: var(--text-primary);
     font-family: var(--sans);
     font-weight: 300;
@@ -46,7 +46,7 @@
     position: sticky; top: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1rem 3rem;
-    background: rgba(245, 240, 232, 0.97);
+    background: rgba(242, 227, 181, 0.97);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(26, 77, 46, 0.1);
   }
@@ -344,7 +344,7 @@
   /* CTA */
   .cta-section {
     text-align: center; padding: 7rem 2rem; position: relative; overflow: hidden;
-    background: var(--green-dark);
+    background: #F5EED8;
   }
   .cta-title {
     font-family: var(--serif); font-size: clamp(2.6rem, 5.5vw, 4.5rem);
@@ -372,11 +372,11 @@
   footer {
     border-top: 1px solid rgba(26, 77, 46, 0.1); padding: 2rem 3rem;
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.7rem; color: rgba(245, 240, 232, 0.5);
-    background: #2d361e;
+    font-size: 0.7rem; color: var(--muted);
+    background: #e0d09a;
   }
-  footer a { color: rgba(245, 240, 232, 0.5); text-decoration: none; }
-  footer a:hover { color: var(--green-light); }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--green-mid); }
 
   @media (max-width: 960px) {
     .metrics-grid { grid-template-columns: repeat(2, 1fr); }
@@ -403,30 +403,45 @@
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo">
-    <img src="assets/logo/agrocare-logo.png" alt="Agrocare" style="height:44px;width:auto"/>
+<link rel="stylesheet" href="css/styles.css"/>
+<header id="site-header">
+  <a href="index.html" class="nav-logo" aria-label="Agrocare Home">
+    <img src="assets/logo/agrocare-logo.png" alt="Agrocare" style="height:40px;width:auto"/>
   </a>
-  <ul class="nav-links">
-    <li><a href="#">Why Us</a></li>
-    <li><a href="#">Our Mission</a></li>
-    <li><a href="products.html">Products</a></li>
-    <li><a href="#">Solutions</a></li>
-    <li><a href="impact-report.html" class="active">Our Impact</a></li>
-    <li><a href="#">Stories</a></li>
-    <li><a href="#">About Us</a></li>
-  </ul>
-  <a href="https://wa.me/919427205179" class="nav-cta">Enquire Now</a>
+  <nav aria-label="Main navigation">
+    <ul class="nav-links">
+      <li><a href="index.html#why-us">Why Us</a></li>
+      <li><a href="index.html#vision-section">Our Mission</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="index.html#solutions">Solutions</a></li>
+      <li><a href="impact-report.html" aria-current="page">Our Impact</a></li>
+      <li><a href="our-stories.html">Stories</a></li>
+      <li><a href="join.html">Join Us</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li class="nav-cta"><a href="enquiry.html">Enquire Now</a></li>
+    </ul>
+  </nav>
+  <div class="nav-right">
+    <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav">
+  <button type="button" class="mobile-nav-close" aria-label="Close menu">✕</button>
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="our-stories.html">Stories</a>
+  <a href="enquiry.html">Enquire Now</a>
+  <a href="about.html">About Us</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-pill"><span class="hero-pill-dot"></span>AgroCare Impact Report · 2024–25</div>
   <h1>Behind every number<br>is a <em>real farmer.</em></h1>
-  <p class="hero-sub">Eight years. Three states. 200+ farmers. Real change, measured and growing — across India.</p>
+  <p class="hero-sub">Eight years. Three states. 2,355+ farmers. Real change, measured and growing — across India.</p>
   <div class="hero-stats">
     <div class="hero-stat">
-      <div class="hero-stat-num">200+</div>
+      <div class="hero-stat-num">2,355+</div>
       <div class="hero-stat-label">Farmers Reached</div>
     </div>
     <div class="hero-stat">
@@ -450,17 +465,17 @@
 <section class="section">
   <p class="section-eyebrow">At a Glance</p>
   <h2 class="section-title">What eight years of<br><em>organic farming</em> looks like</h2>
-  <p class="section-body">From a single product in Una, Gujarat to a three-state network serving 200+ farmers — measured, certified, and still growing.</p>
+  <p class="section-body">From a single product in Una, Gujarat to a three-state network serving 2,355+ farmers — measured, certified, and still growing.</p>
   <div class="metrics-grid">
     <div class="metric-card">
-      <div class="metric-num">200+</div>
+      <div class="metric-num">2,355+</div>
       <div class="metric-label">Farmers Reached</div>
-      <div class="metric-detail">Active farmers across Gujarat, Karnataka, and Uttar Pradesh who have used at least one AgroCare product in the last 24 months.</div>
+      <div class="metric-detail">Active farmers across Gujarat, Tamil Nadu, and Uttar Pradesh who have used at least one AgroCare product in the last 24 months.</div>
     </div>
     <div class="metric-card">
       <div class="metric-num">3 States</div>
       <div class="metric-label">Pan-India Presence</div>
-      <div class="metric-detail">Gujarat (home state), Karnataka (South India), and Uttar Pradesh (North India). Expanding further in 2025–26.</div>
+      <div class="metric-detail">Gujarat (home state), Tamil Nadu (South India), and Uttar Pradesh (North India). Expanding further in 2025–26.</div>
     </div>
     <div class="metric-card">
       <div class="metric-num">350 MT</div>
@@ -500,8 +515,8 @@
 <!-- PAN-INDIA MAP & STATE BREAKDOWN -->
 <section class="section">
   <p class="section-eyebrow">Pan-India Reach</p>
-  <h2 class="section-title">Gujarat. Karnataka.<br><em>Uttar Pradesh.</em></h2>
-  <p class="section-body">AgroCare's impact spans three states across India's most important agricultural belts — from the cotton fields of Saurashtra to the horticultural farms of Karnataka and the wheat plains of UP.</p>
+  <h2 class="section-title">Gujarat. Tamil Nadu.<br><em>Uttar Pradesh.</em></h2>
+  <p class="section-body">AgroCare's impact spans three states across India's most important agricultural belts — from the cotton fields of Saurashtra to the horticultural farms of Tamil Nadu and the wheat plains of UP.</p>
 
   <div class="india-grid">
     <div class="state-cards">
@@ -510,8 +525,8 @@
           <span class="state-dot" style="background:#3a9e52"></span>
           <span class="state-name">Gujarat</span>
         </div>
-        <div class="state-farmers">140+</div>
-        <div class="state-meta">18 districts · Home state since 2017</div>
+        <div class="state-farmers">1,900+</div>
+        <div class="state-meta">18 districts · Home state since 2011</div>
         <div class="state-crops">
           <span class="crop-pill">Cotton</span>
           <span class="crop-pill">Groundnut</span>
@@ -523,15 +538,15 @@
       <div class="state-card">
         <div class="state-card-header">
           <span class="state-dot" style="background:#6fcf7a"></span>
-          <span class="state-name">Karnataka</span>
+          <span class="state-name">Tamil Nadu</span>
         </div>
-        <div class="state-farmers">40+</div>
-        <div class="state-meta">4 districts · Expanded 2022</div>
+        <div class="state-farmers">350+</div>
+        <div class="state-meta">Coimbatore · Salem · Erode · Madurai · Expanded 2022</div>
         <div class="state-crops">
           <span class="crop-pill">Tomato</span>
-          <span class="crop-pill">Ragi</span>
-          <span class="crop-pill">Grapes</span>
-          <span class="crop-pill">Pomegranate</span>
+          <span class="crop-pill">Banana</span>
+          <span class="crop-pill">Turmeric</span>
+          <span class="crop-pill">Coconut</span>
           <span class="crop-pill">Paddy</span>
         </div>
       </div>
@@ -540,7 +555,7 @@
           <span class="state-dot" style="background:#c9a84c"></span>
           <span class="state-name">Uttar Pradesh</span>
         </div>
-        <div class="state-farmers">20+</div>
+        <div class="state-farmers">105+</div>
         <div class="state-meta">3 districts · Expanded 2023</div>
         <div class="state-crops">
           <span class="crop-pill">Wheat</span>
@@ -594,7 +609,7 @@
         <path class="land" d="M150,190 L215,195 L240,205 L245,235 L225,255 L195,265 L165,255 L145,235 L140,215 Z" />
         <!-- Goa -->
         <path class="land" d="M155,255 L168,250 L172,265 L160,270 Z" />
-        <!-- Karnataka -->
+        <!-- Tamil Nadu -->
         <path class="highlight" d="M165,255 L225,255 L240,270 L245,300 L235,325 L215,335 L195,330 L175,315 L160,290 L155,268 Z" />
         <!-- Andhra/Telangana -->
         <path class="land" d="M240,255 L280,250 L295,268 L295,300 L280,318 L260,325 L240,318 L230,300 L235,275 Z" />
@@ -610,7 +625,7 @@
         <!-- State Labels -->
         <text x="105" y="172" font-family="Jost,sans-serif" font-size="7" fill="#6fcf7a" font-weight="500" text-anchor="middle">GUJARAT</text>
         <text x="245" y="100" font-family="Jost,sans-serif" font-size="7" fill="#a8ddb2" font-weight="400" text-anchor="middle">UP</text>
-        <text x="205" y="300" font-family="Jost,sans-serif" font-size="7" fill="#a8ddb2" font-weight="400" text-anchor="middle">KARNATAKA</text>
+        <text x="215" y="365" font-family="Jost,sans-serif" font-size="7" fill="#a8ddb2" font-weight="400" text-anchor="middle">TAMIL NADU</text>
 
         <!-- Dots on active states -->
         <circle cx="112" cy="168" r="5" fill="#6fcf7a" opacity="0.9">
@@ -621,14 +636,14 @@
           <animate attributeName="r" values="3;6;3" dur="3s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.85;0.35;0.85" dur="3s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="207" cy="295" r="4" fill="#6fcf7a" opacity="0.85">
+        <circle cx="215" cy="365" r="4" fill="#6fcf7a" opacity="0.85">
           <animate attributeName="r" values="3;6;3" dur="2.8s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.85;0.35;0.85" dur="2.8s" repeatCount="indefinite"/>
         </circle>
       </svg>
       <div class="map-legend">
         <div class="legend-item"><span class="legend-swatch" style="background:var(--green-mid)"></span>Primary hub (Gujarat)</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:#2a5c36"></span>Active state (Karnataka, UP)</div>
+        <div class="legend-item"><span class="legend-swatch" style="background:#2a5c36"></span>Active state (Tamil Nadu, UP)</div>
         <div class="legend-item"><span class="legend-swatch" style="background:#e8f0ea"></span>Other regions</div>
       </div>
     </div>
@@ -650,50 +665,50 @@
       <span class="product-name">VanChetan Davya — Microbial Booster</span>
       <span><span class="product-form">Liquid</span></span>
       <span class="product-dosage">2 litres</span>
-      <span class="product-price">₹200 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹260</span></span>
-      <span class="product-saving">Save ₹60 (23%)</span>
+      <span class="product-price">₹100 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹130</span></span>
+      <span class="product-saving">Save ₹30 (23%)</span>
     </div>
     <div class="product-row">
       <span class="product-name">Energy Balls — Seaweed Granules</span>
       <span><span class="product-form">Granules</span></span>
       <span class="product-dosage">10 kg</span>
-      <span class="product-price">₹150 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹200</span></span>
-      <span class="product-saving">Save ₹50 (25%)</span>
+      <span class="product-price">₹200 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹270</span></span>
+      <span class="product-saving">Save ₹70 (26%)</span>
     </div>
     <div class="product-row">
       <span class="product-name">Seaweed Liquid — VanChetan Taral</span>
       <span><span class="product-form">Liquid</span></span>
       <span class="product-dosage">2 litres</span>
-      <span class="product-price">₹300 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹400</span></span>
-      <span class="product-saving">Save ₹100 (25%)</span>
+      <span class="product-price">₹220 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹295</span></span>
+      <span class="product-saving">Save ₹75 (25%)</span>
     </div>
     <div class="product-row">
       <span class="product-name">Magic Gel — Seaweed Extract Gel</span>
       <span><span class="product-form">Gel</span></span>
       <span class="product-dosage">5 kg</span>
-      <span class="product-price">₹450 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹550</span></span>
-      <span class="product-saving">Save ₹100 (18%)</span>
+      <span class="product-price">₹400 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹490</span></span>
+      <span class="product-saving">Save ₹90 (18%)</span>
     </div>
     <div class="product-row">
       <span class="product-name">Power Gold — Potassium Humate 70%</span>
       <span><span class="product-form">Powder</span></span>
       <span class="product-dosage">2 kg</span>
-      <span class="product-price">₹180 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹260</span></span>
-      <span class="product-saving">Save ₹80 (31%)</span>
+      <span class="product-price">₹120 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹175</span></span>
+      <span class="product-saving">Save ₹55 (31%)</span>
     </div>
     <div class="product-row">
       <span class="product-name">Neem Oil — Cold Pressed 99% Pure</span>
       <span><span class="product-form">Liquid</span></span>
       <span class="product-dosage">3–5 ml/L water</span>
-      <span class="product-price">₹350/L <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹450</span></span>
-      <span class="product-saving">Save ₹100 (22%)</span>
+      <span class="product-price">₹250/L <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹320</span></span>
+      <span class="product-saving">Save ₹70 (22%)</span>
     </div>
     <div class="product-row">
       <span class="product-name">Boron 21% — Micronutrient</span>
       <span><span class="product-form">Powder</span></span>
       <span class="product-dosage">As directed</span>
-      <span class="product-price">₹150 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹200</span></span>
-      <span class="product-saving">Save ₹50 (25%)</span>
+      <span class="product-price">₹250 <span style="opacity:.38;font-size:.72rem;text-decoration:line-through;margin-left:4px">₹335</span></span>
+      <span class="product-saving">Save ₹85 (25%)</span>
     </div>
   </div>
 </section>
@@ -704,14 +719,14 @@
 <section class="section">
   <p class="section-eyebrow">Crop Performance — All States</p>
   <h2 class="section-title">Average yield improvement<br><em>by crop type</em></h2>
-  <p class="section-body">Based on field trials and farmer-reported data from Gujarat, Karnataka, and Uttar Pradesh. Improvements vs chemical-only control plots.</p>
+  <p class="section-body">Based on field trials and farmer-reported data from Gujarat, Tamil Nadu, and Uttar Pradesh. Improvements vs chemical-only control plots.</p>
   <div class="bar-section" id="bars">
     <div class="bar-group">
       <div class="bar-label"><span>Cotton (Gujarat)</span><span>+24% yield increase</span></div>
       <div class="bar-track"><div class="bar-fill" data-width="78"></div></div>
     </div>
     <div class="bar-group">
-      <div class="bar-label"><span>Tomato & Chilli (Karnataka + Gujarat)</span><span>+28% yield increase</span></div>
+      <div class="bar-label"><span>Tomato & Chilli (Tamil Nadu + Gujarat)</span><span>+28% yield increase</span></div>
       <div class="bar-track"><div class="bar-fill" data-width="86"></div></div>
     </div>
     <div class="bar-group">
@@ -719,7 +734,7 @@
       <div class="bar-track"><div class="bar-fill" data-width="58"></div></div>
     </div>
     <div class="bar-group">
-      <div class="bar-label"><span>Grapes & Pomegranate (Karnataka)</span><span>+22% quality improvement</span></div>
+      <div class="bar-label"><span>Grapes & Pomegranate (Tamil Nadu)</span><span>+22% quality improvement</span></div>
       <div class="bar-track"><div class="bar-fill" data-width="70"></div></div>
     </div>
     <div class="bar-group">
@@ -743,7 +758,7 @@
 <section class="section">
   <p class="section-eyebrow">Farmer Stories — Across India</p>
   <h2 class="section-title">In their <em>own words</em></h2>
-  <p class="section-body">Farmers across Gujarat, Karnataka, and Uttar Pradesh share what changed in their fields after switching to AgroCare organic inputs.</p>
+  <p class="section-body">Farmers across Gujarat, Tamil Nadu, and Uttar Pradesh share what changed in their fields after switching to AgroCare organic inputs.</p>
   <div class="stories-grid">
     <div class="story-card">
       <p class="story-text">"Mitti maa jiv avi gayi chhe — mara khetarma. The soil in my field has come alive. After two seasons of Power Gold and Energy Balls, my cotton roots go 30% deeper."</p>
@@ -754,12 +769,12 @@
       <div class="story-crop"><span class="story-crop-badge">Cotton · Gujarat</span></div>
     </div>
     <div class="story-card">
-      <p class="story-text">"Used seaweed liquid on my tomato crop in Kolar. Fruit size improved, less cracking. The AgroCare team even helped with dosage on a WhatsApp call."</p>
+      <p class="story-text">"Used seaweed liquid on my tomato crop in Coimbatore. Fruit size improved, less cracking. The AgroCare team even helped with dosage on a WhatsApp call."</p>
       <div class="story-author">
         <div class="story-avatar">MR</div>
-        <div><div class="story-name">Manjunath Reddy</div><div class="story-location">Kolar, Karnataka</div></div>
+        <div><div class="story-name">Manjunath Reddy</div><div class="story-location">Coimbatore, Tamil Nadu</div></div>
       </div>
-      <div class="story-crop"><span class="story-crop-badge">Tomato · Karnataka</span></div>
+      <div class="story-crop"><span class="story-crop-badge">Tomato · Tamil Nadu</span></div>
     </div>
     <div class="story-card">
       <p class="story-text">"Humne pehle baar humic acid use kiya tha gehu mein. Jad zyada gayi, paudha majboot raha. Chemical fertiliser 25% kam lagaya aur yield same rahi."</p>
@@ -778,12 +793,12 @@
       <div class="story-crop"><span class="story-crop-badge">Tomato · Gujarat</span></div>
     </div>
     <div class="story-card">
-      <p class="story-text">"Our grape quality improved significantly — berry size, colour, and brix all went up. We now use seaweed gel through drip every season in Vijayapura."</p>
+      <p class="story-text">"Our turmeric quality improved significantly — rhizome size and colour both went up. We now use seaweed gel through drip every season in Salem."</p>
       <div class="story-author">
         <div class="story-avatar">SP</div>
-        <div><div class="story-name">Suresh Patil</div><div class="story-location">Vijayapura, Karnataka</div></div>
+        <div><div class="story-name">Suresh Patil</div><div class="story-location">Salem, Tamil Nadu</div></div>
       </div>
-      <div class="story-crop"><span class="story-crop-badge">Grapes · Karnataka</span></div>
+      <div class="story-crop"><span class="story-crop-badge">Grapes · Tamil Nadu</span></div>
     </div>
     <div class="story-card">
       <p class="story-text">"Replaced 30% of our urea with humic acid this kharif. No drop in yield — actually slightly better. Input cost dropped ₹1,800 per acre."</p>
@@ -816,7 +831,7 @@
       <div class="sustain-title">Water Saved</div>
       <div class="sustain-num">30%</div>
       <div class="sustain-unit">reduction in irrigation need</div>
-      <div class="sustain-body">Improved water-holding capacity from humic and seaweed granules means 25–30% less irrigation. Critical in drought-prone Gujarat and Karnataka.</div>
+      <div class="sustain-body">Improved water-holding capacity from humic and seaweed granules means 25–30% less irrigation. Critical in drought-prone Gujarat and Tamil Nadu.</div>
     </div>
     <div class="sustain-card">
       <div class="sustain-icon">🐛</div>
@@ -857,7 +872,7 @@
     <div>
       <p class="section-eyebrow">8-Year Journey</p>
       <h2 class="section-title">From Una to<br><em>all of India</em></h2>
-      <p class="section-body">What started as a single seaweed product in a small Gujarat town is now a three-state organic input company with ISO certification and 200+ farmer relationships.</p>
+      <p class="section-body">What started as a single seaweed product in a small Gujarat town is now a three-state organic input company with ISO certification and 2,355+ farmer relationships.</p>
     </div>
     <div class="timeline" style="padding-top:1rem">
       <div class="timeline-item">
@@ -881,19 +896,19 @@
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-year">2022</div>
-        <div class="timeline-title">Karnataka expansion</div>
-        <div class="timeline-body">Entered South India. Kolar, Vijayapura, Tumkur, Dharwad districts. Tomato, grape, paddy crops.</div>
+        <div class="timeline-title">Tamil Nadu expansion</div>
+        <div class="timeline-body">Entered South India. Coimbatore, Salem, Erode, Madurai districts. Tomato, turmeric, coconut, paddy crops.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-year">2023</div>
         <div class="timeline-title">ISO 9001:2015 · UP expansion</div>
-        <div class="timeline-body">ISO certified. Entered Uttar Pradesh (Lucknow, Kanpur, Varanasi). 200+ farmers milestone.</div>
+        <div class="timeline-body">ISO certified. Entered Uttar Pradesh (Lucknow, Kanpur, Varanasi). 2,355+ farmers milestone.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-year">2025</div>
-      <div class="timeline-title">3 states · 200+ farmers</div>
+      <div class="timeline-title">3 states · 2,355+ farmers</div>
       <div class="timeline-body">500 MT/month capacity. 10 product lines. 350 MT chemicals replaced. Maharashtra expansion planned.</div>
       </div>
     </div>
@@ -905,7 +920,7 @@
 <!-- CTA -->
 <section class="cta-section">
   <h2 class="cta-title">Ready to add your farm<br>to the <em>impact story?</em></h2>
-  <p class="cta-sub">Gujarat, Karnataka, UP — wherever you farm, our team is ready to recommend the right inputs for your crop and soil.</p>
+  <p class="cta-sub">Gujarat, Tamil Nadu, UP — wherever you farm, our team is ready to recommend the right inputs for your crop and soil.</p>
   <div class="cta-buttons">
     <a href="https://wa.me/919427205179" class="btn-primary">WhatsApp Us — +91 94272 05179</a>
     <a href="https://www.indiamart.com/agrocare-una/" class="btn-outline">Visit IndiaMART Store →</a>
@@ -918,7 +933,7 @@
     <a href="https://wa.me/919427205179">WhatsApp</a>
     <a href="https://www.indiamart.com/agrocare-una/">IndiaMART</a>
     <a href="products.html">Products</a>
-    <a href="#">Contact</a>
+    <a href="enquiry.html">Contact</a>
   </div>
 </footer>
 
@@ -934,5 +949,6 @@
   }, { threshold: 0.3 });
   fills.forEach(f => io.observe(f));
 </script>
+<script src="js/main.js" defer></script>
 </body>
 </html>

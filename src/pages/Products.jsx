@@ -141,7 +141,7 @@ const products = [
       "🔒 Stress Shield — drought and temperature shock protection",
       "♻️ 100% Organic — no residue, safe any stage of crop cycle"
     ],
-    imageLookup: ["assets/images/products/van chetan dravya .jpg","vanchetan-davya","VanChetan","vanchetan_davya","vanchetan"],
+    imageLookup: ["assets/images/products/van chetan dravya.jpg","vanchetan-davya","VanChetan","vanchetan_davya","vanchetan"],
     reviews: [
       { name:"Jayesh Solanki", location:"Junagadh, Gujarat", rating:5,
         text:"Mitti maa jiv avi gayi chhe — mara khetarma. Highly recommend." },
