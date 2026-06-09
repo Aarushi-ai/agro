@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 
-const leaves = Array.from({ length: 18 }, (_, i) => ({
+const leaves = Array.from({ length: 28 }, (_, i) => ({
   id: i,
-  size: 16 + Math.random() * 24,
-  left: Math.random() * 100,
-  delay: Math.random() * 4,
-  duration: 4 + Math.random() * 4,
-  rotate: Math.random() * 360,
-  drift: (Math.random() - 0.5) * 120,
+  size: 14 + Math.random() * 24,
+  top: 6 + Math.random() * 88,
+  delay: Math.random() * 3.2,
+  duration: 3.5 + Math.random() * 4.5,
+  spin: 120 + Math.random() * 240,
+  dir: Math.random() > 0.5 ? 1 : -1,
+  op: 0.55 + Math.random() * 0.4,
 }));
 
 export default function LoaderScreen() {
@@ -46,16 +47,19 @@ export default function LoaderScreen() {
       }}
     >
       <style>{`
-        @keyframes leafFall {
-          0%   { transform: translateY(-60px) translateX(0px) rotate(0deg); opacity: 0; }
-          10%  { opacity: 1; }
-          90%  { opacity: 0.7; }
-          100% { transform: translateY(110vh) translateX(var(--drift)) rotate(var(--rotate)); opacity: 0; }
+        @keyframes leafDrift {
+          0%   { transform: translateX(calc(var(--dir) * -58vw)) translateY(0) rotate(0deg); opacity: 0; }
+          8%   { opacity: var(--op); }
+          45%  { transform: translateX(calc(var(--dir) * -8vw)) translateY(-14px) rotate(calc(var(--spin) * 0.5)); }
+          55%  { transform: translateX(calc(var(--dir) * 8vw)) translateY(10px) rotate(calc(var(--spin) * 0.65)); }
+          92%  { opacity: 0.45; }
+          100% { transform: translateX(calc(var(--dir) * 58vw)) translateY(0) rotate(var(--spin)); opacity: 0; }
         }
-        .leaf { 
-          position: absolute; 
-          top: -60px;
-          animation: leafFall var(--dur) var(--delay) infinite linear;
+        .leaf {
+          position: absolute;
+          top: var(--top);
+          left: 50%;
+          animation: leafDrift var(--dur) var(--delay) infinite linear;
           pointer-events: none;
         }
       `}</style>
@@ -65,11 +69,15 @@ export default function LoaderScreen() {
           key={l.id}
           className="leaf"
           style={{
-            left: `${l.left}%`,
+            width: l.size,
+            height: l.size,
+            marginLeft: -l.size / 2,
+            "--top": `${l.top}%`,
             "--dur": `${l.duration}s`,
             "--delay": `${l.delay}s`,
-            "--rotate": `${l.rotate}deg`,
-            "--drift": `${l.drift}px`,
+            "--spin": `${l.spin}deg`,
+            "--dir": l.dir,
+            "--op": l.op,
           }}
         >
           <svg width={l.size} height={l.size} viewBox="0 0 24 24" fill="none">
@@ -99,7 +107,7 @@ export default function LoaderScreen() {
           playsInline
           onEnded={handleEnd}
           style={{ width: "min(320px, 70vw)", borderRadius: "16px" }}
-          src="/assets/logo-loader.mp4"
+          src="assets/logo-loader.mp4"
         />
         <p
           style={{

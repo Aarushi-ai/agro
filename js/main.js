@@ -51,8 +51,74 @@
      1. LOADING SCREEN
   ═══════════════════════════════════════════════════════════════════ */
 
+  function populateSiteLoaderLeaves(root) {
+    const fills = ["#2d6a2d", "#8b6914", "#4a7a4a", "#6b9e3c", "#3d7a34"];
+    const leafSvg = (fill) =>
+      `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C6 2 2 8 2 14c0 4 2.5 6.5 6 7.5C10 23 12 23 12 23s2 0 4-.5c3.5-1 6-3.5 6-7.5 0-6-4-12-10-12z" fill="${fill}" opacity="0.82"/><line x1="12" y1="6" x2="12" y2="20" stroke="#1a3d1a" stroke-width="0.8" opacity="0.45"/></svg>`;
+
+    for (let i = 0; i < 28; i++) {
+      const el = document.createElement("div");
+      el.className = "site-loader__leaf";
+      const size = 14 + Math.random() * 24;
+      const dir = Math.random() > 0.5 ? 1 : -1;
+      el.style.setProperty("--size", `${size}px`);
+      el.style.setProperty("--top", `${6 + Math.random() * 88}%`);
+      el.style.setProperty("--dur", `${3.5 + Math.random() * 4.5}s`);
+      el.style.setProperty("--delay", `${Math.random() * 3.2}s`);
+      el.style.setProperty("--dir", String(dir));
+      el.style.setProperty("--spin", `${120 + Math.random() * 240}deg`);
+      el.style.setProperty("--op", `${0.55 + Math.random() * 0.4}`);
+      el.innerHTML = leafSvg(fills[i % fills.length]);
+      root.appendChild(el);
+    }
+  }
+
+  function hideSiteLoader(loader) {
+    sessionStorage.setItem("agrocare_loaded", "1");
+    loader.classList.add("is-hiding");
+    setTimeout(() => {
+      loader.classList.add("hidden");
+      document.body.classList.remove("is-loading");
+      document.body.classList.add("loaded");
+    }, 600);
+  }
+
+  function initSiteLoader(loader) {
+    if (sessionStorage.getItem("agrocare_loaded")) {
+      loader.classList.add("hidden");
+      document.body.classList.add("loaded");
+      return;
+    }
+
+    document.body.classList.add("is-loading");
+    const leavesRoot = loader.querySelector(".site-loader__leaves");
+    if (leavesRoot && !leavesRoot.childElementCount) {
+      populateSiteLoaderLeaves(leavesRoot);
+    }
+
+    const video = loader.querySelector(".site-loader__video");
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      hideSiteLoader(loader);
+    };
+
+    if (video) {
+      video.addEventListener("ended", finish, { once: true });
+      video.addEventListener("error", finish, { once: true });
+    }
+
+    setTimeout(finish, Math.max(LOADER_DURATION_MS, 4500));
+  }
+
   function initLoadingScreen() {
-    if (document.getElementById("site-loader")) return;
+    const siteLoader = document.getElementById("site-loader");
+    if (siteLoader) {
+      initSiteLoader(siteLoader);
+      return;
+    }
+
     const loader = document.getElementById("loading-screen");
     if (!loader) {
       document.body.classList.add("loaded");
@@ -1205,14 +1271,15 @@
         submitBtn.textContent = "Sending…";
       }
 
-      const fullMessage = `Product interest: ${product}\n\n${message}`;
-      handleWhatsAppEnquiry({ name, phone, type: "Product enquiry", message: fullMessage });
+      const text =
+        `Hello AgroCare 🌱\n\nNew Enquiry from your website:\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Subject:* ${product}\n*Message:* ${message}\n\n_Sent from AgroCare website_`;
+      window.open(`https://wa.me/${AGRO_WA_NUMBER}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
       form.reset();
 
       if (statusEl) {
         statusEl.style.display = "block";
         statusEl.className = "form-status form-status--success";
-        statusEl.textContent = "Message registered successfully! You'll hear from us soon. 🌾";
+        statusEl.textContent = "✅ WhatsApp opened! Please send the message to complete your enquiry.";
       }
 
       if (submitBtn) {
