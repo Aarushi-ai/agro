@@ -9,7 +9,7 @@
      HELPERS
   ═══════════════════════════════════════════════════════════════════ */
 
-  const LOADER_DURATION_MS = 3200;
+  const LOADER_DURATION_MS = 15000;
   const IS_TOUCH =
     "ontouchstart" in window ||
     navigator.maxTouchPoints > 0 ||
@@ -106,10 +106,11 @@
 
     if (video) {
       video.addEventListener("ended", finish, { once: true });
-      video.addEventListener("error", finish, { once: true });
+      video.addEventListener("error", () => setTimeout(finish, 3000), { once: true });
+      video.play().catch(() => {});
+    } else {
+      setTimeout(finish, 4500);
     }
-
-    setTimeout(finish, Math.max(LOADER_DURATION_MS, 4500));
   }
 
   function initLoadingScreen() {
@@ -686,15 +687,73 @@
     },
   };
 
-  function pickMockResponse(lang, text) {
-    const dict = MOCK_RESPONSES[lang] || MOCK_RESPONSES.en;
+  function pickAgroResponse(lang, text) {
+    const k = window.AGRO_KNOWLEDGE;
     const lower = text.toLowerCase();
+    const t = (en, hi, gu) => (lang === "hi" ? hi : lang === "gu" ? gu : en);
 
-    if (/product|catalogue|catalog|बीज|ઉત્પાદન|उत्पाद/.test(lower)) return dict.products;
-    if (/enquir|order|buy|खरीद|ઓર્ડર|पूछताछ/.test(lower)) return dict.enquiry;
-    if (/certif|fssai|organic cert|प्रमाण|પ્રમાણ/.test(lower)) return dict.certifications;
+    if (k && /district|जिला|જિલ્લા|18\s*\+?|which.*district|કયા જિલ્લા/.test(lower)) {
+      return t(
+        `AgroCare actively serves ${k.districtsCount} districts across ${k.states.join(", ")}.\n\nGujarat (${k.gujaratDistricts.length} districts): ${k.gujaratDistricts.slice(0, 8).join(", ")}, and more.\n\nTamil Nadu: ${k.tamilNaduDistricts.join(", ")}.\n\nUttar Pradesh: ${k.upDistricts.join(", ")}.`,
+        `AgroCare ${k.states.join(", ")} में ${k.districtsCount} जिलों में सक्रिय है। गुजरात: ${k.gujaratDistricts.slice(0, 6).join(", ")} आदि। तमिलनाडु: ${k.tamilNaduDistricts.join(", ")}। यूपी: ${k.upDistricts.join(", ")}।`,
+        `AgroCare ${k.states.join(", ")} માં ${k.districtsCount} જિલ્લામાં સક્રિય છે. ગુજરાત: ${k.gujaratDistricts.slice(0, 6).join(", ")} વગેરે. તમિલનાડુ: ${k.tamilNaduDistricts.join(", ")}. યુપી: ${k.upDistricts.join(", ")}.`
+      );
+    }
+
+    if (k && /humic|હ્યુમિક|ह्यूमिक|composition|ઘટક|संघटन/.test(lower)) {
+      const h = k.humicAcidFCO;
+      const p = k.potassiumHumate;
+      return t(
+        `Humic Acid 5% FCO Grade: ${h.composition}. ${h.benefits}.\n\nPotassium Humate (Power Gold): ${p.composition}. Certified ${p.certification}.`,
+        `Humic Acid 5% FCO: ${h.composition}. लाभ: CEC बढ़ाता है, माइक्रोन्यूट्रिएंट उपलब्ध कराता है, यूरिया/डीएपी की जरूरत 20–30% कम।\n\nPotassium Humate: ${p.composition} (${p.certification}).`,
+        `Humic Acid 5% FCO: ${h.composition}. ફાયદો: CEC વધારે, માઇક્રોન્યુટ્રિએન્ટ ઉપલબ્ધ, યુરિયા/ડીએપી 20–30% ઓછું.\n\nPotassium Humate: ${p.composition} (${p.certification}).`
+      );
+    }
+
+    if (k && /buyer|customer|farmer.*reach|how many|કેટલા|कितने|2355|buyers till/.test(lower)) {
+      return t(
+        `AgroCare has reached ${k.farmersReached} farmers across ${k.states.join(", ")} in ${k.districtsCount} districts. We've replaced ${k.chemicalsReplaced} of chemical inputs and earned ${k.yearsTrust} years of farmer trust since ${k.founded}.`,
+        `AgroCare ने ${k.farmersReached} किसानों तक पहुंच बनाई है — ${k.states.join(", ")} में ${k.districtsCount} जिलों में। ${k.chemicalsReplaced} रासायनिक उर्वरक प्रतिस्थापित। ${k.yearsTrust} वर्षों का भरोसा।`,
+        `AgroCare એ ${k.farmersReached} ખેડૂતો સુધી પહોંચ બનાવી — ${k.states.join(", ")} માં ${k.districtsCount} જિલ્લામાં. ${k.chemicalsReplaced} રાસાયણિક ખાતર બદલ્યા. ${k.yearsTrust} વર્ષનો વિશ્વાસ.`
+      );
+    }
+
+    if (k && /price|pricing|₹|કિંમત|कीमत|cost/.test(lower)) {
+      const lines = k.products.slice(0, 7).map((p) => `• ${p.name}: ₹${p.price} (market ~₹${p.mrp}) — ${p.dose}`).join("\n");
+      return t(
+        `Direct-from-manufacturer pricing (vs market):\n${lines}\n\nFull catalogue: products.html | WhatsApp: ${k.phone}`,
+        `सीधे निर्माता से कीमत:\n${lines}\n\nपूरा कैटलॉग: products.html`,
+        `સીધી કિંમત:\n${lines}\n\nકેટલોગ: products.html`
+      );
+    }
+
+    if (k && /product|catalogue|catalog|ઉત્પાદન|उत्पाद|vanchetan|energy ball|neem/.test(lower)) {
+      const list = k.products.map((p) => `• ${p.name} (${p.form})`).join("\n");
+      return t(
+        `Our ${k.products.length} core products:\n${list}\n\nBrowse details, specs & buy links at products.html.`,
+        `हमारे मुख्य उत्पाद:\n${list}\n\nविवरण: products.html`,
+        `અમારા ઉત્પાદનો:\n${list}\n\nવિગત: products.html`
+      );
+    }
+
+    if (k && /enquir|order|buy|whatsapp|ઓર્ડર|पूछताछ|ખરીદી/.test(lower)) {
+      return t(
+        `Order via WhatsApp ${k.phone}, IndiaMART store, Meesho (Potassium Humate), or enquiry.html. Our team responds within one business day.`,
+        `ऑर्डर: WhatsApp ${k.phone}, IndiaMART, Meesho, या enquiry.html पर फॉर्म भरें।`,
+        `ઓર્ડર: WhatsApp ${k.phone}, IndiaMART, Meesho, અથવા enquiry.html.`
+      );
+    }
+
+    if (k && /certif|iso|fco|organic|પ્રમાણ|प्रमाण/.test(lower)) {
+      return t(
+        `AgroCare certifications: ${k.certifications.join(", ")}. Humic Acid & Seaweed products are FCO Grade where applicable.`,
+        `प्रमाणन: ${k.certifications.join(", ")}।`,
+        `પ્રમાણન: ${k.certifications.join(", ")}।`
+      );
+    }
+
+    const dict = MOCK_RESPONSES[lang] || MOCK_RESPONSES.en;
     if (/organic|जैविक|ઓર્ગેનિક/.test(lower)) return dict.organic;
-
     return dict.default;
   }
 
@@ -767,7 +826,7 @@
 
       setTimeout(() => {
         typing?.remove();
-        const reply = pickMockResponse(chatLang, text);
+        const reply = pickAgroResponse(chatLang, text);
         appendBubble(reply, "bot");
       }, 1200);
     }
@@ -792,34 +851,46 @@
     if (!grid) return;
 
     const imageExt = /\.(jpe?g|png|webp|gif)$/i;
+    const videoExt = /\.(mp4|webm)$/i;
+    grid.classList.add("gallery-masonry--bulletin");
     const render = (files) => {
       grid.innerHTML = "";
       [...files]
-        .filter((file) => imageExt.test(file))
+        .filter((file) => imageExt.test(file) || videoExt.test(file))
         .sort((a, b) => a.localeCompare(b))
         .forEach((file) => {
           const src = `assets/gallery/${file}`;
           const label = file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
+          const isVideo = videoExt.test(file);
           const item = document.createElement("div");
-          item.className = "gallery-item gallery-item--media";
+          item.className = "gallery-item gallery-item--media" + (isVideo ? " gallery-item--video" : "");
           item.dataset.lightbox = "";
-          item.dataset.type = "image";
+          item.dataset.type = isVideo ? "video" : "image";
           item.dataset.src = src;
           item.setAttribute("role", "button");
           item.setAttribute("tabindex", "0");
           item.setAttribute("aria-label", label);
 
-          const img = document.createElement("img");
-          img.src = src;
-          img.alt = label;
-          img.className = "gallery-item__media";
-          img.loading = "lazy";
+          if (isVideo) {
+            const vid = document.createElement("video");
+            vid.src = src;
+            vid.muted = true;
+            vid.loop = true;
+            vid.playsInline = true;
+            vid.className = "gallery-item__media";
+            item.appendChild(vid);
+          } else {
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = label;
+            img.className = "gallery-item__media";
+            img.loading = "lazy";
+            item.appendChild(img);
+          }
 
           const caption = document.createElement("span");
           caption.className = "gallery-item-caption";
           caption.textContent = label;
-
-          item.appendChild(img);
           item.appendChild(caption);
           grid.appendChild(item);
         });
@@ -1243,7 +1314,8 @@
     }
 
     if (formStatus === "success") {
-      statusEl.innerHTML = `<div style="margin-top:14px;padding:18px 20px;border-radius:12px;background:#e8f5e8;border:2px solid #2d5016;font-family:Nunito,sans-serif"><div style="font-weight:700;font-size:16px;color:#1a3d08;margin-bottom:6px">✅ Enquiry Submitted Successfully!</div><div style="color:#3d6b1f;font-size:14px;line-height:1.6">You will receive a WhatsApp confirmation shortly. Our team will reach out to you soon. 🌿</div></div>`;
+      const waUrl = window._pendingWhatsApp || "https://wa.me/919427205179";
+      statusEl.innerHTML = `<div style="margin-top:14px;padding:18px 20px;border-radius:12px;background:#e8f5e8;border:2px solid #2d5016;font-family:Nunito,sans-serif"><div style="font-weight:700;font-size:16px;color:#1a3d08;margin-bottom:8px">✅ Enquiry Submitted Successfully!</div><p style="color:#3d6b1f;font-size:14px;line-height:1.6;margin:0 0 14px 0">Thank you! Click the button below to send your enquiry directly to our team on WhatsApp. We will reply within a few hours. 🌿</p><a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:999px;background:#25d366;color:white;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:0.5px">💬 Continue on WhatsApp →</a></div>`;
       return;
     }
 
@@ -1393,6 +1465,10 @@
     initContactForm();
     initComplaintForm();
     initEnquiryForm();
+    if (window.AgroProducts) {
+      window.AgroProducts.initCataloguePage();
+      window.AgroProducts.initHomePreview();
+    }
   }
 
   if (document.readyState === "loading") {

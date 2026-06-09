@@ -199,34 +199,37 @@ function getCompanyMessage(name, phone, subject, category, priority, summary) {
 _Reply to customer's WhatsApp to follow up_`;
 }
 
+// Pre-filled message builder
+function getCustomerWhatsAppText(name, phone, subject, message, category) {
+  const companyNumber = '919427205179';
+  const text = encodeURIComponent(
+`*New Enquiry from AgroCare Website*
+━━━━━━━━━━━━━━━━━━
+*Name:* ${name}
+*Phone:* ${phone}
+*Subject:* ${subject}
+*Category:* ${category.replace(/_/g, ' ').toUpperCase()}
+━━━━━━━━━━━━━━━━━━
+*Message:*
+${message}
+━━━━━━━━━━━━━━━━━━
+_Sent from AgroCare website_`
+  );
+  return `https://wa.me/${companyNumber}?text=${text}`;
+}
+
 // ─────────────────────────────────────────────
 // STEP 3: Main export — called from form submit
 // ─────────────────────────────────────────────
 export async function handleEnquirySubmit({ name, phone, subject, message }) {
-  // Normalize phone
-  let customerPhone = phone.trim().replace(/\s+/g, '').replace(/[^0-9+]/g, '');
-  if (!customerPhone.startsWith('+')) {
-    customerPhone = '91' + customerPhone.replace(/^0/, '');
-  } else {
-    customerPhone = customerPhone.replace('+', '');
-  }
-
-  // AI categorize
-  const { category, priority, summary } = 
+  const { category, priority, summary } =
     await categorizeEnquiry(subject, message);
 
-  // Send via backend
-  const response = await fetch('/api/send-whatsapp', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      customerPhone,
-      customerMsg: getCustomerMessage(name, category),
-      companyMsg: getCompanyMessage(name, phone, subject, category, priority, summary),
-      companyPhone: process.env.COMPANY_WHATSAPP_NUMBER
-    })
-  });
+  const customerMsg = getCustomerWhatsAppText(
+    name, phone, subject, message, category
+  );
 
-  if (!response.ok) throw new Error('Send failed');
+  window._pendingWhatsApp = customerMsg;
+
   return { success: true, category, priority };
 }
