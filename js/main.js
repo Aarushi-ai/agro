@@ -859,8 +859,8 @@
         .filter((file) => imageExt.test(file) || videoExt.test(file))
         .sort((a, b) => a.localeCompare(b))
         .forEach((file) => {
-          const src = `assets/gallery/${file}`;
-          const label = file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
+          const src = file.includes("/") ? file : `assets/gallery/${file}`;
+          const label = (file.split("/").pop() || file).replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
           const isVideo = videoExt.test(file);
           const item = document.createElement("div");
           item.className = "gallery-item gallery-item--media" + (isVideo ? " gallery-item--video" : "");
@@ -912,8 +912,8 @@
       [...files]
         .filter((file) => imageExt.test(file))
         .forEach((file) => {
-          const src = `assets/gallery/${file}`;
-          const label = file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
+          const src = file.includes("/") ? file : `assets/gallery/${file}`;
+          const label = (file.split("/").pop() || file).replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
           const wrap = document.createElement("div");
           wrap.className = "gallery-col-item";
           const img = document.createElement("img");

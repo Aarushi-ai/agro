@@ -1,5 +1,5 @@
 :root {
-  --color-cream: #F5EED8;
+  --color-cream: #ffffff;
   --color-dark-teal: #1A3A38;
   --color-mid-teal: #2A5A54;
   --color-sage: #6B8F5E;
@@ -9,16 +9,16 @@
   --color-text-dark: #1A3A38;
   --color-text-mid: #4A6741;
   --color-text-muted: #7A8C6E;
-  --color-card-green: #F5EED8;
-  --color-card-teal: #F5EED8;
+  --color-card-green: #ffffff;
+  --color-card-teal: #ffffff;
   --color-border: #C8D8B8;
 
   --bg: var(--color-cream);
   --bg-card: #ffffff;
-  --bg-card2: #F5EED8;
-  --bg-section-alt: #F5EED8;
+  --bg-card2: #ffffff;
+  --bg-section-alt: #ffffff;
   --bg-primary: var(--color-cream);
-  --bg-secondary: #F5EED8;
+  --bg-secondary: #ffffff;
   --bg-dark: var(--color-dark-teal);
   --green-dark: var(--color-dark-teal);
   --green-mid: var(--color-sage);
@@ -58,7 +58,7 @@ h5 {
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-primary: var(--color-cream);
-    --bg-secondary: #FFF8E8;
+    --bg-secondary: #ffffff;
     --bg-card: #ffffff;
     --text-primary: var(--color-text-dark);
     --text-secondary: var(--color-text-mid);

@@ -12,7 +12,7 @@
   <style>
     body { background: var(--bg-primary); }
     .os-hero {
-      background: linear-gradient(180deg, #ebd9a0 0%, var(--bg-primary) 100%);
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg-primary) 100%);
       padding: clamp(5rem, 12vw, 7rem) var(--gutter) 3.5rem;
       text-align: center;
     }
@@ -130,7 +130,7 @@
     .written-card img {
       width: 100%; height: 200px; border-radius: 10px;
       object-fit: contain; object-position: center top;
-      background: var(--bg-secondary, #ebd9a0);
+      background: var(--bg-secondary, #ffffff);
       border: none; margin-bottom: 1rem;
     }
     .written-card h3 { font-family: "Cormorant Garamond", serif; color: var(--text-primary); font-size: 1.2rem; margin-bottom: 0.2rem; }
@@ -204,7 +204,7 @@
 
     <section class="os-video-split">
       <div class="os-video-wrap">
-        <video autoplay loop playsinline controls src="assets/videos/Farmers Review.mp4" aria-label="Farmer review video"></video>
+        <video autoplay muted loop playsinline controls preload="metadata" poster="assets/gallery/farmer.jpg" src="assets/videos/Farmers%20Review.mp4" aria-label="Farmer review video"></video>
       </div>
       <div class="os-video-copy">
         <p class="eyebrow">Farmer Voices</p>
@@ -229,15 +229,22 @@
       var pinColors = ['#c0392b', '#2d5016', '#8b6410', '#1a3d8f', '#c0392b'];
       var media = [
         { type: 'image', src: 'assets/our story/our story-1.jpg', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'video', src: 'assets/our story/h_farmers-2.mp4', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'video', src: 'assets/our story/h_farmers- 1.mp4', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'video', src: 'assets/our story/our story-6.mp4', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our story/our story-7.mp4', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our story/our story-8.mp4', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our story/our story-9.mp4', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our story/our story-10.mp4', caption: 'AgroCare Stories' },
-        { type: 'video', src: 'assets/our story/h_farmer-3.mp4', caption: 'Happy Farmer · AgroCare Family' },
-        { type: 'video', src: 'assets/our story/h_farmer-4.mp4', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'video', src: 'assets/our%20story/h_farmers-2.mp4', poster: 'assets/gallery/gallery-1.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'video', src: 'assets/our%20story/h_farmers-%201.mp4', poster: 'assets/gallery/gallery-2.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'video', src: 'assets/our%20story/our%20story-6.mp4', poster: 'assets/our%20story/our%20story-1.jpg', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-7.mp4', poster: 'assets/our%20story/our%20story-2.jpg', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-8.mp4', poster: 'assets/our%20story/our%20story-4.jpg', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-9.mp4', poster: 'assets/our%20story/our%20story-5.jpg', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-10.mp4', poster: 'assets/gallery/gallery-3.jpg', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-11.mp4', poster: 'assets/our%20story/our%20story-1.jpg', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-12.mp4', poster: 'assets/our%20story/our%20story-2.jpg', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-13.mp4', poster: 'assets/our%20story/our%20story-4.jpg', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-14.mp4', poster: 'assets/our%20story/our%20story-5.jpg', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-15.mp4', poster: 'assets/gallery/gallery-4.jpg', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-16.mp4', poster: 'assets/gallery/gallery-5.jpg', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/our%20story/our%20story-17.mp4', poster: 'assets/gallery/gallery-7.jpg', caption: 'AgroCare Stories' },
+        { type: 'video', src: 'assets/gallery/h_farmer-3.mp4', poster: 'assets/gallery/gallery-1.jpg', caption: 'Happy Farmer · AgroCare Family' },
+        { type: 'video', src: 'assets/gallery/h_farmer-4.mp4', poster: 'assets/gallery/gallery-2.jpg', caption: 'Happy Farmer · AgroCare Family' },
         { type: 'image', src: 'assets/images/farmers/farmer-1.jpg', caption: 'Happy Farmer · AgroCare Family' },
         { type: 'image', src: 'assets/images/farmers/farmer-2.jpg', caption: 'Happy Farmer · AgroCare Family' },
         { type: 'image', src: 'assets/images/farmers/farmer-3.jpg', caption: 'Happy Farmer · AgroCare Family' },
@@ -273,11 +280,10 @@
           var video = document.createElement('video');
           video.controls = true;
           video.playsInline = true;
-          video.style.cssText = 'width:100%;border-radius:4px;display:block;max-height:240px;object-fit:cover';
-          var source = document.createElement('source');
-          source.src = item.src;
-          source.type = 'video/mp4';
-          video.appendChild(source);
+          video.preload = 'metadata';
+          if (item.poster) video.poster = item.poster;
+          video.style.cssText = 'width:100%;border-radius:4px;display:block;max-height:240px;object-fit:cover;background:#1A3A38';
+          video.src = item.src;
           card.appendChild(video);
         } else {
           var img = document.createElement('img');

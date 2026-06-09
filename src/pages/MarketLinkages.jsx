@@ -15,7 +15,7 @@ export default function MarketLinkages() {
       name: "Meesho Direct Sales",
       type: "D2C E-commerce",
       desc: "Individual farmers and home gardeners can order small quantities with home delivery across India. No minimum order.",
-      link: "https://www.meesho.com/s/p/9wuylx?utm_source=s_wb",
+      link: "https://www.meesho.com/s/p/9wuylx",
       stats: [
         { l: "Delivery", v: "Pan India" },
         { l: "Min Order", v: "No minimum" },
@@ -68,12 +68,12 @@ export default function MarketLinkages() {
     },
   ];
   return (
-    <main style={{ background: "#f5f0e8", minHeight: "100vh", fontFamily: "DM Sans,sans-serif" }}>
+    <main style={{ background: "#ffffff", minHeight: "100vh", fontFamily: "DM Sans,sans-serif" }}>
       <section
         style={{
           padding: "100px 24px 60px",
           textAlign: "center",
-          background: "linear-gradient(180deg,#e8f5e8,#f5f0e8)",
+          background: "#ffffff",
         }}
       >
         <p
@@ -139,7 +139,7 @@ export default function MarketLinkages() {
                 display: "inline-block",
                 padding: "4px 12px",
                 borderRadius: "999px",
-                background: "#e8f5e8",
+                background: "#ffffff",
                 color: "#2d6a2d",
                 fontSize: "11px",
                 fontWeight: 700,
@@ -172,7 +172,7 @@ export default function MarketLinkages() {
                 <div
                   key={j}
                   style={{
-                    background: "#f5f0e8",
+                    background: "#ffffff",
                     borderRadius: "10px",
                     padding: "10px",
                     textAlign: "center",

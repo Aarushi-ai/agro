@@ -239,13 +239,52 @@ const products = [
       "⚡ Visible in 5–7 Days — crops turn deeper green quickly",
       "🔗 Tank-Mix Friendly — add to existing spray routine"
     ],
-    imageLookup: ["seaweed-liquid","vanchetan-taral","VanchetanTaral","seaweed_liquid","powder-seaweed-extract"],
+    imageLookup: ["assets/images/products/seaweed liquid.jpg","seaweed-liquid","vanchetan-taral","VanchetanTaral","seaweed_liquid"],
     reviews: [
       { name:"Manjunath Reddy", location:"Kolar, Karnataka", rating:5,
         text:"Used on tomato. Fruit size improved, less cracking. Visible results in 6 days." },
       { name:"Suresh Patil", location:"Vijayapura, Karnataka", rating:4,
         text:"Grape quality improved — berry size and brix both went up." }
     ]
+  },
+  {
+    id: "powder-seaweed-extract",
+    name: "Powder Seaweed Extract",
+    tagline: "Concentrated Seaweed Power. Mix. Spray. Grow.",
+    keySpec: "🌊 Water-Soluble Seaweed Powder | FCO Grade",
+    category: ["all","organic-inputs"],
+    badges: [],
+    form: "Powder",
+    price: 180,
+    mrp: 240,
+    unit: "per kg",
+    packSize: "1 kg | 25 kg bulk",
+    discount: 25,
+    rating: 4.2,
+    reviewCount: 12,
+    buyLinks: {
+      whatsapp: "https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20want%20to%20order%20Powder%20Seaweed%20Extract.",
+      whatsappLabel: "WhatsApp to Order"
+    },
+    dosage: "2–3 g per litre water (foliar) | 1–2 kg per acre (soil)",
+    suitableFor: ["Tomato","Chilli","Cotton","Vegetables","Fruits","Flowers"],
+    specTable: [
+      ["Form","Fine water-soluble powder","Easy to mix — foliar or soil application"],
+      ["Seaweed Base","Marine extract concentrate","Natural growth hormones + trace minerals"],
+      ["Solubility","100% water soluble","No residue in spray tanks or drip lines"],
+      ["Application","Foliar spray + soil drench","Flexible use through the season"],
+      ["Visible Result","7–10 days","Greener leaves and stronger vegetative growth"],
+      ["Organic Status","100% organic","Safe for soil, bees, and harvest"]
+    ],
+    benefits: [
+      "🌊 Concentrated seaweed powder — mix only what you need",
+      "🌿 Natural hormones for vegetative growth and stress recovery",
+      "💧 100% water soluble — foliar or soil drench",
+      "🍅 Works on vegetables, cotton, fruits, and flowers",
+      "📦 Bulk packs available for larger farms"
+    ],
+    imageLookup: ["assets/images/products/Powder Seaweed Extract Fertilizer.jpg","powder-seaweed-extract","powder-seaweed","seaweed-powder"],
+    reviews: []
   },
   {
     id: "seaweed-gel",
@@ -308,7 +347,7 @@ const products = [
     rating: 4.6,
     reviewCount: 32,
     buyLinks: {
-      meesho: "https://www.meesho.com/s/p/9wuylx?utm_source=s_wb",
+      meesho: "https://www.meesho.com/s/p/9wuylx",
       meeshoLabel: "Buy on Meesho",
       website: "https://www.agrocare.co.in/potassium-humate-shiny-flakes.html",
       websiteLabel: "Buy on AgroCare.co.in",
@@ -347,8 +386,8 @@ const products = [
   },
   {
     id: "humic-acid-fco",
-    name: "Humic Acid 5% FCO Grade",
-    tagline: "Government-Grade Humic. Soil Health You Can Measure.",
+    name: "Humic Acid Powder 5% FCO Grade",
+    tagline: "Government-Grade Humic Powder. Soil Health You Can Measure.",
     keySpec: "🏛️ FCO Certified | Fertiliser Control Order Govt Standard",
     category: ["all","soil-conditioners"],
     badges: ["FCO Certified"],
@@ -385,7 +424,7 @@ const products = [
       "🌱 Builds Soil Carbon — long-term fertility improves every season",
       "💧 Better Water Use — improves soil structure and water-holding"
     ],
-    imageLookup: ["humic-acid","humic-powder","HumicAcid","humic_acid","power-gold","humic granuels"],
+    imageLookup: ["assets/images/products/Humic Granuels.jpeg","humic-acid","humic-powder","HumicAcid","humic_acid","humic granuels"],
     reviews: [
       { name:"Ramesh Yadav", location:"Lucknow, UP", rating:5,
         text:"Pehle baar humic acid use kiya gehu mein. Chemical fertiliser 25% kam lagaya aur yield same rahi." }

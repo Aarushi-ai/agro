@@ -68,12 +68,12 @@ export default function FarmAdvisory() {
     },
   ];
   return (
-    <main style={{ background: "#f5f0e8", minHeight: "100vh", fontFamily: "DM Sans,sans-serif" }}>
+    <main style={{ background: "#ffffff", minHeight: "100vh", fontFamily: "DM Sans,sans-serif" }}>
       <section
         style={{
           padding: "100px 24px 60px",
           textAlign: "center",
-          background: "linear-gradient(180deg,#e8f5e8,#f5f0e8)",
+          background: "#ffffff",
         }}
       >
         <p

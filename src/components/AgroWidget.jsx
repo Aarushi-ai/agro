@@ -89,7 +89,7 @@ PRODUCT 5: Potassium Humate Shiny Flakes 98%
 - Chemical saving: reduces urea + DAP need by 20-30%
 - Dose: 2kg per acre
 - For: All crops
-- Buy: Meesho → https://www.meesho.com/s/p/9wuylx?utm_source=s_wb
+- Buy: Meesho → https://www.meesho.com/s/p/9wuylx
   Website → https://www.agrocare.co.in/potassium-humate-shiny-flakes.html
   WhatsApp → https://wa.me/919427205179?text=Hi%20AgroCare%2C%20I%20want%20to%20order%20Potassium%20Humate%2025kg%20bulk.
 

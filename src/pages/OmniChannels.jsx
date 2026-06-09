@@ -14,7 +14,7 @@ export default function OmniChannels() {
       icon: "🛍️",
       color: "#9b2d7f",
       desc: "Order Agrocare products for home delivery anywhere in India through Meesho.",
-      link: "https://www.meesho.com/s/p/9wuylx?utm_source=s_wb",
+      link: "https://www.meesho.com/s/p/9wuylx",
       cta: "Shop on Meesho",
       features: ["Home delivery", "Easy returns", "COD available", "Reseller discounts"],
     },
@@ -56,12 +56,12 @@ export default function OmniChannels() {
     },
   ];
   return (
-    <main style={{ background: "#f5f0e8", minHeight: "100vh", fontFamily: "DM Sans,sans-serif" }}>
+    <main style={{ background: "#ffffff", minHeight: "100vh", fontFamily: "DM Sans,sans-serif" }}>
       <section
         style={{
           padding: "100px 24px 60px",
           textAlign: "center",
-          background: "linear-gradient(180deg,#e8f5e8,#f5f0e8)",
+          background: "#ffffff",
         }}
       >
         <p
