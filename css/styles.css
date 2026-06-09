@@ -3877,3 +3877,23 @@ section:nth-child(odd) {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* Loader video — transparent, no box */
+video.loader-video,
+.loader-overlay video {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  mix-blend-mode: multiply;
+}
+
+/* Loader overlay — full viewport, no scroll */
+.loader-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+}
