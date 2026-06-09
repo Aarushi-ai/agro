@@ -3,6 +3,7 @@ import Gallery from "./pages/Gallery";
 import FarmAdvisory from "./pages/FarmAdvisory";
 import OmniChannels from "./pages/OmniChannels";
 import MarketLinkages from "./pages/MarketLinkages";
+import AgroWidget from "./components/AgroWidget";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/omni-channels" element={<OmniChannels />} />
         <Route path="/market-linkages" element={<MarketLinkages />} />
       </Routes>
+      <AgroWidget />
     </BrowserRouter>
   );
 }
