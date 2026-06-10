@@ -4,3 +4,11 @@ node_modules/
 *.png
 # keep webp only
 !*.webp
+*.mp4
+*.mov
+
+*.jpg
+*.jpeg
+*.png
+
+node_modules/
