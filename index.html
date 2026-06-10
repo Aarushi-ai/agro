@@ -56,7 +56,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/dist/tabler-icons.min.css"/>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/styles.css?v=20260609"/>
+  <link rel="stylesheet" href="css/styles.css?v=20260610"/>
 
   <!-- Theme lock: always cream + teal (beats cached dark-mode CSS) -->
   <style id="theme-lock">
@@ -201,11 +201,6 @@
       caret-color: #1A3A38;
       transition: background-color 5000s ease-in-out 0s;
     }
-
-    .gallery-item--media .gallery-item__media {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-    }
-    .gallery-item--media .gallery-item-icon { display: none; }
 
     .vmm-card .card-image {
       height: 200px;
@@ -422,7 +417,7 @@
           <div class="video-cube-overlay" aria-hidden="true"></div>
           <span class="video-cube-label">Farmer story — field results</span>
           <button type="button" class="video-mute-btn" aria-label="Unmute"></button>
-        </div>
+          </div>
         <div class="video-cube-wrapper">
           <video autoplay muted loop playsinline preload="metadata" poster="assets/gallery/gallery-2.webp" src="https://res.cloudinary.com/dwcjyyva0/video/upload/v1781033037/h_farmer-4-compressed_hvoibp.mp4" aria-label="Happy farmer in the field"></video>
           <div class="video-cube-overlay" aria-hidden="true"></div>
@@ -434,7 +429,7 @@
           <div class="video-cube-overlay" aria-hidden="true"></div>
           <span class="video-cube-label">Seaweed gel — made in Gujarat</span>
           <button type="button" class="video-mute-btn" aria-label="Unmute"></button>
-        </div>
+          </div>
         <div class="video-cube-wrapper">
           <video autoplay muted loop playsinline preload="metadata" poster="assets/gallery/farmer.webp" src="https://res.cloudinary.com/dwcjyyva0/video/upload/v1781033831/Farmers_Review-compressed_bxypac.mp4" aria-label="Farmers review"></video>
           <div class="video-cube-overlay" aria-hidden="true"></div>
@@ -446,7 +441,7 @@
           <div class="video-cube-overlay" aria-hidden="true"></div>
           <span class="video-cube-label">AgroCare Stories</span>
           <button type="button" class="video-mute-btn" aria-label="Unmute"></button>
-        </div>
+          </div>
         <div class="video-cube-wrapper">
           <video autoplay muted loop playsinline preload="metadata" poster="assets/our%20story/our%20story-2.webp" src="https://res.cloudinary.com/dwcjyyva0/video/upload/v1781033751/our_story-12-compressed_u4vqa6.mp4" aria-label="AgroCare story 12"></video>
           <div class="video-cube-overlay" aria-hidden="true"></div>
@@ -624,14 +619,14 @@
             <p class="section-sub">Real voices. Real fields. Real change.</p>
           </div>
           <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.75rem">
-            <div class="reviews-section-lang" role="group" aria-label="Review language">
+        <div class="reviews-section-lang" role="group" aria-label="Review language">
               <button type="button" class="reviews-lang-btn active" data-lang="gu">GU</button>
               <button type="button" class="reviews-lang-btn" data-lang="hi">HI</button>
               <button type="button" class="reviews-lang-btn" data-lang="en">EN</button>
-            </div>
-            <a href="our-stories.html" class="btn-outline" style="flex-shrink:0;font-size:0.8rem">Read all stories →</a>
-          </div>
         </div>
+            <a href="our-stories.html" class="btn-outline" style="flex-shrink:0;font-size:0.8rem">Read all stories →</a>
+                  </div>
+                </div>
 
         <div class="farmers-blog-grid" id="farmers-speak-slider">
           <article class="farmer-blog-card review-card review-card--v2">
@@ -639,11 +634,11 @@
             <div class="farmer-blog-card__body">
               <div class="review-name" data-name-gu="રમેશભાઈ પટેલ" data-name-hi="रमेशभाई पटेल" data-name-en="Rameshbhai Patel">રમેશભાઈ પટેલ</div>
               <div class="review-meta" data-loc-gu="બિલાસપુર · VanChetan Davya" data-loc-hi="बिलासपुर · VanChetan Davya" data-loc-en="Bilaspur · VanChetan Davya">બિલાસપુર · VanChetan Davya</div>
-              <div class="review-stars">★★★★★</div>
+                <div class="review-stars">★★★★★</div>
               <div class="review-text review-text--v2" data-lang="gu">"VanChetan Davya થી માટીમાં જીવ પાછો આવ્યો — ફૂલ અને ફળ બંને સારા. એક જ દ્રવ્યથી જમીન નરમ થઈ, પાણી લાંબા સમય રહે છે."</div>
               <div class="review-text review-text--v2" data-lang="hi" style="display:none">"VanChetan Davya से मिट्टी में जीवन लौटा — फूल और फल दोनों अच्छे। एक ही द्रव्य से जमीन नरम हुई, पानी ज्यादा देर तक रुकता है।"</div>
               <div class="review-text review-text--v2" data-lang="en" style="display:none">"VanChetan Davya brought life back to my soil — better flowers and fruit. One liquid input softened the land and water stays longer."</div>
-            </div>
+              </div>
           </article>
           <article class="farmer-blog-card review-card review-card--v2">
             <img src="assets/images/farmers/farmer-3.webp" alt="Ramkumar" class="farmer-blog-card__img"/>
@@ -654,18 +649,18 @@
               <div class="review-text review-text--v2" data-lang="gu">"Humic Acid Powder FCO અને Seaweed Gel સાથે લગાવ્યું — માટી ગાઢ થઈ, પાણી ઓછું લાગે છે. ફૂલ સારા આવ્યા, ખર્ચ પણ ઘટ્યો."</div>
               <div class="review-text review-text--v2" data-lang="hi" style="display:none">"Humic Acid Powder FCO और Seaweed Gel एक साथ — मिट्टी गहरी हुई, कम सिंचाई। फूल अच्छे आए, खर्च भी घटा।"</div>
               <div class="review-text review-text--v2" data-lang="en" style="display:none">"Used Humic Acid Powder FCO with Seaweed Gel — soil turned darker, less irrigation needed. Better flowering and lower input cost."</div>
-            </div>
+                  </div>
           </article>
           <article class="farmer-blog-card review-card review-card--v2">
             <img src="assets/images/farmers/farmer-5.webp" alt="Jayeshbhai Thakor" class="farmer-blog-card__img"/>
             <div class="farmer-blog-card__body">
               <div class="review-name" data-name-gu="જયેશભાઈ ઠાકોર" data-name-hi="जयेशभाई ठाकोर" data-name-en="Jayeshbhai Thakor">જયેશભાઈ ઠાકોર</div>
               <div class="review-meta" data-loc-gu="ઉના, ભાવનગર" data-loc-hi="उना, भावनगर" data-loc-en="Una, Bhavnagar">ઉના, ભાવનગર</div>
-              <div class="review-stars">★★★★★</div>
+                <div class="review-stars">★★★★★</div>
               <div class="review-text review-text--v2" data-lang="gu">"Energy Balls થી કપાસની ઉપજ સારી આવી. AgroCare ભરોસાપાત્ર છે."</div>
               <div class="review-text review-text--v2" data-lang="hi" style="display:none">"Energy Balls से कपास की अच्छी उपज। AgroCare भरोसेमंद है।"</div>
               <div class="review-text review-text--v2" data-lang="en" style="display:none">"Energy Balls gave excellent cotton yield. AgroCare products are very trustworthy."</div>
-            </div>
+              </div>
           </article>
           <article class="farmer-blog-card review-card review-card--v2">
             <img src="assets/images/farmers/farmer-4.webp" alt="Maheshbhai Solanki" class="farmer-blog-card__img"/>
@@ -676,7 +671,7 @@
               <div class="review-text review-text--v2" data-lang="gu">"Humic Acid Powder FCO થી માટી ડાર્ક થઈ — ઓછું યુરિયા લાગે છે. 8 વર્ષથી AgroCare સાથે છું."</div>
               <div class="review-text review-text--v2" data-lang="hi" style="display:none">"Humic Acid Powder FCO से मिट्टी गहरी हुई — कम यूरिया लगता है। 8 साल से AgroCare के साथ हूं।"</div>
               <div class="review-text review-text--v2" data-lang="en" style="display:none">"Humic Acid Powder FCO darkened my soil — I use less urea now. Been with AgroCare 8 years, still happy."</div>
-            </div>
+                  </div>
           </article>
           <article class="farmer-blog-card review-card review-card--v2">
             <img src="assets/images/farmers/farmer-6.webp" alt="Shantabai" class="farmer-blog-card__img"/>
@@ -687,7 +682,7 @@
               <div class="review-text review-text--v2" data-lang="gu">"Energy Balls બોવાઈ સમયે લગાવ્યા — મરચાંમાં પાણી ઓછું લાગે છે, ફૂલ સારા આવે છે."</div>
               <div class="review-text review-text--v2" data-lang="hi" style="display:none">"बोवाई पर Energy Balls — मिर्च में कम पानी, अच्छे फूल।"</div>
               <div class="review-text review-text--v2" data-lang="en" style="display:none">"Applied Energy Balls at sowing — less irrigation on chilli, better flowering."</div>
-            </div>
+                </div>
           </article>
         </div>
       </div>
@@ -785,12 +780,12 @@
             <div class="gallery-item-overlay"><span class="gallery-play-icon">▶</span></div>
             <span class="gallery-item-caption">Product demonstration</span>
           </div>
-        </div>
+          </div>
 
         <p class="section-eyebrow" style="margin-top:3rem;text-align:center">Memories bulletin board</p>
         <h3 class="section-title" style="text-align:center;margin-bottom:1.5rem">Our Gallery</h3>
-        <div class="gallery-masonry gallery-masonry--columns" id="home-gallery-masonry" data-gallery-home aria-label="Gallery memories"></div>
-      </div>
+        <div class="gallery-masonry" id="home-gallery-masonry" data-gallery-home aria-label="Gallery memories"></div>
+          </div>
     </section>
 
     <!-- ══ GALLERY PREVIEW ══ -->
@@ -799,12 +794,12 @@
       <h2 style="font-family:Cormorant Garamond,Georgia,serif;font-size:clamp(28px,4vw,48px);color:#1A3A38;font-weight:400;margin:0 0 40px">
         Seen in Our Fields
       </h2>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:900px;margin:0 auto 32px">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:720px;margin:0 auto 32px">
         <div style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 4px 16px rgba(26,61,26,0.1)">
-          <img src="assets/gallery/farmer.webp" alt="Field 1" style="width:100%;height:100%;object-fit:cover"/>
+          <img src="assets/gallery/farmer.webp" alt="Farmer in the field" style="width:100%;height:100%;object-fit:cover"/>
         </div>
         <div style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 4px 16px rgba(26,61,26,0.1)">
-          <img src="assets/gallery/WhatsApp Image 2026-05-29 at 22.52.05.webp" alt="Field 2" style="width:100%;height:100%;object-fit:cover"/>
+          <img src="assets/gallery/WhatsApp Image 2026-05-29 at 22.52.05.webp" alt="Organic farming in progress" style="width:100%;height:100%;object-fit:cover"/>
         </div>
       </div>
       <a href="gallery.html" style="display:inline-flex;align-items:center;gap:8px;padding:12px 32px;border-radius:999px;font-size:14px;font-weight:600;background:#6B8F5E;color:#ffffff;text-decoration:none;letter-spacing:1px">
