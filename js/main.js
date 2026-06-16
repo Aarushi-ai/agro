@@ -218,6 +218,14 @@
     const mobileNav = document.querySelector(".mobile-nav");
     const closeBtn = document.querySelector(".mobile-nav-close");
 
+    let backdrop = document.querySelector(".mobile-nav-backdrop");
+    if (!backdrop && mobileNav) {
+      backdrop = document.createElement("div");
+      backdrop.className = "mobile-nav-backdrop";
+      backdrop.setAttribute("aria-hidden", "true");
+      document.body.appendChild(backdrop);
+    }
+
     if (header) {
       const onScroll = () => {
         header.classList.toggle("scrolled", window.scrollY > 40);
@@ -229,8 +237,10 @@
     function setMobileNavOpen(open) {
       hamburger?.classList.toggle("open", open);
       mobileNav?.classList.toggle("open", open);
+      backdrop?.classList.toggle("open", open);
       document.body.classList.toggle("nav-open", open);
       hamburger?.setAttribute("aria-expanded", String(open));
+      backdrop?.setAttribute("aria-hidden", String(!open));
     }
 
     hamburger?.addEventListener("click", () => {
@@ -238,6 +248,8 @@
     });
 
     closeBtn?.addEventListener("click", () => setMobileNavOpen(false));
+
+    backdrop?.addEventListener("click", () => setMobileNavOpen(false));
 
     mobileNav?.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => setMobileNavOpen(false));
