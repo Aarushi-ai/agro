@@ -130,9 +130,7 @@ A Jekyll workflow (`.github/workflows/jekyll-gh-pages.yml`) deploys on push to `
 
 | | |
 |---|---|
-| **Phone / WhatsApp** | +91 9427205179 |
 | **Email** | agrocare.aquarev@gmail.com · globsynite@gmail.com |
-| **Address** | Namah Siddh Nagar, Village Vyajpur, Bhavnagar Road, Una, Gujarat 362560, India |
 | **Instagram** | [@___agrocare___](https://www.instagram.com/___agrocare___/) |
 | **YouTube** | [Pulkit Jain](https://youtube.com/@pulkitjain-q9u) |
 | **LinkedIn** | [AgroCare Aquarev](https://www.linkedin.com/in/agrocare-aquarev-5b2a63413) |
