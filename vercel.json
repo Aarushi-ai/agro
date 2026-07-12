@@ -12,5 +12,17 @@
       "memory": 256,
       "maxDuration": 10
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/contact.html",
+      "destination": "/contact-section",
+      "permanent": true
+    },
+    {
+      "source": "/stories.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
 }
