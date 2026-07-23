@@ -15,35 +15,14 @@
   },
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.aquarev.in" }],
-      "destination": "https://aquarev.in/:path*",
-      "permanent": true
-    },
-    {
       "source": "/contact.html",
-      "destination": "/#contact-section",
+      "destination": "/contact-section",
       "permanent": true
     },
     {
       "source": "/stories.html",
       "destination": "/",
       "permanent": true
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": ".*\\.vercel\\.app" }],
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
-    },
-    {
-      "source": "/api/(.*)",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
-    },
-    {
-      "source": "/components/(.*)",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     }
   ]
 }
