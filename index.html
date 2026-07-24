@@ -1078,5 +1078,21 @@
   <script src="js/agro-knowledge.js"></script>
   <script src="js/products-catalogue.js"></script>
   <script src="js/main.js" defer></script>
+  <script>
+  (function() {
+    function forceRevealSite() {
+      var loader = document.getElementById('site-loader');
+      if (loader) {
+        loader.style.display = 'none';
+        loader.style.opacity = '0';
+      }
+      document.body.style.overflow = 'auto';
+    }
+    // Hide loader after 4 seconds no matter what happens
+    setTimeout(forceRevealSite, 4000);
+    // Also hide it as soon as the page fully loads, if sooner
+    window.addEventListener('load', forceRevealSite);
+  })();
+  </script>
 </body>
 </html>
